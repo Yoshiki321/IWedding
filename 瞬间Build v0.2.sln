@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "瞬间Build v0.2", "瞬间Build v0.2.csproj", "{5C58D70E-4CE2-536F-E3A7-C688EB6D01F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "瞬间Build v0.2.Plugins", "瞬间Build v0.2.Plugins.csproj", "{E410E9C2-9BE6-F487-92A5-3509897077CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "瞬间Build v0.2.Editor", "瞬间Build v0.2.Editor.csproj", "{ECC4181B-72E9-2E19-EED1-2E45FA50F910}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "瞬间Build v0.2.Editor.Plugins", "瞬间Build v0.2.Editor.Plugins.csproj", "{022EDA8D-0F93-EC9C-041C-139AC9E12F0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C58D70E-4CE2-536F-E3A7-C688EB6D01F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C58D70E-4CE2-536F-E3A7-C688EB6D01F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C58D70E-4CE2-536F-E3A7-C688EB6D01F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C58D70E-4CE2-536F-E3A7-C688EB6D01F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E410E9C2-9BE6-F487-92A5-3509897077CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E410E9C2-9BE6-F487-92A5-3509897077CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E410E9C2-9BE6-F487-92A5-3509897077CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E410E9C2-9BE6-F487-92A5-3509897077CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECC4181B-72E9-2E19-EED1-2E45FA50F910}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECC4181B-72E9-2E19-EED1-2E45FA50F910}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECC4181B-72E9-2E19-EED1-2E45FA50F910}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECC4181B-72E9-2E19-EED1-2E45FA50F910}.Release|Any CPU.Build.0 = Release|Any CPU
+		{022EDA8D-0F93-EC9C-041C-139AC9E12F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{022EDA8D-0F93-EC9C-041C-139AC9E12F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{022EDA8D-0F93-EC9C-041C-139AC9E12F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{022EDA8D-0F93-EC9C-041C-139AC9E12F0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

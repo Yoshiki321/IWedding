@@ -1,0 +1,66 @@
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+
+public class BasePanel : DispatcherEventPanel, IBeginDragHandler, IDragHandler, IEndDragHandler
+{
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        SetDraggedPosition(eventData);
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        SetDraggedPosition(eventData);
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        SetDraggedPosition(eventData);
+    }
+
+    private void SetDraggedPosition(PointerEventData eventData)
+    {
+        var rt = view.gameObject.GetComponent<RectTransform>();
+
+        Vector3 globalMousePos;
+        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(rt, eventData.position, eventData.pressEventCamera, out globalMousePos))
+        {
+            rt.position = globalMousePos;
+        }
+    }
+
+    protected Button exitBtn;
+    protected Transform view;
+
+    public virtual void Init()
+    {
+        view = transform.Find("View");
+        exitBtn = transform.Find("View").Find("ExitBtn").GetComponent<Button>();
+
+        exitBtn.onClick.AddListener(ExitHandle);
+    }
+
+    public virtual void SetContent(object value)
+    {
+
+    }
+
+    private void ExitHandle()
+    {
+        Close();
+
+        UIManager.ClosePanel(name);
+    }
+
+    void Update()
+    {
+
+    }
+
+    protected virtual void Close()
+    {
+
+    }
+}

@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LangVersion>4</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{ACB94AD6-45CD-14A2-5619-AF9D388BC8B7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_1_0;UNITY_2017_1;UNITY_2017;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;UNITY_STANDALONE_OSX;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_GAMECENTER;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_VR;ENABLE_MODULAR_UNITYENGINE_ASSEMBLIES;ENABLE_CLUSTERINPUT;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_OSX;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;CROSS_PLATFORM_INPUT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+     <Compile Include="Assets\MirrorReflection.cs" />
+     <Compile Include="Assets\Module\HighlightingSystem\Scripts\Advanced\CameraTargeting.cs" />
+     <Compile Include="Assets\Module\HighlightingSystem\Scripts\Advanced\CompoundObjectController.cs" />
+     <Compile Include="Assets\Module\HighlightingSystem\Scripts\Advanced\FlashingController.cs" />
+     <Compile Include="Assets\Module\HighlightingSystem\Scripts\Advanced\HighlighterController.cs" />
+     <Compile Include="Assets\Module\HighlightingSystem\Scripts\Advanced\HighlighterOccluder.cs" />
+     <Compile Include="Assets\Module\HighlightingSystem\Scripts\Advanced\SpectrumController.cs" />
+     <Compile Include="Assets\Module\HighlightingSystem\Scripts\Basic\CSHighlighterController.cs" />
+     <Compile Include="Assets\Module\HighlightingSystem\Scripts\Service\PresetSelector.cs" />
+     <Compile Include="Assets\Module\HighlightingSystem\Scripts\Service\SceneLoader.cs" />
+     <Compile Include="Assets\Module\Infrared\Scripts\Infrared.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\_DEMO\SCRIPTS\ui_devFPS.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\_DEMO\SCRIPTS\ui_tenkokuHandler.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\NoiseTools\NoiseGeneratorBase.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\NoiseTools\NoiseVolume.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\NoiseTools\PerlinNoise.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\NoiseTools\WorleyNoise.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\NoiseTools\XXHash.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\ParticlePlanetHandler.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\ParticleStarfieldHandler.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\Random.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\TenkokuCalculations.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\TenkokuCameraTools.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\TenkokuGaia.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\TenkokuGlobalSound.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\TenkokuLib.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\TenkokuLightningFX.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\TenkokuModule.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\TenkokuPostFX.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\TenkokuSkyBlur.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\TenkokuSkyFog.cs" />
+     <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\SCRIPTS\TenkokuSunShafts.cs" />
+     <Compile Include="Assets\Module\VRPanorama\Scripts\AudioSyncWithVRCapture.cs" />
+     <Compile Include="Assets\Module\VRPanorama\Scripts\RenderCubemap.cs" />
+     <Compile Include="Assets\Module\VRPanorama\Scripts\VRBuilderScript.cs" />
+     <Compile Include="Assets\Module\VRPanorama\Scripts\VRPanoramaAttribute.cs" />
+     <Compile Include="Assets\Module\VRPanorama\Scripts\VRPanoramaDrawer.cs" />
+     <Compile Include="Assets\Module\VRPanorama\StandardAssets\MouseLook.cs" />
+     <Compile Include="Assets\Module\VRPanorama\VRCapture.cs" />
+     <Compile Include="Assets\Module\VRPanorama\VRCaptureRT.cs" />
+     <Compile Include="Assets\Module\VRPanorama\VRCompositor.cs" />
+     <Compile Include="Assets\Resources\Item\Spotlight\Lamp\BallLampRotateXYZ.cs" />
+     <Compile Include="Assets\Resources\Item\Spotlight\Lamp\MultipleSpotlight.cs" />
+     <Compile Include="Assets\Resources\Item\Spotlight\Lamp\RadiationLampRotateZ.cs" />
+     <Compile Include="Assets\Resources\Item\Spotlight\Lamp\Spotlight.cs" />
+     <Compile Include="Assets\Resources\Item\Spotlight\Lamp\SpotRotateYoYo.cs" />
+     <Compile Include="Assets\Script\Camera\CameraFlyController.cs" />
+     <Compile Include="Assets\Script\Camera\CameraRay.cs" />
+     <Compile Include="Assets\Script\Camera\HoverController.cs" />
+     <Compile Include="Assets\Script\Constant.cs" />
+     <Compile Include="Assets\Script\Context.cs" />
+     <Compile Include="Assets\Script\Controller\Camera\ChangeCameraCommand.cs" />
+     <Compile Include="Assets\Script\Controller\Camera\Events\CameraCommandEvent.cs" />
+     <Compile Include="Assets\Script\Controller\Command.cs" />
+     <Compile Include="Assets\Script\Controller\CommandMap.cs" />
+     <Compile Include="Assets\Script\Controller\Events\DocumentModelEvent.cs" />
+     <Compile Include="Assets\Script\Controller\Events\HistoryEvent.cs" />
+     <Compile Include="Assets\Script\Controller\HistoryCommand.cs" />
+     <Compile Include="Assets\Script\Controller\Lamp\NewBehaviourScript.cs" />
+     <Compile Include="Assets\Script\Convert.cs" />
+     <Compile Include="Assets\Script\Design.cs" />
+     <Compile Include="Assets\Script\Drag.cs" />
+     <Compile Include="Assets\Script\Factory.cs" />
+     <Compile Include="Assets\Script\Layer.cs" />
+     <Compile Include="Assets\Script\LoadXml.cs" />
+     <Compile Include="Assets\Script\Manager\BaseControl.cs" />
+     <Compile Include="Assets\Script\Manager\CameraManager.cs" />
+     <Compile Include="Assets\Script\Manager\Control3Manager.cs" />
+     <Compile Include="Assets\Script\Manager\ControlManager.cs" />
+     <Compile Include="Assets\Script\Manager\FactoryManager.cs" />
+     <Compile Include="Assets\Script\Manager\Mouse3Manager.cs" />
+     <Compile Include="Assets\Script\Manager\MouseManager.cs" />
+     <Compile Include="Assets\Script\Manager\SceneManager.cs" />
+     <Compile Include="Assets\Script\Manager\SorptionManager.cs" />
+     <Compile Include="Assets\Script\Manager\UIManager.cs" />
+     <Compile Include="Assets\Script\Model\AssetsModel.cs" />
+     <Compile Include="Assets\Script\Model\BuilderModel.cs" />
+     <Compile Include="Assets\Script\Model\VO\AssetVO.cs" />
+     <Compile Include="Assets\Script\Model\VO\ItemVO.cs" />
+     <Compile Include="Assets\Script\Model\VO\LineVO.cs" />
+     <Compile Include="Assets\Script\Model\VO\NestedVO.cs" />
+     <Compile Include="Assets\Script\Model\VO\ObjectVO.cs" />
+     <Compile Include="Assets\Script\Model\VO\SurfaceVO.cs" />
+     <Compile Include="Assets\Script\Program.cs" />
+     <Compile Include="Assets\Script\RotateUV.cs" />
+     <Compile Include="Assets\Script\Scene\Draw\BaseStickers.cs" />
+     <Compile Include="Assets\Script\Scene\Draw\CollageData.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Display\AuxiliaryLine.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Display\DrawSprite.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Display\Item2D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Display\Line2D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Display\Nested2D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Display\Node2D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Display\Plane2D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Display\Spotlight2D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Display\Surface2D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Graphics2D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\LayoutConstant.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Proto\Bisector.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Proto\HoleData.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Proto\Path2D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic\Proto\Polygon.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\BasePlane3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\CeilingLine3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Controller\BaseController.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Controller\DoorDoubleController.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Controller\FloorController.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Controller\FrameImgController.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Controller\ItemChangeController.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Controller\LampCeilingController.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Controller\LampWallController.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Controller\LeukonController.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Controller\SkirtingLineController.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Controller\TableLayoutController.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Controller\WallController.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Frame3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Graphics3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\HardWall3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\IrregularPlane3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\IrregularPlaneUtils3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Item3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Line3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Nested3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Penetrate.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\RectPenetratePlane3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Spotlight3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\Surface3D.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\VO\WallPlaneVO.cs" />
+     <Compile Include="Assets\Script\Scene\Graphic3D\WallPlane3D.cs" />
+     <Compile Include="Assets\Script\SceneController.cs" />
+     <Compile Include="Assets\Script\Utils\ArrayUtils.cs" />
+     <Compile Include="Assets\Script\Utils\ColorUtils.cs" />
+     <Compile Include="Assets\Script\Utils\CrossPlatformInputInitialize.cs" />
+     <Compile Include="Assets\Script\Utils\DrawingUtils3D.cs" />
+     <Compile Include="Assets\Script\Utils\Event\EventDispatcher.cs" />
+     <Compile Include="Assets\Script\Utils\Event\EventObject.cs" />
+     <Compile Include="Assets\Script\Utils\Event\EventPhase.cs" />
+     <Compile Include="Assets\Script\Utils\Event\EventTriggerListener.cs" />
+     <Compile Include="Assets\Script\Utils\Extend\BitmapDrawing.cs" />
+     <Compile Include="Assets\Script\Utils\Extend\TextureExtension.cs" />
+     <Compile Include="Assets\Script\Utils\Extend\VectorExtend.cs" />
+     <Compile Include="Assets\Script\Utils\FaceToCamera.cs" />
+     <Compile Include="Assets\Script\Utils\FPSCounter.cs" />
+     <Compile Include="Assets\Script\Utils\MathUtils.cs" />
+     <Compile Include="Assets\Script\Utils\MathUtils3D.cs" />
+     <Compile Include="Assets\Script\Utils\Matrix3DUtils.cs" />
+     <Compile Include="Assets\Script\Utils\MeshData.cs" />
+     <Compile Include="Assets\Script\Utils\MeshUtils3D.cs" />
+     <Compile Include="Assets\Script\Utils\MovementController.cs" />
+     <Compile Include="Assets\Script\Utils\NumberUtils.cs" />
+     <Compile Include="Assets\Script\Utils\PlaneUtils.cs" />
+     <Compile Include="Assets\Script\Utils\RenderingModeUnits.cs" />
+     <Compile Include="Assets\Script\Utils\RotationController.cs" />
+     <Compile Include="Assets\Script\Utils\SceneAmbientLight.cs" />
+     <Compile Include="Assets\Script\Utils\Triangle.cs" />
+     <Compile Include="Assets\Script\Utils\Triangle3D.cs" />
+     <Compile Include="Assets\Script\Utils\TriangulateUtil.cs" />
+     <Compile Include="Assets\Script\Utils\Vertex.cs" />
+     <Compile Include="Assets\Script\View\Mediators\CameraToolMediators.cs" />
+     <Compile Include="Assets\Script\View\Mediators\ChooseSurfaceMediators.cs" />
+     <Compile Include="Assets\Script\View\Mediators\ItemToolMediators.cs" />
+     <Compile Include="Assets\Script\View\Mediators\LineToolMediators.cs" />
+     <Compile Include="Assets\Script\View\Mediators\MainPanelMediators.cs" />
+     <Compile Include="Assets\Script\View\Mediators\Mediators.cs" />
+     <Compile Include="Assets\Script\View\Mediators\SceneToolMediators.cs" />
+     <Compile Include="Assets\Script\View\Mediators\SpotlightToolMediators.cs" />
+     <Compile Include="Assets\Script\View\UI\BasePanel.cs" />
+     <Compile Include="Assets\Script\View\UI\CameraTool\CameraToolPanel.cs" />
+     <Compile Include="Assets\Script\View\UI\CameraTool\CameraToolPanelEvent.cs" />
+     <Compile Include="Assets\Script\View\UI\ChooseSurface\ChooseSurfacePanel.cs" />
+     <Compile Include="Assets\Script\View\UI\ChooseSurface\ChooseSurfacePanelEvent.cs" />
+     <Compile Include="Assets\Script\View\UI\ItemTool\ItemToolPanel.cs" />
+     <Compile Include="Assets\Script\View\UI\ItemTool\ItemToolPanelEvent.cs" />
+     <Compile Include="Assets\Script\View\UI\LineTool\LineTool.cs" />
+     <Compile Include="Assets\Script\View\UI\LineTool\LineToolEvent.cs" />
+     <Compile Include="Assets\Script\View\UI\MainPanel\MainPanel.cs" />
+     <Compile Include="Assets\Script\View\UI\MainPanel\MainPanelEvent.cs" />
+     <Compile Include="Assets\Script\View\UI\SceneTool\SceneToolPanel.cs" />
+     <Compile Include="Assets\Script\View\UI\SceneTool\SceneToolPanelEvent.cs" />
+     <Compile Include="Assets\Script\View\UI\SpotlightTool\SpotlightToolPanel.cs" />
+     <Compile Include="Assets\Script\View\UI\SpotlightTool\SpotlightToolPanelEvent.cs" />
+     <Compile Include="Assets\Script\View\UI\SurfaceName\SurfaceName2D.cs" />
+     <Compile Include="Assets\Shader\FX\LightShafts-master\LightShafts.cs" />
+     <Compile Include="Assets\Shader\FX\LightShafts-master\LightShafts.Resources.cs" />
+     <Compile Include="Assets\Shader\FX\LightShafts-master\LightShafts.Utils.cs" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\TenkokuSunShafts.shader" />
+     <None Include="Assets\Shader\FX\LightShafts-master\SamplePositions.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_galaxy.shader" />
+     <None Include="Assets\Module\VRPanorama\Shaders\FadeVR.shader" />
+     <None Include="Assets\Shader\FX\LightShafts-master\Shared.cginc" />
+     <None Include="Assets\Shader\FX\LightShafts-master\Coord.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_cloud_sphere.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_fx_particle_lightning.shader" />
+     <None Include="Assets\Shader\Double Sided Shaders\Double Sided Emissive Diffuse.shader" />
+     <None Include="Assets\Shader\Double Sided Shaders\Double Sided Transparent Diffuse Bump Cutout.shader" />
+     <None Include="Assets\Plugins\HighlightingSystem\Resources\HighlightingBlur.shader" />
+     <None Include="Assets\Module\VRPanorama\Shaders\FadeVRtd.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\RESOURCES\_stardata.txt" />
+     <None Include="Assets\Module\VRPanorama\Shaders\VRCube.shader" />
+     <None Include="Assets\Plugins\HighlightingSystem\Resources\HighlightingTransparent.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_suneclipse.shader" />
+     <None Include="Assets\Shader\FX\LightShafts-master\InterpolateAlongRays.shader" />
+     <None Include="Assets\Module\Infrared\Shader\LaserScope.shader" />
+     <None Include="Assets\Plugins\HighlightingSystem\Resources\HighlightingComposite.shader" />
+     <None Include="Assets\Module\VRPanorama\Shaders\VRAA2.shader" />
+     <None Include="Assets\Shader\FX\LightShafts-master\DepthBreaks.shader" />
+     <None Include="Assets\Module\VRPanorama\Shaders\VRAA.shader" />
+     <None Include="Assets\data.xml" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\TenkokuBlur.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_aurora_plane.shader" />
+     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_star.shader" />
+     <None Include="Assets\Materials\Mirror.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_fx_particle.shader" />
+     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
+     <None Include="Assets\Plugins\HighlightingSystem\Resources\HighlightingOpaque.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\_Tenkoku_ReadMe.txt" />
+     <None Include="Assets\Module\VRPanorama\VRPanorama_ReadMe.txt" />
+     <None Include="Assets\Module\VRPanorama\Shaders\unwrapShader.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_cloud_plane.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_planet.shader" />
+     <None Include="Assets\Shader\Double Sided Shaders\Double Sided Standard Diffuse Bump.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_moonsphere.shader" />
+     <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_FX_Fog.shader" />
+     <None Include="Assets\Shader\Double Sided Shaders\Double Sided Transparent Diffuse Bump.shader" />
+     <None Include="Assets\Shader\Custom\RotateUV.shader" />
+     <None Include="Assets\Shader\FX\LightShafts-master\Raymarch.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\TenkokuDepth.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_sun.shader" />
+     <None Include="Assets\Shader\FX\LightShafts-master\FinalInterpolation.shader" />
+     <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
+     <None Include="Assets\Shader\FX\LightShafts-master\Depth.shader" />
+     <None Include="Assets\Plugins\HighlightingSystem\Resources\HighlightingCut.shader" />
+     <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_skybox.shader" />
+     <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_fx_particle_lit.shader" />
+     <None Include="Assets\Shader\FX\LightShafts-master\ColorFilter.shader" />
+ <Reference Include="UnityEngine.UI">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Networking">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.TestRunner">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TestRunner/net35/unity-custom/nunit.framework.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Timeline">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.HoloLens">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{06113EC8-F6C3-7E90-C05E-D179C7991B08}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  
+</Project>

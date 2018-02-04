@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{763E222A-5BCA-90EE-9BDF-2134258A1453}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
+    <UnityProjectType>Editor:5</UnityProjectType>
+    <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
+    <UnityVersion>2017.1.0f3</UnityVersion>
+    <RootNamespace></RootNamespace>
+    <LangVersion>4</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Debug\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Debug\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_1_0;UNITY_2017_1;UNITY_2017;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;CROSS_PLATFORM_INPUT</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\UnityVS_bin\Release\</OutputPath>
+    <IntermediateOutputPath>Temp\UnityVS_obj\Release\</IntermediateOutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DefineConstants>TRACE;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_1_0;UNITY_2017_1;UNITY_2017;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_GENERICS;ENABLE_PVR_GI;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_RUNTIME_NAVMESH_BUILDING;ENABLE_SPRITERENDERER_FLIPPING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_RAKNET;ENABLE_DIRECTOR;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_HUB;ENABLE_CLOUD_PROJECT_ID;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_TIMELINE;ENABLE_EDITOR_METRICS;ENABLE_EDITOR_METRICS_CACHING;ENABLE_NATIVE_ARRAY;ENABLE_SPRITE_MASKING;INCLUDE_DYNAMIC_GI;INCLUDE_GI;ENABLE_MONO_BDWGC;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;INCLUDE_PUBNUB;ENABLE_PLAYMODE_TESTS_RUNNER;ENABLE_VIDEO;ENABLE_RMGUI;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_STYLE_SHEETS;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_UNITYWEBREQUEST;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_EVENT_QUEUE;ENABLE_CLUSTERINPUT;ENABLE_VR;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_2_0_SUBSET;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_NATIVE_ARRAY_CHECKS;UNITY_TEAM_LICENSE;ENABLE_VSTU;CROSS_PLATFORM_INPUT</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Core" />
+    <Reference Include="Boo.Lang" />
+    <Reference Include="UnityScript.Lang" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.UI">
+      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TestRunner">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TestRunner">
+      <HintPath>Library\UnityAssemblies\UnityEngine.TestRunner.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>Library\UnityAssemblies\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Timeline">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Timeline">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.TreeEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.TreeEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Analytics">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.HoloLens">
+      <HintPath>Library\UnityAssemblies\UnityEditor.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HoloLens">
+      <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Purchasing">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Purchasing.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.VR">
+      <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WSA.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WSA.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WebGL.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
+      <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-UnityScript">
+      <HintPath>Library\ScriptAssemblies\Assembly-UnityScript.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-Boo">
+      <HintPath>Library\ScriptAssemblies\Assembly-Boo.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="瞬间Build.csproj">
+      <Project>{DF80E5BD-C940-7221-6766-7AF7584060F1}</Project>
+      <Name>瞬间Build</Name>
+    </ProjectReference>
+    <ProjectReference Include="瞬间Build.Plugins.csproj">
+      <Project>{D8BAEF0B-0C4C-858A-4CCE-756DBEEE0E90}</Project>
+      <Name>瞬间Build.Plugins</Name>
+    </ProjectReference>
+    <ProjectReference Include="瞬间Build.Editor.Plugins.csproj">
+      <Project>{10A4C79E-61BA-85BB-E7FD-6A54A595F40D}</Project>
+      <Name>瞬间Build.Editor.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\EDITOR\NoiseVolumeEditor.cs" />
+    <Compile Include="Assets\Module\TENKOKU - DYNAMIC SKY\EDITOR\TenkokuModuleEditor.cs" />
+    <Compile Include="Assets\Module\VRPanorama\Editor\VRPanoramaEditor.cs" />
+    <Compile Include="Assets\Module\VRPanorama\Editor\VRPanoramaMenu.cs" />
+    <Compile Include="Assets\Module\VRPanorama\Editor\VRPanoramaRTEditor.cs" />
+    <Compile Include="Assets\Runtime Transform Gizmos\Editor\EditorCameraInspectorGUI.cs" />
+    <Compile Include="Assets\Runtime Transform Gizmos\Editor\EditorGizmoSystemInspectorGUI.cs" />
+    <Compile Include="Assets\Runtime Transform Gizmos\Editor\EditorObjectSelectionInspectorGUI.cs" />
+    <Compile Include="Assets\Runtime Transform Gizmos\Editor\EditorUndoRedoSystemInspectorGUI.cs" />
+    <Compile Include="Assets\Runtime Transform Gizmos\Editor\GizmoInspectorGUIBase.cs" />
+    <Compile Include="Assets\Runtime Transform Gizmos\Editor\Helpers\EditorGUIStyles.cs" />
+    <Compile Include="Assets\Runtime Transform Gizmos\Editor\RotationGizmoInspectorGUI.cs" />
+    <Compile Include="Assets\Runtime Transform Gizmos\Editor\RuntimeEditorApplicationInspectorGUI.cs" />
+    <Compile Include="Assets\Runtime Transform Gizmos\Editor\ScaleGizmoInspectorGUI.cs" />
+    <Compile Include="Assets\Runtime Transform Gizmos\Editor\SceneGizmoInspectorGUI.cs" />
+    <Compile Include="Assets\Runtime Transform Gizmos\Editor\TranslationGizmoInspectorGUI.cs" />
+    <Compile Include="Assets\Runtime Transform Gizmos\Editor\VolumeScaleGizmoInspectorGUI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Materials\Mirror.shader" />
+    <None Include="Assets\Module\Infrared\Shader\LaserScope.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\RESOURCES\_stardata.txt" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\TenkokuBlur.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\TenkokuDepth.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\TenkokuSunShafts.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_FX_Fog.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_aurora_plane.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_cloud_plane.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_cloud_sphere.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_fx_particle.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_fx_particle_lightning.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_fx_particle_lit.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_galaxy.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_moonsphere.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_planet.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_skybox.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_star.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_sun.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\SHADERS\Tenkoku_suneclipse.shader" />
+    <None Include="Assets\Module\TENKOKU - DYNAMIC SKY\_Tenkoku_ReadMe.txt" />
+    <None Include="Assets\Module\VRPanorama\Shaders\FadeVR.shader" />
+    <None Include="Assets\Module\VRPanorama\Shaders\FadeVRtd.shader" />
+    <None Include="Assets\Module\VRPanorama\Shaders\VRAA.shader" />
+    <None Include="Assets\Module\VRPanorama\Shaders\VRAA2.shader" />
+    <None Include="Assets\Module\VRPanorama\Shaders\VRCube.shader" />
+    <None Include="Assets\Module\VRPanorama\Shaders\unwrapShader.shader" />
+    <None Include="Assets\Module\VRPanorama\VRPanorama_ReadMe.txt" />
+    <None Include="Assets\Plugins\HighlightingSystem\Resources\HighlightingBlur.shader" />
+    <None Include="Assets\Plugins\HighlightingSystem\Resources\HighlightingComposite.shader" />
+    <None Include="Assets\Plugins\HighlightingSystem\Resources\HighlightingCut.shader" />
+    <None Include="Assets\Plugins\HighlightingSystem\Resources\HighlightingOpaque.shader" />
+    <None Include="Assets\Plugins\HighlightingSystem\Resources\HighlightingTransparent.shader" />
+    <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
+    <None Include="Assets\Runtime Transform Gizmos\Readme\Hotkeys.txt" />
+    <None Include="Assets\Runtime Transform Gizmos\Readme\Readme.txt" />
+    <None Include="Assets\Runtime Transform Gizmos\Readme\Version History.txt" />
+    <None Include="Assets\Runtime Transform Gizmos\Resources\Shaders\GLLine.shader" />
+    <None Include="Assets\Runtime Transform Gizmos\Resources\Shaders\Geometry2D.shader" />
+    <None Include="Assets\Runtime Transform Gizmos\Resources\Shaders\Gizmo Line.shader" />
+    <None Include="Assets\Runtime Transform Gizmos\Resources\Shaders\Gizmo Solid Component.shader" />
+    <None Include="Assets\Runtime Transform Gizmos\Resources\Shaders\Gradient Camera Bk.shader" />
+    <None Include="Assets\Runtime Transform Gizmos\Resources\Shaders\TintedDiffuse.shader" />
+    <None Include="Assets\Runtime Transform Gizmos\Resources\Shaders\XZGrid.shader" />
+    <None Include="Assets\Script\Gizmo\Alpha-Diffuse.shader" />
+    <None Include="Assets\Script\Gizmo\GizmoShader.shader" />
+    <None Include="Assets\Shader\Custom\RotateUV.shader" />
+    <None Include="Assets\Shader\Double Sided Shaders\Double Sided Emissive Diffuse.shader" />
+    <None Include="Assets\Shader\Double Sided Shaders\Double Sided Standard Diffuse Bump.shader" />
+    <None Include="Assets\Shader\Double Sided Shaders\Double Sided Transparent Diffuse Bump Cutout.shader" />
+    <None Include="Assets\Shader\Double Sided Shaders\Double Sided Transparent Diffuse Bump.shader" />
+    <None Include="Assets\Shader\FX\LightShafts-master\ColorFilter.shader" />
+    <None Include="Assets\Shader\FX\LightShafts-master\Coord.shader" />
+    <None Include="Assets\Shader\FX\LightShafts-master\Depth.shader" />
+    <None Include="Assets\Shader\FX\LightShafts-master\DepthBreaks.shader" />
+    <None Include="Assets\Shader\FX\LightShafts-master\FinalInterpolation.shader" />
+    <None Include="Assets\Shader\FX\LightShafts-master\InterpolateAlongRays.shader" />
+    <None Include="Assets\Shader\FX\LightShafts-master\Raymarch.shader" />
+    <None Include="Assets\Shader\FX\LightShafts-master\SamplePositions.shader" />
+    <None Include="Assets\Shader\FX\LightShafts-master\Shared.cginc" />
+    <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
+    <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
+    <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
+    <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\data.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="GenerateTargetFrameworkMonikerAttribute" />
+</Project>

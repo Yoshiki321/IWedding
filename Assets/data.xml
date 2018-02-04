@@ -1,0 +1,39 @@
+<Code>
+  <Build>
+    <Line from="4.28,-0.6" to="-9.279,-0.6" thickness="0.15" id="5T10w2017e22l5e20e900" interiorAlong="0" height="6" afrom="4.355,-0.675" ato="-9.354,-0.675" ifrom="4.191765,-0.5117647" ito="-9.190765,-0.5117647">
+    </Line>
+    <Line from="4.28,-0.6" to="4.28,5.4" thickness="0.15" id="5z10l2017Q22T5w20s901" interiorAlong="1" height="6" afrom="4.191765,-0.5117647" ato="4.191765,5.311765" ifrom="4.355,-0.675" ito="4.355,5.475">
+    </Line>
+    <Line from="4.28,5.4" to="-9.279,5.4" thickness="0.15" id="5H10B2017c22E5a20x901" interiorAlong="1" height="6" afrom="4.191765,5.311765" ato="-9.190765,5.311765" ifrom="4.355,5.475" ito="-9.354,5.475">
+    </Line>
+    <Line from="-9.279,5.4" to="-9.279,-0.6" thickness="0.15" id="5v10J2017M22x5J20a901" interiorAlong="1" height="6" afrom="-9.190765,5.311765" ato="-9.190765,-0.5117647" ifrom="-9.354,5.475" ito="-9.354,-0.675">
+    </Line>
+    <Line from="2.4,-6.6" to="-3.6,-6.6" thickness="0.15" id="5m10n2017J22W5U24O535" interiorAlong="0" height="6" afrom="2.475,-6.675" ato="-3.675,-6.675" ifrom="2.311765,-6.511765" ito="-3.511765,-6.511765">
+    </Line>
+    <Line from="2.4,-6.6" to="2.4,-0.6" thickness="0.15" id="5C10E2017H22G5J24I535" interiorAlong="1" height="6" afrom="2.311765,-6.511765" ato="2.311765,-0.6882353" ifrom="2.475,-6.675" ito="2.475,-0.525">
+    </Line>
+    <Line from="2.4,-0.6" to="-3.6,-0.6" thickness="0.15" id="5A10R2017f22y5x24J535" interiorAlong="1" height="6" afrom="2.311765,-0.6882353" ato="-3.511765,-0.6882353" ifrom="2.475,-0.525" ito="-3.675,-0.525">
+    </Line>
+    <Line from="-3.6,-0.6" to="-3.6,-6.6" thickness="0.15" id="5T10R2017I22m5C24l535" interiorAlong="1" height="6" afrom="-3.511765,-0.6882353" ato="-3.511765,-6.511765" ifrom="-3.675,-0.525" ito="-3.675,-6.675">
+    </Line>
+    <Surface id="5E10V2017l22C5V20r901" height="6" surfaceName="主厅" lines="5T10w2017e22l5e20e900,5z10l2017Q22T5w20s901,5H10B2017c22E5a20x901,5v10J2017M22x5J20a901">
+    </Surface>
+    <Surface id="5r10q2017k22A5Y24G535" height="6" surfaceName="主厅" lines="5m10n2017J22W5U24O535,5C10E2017H22G5J24I535,5A10R2017f22y5x24J535,5T10R2017I22m5C24l535">
+    </Surface>
+  </Build>
+  <Assets>
+    <Item id="cf4e99e6-4616-4cae-a32b-c35c181ede08" assetId="Chandelier">
+      <Transform x="-2.151385" y="2.597774" z="8.50806" scaleX="5.104592" scaleY="5.104592" scaleZ="5.104592" rotateX="0" rotateY="0" rotateZ="0" />
+      <Frame url="" />
+      <Collage struct="Frame1 Glass (Instance),-180508,RGBA(1.000, 1.000, 1.000, 1.000);Frame1 (Instance),-180510,RGBA(1.000, 1.000, 1.000, 1.000);Default-Material (Instance),-180512,RGBA(1.000, 1.000, 1.000, 1.000)" />
+    </Item>
+    <Item id="5641c66a-6a4c-43d5-8201-d3a267165cd3" assetId="Flower">
+      <Transform x="0" y="0" z="2.524961" scaleX="1" scaleY="1" scaleZ="1" rotateX="0" rotateY="0" rotateZ="0" />
+      <Collage struct="叶子fa (Instance),-269462,RGBA(0.080, 0.419, 0.052, 1.000);百合花 (Instance),-269464,RGBA(0.934, 0.041, 0.041, 1.000);叶子fa (Instance),-269466,RGBA(0.080, 0.419, 0.052, 1.000);百合花 (Instance),-269468,RGBA(0.934, 0.041, 0.041, 1.000);百合花 (Instance),-269470,RGBA(0.934, 0.041, 0.041, 1.000);百合花 (Instance),-269472,RGBA(0.934, 0.041, 0.041, 1.000);Standard_8 (Instance),-269474,RGBA(1.000, 1.000, 1.000, 1.000)" />
+    </Item>
+    <Item id="6c77a8df-1c44-4807-af82-00b7e1bc3c98" assetId="Flower">
+      <Transform x="0" y="0" z="5.041383" scaleX="1" scaleY="1" scaleZ="1" rotateX="0" rotateY="0" rotateZ="0" />
+      <Collage struct="叶子fa (Instance),-269998,RGBA(0.080, 0.419, 0.052, 1.000);百合花 (Instance),-270000,RGBA(0.934, 0.041, 0.041, 1.000);叶子fa (Instance),-270002,RGBA(0.080, 0.419, 0.052, 1.000);百合花 (Instance),-270004,RGBA(0.934, 0.041, 0.041, 1.000);百合花 (Instance),-270006,RGBA(0.934, 0.041, 0.041, 1.000);百合花 (Instance),-270008,RGBA(0.934, 0.041, 0.041, 1.000);Standard_8 (Instance),-270010,RGBA(1.000, 1.000, 1.000, 1.000)" />
+    </Item>
+  </Assets>
+</Code>
