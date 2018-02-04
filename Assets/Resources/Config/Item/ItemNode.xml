@@ -1,0 +1,23 @@
+<ItemList>
+  <Node id="" name="桌类">
+    <Node id="" name="大桌" thumbnail="">
+      <List id="" relation=""/>
+    </Node>
+    <Node id="" name="小桌" thumbnail="">
+      <List id="" relation=""/>
+    </Node>
+  </Node>
+  <Node id="" name="装饰" thumbnail="">
+    <Node id="" name="大装饰" thumbnail="">
+      <List id="" relation="1001"/>
+    </Node>
+    <Node id="" name="小装饰" thumbnail="">
+      <Node id="" name="小小装饰" thumbnail="">
+        <List id="" relation="1002"/>
+      </Node>
+      <Node id="" name="呵呵装饰" thumbnail="">
+        <List id="" relation="1003"/>
+      </Node>
+    </Node>
+  </Node>
+</ItemList>
