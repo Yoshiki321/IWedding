@@ -1,0 +1,844 @@
+fileFormatVersion: 2
+guid: 045d7e98e249f784f8808be497fd3bd8
+timeCreated: 1513498978
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: bg
+    100004: curve2
+    100006: Cylinder042
+    100008: Cylinder043
+    100010: Cylinder044
+    100012: Cylinder045
+    100014: Cylinder046
+    100016: Cylinder047
+    100018: Cylinder048
+    100020: Cylinder049
+    100022: Cylinder050
+    100024: Cylinder051
+    100026: Cylinder052
+    100028: Cylinder053
+    100030: Cylinder054
+    100032: Cylinder055
+    100034: Cylinder056
+    100036: Cylinder057
+    100038: Cylinder058
+    100040: Cylinder059
+    100042: Cylinder060
+    100044: Cylinder061
+    100046: Cylinder062
+    100048: Cylinder063
+    100050: Cylinder064
+    100052: Cylinder065
+    100054: Cylinder066
+    100056: Cylinder067
+    100058: Cylinder068
+    100060: Cylinder069
+    100062: Cylinder070
+    100064: Cylinder071
+    100066: extrudedSurface1
+    100068: extrudedSurface10
+    100070: extrudedSurface11
+    100072: extrudedSurface12
+    100074: extrudedSurface13
+    100076: extrudedSurface14
+    100078: extrudedSurface15
+    100080: extrudedSurface17
+    100082: extrudedSurface19
+    100084: extrudedSurface19 1
+    100086: extrudedSurface19 2
+    100088: extrudedSurface19 3
+    100090: extrudedSurface2
+    100092: extrudedSurface20
+    100094: extrudedSurface20 1
+    100096: extrudedSurface20 2
+    100098: extrudedSurface20 3
+    100100: extrudedSurface21
+    100102: extrudedSurface21 1
+    100104: extrudedSurface21 2
+    100106: extrudedSurface21 3
+    100108: extrudedSurface22
+    100110: extrudedSurface22 1
+    100112: extrudedSurface22 2
+    100114: extrudedSurface22 3
+    100116: extrudedSurface23
+    100118: extrudedSurface23 1
+    100120: extrudedSurface23 2
+    100122: extrudedSurface23 3
+    100124: extrudedSurface24
+    100126: extrudedSurface24 1
+    100128: extrudedSurface24 2
+    100130: extrudedSurface24 3
+    100132: extrudedSurface26
+    100134: extrudedSurface26 1
+    100136: extrudedSurface26 2
+    100138: extrudedSurface26 3
+    100140: extrudedSurface28
+    100142: extrudedSurface28 1
+    100144: extrudedSurface28 2
+    100146: extrudedSurface28 3
+    100148: extrudedSurface29
+    100150: extrudedSurface29 1
+    100152: extrudedSurface29 2
+    100154: extrudedSurface29 3
+    100156: extrudedSurface3
+    100158: extrudedSurface30
+    100160: extrudedSurface31
+    100162: extrudedSurface31 1
+    100164: extrudedSurface31 2
+    100166: extrudedSurface4
+    100168: extrudedSurface5
+    100170: extrudedSurface7
+    100172: extrudedSurface8
+    100174: extrudedSurface9
+    100176: fenglin
+    100178: flower_bush_2_03
+    100180: flower_bush_2_03_MeshPart0
+    100182: flower_bush_2_03_MeshPart1
+    100184: group2
+    100186: group2 1
+    100188: group3
+    100190: group4
+    100192: hb4:pCube1
+    100194: hb5:pCube1
+    100196: nurbsToPoly1
+    100198: nurbsToPoly10
+    100200: nurbsToPoly11
+    100202: nurbsToPoly12
+    100204: nurbsToPoly13
+    100206: nurbsToPoly14
+    100208: nurbsToPoly15
+    100210: nurbsToPoly16
+    100212: nurbsToPoly17
+    100214: nurbsToPoly18
+    100216: nurbsToPoly19
+    100218: nurbsToPoly2
+    100220: nurbsToPoly20
+    100222: nurbsToPoly21
+    100224: nurbsToPoly22
+    100226: nurbsToPoly23
+    100228: nurbsToPoly24
+    100230: nurbsToPoly25
+    100232: nurbsToPoly26
+    100234: nurbsToPoly27
+    100236: nurbsToPoly28
+    100238: nurbsToPoly29
+    100240: nurbsToPoly3
+    100242: nurbsToPoly30
+    100244: nurbsToPoly31
+    100246: nurbsToPoly32
+    100248: nurbsToPoly33
+    100250: nurbsToPoly34
+    100252: nurbsToPoly35
+    100254: nurbsToPoly36
+    100256: nurbsToPoly37
+    100258: nurbsToPoly38
+    100260: nurbsToPoly39
+    100262: nurbsToPoly4
+    100264: nurbsToPoly40
+    100266: nurbsToPoly41
+    100268: nurbsToPoly42
+    100270: nurbsToPoly43
+    100272: nurbsToPoly44
+    100274: nurbsToPoly45
+    100276: nurbsToPoly46
+    100278: nurbsToPoly47
+    100280: nurbsToPoly48
+    100282: nurbsToPoly49
+    100284: nurbsToPoly5
+    100286: nurbsToPoly50
+    100288: nurbsToPoly51
+    100290: nurbsToPoly52
+    100292: nurbsToPoly53
+    100294: nurbsToPoly54
+    100296: nurbsToPoly55
+    100298: nurbsToPoly6
+    100300: nurbsToPoly7
+    100302: nurbsToPoly8
+    100304: nurbsToPoly9
+    100306: pCube1
+    100308: pCube1 1
+    100310: pCube4
+    100312: pCube5
+    100314: pCube6
+    100316: pCube7
+    100318: pCube8
+    100320: pCube9
+    100322: polySurface1
+    100324: polySurface10
+    100326: polySurface11
+    100328: polySurface12
+    100330: polySurface13
+    100332: polySurface15
+    100334: polySurface16
+    100336: polySurface17
+    100338: polySurface2
+    100340: polySurface3
+    100342: polySurface4
+    100344: polySurface5
+    100346: polySurface6
+    100348: polySurface7
+    100350: polySurface8
+    100352: polySurface9
+    100354: pSphere1
+    100356: Sphere001
+    100358: Torus001
+    100360: transform10
+    100362: transform5
+    100364: transform6
+    100366: transform7
+    100368: transform8
+    100370: transform9
+    100372: yuanguan
+    100374: zhuangshi1
+    100376: zhuangshi2
+    100378: zhuangshi3
+    400000: //RootNode
+    400002: bg
+    400004: curve2
+    400006: Cylinder042
+    400008: Cylinder043
+    400010: Cylinder044
+    400012: Cylinder045
+    400014: Cylinder046
+    400016: Cylinder047
+    400018: Cylinder048
+    400020: Cylinder049
+    400022: Cylinder050
+    400024: Cylinder051
+    400026: Cylinder052
+    400028: Cylinder053
+    400030: Cylinder054
+    400032: Cylinder055
+    400034: Cylinder056
+    400036: Cylinder057
+    400038: Cylinder058
+    400040: Cylinder059
+    400042: Cylinder060
+    400044: Cylinder061
+    400046: Cylinder062
+    400048: Cylinder063
+    400050: Cylinder064
+    400052: Cylinder065
+    400054: Cylinder066
+    400056: Cylinder067
+    400058: Cylinder068
+    400060: Cylinder069
+    400062: Cylinder070
+    400064: Cylinder071
+    400066: extrudedSurface1
+    400068: extrudedSurface10
+    400070: extrudedSurface11
+    400072: extrudedSurface12
+    400074: extrudedSurface13
+    400076: extrudedSurface14
+    400078: extrudedSurface15
+    400080: extrudedSurface17
+    400082: extrudedSurface19
+    400084: extrudedSurface19 1
+    400086: extrudedSurface19 2
+    400088: extrudedSurface19 3
+    400090: extrudedSurface2
+    400092: extrudedSurface20
+    400094: extrudedSurface20 1
+    400096: extrudedSurface20 2
+    400098: extrudedSurface20 3
+    400100: extrudedSurface21
+    400102: extrudedSurface21 1
+    400104: extrudedSurface21 2
+    400106: extrudedSurface21 3
+    400108: extrudedSurface22
+    400110: extrudedSurface22 1
+    400112: extrudedSurface22 2
+    400114: extrudedSurface22 3
+    400116: extrudedSurface23
+    400118: extrudedSurface23 1
+    400120: extrudedSurface23 2
+    400122: extrudedSurface23 3
+    400124: extrudedSurface24
+    400126: extrudedSurface24 1
+    400128: extrudedSurface24 2
+    400130: extrudedSurface24 3
+    400132: extrudedSurface26
+    400134: extrudedSurface26 1
+    400136: extrudedSurface26 2
+    400138: extrudedSurface26 3
+    400140: extrudedSurface28
+    400142: extrudedSurface28 1
+    400144: extrudedSurface28 2
+    400146: extrudedSurface28 3
+    400148: extrudedSurface29
+    400150: extrudedSurface29 1
+    400152: extrudedSurface29 2
+    400154: extrudedSurface29 3
+    400156: extrudedSurface3
+    400158: extrudedSurface30
+    400160: extrudedSurface31
+    400162: extrudedSurface31 1
+    400164: extrudedSurface31 2
+    400166: extrudedSurface4
+    400168: extrudedSurface5
+    400170: extrudedSurface7
+    400172: extrudedSurface8
+    400174: extrudedSurface9
+    400176: fenglin
+    400178: flower_bush_2_03
+    400180: flower_bush_2_03_MeshPart0
+    400182: flower_bush_2_03_MeshPart1
+    400184: group2
+    400186: group2 1
+    400188: group3
+    400190: group4
+    400192: hb4:pCube1
+    400194: hb5:pCube1
+    400196: nurbsToPoly1
+    400198: nurbsToPoly10
+    400200: nurbsToPoly11
+    400202: nurbsToPoly12
+    400204: nurbsToPoly13
+    400206: nurbsToPoly14
+    400208: nurbsToPoly15
+    400210: nurbsToPoly16
+    400212: nurbsToPoly17
+    400214: nurbsToPoly18
+    400216: nurbsToPoly19
+    400218: nurbsToPoly2
+    400220: nurbsToPoly20
+    400222: nurbsToPoly21
+    400224: nurbsToPoly22
+    400226: nurbsToPoly23
+    400228: nurbsToPoly24
+    400230: nurbsToPoly25
+    400232: nurbsToPoly26
+    400234: nurbsToPoly27
+    400236: nurbsToPoly28
+    400238: nurbsToPoly29
+    400240: nurbsToPoly3
+    400242: nurbsToPoly30
+    400244: nurbsToPoly31
+    400246: nurbsToPoly32
+    400248: nurbsToPoly33
+    400250: nurbsToPoly34
+    400252: nurbsToPoly35
+    400254: nurbsToPoly36
+    400256: nurbsToPoly37
+    400258: nurbsToPoly38
+    400260: nurbsToPoly39
+    400262: nurbsToPoly4
+    400264: nurbsToPoly40
+    400266: nurbsToPoly41
+    400268: nurbsToPoly42
+    400270: nurbsToPoly43
+    400272: nurbsToPoly44
+    400274: nurbsToPoly45
+    400276: nurbsToPoly46
+    400278: nurbsToPoly47
+    400280: nurbsToPoly48
+    400282: nurbsToPoly49
+    400284: nurbsToPoly5
+    400286: nurbsToPoly50
+    400288: nurbsToPoly51
+    400290: nurbsToPoly52
+    400292: nurbsToPoly53
+    400294: nurbsToPoly54
+    400296: nurbsToPoly55
+    400298: nurbsToPoly6
+    400300: nurbsToPoly7
+    400302: nurbsToPoly8
+    400304: nurbsToPoly9
+    400306: pCube1
+    400308: pCube1 1
+    400310: pCube4
+    400312: pCube5
+    400314: pCube6
+    400316: pCube7
+    400318: pCube8
+    400320: pCube9
+    400322: polySurface1
+    400324: polySurface10
+    400326: polySurface11
+    400328: polySurface12
+    400330: polySurface13
+    400332: polySurface15
+    400334: polySurface16
+    400336: polySurface17
+    400338: polySurface2
+    400340: polySurface3
+    400342: polySurface4
+    400344: polySurface5
+    400346: polySurface6
+    400348: polySurface7
+    400350: polySurface8
+    400352: polySurface9
+    400354: pSphere1
+    400356: Sphere001
+    400358: Torus001
+    400360: transform10
+    400362: transform5
+    400364: transform6
+    400366: transform7
+    400368: transform8
+    400370: transform9
+    400372: yuanguan
+    400374: zhuangshi1
+    400376: zhuangshi2
+    400378: zhuangshi3
+    2300000: bg
+    2300002: Cylinder042
+    2300004: Cylinder043
+    2300006: Cylinder044
+    2300008: Cylinder045
+    2300010: Cylinder046
+    2300012: Cylinder047
+    2300014: Cylinder048
+    2300016: Cylinder049
+    2300018: Cylinder050
+    2300020: Cylinder051
+    2300022: Cylinder052
+    2300024: Cylinder053
+    2300026: Cylinder054
+    2300028: Cylinder055
+    2300030: Cylinder056
+    2300032: Cylinder057
+    2300034: Cylinder058
+    2300036: Cylinder059
+    2300038: Cylinder060
+    2300040: Cylinder061
+    2300042: Cylinder062
+    2300044: Cylinder063
+    2300046: Cylinder064
+    2300048: Cylinder065
+    2300050: Cylinder066
+    2300052: Cylinder067
+    2300054: Cylinder068
+    2300056: Cylinder069
+    2300058: Cylinder070
+    2300060: Cylinder071
+    2300062: flower_bush_2_03_MeshPart0
+    2300064: flower_bush_2_03_MeshPart1
+    2300066: hb4:pCube1
+    2300068: hb5:pCube1
+    2300070: nurbsToPoly1
+    2300072: nurbsToPoly10
+    2300074: nurbsToPoly11
+    2300076: nurbsToPoly12
+    2300078: nurbsToPoly13
+    2300080: nurbsToPoly14
+    2300082: nurbsToPoly15
+    2300084: nurbsToPoly16
+    2300086: nurbsToPoly17
+    2300088: nurbsToPoly18
+    2300090: nurbsToPoly19
+    2300092: nurbsToPoly2
+    2300094: nurbsToPoly20
+    2300096: nurbsToPoly21
+    2300098: nurbsToPoly22
+    2300100: nurbsToPoly23
+    2300102: nurbsToPoly24
+    2300104: nurbsToPoly25
+    2300106: nurbsToPoly26
+    2300108: nurbsToPoly27
+    2300110: nurbsToPoly28
+    2300112: nurbsToPoly29
+    2300114: nurbsToPoly3
+    2300116: nurbsToPoly30
+    2300118: nurbsToPoly31
+    2300120: nurbsToPoly32
+    2300122: nurbsToPoly33
+    2300124: nurbsToPoly34
+    2300126: nurbsToPoly35
+    2300128: nurbsToPoly36
+    2300130: nurbsToPoly37
+    2300132: nurbsToPoly38
+    2300134: nurbsToPoly39
+    2300136: nurbsToPoly4
+    2300138: nurbsToPoly40
+    2300140: nurbsToPoly41
+    2300142: nurbsToPoly42
+    2300144: nurbsToPoly43
+    2300146: nurbsToPoly44
+    2300148: nurbsToPoly45
+    2300150: nurbsToPoly46
+    2300152: nurbsToPoly47
+    2300154: nurbsToPoly48
+    2300156: nurbsToPoly49
+    2300158: nurbsToPoly5
+    2300160: nurbsToPoly50
+    2300162: nurbsToPoly51
+    2300164: nurbsToPoly52
+    2300166: nurbsToPoly53
+    2300168: nurbsToPoly54
+    2300170: nurbsToPoly55
+    2300172: nurbsToPoly6
+    2300174: nurbsToPoly7
+    2300176: nurbsToPoly8
+    2300178: nurbsToPoly9
+    2300180: pCube1
+    2300182: pCube4
+    2300184: pCube6
+    2300186: polySurface1
+    2300188: polySurface10
+    2300190: polySurface11
+    2300192: polySurface12
+    2300194: polySurface13
+    2300196: polySurface15
+    2300198: polySurface16
+    2300200: polySurface17
+    2300202: polySurface2
+    2300204: polySurface3
+    2300206: polySurface4
+    2300208: polySurface5
+    2300210: polySurface6
+    2300212: polySurface7
+    2300214: polySurface8
+    2300216: polySurface9
+    2300218: Sphere001
+    2300220: Torus001
+    2300222: flower_bush_2_03
+    3300000: bg
+    3300002: Cylinder042
+    3300004: Cylinder043
+    3300006: Cylinder044
+    3300008: Cylinder045
+    3300010: Cylinder046
+    3300012: Cylinder047
+    3300014: Cylinder048
+    3300016: Cylinder049
+    3300018: Cylinder050
+    3300020: Cylinder051
+    3300022: Cylinder052
+    3300024: Cylinder053
+    3300026: Cylinder054
+    3300028: Cylinder055
+    3300030: Cylinder056
+    3300032: Cylinder057
+    3300034: Cylinder058
+    3300036: Cylinder059
+    3300038: Cylinder060
+    3300040: Cylinder061
+    3300042: Cylinder062
+    3300044: Cylinder063
+    3300046: Cylinder064
+    3300048: Cylinder065
+    3300050: Cylinder066
+    3300052: Cylinder067
+    3300054: Cylinder068
+    3300056: Cylinder069
+    3300058: Cylinder070
+    3300060: Cylinder071
+    3300062: flower_bush_2_03_MeshPart0
+    3300064: flower_bush_2_03_MeshPart1
+    3300066: hb4:pCube1
+    3300068: hb5:pCube1
+    3300070: nurbsToPoly1
+    3300072: nurbsToPoly10
+    3300074: nurbsToPoly11
+    3300076: nurbsToPoly12
+    3300078: nurbsToPoly13
+    3300080: nurbsToPoly14
+    3300082: nurbsToPoly15
+    3300084: nurbsToPoly16
+    3300086: nurbsToPoly17
+    3300088: nurbsToPoly18
+    3300090: nurbsToPoly19
+    3300092: nurbsToPoly2
+    3300094: nurbsToPoly20
+    3300096: nurbsToPoly21
+    3300098: nurbsToPoly22
+    3300100: nurbsToPoly23
+    3300102: nurbsToPoly24
+    3300104: nurbsToPoly25
+    3300106: nurbsToPoly26
+    3300108: nurbsToPoly27
+    3300110: nurbsToPoly28
+    3300112: nurbsToPoly29
+    3300114: nurbsToPoly3
+    3300116: nurbsToPoly30
+    3300118: nurbsToPoly31
+    3300120: nurbsToPoly32
+    3300122: nurbsToPoly33
+    3300124: nurbsToPoly34
+    3300126: nurbsToPoly35
+    3300128: nurbsToPoly36
+    3300130: nurbsToPoly37
+    3300132: nurbsToPoly38
+    3300134: nurbsToPoly39
+    3300136: nurbsToPoly4
+    3300138: nurbsToPoly40
+    3300140: nurbsToPoly41
+    3300142: nurbsToPoly42
+    3300144: nurbsToPoly43
+    3300146: nurbsToPoly44
+    3300148: nurbsToPoly45
+    3300150: nurbsToPoly46
+    3300152: nurbsToPoly47
+    3300154: nurbsToPoly48
+    3300156: nurbsToPoly49
+    3300158: nurbsToPoly5
+    3300160: nurbsToPoly50
+    3300162: nurbsToPoly51
+    3300164: nurbsToPoly52
+    3300166: nurbsToPoly53
+    3300168: nurbsToPoly54
+    3300170: nurbsToPoly55
+    3300172: nurbsToPoly6
+    3300174: nurbsToPoly7
+    3300176: nurbsToPoly8
+    3300178: nurbsToPoly9
+    3300180: pCube1
+    3300182: pCube4
+    3300184: pCube6
+    3300186: polySurface1
+    3300188: polySurface10
+    3300190: polySurface11
+    3300192: polySurface12
+    3300194: polySurface13
+    3300196: polySurface15
+    3300198: polySurface16
+    3300200: polySurface17
+    3300202: polySurface2
+    3300204: polySurface3
+    3300206: polySurface4
+    3300208: polySurface5
+    3300210: polySurface6
+    3300212: polySurface7
+    3300214: polySurface8
+    3300216: polySurface9
+    3300218: Sphere001
+    3300220: Torus001
+    3300222: flower_bush_2_03
+    4300000: Cylinder045
+    4300002: Cylinder042
+    4300004: Cylinder043
+    4300006: Torus001
+    4300008: Sphere001
+    4300010: Cylinder044
+    4300012: Cylinder046
+    4300014: Cylinder063
+    4300016: Cylinder066
+    4300018: Cylinder067
+    4300020: Cylinder068
+    4300022: Cylinder069
+    4300024: Cylinder070
+    4300026: Cylinder050
+    4300028: Cylinder071
+    4300030: Cylinder049
+    4300032: Cylinder061
+    4300034: Cylinder062
+    4300036: Cylinder065
+    4300038: Cylinder047
+    4300040: Cylinder056
+    4300042: Cylinder048
+    4300044: Cylinder055
+    4300046: Cylinder051
+    4300048: Cylinder052
+    4300050: Cylinder053
+    4300052: Cylinder057
+    4300054: Cylinder060
+    4300056: Cylinder054
+    4300058: Cylinder058
+    4300060: Cylinder064
+    4300062: Cylinder059
+    4300064: bg
+    4300066: hb4:pCube1
+    4300068: hb5:pCube1
+    4300070: polySurface1
+    4300072: polySurface2
+    4300074: polySurface3
+    4300076: polySurface4
+    4300078: polySurface5
+    4300080: polySurface6
+    4300082: polySurface7
+    4300084: polySurface8
+    4300086: polySurface9
+    4300088: polySurface10
+    4300090: polySurface11
+    4300092: polySurface12
+    4300094: polySurface13
+    4300096: pCube4
+    4300098: polySurface15
+    4300100: pCube6
+    4300102: pCube1
+    4300104: polySurface16
+    4300106: polySurface17
+    4300108: flower_bush_2_03_MeshPart0
+    4300110: flower_bush_2_03_MeshPart1
+    4300112: nurbsToPoly1
+    4300114: nurbsToPoly2
+    4300116: nurbsToPoly3
+    4300118: nurbsToPoly4
+    4300120: nurbsToPoly5
+    4300122: nurbsToPoly6
+    4300124: nurbsToPoly7
+    4300126: nurbsToPoly8
+    4300128: nurbsToPoly9
+    4300130: nurbsToPoly10
+    4300132: nurbsToPoly11
+    4300134: nurbsToPoly12
+    4300136: nurbsToPoly13
+    4300138: nurbsToPoly14
+    4300140: nurbsToPoly15
+    4300142: nurbsToPoly16
+    4300144: nurbsToPoly17
+    4300146: nurbsToPoly18
+    4300148: nurbsToPoly19
+    4300150: nurbsToPoly20
+    4300152: nurbsToPoly21
+    4300154: nurbsToPoly22
+    4300156: nurbsToPoly23
+    4300158: nurbsToPoly24
+    4300160: nurbsToPoly25
+    4300162: nurbsToPoly26
+    4300164: nurbsToPoly27
+    4300166: nurbsToPoly28
+    4300168: nurbsToPoly29
+    4300170: nurbsToPoly30
+    4300172: nurbsToPoly31
+    4300174: nurbsToPoly32
+    4300176: nurbsToPoly33
+    4300178: nurbsToPoly34
+    4300180: nurbsToPoly35
+    4300182: nurbsToPoly36
+    4300184: nurbsToPoly37
+    4300186: nurbsToPoly38
+    4300188: nurbsToPoly39
+    4300190: nurbsToPoly40
+    4300192: nurbsToPoly41
+    4300194: nurbsToPoly42
+    4300196: nurbsToPoly43
+    4300198: nurbsToPoly44
+    4300200: nurbsToPoly45
+    4300202: nurbsToPoly46
+    4300204: nurbsToPoly47
+    4300206: nurbsToPoly48
+    4300208: nurbsToPoly49
+    4300210: nurbsToPoly50
+    4300212: nurbsToPoly51
+    4300214: nurbsToPoly52
+    4300216: nurbsToPoly53
+    4300218: nurbsToPoly54
+    4300220: nurbsToPoly55
+    4300222: flower_bush_2_03
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert14
+    second: {fileID: 2100000, guid: 445755e07a2a9fc4b96c44d24dcf6974, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert15
+    second: {fileID: 2100000, guid: 98593d0c081c2504495b8fece6ce037f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert17
+    second: {fileID: 2100000, guid: 81aa64a4f27e68643917d85dd93c0b16, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert25
+    second: {fileID: 2100000, guid: 24f6a5359bd3a42478b0f032e5aa006a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert26
+    second: {fileID: 2100000, guid: c96625b116e819341b2872b0e8ee0a40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert27
+    second: {fileID: 2100000, guid: 2528fda7fcb842241a0712f1e1d9c69f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert32
+    second: {fileID: 2100000, guid: ee835ae57d5cdd749868189b320407c9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert6
+    second: {fileID: 2100000, guid: 6c151825d719c9b48bdbf03a83bb9e24, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
