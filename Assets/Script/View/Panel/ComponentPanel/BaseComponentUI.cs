@@ -27,13 +27,15 @@ public class BaseComponentUI : DispatcherEventPanel
         UpdateHeight();
     }
 
-    protected SliderUI CreateSliderUI(string name, float min, float max, Action<float> action = null)
+    protected SliderUI CreateSliderUI(string name, float min, float max, Action<float> action = null, bool wholeNumbers = false)
     {
         GameObject obj = Instantiate(Resources.Load("UI/Component/SliderUI")) as GameObject;
         obj.transform.parent = content;
         Text text = obj.transform.Find("Content").Find("Text").GetComponent<Text>();
         Slider slider = obj.transform.Find("Content").Find("Slider").GetComponent<Slider>();
         InputField sliderText = obj.transform.Find("Content").Find("SliderText").GetComponent<InputField>();
+
+        slider.wholeNumbers = wholeNumbers;
 
         text.text = name;
         slider.minValue = min;

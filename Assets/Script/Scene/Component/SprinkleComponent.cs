@@ -23,7 +23,7 @@ public class SprinkleComponent : SceneComponent
             _sprinkleVO = _item.VO.AddComponentVO<SprinkleVO>();
         }
 
-        _flower = Resources.Load("Item/Decorate/Flower") as GameObject;
+        _flower = Resources.Load("Item/Petal/Petal1") as GameObject;
 
         _box = new GameObject();
         _box.name = _item.transform.gameObject.name;
@@ -39,12 +39,12 @@ public class SprinkleComponent : SceneComponent
 
         for (int i = 0; i < value; i++)
         {
-            Vector3 pv = new Vector3(transform.position.x + Random.Range(-.4f, .4f),
-                transform.position.y + Random.Range(-.2f, .2f),
-                transform.position.z + Random.Range(-.4f, .4f));
-            Vector3 rv = new Vector3(transform.rotation.eulerAngles.x * Random.value,
-                transform.rotation.eulerAngles.y * Random.value,
-                transform.rotation.eulerAngles.z * Random.value);
+            Vector3 pv = new Vector3(transform.position.x + Random.Range(-.1f, .1f),
+                transform.position.y + Random.Range(-.1f, .1f),
+                transform.position.z + Random.Range(-.1f, .1f));
+            Vector3 rv = new Vector3(360 * Random.value,
+                360 * Random.value,
+                360 * Random.value);
 
             data.points.Add(pv);
             data.rotations.Add(rv);
@@ -58,10 +58,14 @@ public class SprinkleComponent : SceneComponent
         for (int i = 0; i < data.rotations.Count; i++)
         {
             GameObject flower = GameObject.Instantiate(_flower);
-            flower.transform.position = data.points[i];
-            flower.transform.rotation = Quaternion.Euler(data.rotations[i]);
+            flower.transform.localPosition = data.points[i];
+            flower.transform.localRotation = Quaternion.Euler(data.rotations[i]);
             flower.transform.parent = _box.transform;
             flower.layer = gameObject.layer;
+            foreach (Transform t in flower.transform)
+            {
+                t.gameObject.layer = gameObject.layer;
+            }
             Rigidbody rigid = flower.AddComponent<Rigidbody>();
             rigid.collisionDetectionMode = CollisionDetectionMode.Continuous;
             flower.name = data.id;

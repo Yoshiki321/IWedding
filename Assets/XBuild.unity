@@ -727,6 +727,12 @@ Prefab:
       propertyPath: modelAliasRightController
       value: 
       objectReference: {fileID: 1943724173}
+    - target: {fileID: 114091041106146228, guid: 8661dc9697b85470bb6c239d9a23c42c,
+        type: 2}
+      propertyPath: profile
+      value: 
+      objectReference: {fileID: 11400000, guid: eb477c7730152de4d898bdfe06fa270c,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8661dc9697b85470bb6c239d9a23c42c, type: 2}
   m_IsPrefabParent: 0
@@ -746,7 +752,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  profile: {fileID: 11400000, guid: 064a7a8e69011714d96cc4073e8b0a5b, type: 2}
+  profile: {fileID: 0}
 --- !u!1 &1621492745 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1902989565690526, guid: 8661dc9697b85470bb6c239d9a23c42c,

@@ -11,6 +11,8 @@ public class SprinkleVO : ComponentVO
     public string sprinkleCode;
     public List<SprinkleData> dataList = new List<SprinkleData>();
 
+    public float count = 5;
+
     public void SetData(SprinkleData data)
     {
         dataList.Add(data);
@@ -22,6 +24,7 @@ public class SprinkleVO : ComponentVO
 
         dataList = new List<SprinkleData>();
         SprinkleVO sprinkleVO = (asset as SprinkleVO);
+        count = sprinkleVO.count;
         foreach (SprinkleData data in sprinkleVO.dataList)
         {
             dataList.Add(data.Clone());
@@ -33,7 +36,8 @@ public class SprinkleVO : ComponentVO
         SprinkleVO vo = asset as SprinkleVO;
 
         return (
-            dataList.Count == vo.dataList.Count
+            dataList.Count == vo.dataList.Count &&
+            count == vo.count
             );
     }
 
@@ -41,6 +45,7 @@ public class SprinkleVO : ComponentVO
     {
         SprinkleVO vo = new SprinkleVO();
         vo.id = id;
+        vo.count = count;
 
         foreach (SprinkleData data in dataList)
         {
@@ -56,6 +61,7 @@ public class SprinkleVO : ComponentVO
             string code = "";
             code += "<Sprinkle";
             code += " id = " + GetPropertyString(id);
+            code += " count = " + GetPropertyString(count);
             code += " data = ";
 
             foreach (GameObject obj in list)
