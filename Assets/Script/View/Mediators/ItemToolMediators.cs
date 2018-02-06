@@ -76,19 +76,6 @@ public class ItemToolMediators : Mediators
             new List<AssetVO>() { null },
             new List<AssetVO>() { itemvo }
             ));
-
-        ItemVO itemvo1 = AssetsModel.Instance.CreateItemVO("40010001");
-
-        TransformVO tvo1 = itemvo.GetComponentVO<TransformVO>();
-        Vector3 v1 = CameraManager.GetCameraForward();
-        tvo1.x = v1.x;
-        tvo1.y = v1.y;
-        tvo1.z = v1.z;
-
-        DispatcherEvent(new SceneEvent(SceneEvent.ADD_ITEM,
-            new List<AssetVO>() { null },
-            new List<AssetVO>() { itemvo1 }
-            ));
     }
 
     private void ExitHandle(EventObject e)
