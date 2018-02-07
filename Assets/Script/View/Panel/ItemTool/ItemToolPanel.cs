@@ -75,7 +75,7 @@ public class ItemToolPanel : BasePanel
         //实例化所有点击图片
         for (int _itemListNum = 0; _itemListNum < _itemList.Count; _itemListNum++)
         {
-            if (_itemList[_itemListNum].id.Substring(0, 4) != "3001")
+            if (_itemList[_itemListNum].id.Substring(0, 1) == "1" || _itemList[_itemListNum].id.Substring(0, 1) == "2")
             {
                 GameObject _itemImg = Instantiate(Resources.Load("UI/ItemTool/ItemImg")) as GameObject;
                 for (int _itemPanelListNum = 0; _itemPanelListNum < _itemPanelList.Count; _itemPanelListNum++)

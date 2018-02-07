@@ -40,7 +40,7 @@ public class ChooseSurfacePanel : BasePanel
         _itemList = ItemManager.ItemDataList;
         for (int _itemListNum = 0; _itemListNum < _itemList.Count; _itemListNum++)
         {
-            if (_itemList[_itemListNum].id.Substring(0, 4) == "3001")
+            if (_itemList[_itemListNum].id.Substring(0, 1) == "3")
             {
                 GameObject _itemImg = Instantiate(Resources.Load("UI/ItemTool/ItemImg")) as GameObject;
                 _hardImgList.Add(_itemImg);

@@ -3,6 +3,8 @@
     <Material order="0" id ="1001" replace="1001,1002,1003,1004,1005"></Material>
     <Material order="1" id ="1003" replace="1001,1002,1003,1004,1005"></Material>
   </Item>
+  <Item id = "10010002" classify="ItemObject" type="ItemObjectLight" thumbnail="Item/20180207/img/3" topimg="TopImg/Lamp" model="Item/20180207/diaodeng">
+  </Item>
   
   <Item id = "10020001" classify="ItemObject" type="ItemObjectStage" thumbnail="UI/ItemTool/WeddingToolImg/WP/stage/1" topimg="TopImg/tstage2" model="Item/Stage/Stage1">
   </Item>
@@ -37,6 +39,10 @@
   <Item id = "10060001" classify="ItemObject" type="ItemObjectGantry" thumbnail="UI/ItemTool/WeddingToolImg/WP/gantry/1" topimg="TopImg/Stage" model="Item/Gantry/Gantry">
   </Item>
   <Item id = "10060002" classify="ItemObject" type="ItemObjectGantry" thumbnail="UI/ItemTool/WeddingToolImg/WP/gantry/2" topimg="TopImg/Stage" model="Item/Gantry/Gantry1">
+  </Item>
+  <Item id = "10060003" classify="ItemObject" type="ItemObjectGantry" thumbnail="Item/20180207/img/4" topimg="TopImg/Stage" model="Item/20180207/jiazi">
+  </Item>
+  <Item id = "10060004" classify="ItemObject" type="ItemObjectGantry" thumbnail="Item/20180207/img/5" topimg="TopImg/Stage" model="Item/20180207/jiazi2">
   </Item>
 
   <Item id = "10070017" classify="ItemObject" type="ItemObjectBoardTwo" thumbnail="UI/ItemTool/WeddingToolImg/WP/boardtwo/6" topimg="TopImg/Stage" model="Item/KTPanel/KTPanel">
@@ -80,6 +86,12 @@
   <Item id = "10080017" classify="ItemObject" type="ItemObjectDeco" thumbnail="UI/ItemTool/WeddingToolImg/WP/chinese/19" topimg="TopImg/Stage" model="Item/ChineseStage/19">
   </Item>
   <Item id = "10080018" classify="ItemObject" type="ItemObjectDeco" thumbnail="UI/ItemTool/WeddingToolImg/WP/chinese/20" topimg="TopImg/Stage" model="Item/ChineseStage/20">
+  </Item>
+  <Item id = "10080019" classify="ItemObject" type="ItemObjectDeco" thumbnail="Item/20180207/img/1" topimg="TopImg/Stage" model="Item/20180207/chuanglian">
+  </Item>
+  <Item id = "10080020" classify="ItemObject" type="ItemObjectDeco" thumbnail="Item/20180207/img/2" topimg="TopImg/Stage" model="Item/20180207/deng">
+  </Item>
+  <Item id = "10080021" classify="ItemObject" type="ItemObjectDeco" thumbnail="Item/20180207/img/6" topimg="TopImg/Stage" model="Item/20180207/light">
   </Item>
   
   <Item id = "10090001" classify="ItemObject" type="ItemObjectGroup" thumbnail="UI/ItemTool/WeddingToolImg/WP/group/1" topimg="TopImg/Stage" model="Item/Combination/1003">
@@ -133,6 +145,9 @@
   
   
   
-  <Item id = "40010001" classify="ItemObject" type="ItemObjectDeco" thumbnail="UI/ItemTool/WeddingToolImg/WP/chinese/1" topimg="TopImg/Stage" model="Item/Particle/Sprinkle/Sprinkle"> </Item>
+  <Item id = "40010001" classify="ItemObject" type="ItemObjectPetal" thumbnail="Item/20180207/img/7" topimg="TopImg/Stage" model="Item/20180207/Petal1"> </Item>
+  <Item id = "40010002" classify="ItemObject" type="ItemObjectPetal" thumbnail="Item/20180207/img/8" topimg="TopImg/Stage" model="Item/20180207/Petal2"> </Item>
+  <Item id = "40010003" classify="ItemObject" type="ItemObjectPetal" thumbnail="Item/20180207/img/9" topimg="TopImg/Stage" model="Item/20180207/Petal3"> </Item>
+  <Item id = "40010004" classify="ItemObject" type="ItemObjectPetal" thumbnail="Item/20180207/img/10" topimg="TopImg/Stage" model="Item/20180207/Petal4"> </Item>
 
 </ItemCode>
