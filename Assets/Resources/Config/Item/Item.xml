@@ -118,7 +118,11 @@
   </Item>
   <Item id = "20020002" classify="ItemEffect" type="ItemEffectFenwei" thumbnail="UI/ItemTool/WeddingToolImg/TX/fenwei/2" topimg="TopImg/Stage" model="Item/Particle/Smoke/Smoke">
   </Item>
-
+  <Item id = "20020003" classify="ItemEffect" type="ItemEffectFenwei" thumbnail="UI/ItemTool/WeddingToolImg/TX/fenwei/3" topimg="TopImg/Stage" model="Item/Particle/Sprinkle/Sprinkle">
+  </Item>
+  <Item id = "20020004" classify="ItemEffect" type="ItemEffectFenwei" thumbnail="UI/ItemTool/WeddingToolImg/TX/fenwei/4" topimg="TopImg/Stage" model="">
+  </Item>
+  
   <Item id = "20030001" classify="ItemEffect" type="ItemEffectPeople" thumbnail="UI/ItemTool/WeddingToolImg/TX/people/1" topimg="TopImg/Stage" model="Item/Role/Man">
   </Item>
   <Item id = "20030002" classify="ItemEffect" type="ItemEffectPeople" thumbnail="UI/ItemTool/WeddingToolImg/TX/people/2" topimg="TopImg/Stage" model="Item/Role/Girl">
@@ -141,13 +145,6 @@
   <Item id = "30010014" classify="Hard" type="Hard" thumbnail="Item/DoorDouble/DoorList/img/13" topimg="TopImg/Stage" model="Item/DoorDouble/DoorList/door13"> </Item>
   <Item id = "30010015" classify="Hard" type="Hard" thumbnail="Item/DoorDouble/DoorList/img/14" topimg="TopImg/Stage" model="Item/DoorDouble/DoorList/door14"> </Item>
   <Item id = "30010016" classify="Hard" type="Hard" thumbnail="Item/DoorDouble/DoorList/img/15" topimg="TopImg/Stage" model="Item/DoorDouble/DoorList/door15"> </Item>
-  
-  
-  
-  
-  <Item id = "40010001" classify="ItemObject" type="ItemObjectPetal" thumbnail="Item/20180207/img/7" topimg="TopImg/Stage" model="Item/20180207/Petal1"> </Item>
-  <Item id = "40010002" classify="ItemObject" type="ItemObjectPetal" thumbnail="Item/20180207/img/8" topimg="TopImg/Stage" model="Item/20180207/Petal2"> </Item>
-  <Item id = "40010003" classify="ItemObject" type="ItemObjectPetal" thumbnail="Item/20180207/img/9" topimg="TopImg/Stage" model="Item/20180207/Petal3"> </Item>
-  <Item id = "40010004" classify="ItemObject" type="ItemObjectPetal" thumbnail="Item/20180207/img/10" topimg="TopImg/Stage" model="Item/20180207/Petal4"> </Item>
+
 
 </ItemCode>
