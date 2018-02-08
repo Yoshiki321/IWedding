@@ -31,9 +31,9 @@ public class DrawLinePanel : BasePanel
     private GameObject _helpPlane;
     private GameObject _closeHelpPanelBtn;
 
-    private DrawPanel2D _drawPanel;
+    private DrawPlane _drawPanel;
 
-    public DrawPanel2D drawPanel
+    public DrawPlane drawPanel
     {
         get { return _drawPanel; }
     }
@@ -87,7 +87,7 @@ public class DrawLinePanel : BasePanel
         AddEventClick(_closeHelpPanelBtn);
         AddEventClick(_helpBtn);
 
-        _drawPanel = GetComponentInChildren<DrawPanel2D>();
+        _drawPanel = GetComponentInChildren<DrawPlane>();
 
         heightText.text = "50";
 
@@ -181,11 +181,11 @@ public class DrawLinePanel : BasePanel
     {
         if (value == 0)
         {
-            _drawPanel.direction = DrawPanel2D.HORIZONTAL;
+            _drawPanel.direction = DrawPlane.HORIZONTAL;
         }
         else
         {
-            _drawPanel.direction = DrawPanel2D.VERTICAL;
+            _drawPanel.direction = DrawPlane.VERTICAL;
         }
     }
 

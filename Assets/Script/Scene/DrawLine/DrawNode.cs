@@ -8,7 +8,6 @@ public class DrawNode : MonoBehaviour
 {
     public DrawLine line;
     public DrawNode relationNode;
-    private Image image;
 
     private void Start()
     {
@@ -16,21 +15,23 @@ public class DrawNode : MonoBehaviour
 
     public void SetType(bool isLine)
     {
-        image = gameObject.AddComponent<Image>();
-        image.rectTransform.sizeDelta = new Vector2(20, 20);
+        GameObject obj;
         if (isLine)
         {
-            image.overrideSprite = Resources.Load("UI/DrawLinePanel/nodep", typeof(Sprite)) as Sprite;
+            obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
         }
         else
         {
-            image.overrideSprite = Resources.Load("UI/DrawLinePanel/nodec", typeof(Sprite)) as Sprite;
+            obj = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         }
+        obj.transform.parent = transform;
+        obj.transform.localScale = new Vector3(12f, 12f, 12f);
 
         BoxCollider box = gameObject.AddComponent<BoxCollider>();
         box.size = new Vector3(20, 20, 20);
 
-        gameObject.layer = LayerMask.NameToLayer("UI");
+        gameObject.layer = transform.parent.gameObject.layer;
+        obj.layer = gameObject.layer;
     }
 
     public DrawNode Opposition
@@ -41,11 +42,11 @@ public class DrawNode : MonoBehaviour
     public void Move(Vector3 v)
     {
         if (name == "NodeFrom")
-            line.MovePoint(v, line.nodeTo.transform.position, line.nodeCurve.transform.position);
+            line.MovePoint(v, line.nodeTo.transform.localPosition, line.nodeCurve.transform.localPosition);
         if (name == "NodeTo")
-            line.MovePoint(line.nodeFrom.transform.position, v, line.nodeCurve.transform.position);
+            line.MovePoint(line.nodeFrom.transform.localPosition, v, line.nodeCurve.transform.localPosition);
         if (name == "NodeCurve")
-            line.MovePoint(line.nodeFrom.transform.position, line.nodeTo.transform.position, v);
+            line.MovePoint(line.nodeFrom.transform.localPosition, line.nodeTo.transform.localPosition, v);
     }
 
     private Action<DrawNode> _funDown;
@@ -63,11 +64,11 @@ public class DrawNode : MonoBehaviour
 
     void OnMouseDown()
     {
-        _funDown(this);
+        _funDown?.Invoke(this);
     }
 
     void OnMouseUp()
     {
-        _funUp(this);
+        _funUp?.Invoke(this);
     }
 }

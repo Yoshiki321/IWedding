@@ -80,8 +80,6 @@ public class ItemToolMediators : Mediators
 
     private void ExitHandle(EventObject e)
     {
-        Debug.Log(panel.name);
-
         UIManager.CloseUI(panel.name);
     }
 }

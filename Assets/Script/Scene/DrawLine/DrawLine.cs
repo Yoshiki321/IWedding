@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BuildManager;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -41,14 +42,11 @@ public class DrawLine : MonoBehaviour
 
         _isInStraight = bisector.PointInStraight(c);
 
-        gameObject.layer = LayerMask.NameToLayer("UI");
+        gameObject.layer = transform.parent.gameObject.layer;
 
         GameObject nodef = new GameObject();
         GameObject nodet = new GameObject();
         GameObject nodec = new GameObject();
-        //GameObject nodeBox = new GameObject();
-        //nodeBox.transform.position = new Vector3(0, 0, -10);
-        //nodeBox.transform.parent = gameObject.transform;
 
         nodef.transform.parent = gameObject.transform;
         nodet.transform.parent = gameObject.transform;
@@ -61,9 +59,17 @@ public class DrawLine : MonoBehaviour
         nodeTo.SetType(true);
         nodeCurve.SetType(false);
 
+        nodeFrom.transform.localPosition = new Vector3(0, 0, 0);
+        nodeTo.transform.localPosition = new Vector3(0, 0, 0);
+        nodeCurve.transform.localPosition = new Vector3(0, 0, 0);
+
         nodeFrom.transform.localPosition = f.ToVector2();
         nodeTo.transform.localPosition = t.ToVector2();
         nodeCurve.transform.localPosition = _c.ToVector2();
+
+        nodeFrom.transform.localScale = new Vector3(1, 1, 1);
+        nodeTo.transform.localScale = new Vector3(1, 1, 1);
+        nodeCurve.transform.localScale = new Vector3(1, 1, 1);
 
         gameObject.name = "DrawLine";
         nodef.name = "NodeFrom";
@@ -71,7 +77,8 @@ public class DrawLine : MonoBehaviour
         nodec.name = "NodeCurve";
 
         lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.widthMultiplier = 10;
+        lineRenderer.widthMultiplier = 10 * transform.parent.parent.localScale.x;
+        lineRenderer.useWorldSpace = false;
 
         UpdateLine();
         UpdateCollider();
@@ -86,7 +93,7 @@ public class DrawLine : MonoBehaviour
         {
             return;
         }
-        if (f == nodeFrom.transform.position && t == nodeTo.transform.position && c == nodeCurve.transform.position)
+        if (f == nodeFrom.transform.localPosition && t == nodeTo.transform.localPosition && c == nodeCurve.transform.localPosition)
         {
             return;
         }
@@ -139,9 +146,9 @@ public class DrawLine : MonoBehaviour
     {
         points = new List<Vector2>();
 
-        _f = nodeFrom.transform.position;
-        _t = nodeTo.transform.position;
-        _c = nodeCurve.transform.position;
+        _f = nodeFrom.transform.localPosition;
+        _t = nodeTo.transform.localPosition;
+        _c = nodeCurve.transform.localPosition;
         bisector = new Bisector(_f, _t);
 
         if (_isInStraight)
@@ -176,16 +183,6 @@ public class DrawLine : MonoBehaviour
         DrawBound(2);
     }
 
-    void OnMouseEnter()
-    {
-        DrawBound(1);
-    }
-
-    void OnMouseExit()
-    {
-        DrawBound(2);
-    }
-
     public void DrawBound(int style)
     {
         Color drawColor;
@@ -206,8 +203,8 @@ public class DrawLine : MonoBehaviour
 
     public void UpdateCollider()
     {
-        transform.position = new Vector3();
-        transform.rotation = Quaternion.Euler(new Vector3());
+        transform.localPosition = new Vector3();
+        transform.localRotation = Quaternion.Euler(new Vector3());
 
         foreach (GameObject b in boxs)
         {
@@ -241,7 +238,8 @@ public class DrawLine : MonoBehaviour
                 collider.AddRightMouseUp(AddColliderRightClick);
                 collider.AddMouseOver(AddColliderOver);
                 collider.AddMouseOut(AddColliderOut);
-                obj.layer = LayerMask.NameToLayer("UI");
+                obj.layer = gameObject.layer;
+                obj.transform.localScale = new Vector3(1, 1, 1);
             }
         }
         else
@@ -256,23 +254,24 @@ public class DrawLine : MonoBehaviour
             collider.AddRightMouseUp(AddColliderRightClick);
             collider.AddMouseOver(AddColliderOver);
             collider.AddMouseOut(AddColliderOut);
-            obj.layer = LayerMask.NameToLayer("UI");
+            obj.layer = gameObject.layer;
+            obj.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
     private void AddColliderDown()
     {
-        _funDown(this);
+        _funDown?.Invoke(this);
     }
 
     private void AddColliderUp()
     {
-        _funUp(this);
+        _funUp?.Invoke(this);
     }
 
     private void AddColliderRightClick()
     {
-        _funRightClick(this);
+        _funRightClick?.Invoke(this);
     }
 
     private void AddColliderOver()
@@ -304,25 +303,52 @@ public class DrawLine : MonoBehaviour
         _funRightClick = fun;
     }
 
-    void OnMouseOver()
-    {
-        DrawBound(1);
+    RaycastHit hitInfo;
 
-        if (Input.GetMouseButton(1))
-        {
-            _funRightClick(this);
-        }
-    }
+    //private void Update()
+    //{
+    //    DrawBound(2);
 
-    void OnMouseDown()
-    {
-        _funDown(this);
-    }
+    //    Ray ray = SceneManager.Instance.Camera3D.ScreenPointToRay(Input.mousePosition);
+    //    LayerMask layer = 1 << LayerMask.NameToLayer("Water");
+    //    if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layer))
+    //    {
+    //        if (hitInfo.transform.gameObject == gameObject)
+    //        {
+    //            DrawBound(1);
+    //        }
 
-    void OnMouseUp()
-    {
-        _funUp(this);
-    }
+    //        if (Input.GetMouseButtonDown(0))
+    //        {
+    //            _funDown(this);
+    //        }
+
+    //        if (Input.GetMouseButtonUp(0))
+    //        {
+    //            _funUp(this);
+    //        }
+    //    }
+    //}
+
+    //void OnMouseOver()
+    //{
+    //    DrawBound(1);
+
+    //    if (Input.GetMouseButton(1))
+    //    {
+    //        _funRightClick(this);
+    //    }
+    //}
+
+    //void OnMouseDown()
+    //{
+    //    _funDown(this);
+    //}
+
+    //void OnMouseUp()
+    //{
+    //    _funUp(this);
+    //}
 
     public void Dispose()
     {

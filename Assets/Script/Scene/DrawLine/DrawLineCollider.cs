@@ -9,8 +9,9 @@ public class DrawLineCollider : MonoBehaviour
         capsule.direction = 2;
         capsule.radius = 7f;
         capsule.center = Vector3.zero;
-        capsule.transform.position = f + (t - f) / 2;
-        capsule.transform.LookAt(f);
+        capsule.transform.localPosition = f + (t - f) / 2;
+        capsule.transform.localRotation = Quaternion.Euler(0, 0, PlaneUtils.Angle(f, t));
+        capsule.direction = 0;
         capsule.height = (t - f).magnitude;
     }
 
@@ -47,7 +48,6 @@ public class DrawLineCollider : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log(this);
         _downFun();
     }
 
