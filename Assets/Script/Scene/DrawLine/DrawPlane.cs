@@ -203,8 +203,6 @@ public class DrawPlane : DispatcherEventPanel
         float minz = 0;
         for (int i = 0; i < zz.Count; i++) minz = Mathf.Min(minz, zz[i]);
 
-        Debug.Log(maxx + "````" + maxy + "````" + maxz + "````" + minx + "````" + miny + "````" + minz);
-
         float countX = Mathf.Round((maxx - minx) / 18);
         float countY = Mathf.Round((maxy - miny) / 18);
 
@@ -269,6 +267,12 @@ public class DrawPlane : DispatcherEventPanel
                 Color color = new Color(r, g, b);
 
                 obj.GetComponentInChildren<MeshRenderer>().material.color = color;
+                obj.layer = gameObject.layer;
+                Transform[] ts = obj.GetComponentsInChildren<Transform>();
+                foreach (Transform t in ts)
+                {
+                    t.gameObject.layer = gameObject.layer;
+                }
             }
 
             j++;
