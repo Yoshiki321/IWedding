@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4742694214198376}
   - component: {fileID: 114304816489652884}
+  - component: {fileID: 114103883628041872}
   m_Layer: 0
   m_Name: FlowerWall
   m_TagString: Untagged
@@ -40,6 +41,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114103883628041872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1062341472662772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c461ee0ebf53a40b38dc7be1442011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114304816489652884
 MonoBehaviour:
   m_ObjectHideFlags: 1

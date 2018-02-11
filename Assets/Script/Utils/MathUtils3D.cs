@@ -25,5 +25,12 @@ public class MathUtils3D
         v.z = param1.z - param2.z;
         return v;
     }
+
+    public static Vector3 RotateRound(Vector3 position, Vector3 center, Vector3 axis, float angle)
+    {
+        Vector3 point = Quaternion.AngleAxis(angle, axis) * (position - center);
+        Vector3 resultVec3 = center + point;
+        return resultVec3;
+    }
 }
 

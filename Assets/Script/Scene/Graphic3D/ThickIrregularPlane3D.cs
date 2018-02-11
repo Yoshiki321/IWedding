@@ -15,6 +15,24 @@ public class ThickIrregularPlane3D : MonoBehaviour
     private string _upCollageId;
     private string _downCollageId;
 
+    public List<Vector2> list
+    {
+        get { return _list; }
+    }
+
+    private List<Vector3> _upPoints;
+    private List<Vector3> _downPoints;
+
+    public List<Vector3> upPoints
+    {
+        get { return _upPoints; }
+    }
+
+    public List<Vector3> downPoints
+    {
+        get { return _downPoints; }
+    }
+
     public void upPanelCollage(string id)
     {
         _upCollageId = id;
@@ -31,6 +49,19 @@ public class ThickIrregularPlane3D : MonoBehaviour
     private SurfacePlane3D _downPanel;
 
     private BoxCollider _boxCollider;
+
+    private GameObject _upObj;
+    private GameObject _downObj;
+
+    public GameObject upObj
+    {
+        get { return _upObj; }
+    }
+
+    public GameObject downObj
+    {
+        get { return _downObj; }
+    }
 
     /// <summary>
     ///  添加一个面的按顺序的点
@@ -53,26 +84,28 @@ public class ThickIrregularPlane3D : MonoBehaviour
         _thickness = thickness;
 
         List<Vector3> meshPoints = new List<Vector3>();
-        List<Vector3> downPoints = new List<Vector3>();
+        _upPoints = new List<Vector3>();
+        _downPoints = new List<Vector3>();
         foreach (Vector2 v in list)
         {
-            meshPoints.Add(new Vector3(v.x, thickness, v.y));
-            downPoints.Add(new Vector3(v.x, 0, v.y));
+            _upPoints.Add(new Vector3(v.x, thickness, v.y));
+            _downPoints.Add(new Vector3(v.x, 0, v.y));
         }
-        meshPoints.AddRange(downPoints);
+        meshPoints.AddRange(_upPoints);
+        meshPoints.AddRange(_downPoints);
 
-        GameObject upObj = new GameObject("UpObj");
-        GameObject downObj = new GameObject("DownObj");
-        _upPanel = upObj.AddComponent<SurfacePlane3D>();
-        _downPanel = downObj.AddComponent<SurfacePlane3D>();
+        _upObj = new GameObject("UpObj");
+        _downObj = new GameObject("DownObj");
+        _upPanel = _upObj.AddComponent<SurfacePlane3D>();
+        _downPanel = _downObj.AddComponent<SurfacePlane3D>();
         _upPanel.TwoSided = true;
         _downPanel.TwoSided = true;
         _upPanel.BuildIrregularGeometry(Triangulator.GetMeshData(list, thickness));
         _downPanel.InversionTexture = true;
         _downPanel.BuildIrregularGeometry(Triangulator.GetMeshData(list));
 
-        upObj.tag = "Collage0";
-        downObj.tag = "Collage1";
+        _upObj.tag = "Collage0";
+        _downObj.tag = "Collage1";
 
         _upPanel.SetCollage(upid);
         _downPanel.SetCollage(downid);
@@ -91,28 +124,28 @@ public class ThickIrregularPlane3D : MonoBehaviour
 
         mr.material = new Material(Shader.Find("Standard"));
 
-        upObj.transform.parent = transform;
-        downObj.transform.parent = transform;
+        _upObj.transform.parent = transform;
+        _downObj.transform.parent = transform;
         obj.transform.parent = transform;
 
-        upObj.layer = gameObject.layer;
-        downObj.layer = gameObject.layer;
+        _upObj.layer = gameObject.layer;
+        _downObj.layer = gameObject.layer;
         obj.layer = gameObject.layer;
 
-        upObj.transform.localEulerAngles = new Vector3();
-        downObj.transform.localEulerAngles = new Vector3();
+        _upObj.transform.localEulerAngles = new Vector3();
+        _downObj.transform.localEulerAngles = new Vector3();
         obj.transform.localEulerAngles = new Vector3();
 
-        upObj.transform.localPosition = new Vector3();
-        downObj.transform.localPosition = new Vector3();
+        _upObj.transform.localPosition = new Vector3();
+        _downObj.transform.localPosition = new Vector3();
         obj.transform.localPosition = new Vector3();
 
-        upObj.transform.localScale = new Vector3(.01f, .01f, .01f);
-        downObj.transform.localScale = new Vector3(.01f, .01f, .01f);
+        _upObj.transform.localScale = new Vector3(.01f, .01f, .01f);
+        _downObj.transform.localScale = new Vector3(.01f, .01f, .01f);
         obj.transform.localScale = new Vector3(.01f, .01f, .01f);
 
-        upObj.AddComponent<MeshCollider>();
-        downObj.AddComponent<MeshCollider>();
+        _upObj.AddComponent<MeshCollider>();
+        _downObj.AddComponent<MeshCollider>();
         obj.AddComponent<MeshCollider>();
 
         List<Vector2> uvList = new List<Vector2>();

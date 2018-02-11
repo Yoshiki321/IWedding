@@ -47,7 +47,7 @@ public class DrawPlane : DispatcherEventPanel
             _plane.transform.localRotation = Quaternion.Euler(90, 0, 0);
             _plane.layer = LayerMask.NameToLayer("DrawLine");
             _plane.transform.parent = transform;
-            _plane.transform.localPosition = new Vector3();
+            _plane.transform.localPosition = new Vector3(); 
             _plane.transform.localScale = new Vector3(999, 999, 999);
             _plane.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Standard"));
             Material m = _plane.GetComponent<MeshRenderer>().material;
@@ -65,6 +65,11 @@ public class DrawPlane : DispatcherEventPanel
         _fillMaterial.SetTextureScale("_MainTex", new Vector2(0.01f, 0.01f));
 
         Draw(DrawShapeManager.ShapeDrawDataList[0].nodes, 2);
+    }
+
+    public GameObject plane
+    {
+        get { return _plane; }
     }
 
     public string id = "";
@@ -140,6 +145,8 @@ public class DrawPlane : DispatcherEventPanel
 
         UpdateRelation();
         FillPanel();
+
+        isOperate = _isOperate;
     }
 
     private void UpdateRelation()
@@ -163,126 +170,34 @@ public class DrawPlane : DispatcherEventPanel
     private List<DrawNode> _nodeLines = new List<DrawNode>();
     private List<DrawLine> _drawLines = new List<DrawLine>();
 
-    public void GetDrawLines()
+    public List<DrawLine> drawLines
     {
-        List<float> xx = new List<float>();
-        List<float> yy = new List<float>();
-        List<float> zz = new List<float>();
-        foreach (DrawLine line in _drawLines)
-        {
-            Vector3 from = _plane.transform.InverseTransformPoint(line.nodeFrom.transform.TransformPoint(line.nodeFrom.transform.localPosition));
-            Vector3 to = _plane.transform.InverseTransformPoint(line.nodeFrom.transform.TransformPoint(line.nodeTo.transform.localPosition));
-            Vector3 curve = _plane.transform.InverseTransformPoint(line.nodeFrom.transform.TransformPoint(line.nodeCurve.transform.localPosition));
+        get { return _drawLines; }
+    }
 
-            xx.Add(line.nodeFrom.transform.localPosition.x);
-            xx.Add(line.nodeTo.transform.localPosition.x);
-            xx.Add(line.nodeCurve.transform.localPosition.x);
-            yy.Add(line.nodeFrom.transform.localPosition.y);
-            yy.Add(line.nodeTo.transform.localPosition.y);
-            yy.Add(line.nodeCurve.transform.localPosition.y);
-            zz.Add(line.nodeFrom.transform.localPosition.z);
-            zz.Add(line.nodeTo.transform.localPosition.z);
-            zz.Add(line.nodeCurve.transform.localPosition.z);
+    private bool _isOperate;
+
+    public bool isOperate
+    {
+        set
+        {
+            _isOperate = value;
+
+            if(_plane && _plane.GetComponent<BoxCollider>())
+                _plane.GetComponent<BoxCollider>().enabled = value;
+
+            foreach (DrawNode dn in _nodeLines)
+            {
+                dn.gameObject.SetActive(value);
+            }
+            foreach (DrawLine dl in _drawLines)
+            {
+                dl.gameObject.SetActive(value);
+            }
         }
-
-        float maxx = 0;
-        for (int i = 0; i < xx.Count; i++) maxx = Mathf.Max(maxx, xx[i]);
-
-        float maxy = 0;
-        for (int i = 0; i < yy.Count; i++) maxy = Mathf.Max(maxy, yy[i]);
-
-        float maxz = 0;
-        for (int i = 0; i < zz.Count; i++) maxz = Mathf.Max(maxz, zz[i]);
-
-        float minx = 0;
-        for (int i = 0; i < xx.Count; i++) minx = Mathf.Min(minx, xx[i]);
-
-        float miny = 0;
-        for (int i = 0; i < yy.Count; i++) miny = Mathf.Min(miny, yy[i]);
-
-        float minz = 0;
-        for (int i = 0; i < zz.Count; i++) minz = Mathf.Min(minz, zz[i]);
-
-        float countX = Mathf.Round((maxx - minx) / 18);
-        float countY = Mathf.Round((maxy - miny) / 18);
-
-        float mx = ((maxx - 1) - (minx + 1)) / (countX - 1);
-        float my = ((maxy - 1) - (miny + 1)) / (countY - 1);
-        float dx = maxx;
-        float dy = maxy;
-        int j = 0;
-        for (int i = 0; i < countX * countY; i++)
+        get
         {
-            float tdx = dx;
-            float tdy = dy;
-            bool isIn = false;
-            foreach (Triangle t in _meshData.triangleList)
-            {
-                if (t.Inside(new Vector2(dx, dy)))
-                {
-                    isIn = true;
-                    break;
-                }
-                if (t.Inside(new Vector2(dx + 1, dy + 1)))
-                {
-                    tdx += 1;
-                    tdy += 1;
-                    isIn = true;
-                    break;
-                }
-                if (t.Inside(new Vector2(dx + 1, dy - 1)))
-                {
-                    tdx += 1;
-                    tdy -= 1;
-                    isIn = true;
-                    break;
-                }
-                if (t.Inside(new Vector2(dx - 1, dy + 1)))
-                {
-                    tdx -= 1;
-                    tdy += 1;
-                    isIn = true;
-                    break;
-                }
-                if (t.Inside(new Vector2(dx - 1, dy - 1)))
-                {
-                    tdx -= 1;
-                    tdy -= 1;
-                    isIn = true;
-                    break;
-                }
-            }
-
-            if (isIn)
-            {
-                GameObject obj = GameObject.Instantiate(Resources.Load("Item/FlowerGroup/FlowerGroup") as GameObject);
-                obj.transform.parent = transform;
-                obj.transform.localPosition = new Vector3(tdx, tdy, 0);
-                obj.transform.localScale = new Vector3(90f, 90f, 90f);
-                obj.transform.localRotation = Quaternion.Euler(UnityEngine.Random.value * 360, -90f, -90f);
-
-                float r = UnityEngine.Random.Range(0f, 1f);
-                float g = UnityEngine.Random.Range(0f, 1f);
-                float b = UnityEngine.Random.Range(0f, 1f);
-                Color color = new Color(r, g, b);
-
-                obj.GetComponentInChildren<MeshRenderer>().material.color = color;
-                obj.layer = gameObject.layer;
-                Transform[] ts = obj.GetComponentsInChildren<Transform>();
-                foreach (Transform t in ts)
-                {
-                    t.gameObject.layer = gameObject.layer;
-                }
-            }
-
-            j++;
-            dx -= mx;
-            if (j == countX)
-            {
-                dx = maxx;
-                dy -= my;
-                j = 0;
-            }
+            return _isOperate;
         }
     }
 
@@ -327,7 +242,6 @@ public class DrawPlane : DispatcherEventPanel
         {
             drawLine.AddDown(LineDownHandle);
             drawLine.AddUp(LineUpHandle);
-            drawLine.AddRightClick(LineRightClickHandle);
             drawLine.nodeFrom.AddDown(NodeDownHandle);
             drawLine.nodeTo.AddDown(NodeDownHandle);
             drawLine.nodeCurve.AddDown(NodeDownHandle);
@@ -335,6 +249,8 @@ public class DrawPlane : DispatcherEventPanel
             drawLine.nodeTo.AddUp(NodeUpHandle);
             drawLine.nodeCurve.AddUp(NodeUpHandle);
         }
+
+        drawLine.AddRightClick(LineRightClickHandle);
 
         drawLine.nodeFrom.transform.localPosition += new Vector3(0, 0, -1);
         drawLine.nodeTo.transform.localPosition += new Vector3(0, 0, -1);
@@ -369,11 +285,19 @@ public class DrawPlane : DispatcherEventPanel
 
     private MeshData _meshData;
 
+    public MeshData meshData
+    {
+        get { return _meshData; }
+    }
+
     private void FillPanel()
     {
         _meshData = Triangulator.GetMeshData(GetPanelPoints());
         _drawFillPanel.BuildIrregularGeometry(_meshData);
         _drawFillPanel.SetMaterial(_fillMaterial);
+
+        Destroy(_drawFillPanel.gameObject.GetComponent<MeshCollider>());
+        _drawFillPanel.gameObject.AddComponent<MeshCollider>();
     }
 
     public void ResetCurve(DrawLine line)
@@ -395,11 +319,6 @@ public class DrawPlane : DispatcherEventPanel
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            GetDrawLines();
-        }
-
         if (!isUI)
         {
             if (Input.GetMouseButtonDown(0))

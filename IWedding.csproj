@@ -933,6 +933,7 @@
     <Compile Include="Assets\Resources\UI\Currency\SelectColor\ColorManager.cs" />
     <Compile Include="Assets\Resources\UI\Currency\SelectColor\ColorPanel.cs" />
     <Compile Include="Assets\Resources\UI\Currency\SelectColor\ColorRGB.cs" />
+    <Compile Include="Assets\RotateTest.cs" />
     <Compile Include="Assets\Script\Camera\CameraFlags.cs" />
     <Compile Include="Assets\Script\Camera\CameraFlyController.cs" />
     <Compile Include="Assets\Script\Camera\CameraRay.cs" />
@@ -1028,9 +1029,11 @@
     <Compile Include="Assets\Script\Model\VO\Component\CollageVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\ComponentVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\EditorCameraVO.cs" />
+    <Compile Include="Assets\Script\Model\VO\Component\FlowerWallVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\FrameVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\MaterialsVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\MultipleSpotlightVO.cs" />
+    <Compile Include="Assets\Script\Model\VO\Component\CurvyColumnVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\PointLightVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\RadiationLampVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\RelationVO.cs" />
@@ -1057,9 +1060,11 @@
     <Compile Include="Assets\Script\Scene\Component\BubbleComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\CollageComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\EditorCameraComponent.cs" />
+    <Compile Include="Assets\Script\Scene\Component\FlowerWallComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\FrameComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\LaserSpotlightComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\MultipleSpotlightComponent.cs" />
+    <Compile Include="Assets\Script\Scene\Component\CurvyColumnComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\PointLightComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\RadiationLampComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\RelationComponent.cs" />
@@ -1070,11 +1075,12 @@
     <Compile Include="Assets\Script\Scene\Component\ThickIrregularComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\TransformComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\TubeLightComponent.cs" />
+    <Compile Include="Assets\Script\Scene\CurvyColumn.cs" />
+    <Compile Include="Assets\Script\Scene\DrawLine\DrawChain.cs" />
     <Compile Include="Assets\Script\Scene\DrawLine\DrawLine.cs" />
     <Compile Include="Assets\Script\Scene\DrawLine\DrawLineCollider.cs" />
     <Compile Include="Assets\Script\Scene\DrawLine\DrawNode.cs" />
     <Compile Include="Assets\Script\Scene\DrawLine\DrawPlane.cs" />
-    <Compile Include="Assets\Script\Scene\DrawLine\DrawChain.cs" />
     <Compile Include="Assets\Script\Scene\Graphic\Display\AuxiliaryLine.cs" />
     <Compile Include="Assets\Script\Scene\Graphic\Display\Column2D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic\Display\Item2D.cs" />
@@ -1188,6 +1194,7 @@
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\ComponentPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\ComponentPanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\EditorCameraComponentUI.cs" />
+    <Compile Include="Assets\Script\View\Panel\ComponentPanel\FlowerWallComponentUI.cs" />
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\FrameComponentUI.cs" />
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\MultipleSpotlighComponentUI.cs" />
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\PointLightComponentUI.cs" />
@@ -1205,6 +1212,7 @@
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\UI\DropdownUI.cs" />
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\UI\InputFieldUI.cs" />
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\UI\SliderUI.cs" />
+    <Compile Include="Assets\Script\View\Panel\ComponentPanel\UI\TitleButtonUI.cs" />
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\UI\TransformUI.cs" />
     <Compile Include="Assets\Script\View\Panel\CorePanel\CorePanel.cs" />
     <Compile Include="Assets\Script\View\Panel\CorePanel\CorePanelEvent.cs" />

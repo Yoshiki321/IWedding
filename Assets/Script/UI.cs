@@ -33,6 +33,7 @@
     public static string RelationComponentUI = "RelationComponentUI"; 
     public static string ThickIrregularComponentUI = "ThickIrregularComponentUI"; 
     public static string SprinkleComponentUI = "SprinkleComponentUI";
+    public static string FlowerWallComponentUI = "FlowerWallComponentUI";
 }
 
 public class Panel

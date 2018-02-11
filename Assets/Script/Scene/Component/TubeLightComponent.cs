@@ -18,19 +18,24 @@ public class TubeLightComponent : SceneComponent
         {
             _item.VO.AddComponentVO<TubeLightVO>();
         }
-        _box = _item.GetComponentInChildren<BoxCollider>();
+
+        Destroy(_item.GetComponentInChildren<BoxCollider>());
+
+        _box = _item.gameObject.AddComponent<CapsuleCollider>();
         _tubeLight = item.GetComponentInChildren<TubeLight>();
 
         UpdateShadowPlanes();
+        UpdateCollider();
     }
 
-    private void Update()
+    private void UpdateCollider()
     {
-        _box.size = new Vector3(_box.size.x, _box.size.y, _tubeLight.m_Length);
+        _box.radius = _tubeLight.m_Radius;
+        _box.height = _tubeLight.m_Length;
     }
 
     private Item3D _item;
-    private BoxCollider _box;
+    private CapsuleCollider _box;
 
     private TubeLight _tubeLight;
 
@@ -46,6 +51,8 @@ public class TubeLightComponent : SceneComponent
             Color = _vo.color;
             Length = _vo.length;
             Range = _vo.range;
+
+            UpdateCollider();
         }
         get { return _vo; }
     }

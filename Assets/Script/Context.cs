@@ -41,6 +41,7 @@
         UIManager.CreateComponent(UI.RelationComponentUI); 
         UIManager.CreateComponent(UI.ThickIrregularComponentUI);
         UIManager.CreateComponent(UI.SprinkleComponentUI);
+        UIManager.CreateComponent(UI.FlowerWallComponentUI);
 
         UIManager.CreatePanel("UI/Currency/SelectColor/SelectColorPanel", Panel.SelectColorPanel);
         UIManager.CreatePanel("UI/Currency/SelectTexture/SelectTexturePanel", Panel.SelectTexturePanel);

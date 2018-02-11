@@ -11,6 +11,11 @@ public class BaseComponentUI : DispatcherEventPanel
     private VerticalLayoutGroup verticalLayoutGroup;
     private RectTransform rectTransform;
 
+    public virtual void Close()
+    {
+
+    }
+
     public virtual void Init()
     {
         content = transform.Find("View").Find("Content");
@@ -125,6 +130,23 @@ public class BaseComponentUI : DispatcherEventPanel
         Text text = obj.transform.GetComponent<Text>();
         text.text = name;
         return text;
+    }
+
+    protected TitleButtonUI CreateTitleButtonUI(string name, string title, Action<TitleButtonUI> action = null)
+    {
+        GameObject obj = Instantiate(Resources.Load("UI/Component/TitleButtonUI")) as GameObject;
+        obj.transform.parent = content;
+        TitleButtonUI ui = obj.AddComponent<TitleButtonUI>();
+        ui.ui = this;
+        ui.button = obj.transform.Find("Content").Find("Button").GetComponent<Button>();
+        ui.buttonText = ui.button.transform.Find("Text").GetComponent<Text>();
+        ui.titleText = obj.transform.Find("Content").Find("Text").GetComponent<Text>();
+        ui.buttonText.text = name;
+        ui.titleText.text = title;
+        UpdateHeight();
+
+        if (action != null) ui.OnClickButtom(action);
+        return ui;
     }
 
     protected float _height;

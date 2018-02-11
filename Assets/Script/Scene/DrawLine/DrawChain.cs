@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NewMonoBehaviour : MonoBehaviour
+public class DrawChain : MonoBehaviour
 {
 
     // Use this for initialization

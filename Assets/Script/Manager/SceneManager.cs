@@ -62,6 +62,15 @@ namespace BuildManager
             InitGrapics2();
 
             _surfaceLight = true;
+
+
+            Vector3 v = new Vector3(0, 1, 0);
+            Vector3 v1 = new Vector3(0, 1, -1);
+            Vector3 v2 = new Vector3(0.758f, 1.542f, 0);
+            Vector3 a = v - v1;
+            Vector3 b = v - v2;
+            Debug.Log(Vector3.Dot(a, b));
+            Debug.Log(a.x * v2.x + a.y * v2.y + a.z * v2.z);
         }
 
         private void InitCamera()
@@ -202,7 +211,7 @@ namespace BuildManager
             }
 
             if (Input.GetKeyDown(KeyCode.F8))
-            { 
+            {
                 UIManager.OpenUI(UI.LoadModelPanel);
             }
 
@@ -213,7 +222,7 @@ namespace BuildManager
 
             if (Input.GetKeyDown(KeyCode.F6))
             {
-                
+
             }
         }
 
@@ -304,6 +313,12 @@ namespace BuildManager
             }
 
             return list;
+        }
+
+        public static void EnabledEditorObjectSelection(bool value)
+        {
+            if (!value) SceneManager.Instance.editorObjectSelection.ClearSelection(false);
+            SceneManager.Instance.editorObjectSelection.gameObject.SetActive(value);
         }
     }
 }

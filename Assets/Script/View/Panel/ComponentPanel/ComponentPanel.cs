@@ -21,6 +21,7 @@ public class ComponentPanel : BasePanel
 
         for (int i = 0; i < _content.childCount; i++)
         {
+            _content.GetChild(i).gameObject.GetComponent<BaseComponentUI>().Close();
             _content.GetChild(i).gameObject.SetActive(false);
         }
     }

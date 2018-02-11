@@ -21,18 +21,8 @@ public class SprinkleComponentUI : BaseComponentUI
         Vector3 cpoint = SceneManager.Instance.editorGizmoSystem.TranslationGizmo.transform.position;
         Vector3 sp = SceneManager.Instance.Camera3D.WorldToScreenPoint(cpoint);
 
-        //CreateButtonImageUI("撒花", value => { Sprinkle(); });
-
-        GameObject sprinkleObj = Instantiate(Resources.Load("UI/Button")) as GameObject;
-        GameObject clearObj = Instantiate(Resources.Load("UI/Button")) as GameObject;
-        sprinkleObj.transform.parent = content;
-        clearObj.transform.parent = content;
-        Button sprinkleBtn = sprinkleObj.GetComponent<Button>();
-        Button clearBtn = clearObj.GetComponent<Button>();
-        sprinkleBtn.transform.Find("Text").GetComponent<Text>().text = "撒花";
-        clearBtn.transform.Find("Text").GetComponent<Text>().text = "清空";
-        sprinkleBtn.onClick.AddListener(Sprinkle);
-        clearBtn.onClick.AddListener(Clear);
+        CreateTitleButtonUI("撒花", "快捷键 E", value => { Sprinkle(); });
+        CreateTitleButtonUI("清空", "清空花瓣", value => { Clear(); });
 
         UpdateHeight();
     }
