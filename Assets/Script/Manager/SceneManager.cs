@@ -105,6 +105,7 @@ namespace BuildManager
         private void InitConfig()
         {
             new ItemManager();
+            new SurfaceManager();
             new TexturesManager();
             new CookieManager();
             new DrawShapeManager();
