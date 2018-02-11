@@ -10,7 +10,7 @@ public class CurvyColumn : MonoBehaviour
 
     private GameObject _layer;
 
-    public void SetPoints(List<Vector3> value, Transform parentLayer, bool closed = false)
+    public void SetPoints(List<Vector3> value, Transform parentLayer)
     {
         _parentLayer = parentLayer;
         _layer = new GameObject();
@@ -21,39 +21,24 @@ public class CurvyColumn : MonoBehaviour
 
         for (int i = 0; i < _meshPoints.Count; i++)
         {
-            if (i == _meshPoints.Count && closed == false) return;
+            if (i == _meshPoints.Count - 1) return;
 
-            List<Vector3> list;
-            List<Vector3> list1;
-
-            if (i + 1 >= _meshPoints.Count)
-            {
-                list = GetNodePoints(_meshPoints[i], _meshPoints[0]);
-                list1 = GetNodePoints(_meshPoints[0], _meshPoints[i]);
-
-                CreateColumn(list, list1);
-                list.Insert(0, _meshPoints[i]);
-                CreateTop(list);
-                list1.Insert(0, _meshPoints[0]);
-                CreateTop(list1);
-            }
-            else
-            {
-                list = GetNodePoints(_meshPoints[i], _meshPoints[i + 1]);
-                list1 = GetNodePoints(_meshPoints[i + 1], _meshPoints[i]);
-
-                CreateColumn(list, list1);
-                list.Insert(0, _meshPoints[i]);
-                CreateTop(list);
-                list1.Insert(0, _meshPoints[i + 1]);
-                CreateTop(list1);
-            }
+            List<Vector3> list = GetNodePoints(_meshPoints[i], _meshPoints[i + 1]);
+            List<Vector3> list1 = GetNodePoints(_meshPoints[i + 1], _meshPoints[i]);
 
             //if (i + 1 < _meshPoints.Count - 1)
             //{
             //    List<Vector3> list2 = GetNodePoints(_meshPoints[i + 1], _meshPoints[i + 2]);
             //    CreateColumn(list1, list2);
             //}
+
+            CreateColumn(list, list1);
+
+            list.Insert(0, _meshPoints[i]);
+            CreateTop(list);
+
+            list1.Insert(0, _meshPoints[i + 1]);
+            CreateTop(list1);
 
             if (i != 0)
             {
