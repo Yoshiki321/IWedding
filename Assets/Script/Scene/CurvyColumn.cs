@@ -10,7 +10,7 @@ public class CurvyColumn : MonoBehaviour
 
     private GameObject _layer;
 
-    public void points(List<Vector3> value, Transform parentLayer)
+    public void SetPoints(List<Vector3> value, Transform parentLayer)
     {
         _parentLayer = parentLayer;
         _layer = new GameObject();
@@ -82,7 +82,7 @@ public class CurvyColumn : MonoBehaviour
         Vector3 m = v - v1;
         Vector3 m1 = v - v2;
         Vector3 m2 = Vector3.Cross(m, m1);
-        Vector3 m3 = Vector3.MoveTowards(v, v1 + m2, 1.5f);
+        Vector3 m3 = Vector3.MoveTowards(v, v1 + m2, _radius);
 
         List<Vector3> list = new List<Vector3>();
         for (int j = 0; j < 360; j += 10)
@@ -238,7 +238,7 @@ public class CurvyColumn : MonoBehaviour
         mr.material.color = Color.blue;
     }
 
-    private float _radius;
+    private float _radius = 1.5f;
 
     public float Radius
     {

@@ -79,7 +79,7 @@ public class ThickIrregularComponent : SceneComponent
                         t3.Code = xml;
 
                         CurvyColumn curvyColumn = _itemVO.model.AddComponent<CurvyColumn>();
-                        curvyColumn.points(t3.upPoints,
+                        curvyColumn.SetPoints(t3.upPoints,
                             t3.upObj.transform);
                     }
                 }

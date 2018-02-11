@@ -97,6 +97,7 @@ public class DrawLinePanel : BasePanel
         _drawPanel.AddLineRightClick(LineRightClick);
         _drawPanel.AddLineClick(LineClick);
         _drawPanel.AddNodeClick(NodeClick);
+        _drawPanel.isOperate = true;
 
         var _dataNum = 0;
         foreach (ShapeDrawData data in DrawShapeManager.ShapeDrawDataList)
