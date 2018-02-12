@@ -10,8 +10,10 @@ public class ChooseSurfacePanel : BasePanel
     private List<GameObject> _hardImgList = new List<GameObject>();
     //定义xml配置列表
     private List<ItemData> _itemList;
+    private List<SurfaceDrawData> _surfaceList;
 
     private GameObject _hardContent;
+    private GameObject _surfaceContent;
 
     private void Awake()
     {
@@ -24,17 +26,28 @@ public class ChooseSurfacePanel : BasePanel
             AddEventClick(_btnList[i].gameObject);
         }
         //户型类别的实例图片加入组
-        _homeImgList.Add(GetUI("btnp0"));
-        _homeImgList.Add(GetUI("btnp1"));
-        _homeImgList.Add(GetUI("btnp3"));
-        _homeImgList.Add(GetUI("btnp4"));
-
 
         for (int i = 0; i < _homeImgList.Count; i++)
         {
             AddEventClick(_homeImgList[i].gameObject);
         }
+        //户型配置获取
+        _surfaceContent = GetUI("SurfaceImgList").transform.Find("Viewport").transform.Find("Content").transform.gameObject;
+        //获取Item配置列表
+        _surfaceList = SurfaceManager.SurfaceDrawDataList;
+        for (int _surfaceListNum = 0; _surfaceListNum < _surfaceList.Count; _surfaceListNum++)
+        {
+            GameObject _itemImg = Instantiate(Resources.Load("UI/ItemTool/ItemImg")) as GameObject;
+            _homeImgList.Add(_itemImg);
+            _itemImg.transform.parent = _surfaceContent.transform;
+            _itemImg.GetComponent<RectTransform>().sizeDelta = new Vector2(100f, 100f);
+            _itemImg.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+            _itemImg.GetComponent<Image>().overrideSprite = Resources.Load(_surfaceList[_surfaceListNum].thumbnail, typeof(Sprite)) as Sprite;
+            _itemImg.name = _surfaceList[_surfaceListNum].id;
+            AddEventClick(_itemImg);
+        }
 
+        //硬装配置获取
         _hardContent = GetUI("HardImgList").transform.Find("Viewport").transform.Find("Content").transform.gameObject;
         //获取Item配置列表
         _itemList = ItemManager.ItemDataList;
@@ -52,6 +65,9 @@ public class ChooseSurfacePanel : BasePanel
                 AddEventClick(_itemImg);
             }
         }
+
+
+
         Open();
     }
 
@@ -86,22 +102,7 @@ public class ChooseSurfacePanel : BasePanel
         {
             if (obj == _homeImgList[_homeBtnListNum])
             {
-                switch(obj.name)
-                {
-                    case "btnp0":
-                        hType = LayoutConstant.BULGE;
-                        break;
-                    case "btnp1":
-                        hType = LayoutConstant.CONCAVE;
-                        break;
-                    case "btnp2":
-                        hType = LayoutConstant.L;
-                        break;
-                    case "btnp3":
-                        hType = LayoutConstant.RECT;
-                        break;
-                }
-                dispatchEvent(new ChooseSurfacePanelEvent(ChooseSurfacePanelEvent.CREATE_SURFACE, hName, hType));
+                dispatchEvent(new ChooseSurfacePanelEvent(ChooseSurfacePanelEvent.CREATE_SURFACE, hName, hType, _surfaceList[_homeBtnListNum].points));
             }
         }
     }
@@ -113,30 +114,18 @@ public class ChooseSurfacePanel : BasePanel
     }
 
     private string hName = "主厅";
-    private LayoutConstant hType;
+    private LayoutConstant hType = LayoutConstant.BULGE;
 
     void ShowHomePanelHandle()
     {
-        for (int i = 0; i < _homeImgList.Count; i++)
-        {
-            _homeImgList[i].SetActive(true);
-        }
-        for (int i = 0; i < _hardImgList.Count; i++)
-        {
-            _hardImgList[i].SetActive(false);
-        }
+        _surfaceContent.transform.parent.transform.parent.gameObject.SetActive(true);
+        _hardContent.transform.parent.transform.parent.gameObject.SetActive(false);
     }
 
     void ShowHardPanelHandle()
     {
-        for (int i = 0; i < _homeImgList.Count; i++)
-        {
-            _homeImgList[i].SetActive(false);
-        }
-        for (int i = 0; i < _hardImgList.Count; i++)
-        {
-            _hardImgList[i].SetActive(true);
-        }
+        _surfaceContent.transform.parent.transform.parent.gameObject.SetActive(false);
+        _hardContent.transform.parent.transform.parent.gameObject.SetActive(true);
     }
 
     void changeBtnStyle(int btnNum){

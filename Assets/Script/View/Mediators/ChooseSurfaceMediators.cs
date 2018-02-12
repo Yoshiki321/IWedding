@@ -22,7 +22,7 @@ public class ChooseSurfaceMediators : Mediators
     {
         ChooseSurfacePanelEvent ce = (ChooseSurfacePanelEvent)e;
 
-        SurfaceVO vo = CreateLayout(ce.type, 1, 1, .15f, ce.name);
+        SurfaceVO vo = CreateLayout(ce.points, 1, 1, .15f, ce.name);
 
         DispatcherEvent(new SceneEvent(SceneEvent.ADD_SURFACE,
             new List<AssetVO>() { null },
@@ -49,51 +49,25 @@ public class ChooseSurfaceMediators : Mediators
             ));
     }
 
-    public SurfaceVO CreateLayout(LayoutConstant type, float x, float y, float thickness = 10, string name = "ha")
+    public SurfaceVO CreateLayout(string type, float x, float y, float thickness = 10, string name = "ha")
     {
         List<LineVO> lines = new List<LineVO>();
-
-        switch (type)
+        string[] LineList = type.Split(';');
+        List<string[]> layoutLineList = new List<string[]>();
+        for (int i = 0; i < LineList.Length; i++)
         {
-            case LayoutConstant.RECT:
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 3, y - 3), new Vector2(x - 3, y - 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 3, y - 3), new Vector2(x + 3, y + 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 3, y + 3), new Vector2(x - 3, y + 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x - 3, y + 3), new Vector2(x - 3, y - 3), thickness));
-                break;
-
-            case LayoutConstant.CONCAVE:
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x - 1, y - 1), new Vector2(x - 1, y - 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x - 1, y - 3), new Vector2(x - 3, y - 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x - 3, y - 3), new Vector2(x - 3, y + 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x - 3, y + 3), new Vector2(x + 3, y + 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 3, y + 3), new Vector2(x + 3, y - 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 3, y - 3), new Vector2(x + 1, y - 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 1, y - 3), new Vector2(x + 1, y - 1), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 1, y - 1), new Vector2(x - 1, y - 1), thickness));
-                break;
-
-            case LayoutConstant.BULGE:
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x - 1, y - 5), new Vector2(x - 1, y - 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x - 1, y - 3), new Vector2(x - 3, y - 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x - 3, y - 3), new Vector2(x - 3, y + 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x - 3, y + 3), new Vector2(x + 3, y + 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 3, y + 3), new Vector2(x + 3, y - 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 3, y - 3), new Vector2(x + 1, y - 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 1, y - 3), new Vector2(x + 1, y - 5), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 1, y - 5), new Vector2(x - 1, y - 5), thickness));
-                break;
-
-            case LayoutConstant.L:
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x - 3, y - 3), new Vector2(x, y - 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x, y - 3), new Vector2(x, y), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x, y), new Vector2(x + 3, y), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 3, y), new Vector2(x + 3, y + 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + 3, y + 3), new Vector2(x - 3, y + 3), thickness));
-                lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x - 3, y + 3), new Vector2(x - 3, y - 3), thickness));
-                break;
+            layoutLineList.Add(LineList[i].Split(','));
         }
+        for (int layoutLineListNum = 0; layoutLineListNum < layoutLineList.Count; layoutLineListNum++)
+        {
+            float a = float.Parse(layoutLineList[layoutLineListNum][0]);
+            float b = float.Parse(layoutLineList[layoutLineListNum][1]);
+            float c = float.Parse(layoutLineList[layoutLineListNum][2]);
+            float d = float.Parse(layoutLineList[layoutLineListNum][3]);
 
-        return BuilderModel.Instance.CreateSurfaceVO(lines, name);
+            lines.Add(BuilderModel.Instance.CreateLineVO(new Vector2(x + a, y + b), new Vector2(x + c, y + d), thickness));
+
+        }
+        return BuilderModel.Instance.CreateSurfaceVO(lines,name);
     }
 }

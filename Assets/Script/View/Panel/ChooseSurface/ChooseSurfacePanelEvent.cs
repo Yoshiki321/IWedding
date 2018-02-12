@@ -10,11 +10,13 @@ public class ChooseSurfacePanelEvent : EventObject
 
 	public string name;
     public LayoutConstant type;
+    public string points;
 
-    public ChooseSurfacePanelEvent(string types, string name, LayoutConstant type = LayoutConstant.BULGE, bool bubbles = false, bool cancelable = false)
+    public ChooseSurfacePanelEvent(string types, string name, LayoutConstant type = LayoutConstant.BULGE, string points="", bool bubbles = false, bool cancelable = false)
         : base(types, bubbles, cancelable)
     {
         this.name = name;
         this.type = type;
+        this.points = points;
     }
 }
