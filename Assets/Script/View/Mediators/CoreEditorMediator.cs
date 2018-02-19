@@ -963,7 +963,7 @@ public class CoreEditorMediator : Mediators
             lists.Add(AssetsModel.Instance.GetObjectData(vo.id).object3.gameObject);
         }
 
-        if (CameraManager.visual != CameraFlags.Two)
+        if (CameraManager.visual != CameraFlags.Two && SceneManager.Instance.brushManager.brushMode == BrushManager.BrushMode.Place)
         {
             SceneManager.Instance.mouse3Manager.ClearSelect();
             SceneManager.Instance.editorObjectSelection.SetSelectedObjects(lists, false);

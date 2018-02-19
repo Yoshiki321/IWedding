@@ -101,6 +101,7 @@ public class ObjectSprite3D : AssetSprite
                 if (_model.GetComponent<ThickIrregularComponent>() == null)
                 {
                     _model.AddComponent<ThickIrregularComponent>();
+                    _model.AddComponent<CurvyColumnComponent>();
                 }
             }
             else

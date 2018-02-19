@@ -131,6 +131,7 @@ public class ComponentPanelMediators : Mediators
         hashUI.Add(typeof(ThickIrregularVO), UI.ThickIrregularComponentUI);
         hashUI.Add(typeof(SprinkleVO), UI.SprinkleComponentUI);
         hashUI.Add(typeof(FlowerWallVO), UI.FlowerWallComponentUI);
+        hashUI.Add(typeof(CurvyColumnVO), UI.CurvyColumnComponentUI);
     }
 
     private void ReleaseObject3Handle(EventObject e)

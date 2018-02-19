@@ -1,4 +1,5 @@
 ﻿using Build3D;
+using BuildManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class ItemToolMediators : Mediators
 
     public override void OnRegister()
     {
+        SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.ESC, Keyboard_EscHandle);
+
         AddViewListener(ItemToolPanelEvent.Create_Item, CreateItemHandle);
         AddViewListener(ItemToolPanelEvent.Create_Combination, CreateCombinationHandle);
         AddViewListener(ItemToolPanelEvent.CreatPlane, CreatPlaneHandle);
@@ -17,7 +20,10 @@ public class ItemToolMediators : Mediators
 
     public override void OnRemove()
     {
+        SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.ESC, Keyboard_EscHandle);
+
         RemoveViewListener(ItemToolPanelEvent.Create_Item, CreateItemHandle);
+        RemoveViewListener(ItemToolPanelEvent.Create_Combination, CreateCombinationHandle);
         RemoveViewListener(ItemToolPanelEvent.CreatPlane, CreatPlaneHandle);
         RemoveViewListener(ItemToolPanelEvent.Exit, ExitHandle);
     }
@@ -64,10 +70,37 @@ public class ItemToolMediators : Mediators
     private void CreateItemHandle(EventObject e)
     {
         ItemToolPanelEvent l = (ItemToolPanelEvent)e;
-        ItemVO itemvo = AssetsModel.Instance.CreateItemVO(l.id);
+
+        itemId = l.id;
+        itemvo = AssetsModel.Instance.CreateItemVO(l.id);
+
+        if (SceneManager.Instance.brushManager.brushMode == BrushManager.BrushMode.Direct)
+        {
+            SceneManager.Instance.brushManager.SetItem(l.id, CreateItem);
+        }
+        else
+        {
+            Vector3 v = CameraManager.GetCameraForward();
+            CreateItem(v);
+        }
+    }
+
+    private void Keyboard_EscHandle(EventObject e)
+    {
+        if (SceneManager.Instance.brushManager.brushMode == BrushManager.BrushMode.Direct)
+        {
+            SceneManager.Instance.brushManager.SetItem("", null);
+        }
+    }
+
+    string itemId;
+    ItemVO itemvo;
+
+    private void CreateItem(Vector3 v)
+    {
+        ItemVO itemvo = AssetsModel.Instance.CreateItemVO(itemId);
 
         TransformVO tvo = itemvo.GetComponentVO<TransformVO>();
-        Vector3 v = CameraManager.GetCameraForward();
         tvo.x = v.x;
         tvo.y = v.y;
         tvo.z = v.z;

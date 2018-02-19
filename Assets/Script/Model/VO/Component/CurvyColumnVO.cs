@@ -7,16 +7,22 @@ using System.Collections.Generic;
 public class CurvyColumnVO : ComponentVO
 {
     public List<Vector3> points;
+    public ColorVO color = new ColorVO(); 
+    public float radius = 1.5f;
 
     override public void FillFromObject(ComponentVO asset)
     {
+        id = asset.id;
+        color = (asset as CurvyColumnVO).color;
+        radius = (asset as CurvyColumnVO).radius;
     }
 
     override public bool Equals(AssetVO asset)
     {
         CurvyColumnVO vo = asset as CurvyColumnVO;
         return (
-            true
+             vo.color == color &&
+             vo.radius == radius
             );
     }
 
@@ -24,6 +30,8 @@ public class CurvyColumnVO : ComponentVO
     {
         CurvyColumnVO vo = new CurvyColumnVO();
         vo.id = id;
+        vo.color = color;
+        vo.radius = radius;
         return vo;
     }
 
@@ -32,7 +40,9 @@ public class CurvyColumnVO : ComponentVO
         get
         {
             string code = "";
-            code += "<Frame";
+            code += "<CurvyColumn";
+            code += " color = " + color.ToCode();
+            code += " radius = " + GetPropertyString(radius);
             code += "/>";
 
             return code;
@@ -40,6 +50,8 @@ public class CurvyColumnVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
+            color.SetCode(code.Attributes["color"].Value);
+            radius = float.Parse(code.Attributes["radius"].Value);
         }
     }
 }

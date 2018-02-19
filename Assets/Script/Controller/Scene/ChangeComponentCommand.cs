@@ -89,6 +89,10 @@ public class ChangeComponentCommand : HistoryCommand
             {
                 item.VO.GetComponentVO<SprinkleVO>().FillFromObject(se.newAssets[i] as SprinkleVO);
             }
+            if (se.newAssets[i] is CurvyColumnVO)
+            {
+                item.VO.GetComponentVO<CurvyColumnVO>().FillFromObject(se.newAssets[i] as CurvyColumnVO);
+            }
         }
     }
 }

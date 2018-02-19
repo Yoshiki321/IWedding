@@ -29,15 +29,15 @@ public class RotateTest : MonoBehaviour
 
         m = gameObject.transform.position - cube.transform.position;
         m1 = gameObject.transform.position - v2;
-        m2 = Vector3.Cross(m,m1);
+        m2 = Vector3.Cross(m, m1);
         m3 = Vector3.MoveTowards(gameObject.transform.position, gameObject.transform.position + m2, 1);
     }
 
     void Update()
     {
         cube1.transform.position = MathUtils3D.RotateRound(
-            m3, 
-            cube.transform.position, 
+            m3,
+            cube.transform.position,
             m, angle);
         angle++;
     }

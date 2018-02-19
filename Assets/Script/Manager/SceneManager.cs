@@ -24,6 +24,7 @@ namespace BuildManager
         public Camera VRCamera;
         public GameObject UILayer;
 
+        public BrushManager brushManager;
         public ControlManager controlManager;
         public Control3Manager control3Manager;
         public KeyboardManager keyboardManager;
@@ -62,15 +63,6 @@ namespace BuildManager
             InitGrapics2();
 
             _surfaceLight = true;
-
-
-            Vector3 v = new Vector3(0, 1, 0);
-            Vector3 v1 = new Vector3(0, 1, -1);
-            Vector3 v2 = new Vector3(0.758f, 1.542f, 0);
-            Vector3 a = v - v1;
-            Vector3 b = v - v2;
-            Debug.Log(Vector3.Dot(a, b));
-            Debug.Log(a.x * v2.x + a.y * v2.y + a.z * v2.z);
         }
 
         private void InitCamera()
@@ -113,6 +105,7 @@ namespace BuildManager
 
         private void InitComponent()
         {
+            brushManager = new BrushManager();
             controlManager = new ControlManager();
             control3Manager = new Control3Manager();
             keyboardManager = new KeyboardManager();
@@ -151,19 +144,17 @@ namespace BuildManager
         {
             if (_Instance == null) _Instance = this;
 
-            if (controlManager != null && mouse3Manager != null && mouseManager != null)
+            if (CameraManager.visual == CameraFlags.Two)
             {
-                if (CameraManager.visual == CameraFlags.Two)
-                {
-                    mouseManager.Update();
-                }
-                else
-                {
-                    mouse3Manager.Update();
-                }
-
-                keyboardManager.Update();
+                mouseManager.Update();
             }
+            else
+            {
+                mouse3Manager.Update();
+            }
+
+            keyboardManager.Update();
+            brushManager.Update();
 
             //CameraUI.clearFlags = CameraClearFlags.Depth;
 
@@ -223,7 +214,14 @@ namespace BuildManager
 
             if (Input.GetKeyDown(KeyCode.F6))
             {
-
+                if (brushManager.brushMode == BrushManager.BrushMode.Place)
+                {
+                    brushManager.brushMode = BrushManager.BrushMode.Direct;
+                }
+                else
+                {
+                    brushManager.brushMode = BrushManager.BrushMode.Place;
+                }
             }
         }
 

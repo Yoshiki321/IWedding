@@ -91,6 +91,8 @@ public class DrawLineMediators : Mediators
         tvo.url = name;
         tvo.xml = dpe.code;
 
+        itemvo.model.AddComponent<CurvyColumnComponent>();
+
         DispatcherEvent(new SceneEvent(SceneEvent.ADD_ITEM,
             new List<AssetVO>() { null },
             new List<AssetVO>() { dpe.itemVO }
