@@ -81,7 +81,7 @@ public class ItemToolMediators : Mediators
         else
         {
             Vector3 v = CameraManager.GetCameraForward();
-            CreateItem(v);
+            CreateItem(v, new Vector3());
         }
     }
 
@@ -96,7 +96,7 @@ public class ItemToolMediators : Mediators
     string itemId;
     ItemVO itemvo;
 
-    private void CreateItem(Vector3 v)
+    private void CreateItem(Vector3 v, Vector3 r)
     {
         ItemVO itemvo = AssetsModel.Instance.CreateItemVO(itemId);
 
@@ -104,6 +104,9 @@ public class ItemToolMediators : Mediators
         tvo.x = v.x;
         tvo.y = v.y;
         tvo.z = v.z;
+        tvo.rotateX = r.x;
+        tvo.rotateY = r.y;
+        tvo.rotateZ = r.z;
 
         DispatcherEvent(new SceneEvent(SceneEvent.ADD_ITEM,
             new List<AssetVO>() { null },

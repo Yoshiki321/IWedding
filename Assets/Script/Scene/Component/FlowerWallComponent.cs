@@ -45,7 +45,7 @@ public class FlowerWallComponent : SceneComponent
         drawPlane.isOperate = !_editor;
     }
 
-    public void Clear()
+    private void Clear()
     {
         foreach (GameObject obj in _objectList)
         {
@@ -91,7 +91,26 @@ public class FlowerWallComponent : SceneComponent
         }
     }
 
-    public void Fill()
+    private string _assetId;
+
+    public string assetId
+    {
+        set
+        {
+            _assetId = value;
+            if (_assetId == "")
+            {
+                Clear();
+            }
+            else
+            {
+                Fill();
+            }
+        }
+        get { return _assetId; }
+    }
+
+    private void Fill()
     {
         Clear();
 
@@ -218,7 +237,7 @@ public class FlowerWallComponent : SceneComponent
         set
         {
             _vo = value.GetComponentVO<FlowerWallVO>();
-            visible = _vo.visible;
+            assetId = _vo.assetId;
             visible = _vo.visible;
             color = _vo.color;
         }

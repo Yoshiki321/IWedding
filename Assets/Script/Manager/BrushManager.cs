@@ -33,11 +33,13 @@ public class BrushManager
     }
 
     string itemId;
-    Action<Vector3> clickFun;
+    Action<Vector3, Vector3> clickFun;
 
-    public void SetItem(string id, Action<Vector3> f)
+    public void SetItem(string id, Action<Vector3, Vector3> f)
     {
         itemId = id;
+
+        SceneManager.EnabledEditorObjectSelection(false);
 
         if (item != null)
         {
@@ -46,6 +48,7 @@ public class BrushManager
 
         if (id == "")
         {
+            SceneManager.EnabledEditorObjectSelection(true);
             return;
         }
 
@@ -75,6 +78,9 @@ public class BrushManager
             {
                 t.gameObject.layer = LayerMask.NameToLayer("ObjectSprite3D");
             }
+
+            //item = GameObject.CreatePrimitive(PrimitiveType.Plane);
+            //item.transform.parent = box.transform;
         }
     }
 
@@ -125,16 +131,19 @@ public class BrushManager
                 //pos.y += 0.5f;
 
                 item.transform.localPosition = pos;
-                //box.transform.LookAt(hit.point - hit.normal);
+                item.transform.LookAt(hit.point - hit.normal);
+                item.transform.Rotate(new Vector3(-90, 0, 0));
+                Vector3 v = item.transform.rotation.eulerAngles;
+                item.transform.rotation = Quaternion.Euler(new Vector3(0, v.y, 0));
 
                 if (Input.GetMouseButtonDown(0))
                 {
                     down = true;
                 }
-                if (Input.GetMouseButtonUp(0))
+                if (Input.GetMouseButtonUp(0) && down)
                 {
                     down = false;
-                    clickFun(pos);
+                    clickFun(pos, item.transform.rotation.eulerAngles);
                 }
             }
         }
