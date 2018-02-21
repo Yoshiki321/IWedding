@@ -127,7 +127,7 @@ public class FlowerWallComponentUI : BaseComponentUI
 
     private void Clear()
     {
-        foreach (FlowerWallComponent flowerWall in _flowerWall) flowerWall.Clear();
+        foreach (FlowerWallComponent flowerWall in _flowerWall) flowerWall.assetId = "";
     }
 
     public override void UpdateComponent()
@@ -137,6 +137,7 @@ public class FlowerWallComponentUI : BaseComponentUI
         foreach (AssetVO avo in _assets)
         {
             FlowerWallVO vo = avo as FlowerWallVO;
+            vo.assetId = _flowerWall[0].assetId;
             vo.color = _color;
             vo.visible = _flowerWall[0].visible;
         }
@@ -144,7 +145,7 @@ public class FlowerWallComponentUI : BaseComponentUI
 
     private void Fill()
     {
-        foreach (FlowerWallComponent flowerWall in _flowerWall) flowerWall.Fill();
+        foreach (FlowerWallComponent flowerWall in _flowerWall) flowerWall.assetId = "1001";
         UpdateComponent();
     }
 

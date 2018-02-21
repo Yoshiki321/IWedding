@@ -6,7 +6,6 @@ using BuildManager;
 public class ThickIrregularVO : ComponentVO
 {
     public string url = "";
-    private string _urlName = "";
     public XmlNode xml;
 
     override public void FillFromObject(ComponentVO asset)
