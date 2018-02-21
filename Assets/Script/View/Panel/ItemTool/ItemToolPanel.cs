@@ -195,11 +195,11 @@ public class ItemToolPanel : BasePanel
         {
             if (_itemBtnListNum == a)
             {
-                _itemBtnList.transform.GetChild(_itemBtnListNum).GetComponent<Image>().overrideSprite = Resources.Load("UI/ItemTool/iwedding_11", typeof(Sprite)) as Sprite;
+                _itemBtnList.transform.GetChild(_itemBtnListNum).Find("Text").GetComponent<Text>().color = new Color(0.952F, 0.706F, 0.2902F, 1);
             }
             else
             {
-                _itemBtnList.transform.GetChild(_itemBtnListNum).GetComponent<Image>().overrideSprite = Resources.Load("UI/ItemTool/iwedding_10", typeof(Sprite)) as Sprite;
+                _itemBtnList.transform.GetChild(_itemBtnListNum).Find("Text").GetComponent<Text>().color = Color.white;
             }
         }
     }

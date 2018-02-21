@@ -8,15 +8,14 @@ public class MainPanelMediators : Mediators
     public override void OnRegister()
     {
         AddViewListener(MainPanelEvent.CreatePlan_Click, CreatePlanHandle);
-        AddViewListener(MainPanelEvent.RealPlan_Click, RealPlanHandle);
-
+        AddViewListener(MainPanelEvent.StorePlan_Click, StorePlanHandle);
 
     }
 
     public override void OnRemove()
     {
         RemoveViewListener(MainPanelEvent.CreatePlan_Click, CreatePlanHandle);
-        RemoveViewListener(MainPanelEvent.RealPlan_Click, RealPlanHandle); 
+        RemoveViewListener(MainPanelEvent.StorePlan_Click, StorePlanHandle);
     }
 
     private void CreatePlanHandle(EventObject e)
@@ -24,8 +23,8 @@ public class MainPanelMediators : Mediators
         UIManager.OpenUI(UI.ProjectPanel);
     }
 
-    private void RealPlanHandle(EventObject e)
+    private void StorePlanHandle(EventObject e)
     {
-
+        UIManager.OpenUI(UI.StorePanel);
     }
 }

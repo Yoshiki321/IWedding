@@ -12,6 +12,7 @@ public class SwitchToolPanel : BasePanel
     private GameObject FilterBtn;
     private GameObject WindowBtn;
     private GameObject HelpBtn;
+    private GameObject ReturnBtn;
     private List<GameObject> TopBtnList = new List<GameObject>();
 
     public static SwitchToolPanel Instance
@@ -33,7 +34,9 @@ public class SwitchToolPanel : BasePanel
         Instance = this;
         thisTimeText = GetUI("ThisTime");
         thisNameText = GetUI("ThisName");
+        ReturnBtn = GetUI("ReturnBtn");
         thisTimeText.GetComponent<Text>().text = System.DateTime.Now.Year + "-" + System.DateTime.Now.Month + "-" + System.DateTime.Now.Day.ToString();
+        AddEventClick(ReturnBtn);
     }
 
     private void Start()
@@ -95,6 +98,10 @@ public class SwitchToolPanel : BasePanel
         if (obj.name == "HelpBtn")
         {
             dispatchEvent(new SwitchToolPanelEvent(SwitchToolPanelEvent.HELP));
+        }
+        if (obj.name == "ReturnBtn")
+        {
+            dispatchEvent(new SwitchToolPanelEvent(SwitchToolPanelEvent.RETURN));
         }
     }
 

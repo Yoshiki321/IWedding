@@ -2,6 +2,7 @@
 {
     public static string CorePanel = "CorePanel";
     public static string MainPanel = "MainPanel";
+    public static string StorePanel = "StorePanel";
     public static string ChooseSurfacePanel = "ChooseSurfacePanel";
     public static string CameraToolPanel = "CameraToolPanel";
     public static string ItemToolPanel = "ItemToolPanel";

@@ -90,9 +90,9 @@ public class KeyboardManager : EventDispatcher
             dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.OPEN_DRAWLINEPANEL));
         }
 
-        if (Input.GetKeyDown(KeyCode.F6))
-        {
-            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.LOAD_COMBINATION));
-        }
+        //if (Input.GetKeyDown(KeyCode.F6))
+        //{
+        //    dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.LOAD_COMBINATION));
+        //}
     }
 }

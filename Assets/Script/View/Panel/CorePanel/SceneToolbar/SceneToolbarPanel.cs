@@ -1,3 +1,4 @@
+using BuildManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class SceneToolbarPanel : BasePanel
     private GameObject toolLineCopyBtn;
     private GameObject toolLinePasteBtn;
     private GameObject toolLineDeleteBtn;
+    private GameObject toolLineBrushBtn;
 
     private GameObject toolLineChangeViewBtn;
 
@@ -25,7 +27,7 @@ public class SceneToolbarPanel : BasePanel
     private GameObject toolLineLoadBtn;
     private GameObject toolLineLightBtn;
     private GameObject toolLineVRBtn;
-    private GameObject toolLineShortBtn;
+    private GameObject toolLineModelBtn;
 
     private bool lightFlag = true;
 
@@ -42,6 +44,9 @@ public class SceneToolbarPanel : BasePanel
         toolLineCopyBtn = transform.Find("ToolLineBg").Find("ToolLineCopyBtn").gameObject;
         toolLinePasteBtn = transform.Find("ToolLineBg").Find("ToolLinePasteBtn").gameObject;
         toolLineDeleteBtn = transform.Find("ToolLineBg").Find("ToolLineDeleteBtn").gameObject;
+        toolLineBrushBtn = transform.Find("ToolLineBg").Find("ToolLineBrushBtn").gameObject;
+        toolLineVRBtn = transform.Find("ToolLineBg").Find("ToolLineVRBtn").gameObject;
+
         toolLinePhotoBtn = transform.Find("ToolLineBg").Find("ToolLinePhotoBtn").gameObject;
         toolLineChangeViewBtn = transform.Find("ToolLineBg").Find("ToolLineChangeView").gameObject;
 
@@ -52,10 +57,9 @@ public class SceneToolbarPanel : BasePanel
         toolLineSaveBtn = transform.Find("ToolLineBg").Find("ToolLineSaveBtn").gameObject;
         toolLineLoadBtn = transform.Find("ToolLineBg").Find("ToolLineLoadBtn").gameObject;
         toolLineLightBtn = transform.Find("ToolLineBg").Find("ToolLineLightBtn").gameObject;
+        toolLineModelBtn = transform.Find("ToolLineBg").Find("ToolLineModelBtn").gameObject;
 
-        toolLineVRBtn = transform.Find("ToolLineBg").Find("ToolLineVRBtn").gameObject;
-
-		toolBtnList.Add(tooLineAddItemBtn);
+        toolBtnList.Add(tooLineAddItemBtn);
 		toolBtnList.Add(tooLineAddHomeBtn);
 
         toolBtnList.Add(toolLineUndoBtn);
@@ -63,15 +67,17 @@ public class SceneToolbarPanel : BasePanel
         toolBtnList.Add(toolLineCopyBtn);
         toolBtnList.Add(toolLinePasteBtn);
         toolBtnList.Add(toolLineDeleteBtn);
-        toolBtnList.Add(toolLinePhotoBtn);
+        toolBtnList.Add(toolLineBrushBtn);
 
+        toolBtnList.Add(toolLinePhotoBtn);
         toolBtnList.Add(toolLineChangeViewBtn);
         toolBtnList.Add(toolLineFilterBtn);
         toolBtnList.Add(toolLineRenderBtn);
         toolBtnList.Add(toolLineSaveBtn);
         toolBtnList.Add(toolLineLoadBtn);
         toolBtnList.Add(toolLineLightBtn);
-
+        toolBtnList.Add(toolLineModelBtn);
+        
         toolBtnList.Add(toolLineAlignBtn);
 
         toolBtnList.Add(toolLineVRBtn);
@@ -146,6 +152,38 @@ public class SceneToolbarPanel : BasePanel
         {
             transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.PHOTO));
         }
+        if (obj == toolLineBrushBtn)
+        {
+            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.BRUSH));
+            if (SceneManager.Instance.brushManager.brushMode == BrushManager.BrushMode.Place)
+            {
+                toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "开 启 笔 刷";
+            }
+            else
+            {
+                toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "关 闭 笔 刷";
+            }
+        }
+        if (obj == toolLineVRBtn)
+        {
+            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.VR));
+            if (CameraManager.visual == CameraFlags.Roam)
+            {
+                toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "3 D 视 角";
+                toolLineVRBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/Fly", typeof(Sprite)) as Sprite;
+            }
+            else if (CameraManager.visual == CameraFlags.Fly)
+            {
+                toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "V R 视 角";
+                toolLineVRBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/VR", typeof(Sprite)) as Sprite;
+            }
+            else if (CameraManager.visual == CameraFlags.VR)
+            {
+                toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "普 通 视 角";
+                toolLineVRBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/Roam", typeof(Sprite)) as Sprite;
+            }
+        }
+
 
         if (obj == toolLineChangeViewBtn)
         {
@@ -167,6 +205,11 @@ public class SceneToolbarPanel : BasePanel
         if (obj == toolLineFilterBtn)
         {
             transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.FILTER));
+        }
+
+        if (obj == toolLineModelBtn)
+        {
+            UIManager.OpenUI(UI.LoadModelPanel);
         }
 
         if (obj == toolLineRenderBtn)

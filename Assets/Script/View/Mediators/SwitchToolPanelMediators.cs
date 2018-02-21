@@ -13,6 +13,8 @@ public class SwitchToolPanelMediators : Mediators
         AddViewListener(SwitchToolPanelEvent.WINDOW, OpenWindowHandle);
         AddViewListener(SwitchToolPanelEvent.HELP, OpenHelpHandle);
         AddViewListener(SwitchToolPanelEvent.CLOSE, OpenCloseHandle);
+        AddViewListener(SwitchToolPanelEvent.RETURN, ReturnHandle);
+
     }
 
     public override void OnRemove()
@@ -23,12 +25,17 @@ public class SwitchToolPanelMediators : Mediators
         RemoveViewListener(SwitchToolPanelEvent.WINDOW, OpenWindowHandle);
         RemoveViewListener(SwitchToolPanelEvent.HELP, OpenHelpHandle);
         RemoveViewListener(SwitchToolPanelEvent.CLOSE, OpenCloseHandle);
-
+        RemoveViewListener(SwitchToolPanelEvent.RETURN, ReturnHandle);
     }
 
     private void OpenCloseHandle(EventObject e)
     {
         TopToolPanel.Instance.CloseAllPanelHandle();
+    }
+
+    private void ReturnHandle(EventObject e)
+    {
+        Application.LoadLevel("XBuild");
     }
 
     private void OpenFileHandle(EventObject e)

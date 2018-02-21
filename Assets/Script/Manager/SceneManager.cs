@@ -225,6 +225,32 @@ namespace BuildManager
             }
         }
 
+        public void ToggleBrushMode() {
+            if (brushManager.brushMode == BrushManager.BrushMode.Place)
+            {
+                brushManager.brushMode = BrushManager.BrushMode.Direct;
+            }
+            else
+            {
+                brushManager.brushMode = BrushManager.BrushMode.Place;
+            }
+        }
+
+        public void ToggleVRMode() {
+            if (CameraManager.visual == CameraFlags.Roam)
+            {
+                CameraManager.ChangeCamera(CameraFlags.Fly);
+            }
+            else if (CameraManager.visual == CameraFlags.Fly)
+            {
+                CameraManager.ChangeCamera(CameraFlags.VR);
+            }
+            else if (CameraManager.visual == CameraFlags.VR)
+            {
+                CameraManager.ChangeCamera(CameraFlags.Roam);
+            }
+        }
+
         public void ToggleLightHandle()
         {
             SetSceneLightActive(!activeSceneLight);

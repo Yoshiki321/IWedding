@@ -3,6 +3,7 @@
     public Context()
     {
         UIManager.CreateUI("UI/MainPanel/MainPanel", UI.MainPanel, typeof(MainPanelMediators));
+        UIManager.CreateUI("UI/StorePanel/StorePanel", UI.StorePanel, typeof(StorePanelMediators));
         UIManager.CreateUI("UI/ChooseSurface/ChooseSurfacePanel", UI.ChooseSurfacePanel, typeof(ChooseSurfaceMediators));
         UIManager.CreateUI("UI/CameraTool/CameraToolPanel", UI.CameraToolPanel, typeof(CameraToolMediators));
         UIManager.CreateUI("UI/ItemTool/ItemToolPanel", UI.ItemToolPanel, typeof(ItemToolMediators));

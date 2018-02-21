@@ -10,6 +10,7 @@ public class SwitchToolPanelEvent : EventObject
     public static string WINDOW = "SwitchToolPanelEvent_Window";
     public static string HELP = "SwitchToolPanelEvent_Help";
     public static string CLOSE = "SwitchToolPanelEvent_Close";
+    public static string RETURN = "SwitchToolPanelEvent_Return";
 
     public string name;
 

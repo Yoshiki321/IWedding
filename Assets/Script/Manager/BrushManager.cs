@@ -17,7 +17,7 @@ public class BrushManager
     public BrushManager()
     {
         box = new GameObject();
-        _brushMode = BrushMode.Direct;
+        _brushMode = BrushMode.Place;
     }
 
     BrushMode _brushMode;

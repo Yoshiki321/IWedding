@@ -19,7 +19,7 @@ public class BaseComponentUI : DispatcherEventPanel
     public virtual void Init()
     {
         content = transform.Find("View").Find("Content");
-
+        transform.Find("View").GetComponent<Image>().color = new Color(0, 0, 0, 0);
         verticalLayoutGroup = content.GetComponent<VerticalLayoutGroup>();
         verticalLayoutGroup.padding.left = 20;
         verticalLayoutGroup.padding.top = 20;

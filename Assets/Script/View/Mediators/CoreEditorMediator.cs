@@ -83,6 +83,9 @@ public class CoreEditorMediator : Mediators
         AddViewListener(SceneToolbarEvent.COPY, Keyboard_CopyHandle);
         AddViewListener(SceneToolbarEvent.PASTE, Keyboard_PasteHandle);
         AddViewListener(SceneToolbarEvent.DELETE, Keyboard_DeleteHandle);
+        AddViewListener(SceneToolbarEvent.BRUSH, SceneToolbarBrushHandle);
+        AddViewListener(SceneToolbarEvent.VR, SceneToolbarVRHandle);
+
         AddViewListener(SceneToolbarEvent.GROUP, Keyboard_CombinationHandle);
         AddViewListener(SceneToolbarEvent.REGROUP, Keyboard_CancelCombinationHandle);
         AddViewListener(SceneToolbarEvent.PHOTO, SceneToolbarFilterHandle);
@@ -188,6 +191,7 @@ public class CoreEditorMediator : Mediators
         RemoveContextListener(TopToolPanelEvent.COPY, Keyboard_CopyHandle);
         RemoveContextListener(TopToolPanelEvent.PASTE, Keyboard_PasteHandle);
         RemoveContextListener(TopToolPanelEvent.DELETE, Keyboard_DeleteHandle);
+        RemoveContextListener(SceneToolbarEvent.BRUSH, SceneToolbarBrushHandle);
         RemoveContextListener(TopToolPanelEvent.GROUP, Keyboard_CombinationHandle);
         RemoveContextListener(TopToolPanelEvent.REGROUP, Keyboard_CancelCombinationHandle);
 
@@ -202,6 +206,7 @@ public class CoreEditorMediator : Mediators
         RemoveViewListener(SceneToolbarEvent.COPY, Keyboard_CopyHandle);
         RemoveViewListener(SceneToolbarEvent.PASTE, Keyboard_PasteHandle);
         RemoveViewListener(SceneToolbarEvent.DELETE, Keyboard_DeleteHandle);
+        RemoveViewListener(SceneToolbarEvent.VR, SceneToolbarVRHandle);
         RemoveViewListener(SceneToolbarEvent.GROUP, Keyboard_CombinationHandle);
         RemoveViewListener(SceneToolbarEvent.REGROUP, Keyboard_CancelCombinationHandle);
         RemoveViewListener(SceneToolbarEvent.PHOTO, SceneToolbarFilterHandle);
@@ -689,6 +694,15 @@ public class CoreEditorMediator : Mediators
     private void SceneToolbarRedoHandle(EventObject e)
     {
         DispatcherEvent(new FileEvent(UndoRedoEvent.REDO));
+    }
+
+    private void SceneToolbarBrushHandle(EventObject e) {
+        SceneManager.Instance.ToggleBrushMode();
+    }
+
+    private void SceneToolbarVRHandle(EventObject e)
+    {
+        SceneManager.Instance.ToggleVRMode();
     }
 
     private void SceneToolbarTo3DHandle(EventObject e)

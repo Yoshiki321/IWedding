@@ -6,17 +6,20 @@ public class MainPanel : BasePanel
 {
 	private GameObject createBtn;
 	private GameObject realBtn;
+    private GameObject storeBtn;
 
-	void Start()
+    void Start()
 	{
 		createBtn = GetUI("createBtn");
 		realBtn = GetUI("realBtn");
+        storeBtn = GetUI("storeBtn");
 
         AddEventClick(createBtn);
 		AddEventClick(realBtn);
-	}
+        AddEventClick(storeBtn);
+    }
 
-	protected override void OnClick(GameObject obj)
+    protected override void OnClick(GameObject obj)
 	{
 		if (obj.name == "createBtn")
 		{
@@ -26,7 +29,11 @@ public class MainPanel : BasePanel
 		{
 			dispatchEvent(new MainPanelEvent(MainPanelEvent.RealPlan_Click));
 		}
-	}
+        if (obj.name == "storeBtn")
+        {
+            dispatchEvent(new MainPanelEvent(MainPanelEvent.StorePlan_Click));
+        }
+    }
 
 	void Update()
 	{
