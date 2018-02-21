@@ -83,9 +83,12 @@ public class RelationComponent : SceneComponent
 
     private void OnDestroy()
     {
-        foreach (GameObject data in _vo.relationItems)
+        if (_vo.relationItems != null)
         {
-            Destroy(data);
-        }   
+            foreach (GameObject data in _vo.relationItems)
+            {
+                Destroy(data);
+            }
+        }
     }
 }

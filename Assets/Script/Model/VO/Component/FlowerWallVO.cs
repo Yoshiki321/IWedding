@@ -7,7 +7,7 @@ public class FlowerWallVO : ComponentVO
 {
     public string assetId;
     public ColorVO color = new ColorVO();
-    public bool visible;
+    public bool visible = true;
 
     override public void FillFromObject(ComponentVO asset)
     {

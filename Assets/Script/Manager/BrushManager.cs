@@ -70,18 +70,6 @@ public class BrushManager
                 RenderingModeUnits.SetMaterialRenderingMode(m, RenderingModeUnits.RenderingMode.Transparent);
             }
 
-            BoxCollider[] boxs = item.GetComponentsInChildren<BoxCollider>();
-            foreach (BoxCollider box in boxs)
-            {
-                GameObject.Destroy(box);
-            }
-
-            MeshCollider[] meshBoxs = item.GetComponentsInChildren<MeshCollider>();
-            foreach (MeshCollider meshBox in meshBoxs)
-            {
-                GameObject.Destroy(meshBox);
-            }
-
             Transform[] ts = item.GetComponentsInChildren<Transform>();
             foreach (Transform t in ts)
             {
@@ -90,14 +78,39 @@ public class BrushManager
         }
     }
 
+    void ClearBox()
+    {
+        BoxCollider[] boxs = item.GetComponentsInChildren<BoxCollider>();
+        foreach (BoxCollider box in boxs)
+        {
+            GameObject.Destroy(box);
+        }
+
+        MeshCollider[] meshBoxs = item.GetComponentsInChildren<MeshCollider>();
+        foreach (MeshCollider meshBox in meshBoxs)
+        {
+            GameObject.Destroy(meshBox);
+        }
+
+        CapsuleCollider[] capsuleBoxs = item.GetComponentsInChildren<CapsuleCollider>();
+        foreach (CapsuleCollider capsuleBox in capsuleBoxs)
+        {
+            GameObject.Destroy(capsuleBox);
+        }
+    }
+
     public string GetItem()
     {
         return itemId;
     }
 
+    bool down;
+
     public void Update()
     {
         if (item == null || itemId == "") return;
+
+        ClearBox();
 
         if ((Input.mousePosition.x > 350 && Input.mousePosition.x < 1520) &&
              (Input.mousePosition.y < 1000))
@@ -114,8 +127,13 @@ public class BrushManager
                 item.transform.localPosition = pos;
                 //box.transform.LookAt(hit.point - hit.normal);
 
-                if (Input.GetMouseButton(0))
+                if (Input.GetMouseButtonDown(0))
                 {
+                    down = true;
+                }
+                if (Input.GetMouseButtonUp(0))
+                {
+                    down = false;
                     clickFun(pos);
                 }
             }
