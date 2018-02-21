@@ -12,7 +12,7 @@ public class DrawPlane : DispatcherEventPanel
     private SurfacePlane3D _drawFillPanel;
     private Material _fillMaterial;
 
-    GameObject drawFillPanelObject;
+    GameObject _drawFillPanelObject;
 
     /// <summary>
     /// 是否UI界面
@@ -21,50 +21,57 @@ public class DrawPlane : DispatcherEventPanel
 
     void Start()
     {
-        drawFillPanelObject = new GameObject();
-        drawFillPanelObject.name = "drawFillPanel";
-        drawFillPanelObject.transform.localRotation = Quaternion.Euler(new Vector3(-90, 0, 0));
-        drawFillPanelObject.transform.parent = transform;
-        drawFillPanelObject.layer = gameObject.layer;
+        _drawFillPanelObject = new GameObject();
+        _drawFillPanelObject.name = "drawFillPanel";
+        _drawFillPanelObject.transform.localRotation = Quaternion.Euler(new Vector3(-90, 0, 0));
+        _drawFillPanelObject.transform.parent = transform;
+        _drawFillPanelObject.layer = gameObject.layer;
 
-        _drawFillPanel = drawFillPanelObject.AddComponent<SurfacePlane3D>();
+        _drawFillPanel = _drawFillPanelObject.AddComponent<SurfacePlane3D>();
         _drawFillPanel.TwoSided = true;
 
         if (transform.GetComponent<Canvas>())
         {
             transform.GetComponent<Canvas>().planeDistance = 101;
-            drawFillPanelObject.transform.localPosition = new Vector3(drawFillPanelObject.transform.localPosition.x,
-                drawFillPanelObject.transform.localPosition.y, drawFillPanelObject.transform.localPosition.z + 1);
+            _drawFillPanelObject.transform.localPosition = new Vector3(_drawFillPanelObject.transform.localPosition.x,
+                _drawFillPanelObject.transform.localPosition.y, _drawFillPanelObject.transform.localPosition.z + 1);
             isUI = true;
+
+            _fillMaterial = new Material(Shader.Find("Unlit/Texture"));
+            _fillMaterial.SetTextureScale("_MainTex", new Vector2(0.01f, 0.01f));
         }
         else
         {
             gameObject.transform.localScale = new Vector3(.03f, .03f, .03f);
-            drawFillPanelObject.transform.localPosition = new Vector3();
-            drawFillPanelObject.layer = LayerMask.NameToLayer("Water");
+            _drawFillPanelObject.transform.localPosition = new Vector3();
+            _drawFillPanelObject.layer = LayerMask.NameToLayer("Water");
 
             _plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
             _plane.transform.localRotation = Quaternion.Euler(90, 0, 0);
             _plane.layer = LayerMask.NameToLayer("DrawLine");
             _plane.transform.parent = transform;
-            _plane.transform.localPosition = new Vector3(); 
+            _plane.transform.localPosition = new Vector3();
             _plane.transform.localScale = new Vector3(999, 999, 999);
             _plane.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Standard"));
             Material m = _plane.GetComponent<MeshRenderer>().material;
             m.color = new Color(0, 0, 0, 0f);
-            RenderingModeUnits.SetMaterialRenderingMode(m, RenderingModeUnits.RenderingMode.Transparent);
+            RenderingModeUnits.SetMaterialRenderingMode(m, RenderingModeUnits.RenderingMode.Cutout);
 
             Destroy(_plane.GetComponent<MeshCollider>());
             _plane.AddComponent<BoxCollider>();
 
+            _fillMaterial = new Material(Shader.Find("Standard"));
+            _fillMaterial.SetTextureScale("_MainTex", new Vector2(0.01f, 0.01f));
+
             isUI = false;
         }
 
-        _fillMaterial = new Material(Shader.Find("Unlit/Texture"));
-        //fillMaterial = new Material(Shader.Find("Standard"));
-        _fillMaterial.SetTextureScale("_MainTex", new Vector2(0.01f, 0.01f));
-
         Draw(DrawShapeManager.ShapeDrawDataList[0].nodes, 2);
+    }
+
+    public GameObject drawFillPanelObject
+    {
+        get { return _drawFillPanelObject; }
     }
 
     public GameObject plane
@@ -93,6 +100,15 @@ public class DrawPlane : DispatcherEventPanel
         _fillMaterial.SetTexture("_MainTex", t);
 
         _drawFillPanel.SetMaterial(_fillMaterial);
+    }
+
+    bool isSetMaterial;
+
+    public void SetMaterial(Material m)
+    {
+        isSetMaterial = true;
+        _fillMaterial = m;
+       if(_drawFillPanel != null) _drawFillPanel.SetMaterial(_fillMaterial);
     }
 
     /// <summary>
@@ -141,7 +157,10 @@ public class DrawPlane : DispatcherEventPanel
             AddPoint(l[0], l[1], l[2]);
         }
 
-        SetMaterial(_materialsUpID);
+        if(!isSetMaterial)
+            SetMaterial(_materialsUpID);
+        else
+            _drawFillPanel.SetMaterial(_fillMaterial);
 
         UpdateRelation();
         FillPanel();
@@ -183,7 +202,7 @@ public class DrawPlane : DispatcherEventPanel
         {
             _isOperate = value;
 
-            if(_plane && _plane.GetComponent<BoxCollider>())
+            if (_plane && _plane.GetComponent<BoxCollider>())
                 _plane.GetComponent<BoxCollider>().enabled = value;
 
             foreach (DrawNode dn in _nodeLines)

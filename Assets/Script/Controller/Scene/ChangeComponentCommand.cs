@@ -93,6 +93,10 @@ public class ChangeComponentCommand : HistoryCommand
             {
                 item.VO.GetComponentVO<CurvyColumnVO>().FillFromObject(se.newAssets[i] as CurvyColumnVO);
             }
+            if (se.newAssets[i] is FlowerWallVO)
+            {
+                item.VO.GetComponentVO<FlowerWallVO>().FillFromObject(se.newAssets[i] as FlowerWallVO);
+            }
         }
     }
 }

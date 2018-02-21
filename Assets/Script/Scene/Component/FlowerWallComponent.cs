@@ -10,6 +10,7 @@ public class FlowerWallComponent : SceneComponent
     private bool _isInit = false;
 
     private DrawPlane drawPlane;
+    private Material panelMaterial;
 
     private List<GameObject> _objectList;
 
@@ -24,6 +25,11 @@ public class FlowerWallComponent : SceneComponent
         }
 
         drawPlane = _item.GetComponentInChildren<DrawPlane>();
+
+        panelMaterial = new Material(Shader.Find("Standard"));
+        RenderingModeUnits.SetMaterialRenderingMode(panelMaterial, RenderingModeUnits.RenderingMode.Transparent);
+        drawPlane.SetMaterial(panelMaterial);
+
         _objectList = new List<GameObject>();
 
         Editor();
@@ -49,6 +55,42 @@ public class FlowerWallComponent : SceneComponent
         _objectList = new List<GameObject>();
     }
 
+    bool _visible;
+
+    public bool visible
+    {
+        set
+        {
+            _visible = value;
+
+            if (value)
+            {
+                _color.a = 1;
+            }
+            else
+            {
+                _color.a = 0;
+            }
+
+            panelMaterial.color = _color;
+            drawPlane.SetMaterial(panelMaterial);
+        }
+        get { return _visible; }
+    }
+
+    Color _color;
+
+    public ColorVO color
+    {
+        set
+        {
+            _color = value.color;
+            _color.a = _visible ? 1 : 0;
+            panelMaterial.color = _color;
+            drawPlane.SetMaterial(panelMaterial);
+        }
+    }
+
     public void Fill()
     {
         Clear();
@@ -58,19 +100,12 @@ public class FlowerWallComponent : SceneComponent
         List<float> zz = new List<float>();
         foreach (DrawLine line in drawPlane.drawLines)
         {
-            Vector3 from = drawPlane.plane.transform.InverseTransformPoint(line.nodeFrom.transform.TransformPoint(line.nodeFrom.transform.localPosition));
-            Vector3 to = drawPlane.plane.transform.InverseTransformPoint(line.nodeFrom.transform.TransformPoint(line.nodeTo.transform.localPosition));
-            Vector3 curve = drawPlane.plane.transform.InverseTransformPoint(line.nodeFrom.transform.TransformPoint(line.nodeCurve.transform.localPosition));
-
-            xx.Add(line.nodeFrom.transform.localPosition.x);
-            xx.Add(line.nodeTo.transform.localPosition.x);
-            xx.Add(line.nodeCurve.transform.localPosition.x);
-            yy.Add(line.nodeFrom.transform.localPosition.y);
-            yy.Add(line.nodeTo.transform.localPosition.y);
-            yy.Add(line.nodeCurve.transform.localPosition.y);
-            zz.Add(line.nodeFrom.transform.localPosition.z);
-            zz.Add(line.nodeTo.transform.localPosition.z);
-            zz.Add(line.nodeCurve.transform.localPosition.z);
+            foreach (Vector3 v in line.points)
+            {
+                xx.Add(v.x);
+                yy.Add(v.y);
+                zz.Add(v.z);
+            }
         }
 
         float maxx = 0;
@@ -183,6 +218,9 @@ public class FlowerWallComponent : SceneComponent
         set
         {
             _vo = value.GetComponentVO<FlowerWallVO>();
+            visible = _vo.visible;
+            visible = _vo.visible;
+            color = _vo.color;
         }
         get { return _vo; }
     }

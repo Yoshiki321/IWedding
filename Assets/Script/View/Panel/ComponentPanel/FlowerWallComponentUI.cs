@@ -8,7 +8,6 @@ using BuildManager;
 
 public class FlowerWallComponentUI : BaseComponentUI
 {
-    private SliderUI _countSliderUI;
     private GameObject _menu;
     private DrawPlane _drawPanel;
     private DrawLine _rline;
@@ -17,17 +16,22 @@ public class FlowerWallComponentUI : BaseComponentUI
     private Button removeBtn;
     private Button resetCBtn;
 
+    private ButtonImageUI colorUI;
+    private ColorVO _color;
+
+    TitleButtonUI hideButton;
+
     override public void Init()
     {
         base.Init();
 
         CreateTitleName("花墙设置");
 
-        //_countSliderUI = CreateSliderUI("花瓣数量", 1f, 30f, value => { _count = value; UpdateComponent(); }, true);
-
         CreateTitleButtonUI("编辑", "快捷键 R", value => { Editor(); });
         CreateTitleButtonUI("填充", "快捷键 E", value => { Fill(); });
         CreateTitleButtonUI("清空", "清空花墙", value => { Clear(); });
+        hideButton = CreateTitleButtonUI("隐藏", "隐藏背板", value => { Hide(); });
+        colorUI = CreateButtonImageUI("背板颜色", ColorClickHandle);
 
         _menu = GameObject.Instantiate(Resources.Load("UI/DrawLinePanel/menu") as GameObject);
         _menu.transform.parent = UIManager.GetUI(UI.ComponentPanel).transform;
@@ -41,6 +45,21 @@ public class FlowerWallComponentUI : BaseComponentUI
         resetCBtn.onClick.AddListener(ResetCBtnClickHandle);
 
         UpdateHeight();
+    }
+
+    private void ColorClickHandle(ButtonImageUI ui)
+    {
+        SelectColorPanel sp = UIManager.OpenPanel(Panel.SelectColorPanel, _color,
+         colorUI.button.transform.position) as SelectColorPanel;
+        sp.getPos += UpdateColor;
+    }
+
+    private void UpdateColor(ColorVO color)
+    {
+        _color = color;
+        foreach (FlowerWallComponent flowerWall in _flowerWall) flowerWall.color = _color;
+        UpdateComponent();
+        colorUI.image.color = _color.color;
     }
 
     private void AddBtnClickHandle()
@@ -81,6 +100,26 @@ public class FlowerWallComponentUI : BaseComponentUI
         _menu.SetActive(false);
     }
 
+    private void Hide()
+    {
+        VisiblePanel(!_flowerWall[0].visible);
+    }
+
+    private void VisiblePanel(bool value)
+    {
+        if (!value)
+        {
+            hideButton.buttonText.text = "显示";
+            hideButton.titleText.text = "显示背板";
+        }
+        else
+        {
+            hideButton.buttonText.text = "隐藏";
+            hideButton.titleText.text = "隐藏背板";
+        }
+        foreach (FlowerWallComponent flowerWall in _flowerWall) flowerWall.visible = value;
+    }
+
     private void Editor()
     {
         foreach (FlowerWallComponent flowerWall in _flowerWall) flowerWall.Editor();
@@ -98,7 +137,8 @@ public class FlowerWallComponentUI : BaseComponentUI
         foreach (AssetVO avo in _assets)
         {
             FlowerWallVO vo = avo as FlowerWallVO;
-            //vo.assetId = rotateTypeUI.dropdown.value;
+            vo.color = _color;
+            vo.visible = _flowerWall[0].visible;
         }
     }
 
@@ -143,6 +183,10 @@ public class FlowerWallComponentUI : BaseComponentUI
         foreach (AssetVO avo in _assets)
         {
             FlowerWallVO vo = avo as FlowerWallVO;
+            VisiblePanel(vo.visible);
+
+            _color = vo.color;
+            colorUI.image.color = _color.color;
         }
 
         _fillComponent = false;
