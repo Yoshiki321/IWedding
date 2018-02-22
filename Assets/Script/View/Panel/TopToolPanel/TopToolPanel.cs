@@ -285,7 +285,7 @@ public class TopToolPanel : BasePanel
 
     public void IntButtonBgColor(GameObject e)
     {
-        e.GetComponent<Image>().color = new Color(0.235f, 0.247f, 0.286f, 1);
+        e.GetComponent<Image>().color = new Color(0, 0, 0, 0);
     }
 
     public void SetButtonColor(GameObject e)
