@@ -49,17 +49,28 @@ public class CurvyColumnComponent : SceneComponent
         }
     }
 
+    private bool _enabledCurvyColumn;
+
+    public bool enabledCurvyColumn
+    {
+        set
+        {
+            _enabledCurvyColumn = value;
+            _curvyColumn.layer.SetActive(value);
+        }
+    }
+
     private float _radius;
 
     public float radius
     {
         set
         {
+            if (_radius == value) return;
             _radius = value;
             if (curvyColumn) curvyColumn.radius = _radius;
         }
     }
-
 
     private ColorVO _colorVO;
 
@@ -83,6 +94,7 @@ public class CurvyColumnComponent : SceneComponent
             _vo = value.GetComponentVO<CurvyColumnVO>();
             color = _vo.color;
             radius = _vo.radius;
+            enabled = _vo.enabled;
         }
         get { return _vo; }
     }

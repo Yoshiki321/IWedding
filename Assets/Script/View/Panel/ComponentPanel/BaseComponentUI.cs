@@ -114,10 +114,10 @@ public class BaseComponentUI : DispatcherEventPanel
 
     protected Toggle CreateToggle(string name, UnityAction<bool> action)
     {
-        GameObject obj = Instantiate(Resources.Load("UI/Component/Toggle")) as GameObject;
+        GameObject obj = Instantiate(Resources.Load("UI/Component/ToggleUI")) as GameObject;
         obj.transform.parent = content;
-        Toggle toggle = obj.transform.Find("Toggle").GetComponent<Toggle>();
-        Text text = obj.transform.Find("Text").GetComponent<Text>();
+        Toggle toggle = obj.transform.Find("Content").Find("Toggle").GetComponent<Toggle>();
+        Text text = obj.transform.Find("Content").Find("Text").GetComponent<Text>();
         text.text = name;
         toggle.onValueChanged.AddListener(action);
         return toggle;
@@ -168,6 +168,12 @@ public class BaseComponentUI : DispatcherEventPanel
         transform.GetComponent<RectTransform>().sizeDelta = new Vector2(v.x, _height);
         transform.Find("View").GetComponent<RectTransform>().sizeDelta = new Vector2(v.x, _height);
         transform.Find("View").Find("Content").GetComponent<RectTransform>().sizeDelta = new Vector2(v.x, _height);
+
+        if (gameObject.activeSelf)
+        {
+            gameObject.SetActive(false);
+            gameObject.SetActive(true);
+        }
     }
 
     protected void AddUI(GameObject ui)

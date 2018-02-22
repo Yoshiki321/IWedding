@@ -68,12 +68,6 @@ public class SpotlightComponentUI : BaseComponentUI
         }
 
         UpdateHeight();
-
-        if (gameObject.activeSelf)
-        {
-            gameObject.SetActive(false);
-            gameObject.SetActive(true);
-        }
     }
 
     private void ColorClickHandle(ButtonImageUI ui)

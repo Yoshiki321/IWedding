@@ -20,4 +20,9 @@ public class ButtonImageUI : BaseUI
     {
         _action(this);
     }
+
+    public void SetActive(bool value)
+    {
+        gameObject.SetActive(value);
+    }
 }

@@ -9,6 +9,7 @@ public class CurvyColumnComponentUI : BaseComponentUI
     private SliderUI radius;
     private ButtonImageUI colorUI;
     private ColorVO _color;
+    private Toggle toggle;
 
     override public void Init()
     {
@@ -16,8 +17,19 @@ public class CurvyColumnComponentUI : BaseComponentUI
 
         CreateTitleName("灯带设置");
 
+        toggle = CreateToggle("启用灯带", EnabledCurvyColumnHandle);
         radius = CreateSliderUI("半径", 1, 20, value => { foreach (CurvyColumnComponent curvyColumn in _curvyColumns) curvyColumn.radius = value; });
         colorUI = CreateButtonImageUI("样式", ColorClickHandle);
+    }
+
+    private void EnabledCurvyColumnHandle(bool value)
+    {
+        radius.gameObject.SetActive(value);
+        colorUI.gameObject.SetActive(value);
+
+        foreach (CurvyColumnComponent curvyColumn in _curvyColumns) curvyColumn.enabledCurvyColumn = value;
+
+        UpdateHeight();
     }
 
     private void ColorClickHandle(ButtonImageUI ui)
@@ -44,6 +56,7 @@ public class CurvyColumnComponentUI : BaseComponentUI
             CurvyColumnVO vo = avo as CurvyColumnVO;
             vo.radius = radius.value;
             vo.color = _color;
+            vo.enabled = toggle.isOn;
         }
     }
 
@@ -64,6 +77,8 @@ public class CurvyColumnComponentUI : BaseComponentUI
         {
             CurvyColumnVO vo = avo as CurvyColumnVO;
             radius.value = vo.radius;
+            toggle.isOn = vo.enabled;
+            EnabledCurvyColumnHandle(toggle.isOn);
             _color = vo.color;
             colorUI.image.color = _color.color;
         }

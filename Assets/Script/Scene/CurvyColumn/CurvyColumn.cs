@@ -65,7 +65,7 @@ public class CurvyColumn : MonoBehaviour
 
             GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             sphere.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Unlit/Color"));
-            sphere.GetComponent<MeshRenderer>().material.color = Color.blue;
+            sphere.GetComponent<MeshRenderer>().material.color = _color;
             sphere.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
             if (_layer != null)
@@ -207,6 +207,7 @@ public class CurvyColumn : MonoBehaviour
         GameObject obj = new GameObject();
         CurvyColumnLine line = obj.AddComponent<CurvyColumnLine>();
         line.CreateMesh(points, trianglesList);
+        line.color = _color;
 
         objectList.Add(obj);
 
@@ -238,7 +239,7 @@ public class CurvyColumn : MonoBehaviour
                 Destroy(obj);
             }
 
-            SetPoints(_meshPoints, _parentLayer);
+            SetPoints(_meshPoints, _parentLayer, true);
         }
         get { return _radius; }
     }

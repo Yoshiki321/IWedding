@@ -9,12 +9,14 @@ public class CurvyColumnVO : ComponentVO
     public List<Vector3> points;
     public ColorVO color = new ColorVO(); 
     public float radius = 1.5f;
+    public bool enabled = false;
 
     override public void FillFromObject(ComponentVO asset)
     {
         id = asset.id;
         color = (asset as CurvyColumnVO).color;
         radius = (asset as CurvyColumnVO).radius;
+        enabled = (asset as CurvyColumnVO).enabled;
     }
 
     override public bool Equals(AssetVO asset)
@@ -22,7 +24,8 @@ public class CurvyColumnVO : ComponentVO
         CurvyColumnVO vo = asset as CurvyColumnVO;
         return (
              vo.color == color &&
-             vo.radius == radius
+             vo.radius == radius && 
+             vo.enabled == enabled
             );
     }
 
@@ -32,6 +35,7 @@ public class CurvyColumnVO : ComponentVO
         vo.id = id;
         vo.color = color;
         vo.radius = radius;
+        vo.enabled = enabled;
         return vo;
     }
 
@@ -43,6 +47,7 @@ public class CurvyColumnVO : ComponentVO
             code += "<CurvyColumn";
             code += " color = " + color.ToCode();
             code += " radius = " + GetPropertyString(radius);
+            code += " enabled = " + GetBoolString(enabled);
             code += "/>";
 
             return code;
@@ -52,6 +57,7 @@ public class CurvyColumnVO : ComponentVO
             XmlNode code = value as XmlNode;
             color.SetCode(code.Attributes["color"].Value);
             radius = float.Parse(code.Attributes["radius"].Value);
+            enabled = code.Attributes["enabled"].Value == "1";
         }
     }
 }

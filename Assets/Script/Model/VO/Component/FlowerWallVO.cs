@@ -49,7 +49,7 @@ public class FlowerWallVO : ComponentVO
             string code = "";
             code += "<FlowerWall";
             code += " assetId = " + GetPropertyString(assetId);
-            code += " visible = " + (visible == true ? '"' + "1" + '"' : '"' + "0" + '"');
+            code += " visible = " + GetBoolString(visible);
             code += " color = " + color.ToCode();
             code += ">";
             code += panelCode.OuterXml;
