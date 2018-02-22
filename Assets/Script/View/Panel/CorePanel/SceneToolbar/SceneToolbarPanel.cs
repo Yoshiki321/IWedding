@@ -9,11 +9,11 @@ public class SceneToolbarPanel : BasePanel
 	public GameObject tooLineAddItemBtn;
     public GameObject tooLineAddHomeBtn;
 
-	private GameObject toolLineUndoBtn;
-	private GameObject toolLineRedoBtn;
-    private GameObject toolLineCopyBtn;
-    private GameObject toolLinePasteBtn;
-    private GameObject toolLineDeleteBtn;
+	//private GameObject toolLineUndoBtn;
+	//private GameObject toolLineRedoBtn;
+    //private GameObject toolLineCopyBtn;
+    //private GameObject toolLinePasteBtn;
+    //private GameObject toolLineDeleteBtn;
     private GameObject toolLineBrushBtn;
 
     private GameObject toolLineChangeViewBtn;
@@ -30,8 +30,9 @@ public class SceneToolbarPanel : BasePanel
     private GameObject toolLineModelBtn;
 
     private bool lightFlag = true;
-
     private bool viewFlag = false;
+
+    private int LeftSelectedNum = 1;
     private List<GameObject> toolBtnList = new List<GameObject>();
 
     private void Awake()
@@ -39,11 +40,11 @@ public class SceneToolbarPanel : BasePanel
 		tooLineAddItemBtn = transform.Find("ToolLineBg").Find("ToolLineAddItem").gameObject;
 		tooLineAddHomeBtn = transform.Find("ToolLineBg").Find("ToolLineAddHome").gameObject;
 
-        toolLineUndoBtn = transform.Find("ToolLineBg").Find("ToolLineUndoBtn").gameObject;
-        toolLineRedoBtn = transform.Find("ToolLineBg").Find("ToolLineRedoBtn").gameObject;
-        toolLineCopyBtn = transform.Find("ToolLineBg").Find("ToolLineCopyBtn").gameObject;
-        toolLinePasteBtn = transform.Find("ToolLineBg").Find("ToolLinePasteBtn").gameObject;
-        toolLineDeleteBtn = transform.Find("ToolLineBg").Find("ToolLineDeleteBtn").gameObject;
+        //toolLineUndoBtn = transform.Find("ToolLineBg").Find("ToolLineUndoBtn").gameObject;
+        //toolLineRedoBtn = transform.Find("ToolLineBg").Find("ToolLineRedoBtn").gameObject;
+        //toolLineCopyBtn = transform.Find("ToolLineBg").Find("ToolLineCopyBtn").gameObject;
+        //toolLinePasteBtn = transform.Find("ToolLineBg").Find("ToolLinePasteBtn").gameObject;
+        //toolLineDeleteBtn = transform.Find("ToolLineBg").Find("ToolLineDeleteBtn").gameObject;
         toolLineBrushBtn = transform.Find("ToolLineBg").Find("ToolLineBrushBtn").gameObject;
         toolLineVRBtn = transform.Find("ToolLineBg").Find("ToolLineVRBtn").gameObject;
 
@@ -62,11 +63,11 @@ public class SceneToolbarPanel : BasePanel
         toolBtnList.Add(tooLineAddItemBtn);
 		toolBtnList.Add(tooLineAddHomeBtn);
 
-        toolBtnList.Add(toolLineUndoBtn);
-        toolBtnList.Add(toolLineRedoBtn);
-        toolBtnList.Add(toolLineCopyBtn);
-        toolBtnList.Add(toolLinePasteBtn);
-        toolBtnList.Add(toolLineDeleteBtn);
+        //toolBtnList.Add(toolLineUndoBtn);
+        //toolBtnList.Add(toolLineRedoBtn);
+        //toolBtnList.Add(toolLineCopyBtn);
+        //toolBtnList.Add(toolLinePasteBtn);
+        //toolBtnList.Add(toolLineDeleteBtn);
         toolBtnList.Add(toolLineBrushBtn);
 
         toolBtnList.Add(toolLinePhotoBtn);
@@ -86,6 +87,8 @@ public class SceneToolbarPanel : BasePanel
 			AddEventClick (toolBtnList [i]);
             AddEventDown(toolBtnList[i]);
             AddEventUp(toolBtnList[i]);
+            AddEventExit(toolBtnList[i]);
+            AddEventOver(toolBtnList[i]);
         }
 
         viewFlag = true;
@@ -97,57 +100,68 @@ public class SceneToolbarPanel : BasePanel
     {
         base.Open();
         init();
-        SetButtonColor(tooLineAddItemBtn);
+        SelectItemBtn();
     }
 
-    protected override void OnDown(GameObject obj)
+    protected override void OnEnter(GameObject obj)
     {
         if (obj != tooLineAddItemBtn && obj != tooLineAddHomeBtn)
         {
-            SetButtonColor(obj);
+            obj.transform.Find("bgImg").GetComponent<Image>().color = new Color(32f / 255F, 32f / 255F, 32f / 255F, 1);
+        }
+        else {
+            obj.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 1);
         }
     }
 
-    protected override void OnUp(GameObject obj)
+    protected override void OnExit(GameObject obj)
     {
         if (obj != tooLineAddItemBtn && obj != tooLineAddHomeBtn)
         {
-            IntButtonColor(obj);
+            obj.transform.Find("bgImg").GetComponent<Image>().color = new Color(32f / 255F, 32f / 255F, 32f / 255F, 0);
+        }
+        else {
+            if (LeftSelectedNum == 1) {
+                tooLineAddItemBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 1);
+                tooLineAddHomeBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 0);
+            }
+            else if(LeftSelectedNum == 2){
+                tooLineAddHomeBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 1);
+                tooLineAddItemBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 0);
+            }
         }
     }
 
     protected override void OnClick(GameObject obj)
     {
 		if (obj == tooLineAddItemBtn) {
-            SetButtonColor(tooLineAddItemBtn);
-            IntButtonColor(tooLineAddHomeBtn);
+            SelectItemBtn();
             transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.ADDITEM));
         }
         if (obj == tooLineAddHomeBtn) {
-            SetButtonColor(tooLineAddHomeBtn);
-            IntButtonColor(tooLineAddItemBtn);
+            SelectHouseBtn();
             transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.ADDHOME));
         }
-        if (obj == toolLineUndoBtn)
-        {
-            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.UNDO));
-        }
-        if (obj == toolLineRedoBtn)
-        {
-            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.REDO));
-        }
-        if (obj == toolLineCopyBtn)
-        {
-            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.COPY));
-        }
-        if(obj == toolLinePasteBtn)
-        {
-            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.PASTE));
-        }
-        if (obj == toolLineDeleteBtn)
-        {
-            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.DELETE));
-        }
+        //if (obj == toolLineUndoBtn)
+        //{
+        //    transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.UNDO));
+        //}
+        //if (obj == toolLineRedoBtn)
+        //{
+        //    transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.REDO));
+        //}
+        //if (obj == toolLineCopyBtn)
+        //{
+        //    transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.COPY));
+        //}
+        //if(obj == toolLinePasteBtn)
+        //{
+        //    transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.PASTE));
+        //}
+        //if (obj == toolLineDeleteBtn)
+        //{
+        //    transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.DELETE));
+        //}
         if (obj == toolLinePhotoBtn)
         {
             transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.PHOTO));
@@ -190,13 +204,13 @@ public class SceneToolbarPanel : BasePanel
             if (viewFlag)
             {
                 toolLineChangeViewBtn.transform.Find("Text").GetComponent<Text>().text = "切 换 2 D";
-                toolLineChangeViewBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/2d", typeof(Sprite)) as Sprite;
+                toolLineChangeViewBtn.transform.Find("Image").GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/2d", typeof(Sprite)) as Sprite;
                 transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.TO3D));
                 viewFlag = false;
             }
             else {
                 toolLineChangeViewBtn.transform.Find("Text").GetComponent<Text>().text = "切 换 3 D";
-                toolLineChangeViewBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/3d", typeof(Sprite)) as Sprite;
+                toolLineChangeViewBtn.transform.Find("Image").GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/3d", typeof(Sprite)) as Sprite;
                 transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.TO2D));
                 viewFlag = true;
             }
@@ -257,15 +271,17 @@ public class SceneToolbarPanel : BasePanel
         }
     }
 
-    public void SetButtonColor(GameObject e) {
-        e.transform.Find("Text").GetComponent<Text>().color = new Color(0.952F, 0.706F, 0.2902F, 1);
-        e.GetComponent<Image>().color = new Color(0.952F, 0.706F, 0.2902F, 1);
+    public void SelectItemBtn() {
+        LeftSelectedNum = 1;
+        tooLineAddItemBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 1);
+        tooLineAddHomeBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 0);
     }
 
-    public void IntButtonColor(GameObject e)
+    public void SelectHouseBtn()
     {
-        e.transform.Find("Text").GetComponent<Text>().color = Color.white;
-        e.GetComponent<Image>().color = Color.white;
+        LeftSelectedNum = 2;
+        tooLineAddItemBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 0);
+        tooLineAddHomeBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 1);
     }
 
     private void HideToolBtn()

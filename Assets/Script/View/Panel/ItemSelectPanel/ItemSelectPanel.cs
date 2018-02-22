@@ -105,13 +105,13 @@ public class ItemSelectPanel : BasePanel
     {
         foreach (Image image in images)
         {
-            image.color = Color.white;
+            image.color = new Color(0,0,0,0);
         }
     }
 
     public void SelectItem(GameObject obj)
     {
-        obj.transform.Find("Image").GetComponent<Image>().color = ColorUtils.HexToColor("A7A8F2FF");
+        obj.transform.Find("Image").GetComponent<Image>().color = ColorUtils.HexToColor("474747FF");
     }
 
     private GameObject _lastObj;

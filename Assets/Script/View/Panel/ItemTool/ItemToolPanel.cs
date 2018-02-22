@@ -26,6 +26,8 @@ public class ItemToolPanel : BasePanel
     //定义所有的类别Btn容器;
     private List<List<GameObject>> _itemBtnsList = new List<List<GameObject>>();
     //定义所有的类别Btn容器;
+    private int mainNum = 1;
+    private int secNum = 0;
     private void Awake()
     {
         //初始化两个大分类按钮
@@ -35,8 +37,10 @@ public class ItemToolPanel : BasePanel
         AddEventClick(_itemEffectBtn);
         AddEventDown(_itemObjectBtn);
         AddEventUp(_itemEffectBtn);
-        AddEventDown(_itemObjectBtn);
-        AddEventUp(_itemEffectBtn);
+        AddEventExit(_itemObjectBtn);
+        AddEventOver(_itemEffectBtn);
+        AddEventExit(_itemEffectBtn);
+        AddEventOver(_itemObjectBtn);
         //初始化分类列表
         XmlDocument idXml = new XmlDocument();
         idXml.LoadXml(Resources.Load("Config/Item/ItemList").ToString());
@@ -61,6 +65,8 @@ public class ItemToolPanel : BasePanel
             _itemBtn.transform.parent = _itemBtnList.transform;
             _itemBtn.name = "Btn" + _itemBtnNameListNum;
             AddEventClick(_itemBtn);
+            AddEventExit(_itemBtn);
+            AddEventOver(_itemBtn);
         }
         //实例item容器
         _itemContent = GetUI("ItemImgList").transform.Find("Viewport").transform.Find("Content").transform.gameObject;
@@ -104,11 +110,62 @@ public class ItemToolPanel : BasePanel
         base.Open();
         init();
     }
+    protected override void OnEnter(GameObject obj)
+    {
+        if (obj == _itemObjectBtn)
+        {
+            _itemObjectBtn.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 1);
+        }
+        if (obj == _itemEffectBtn)
+        {
+            _itemEffectBtn.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 1);
+        }
+        if (obj != _itemEffectBtn && obj != _itemObjectBtn)
+        {
+            obj.transform.Find("Text").GetComponent<Text>().color = new Color(0.952F, 0.706F, 0.2902F, 1);
+        }
+    }
+
+    protected override void OnExit(GameObject obj)
+    {
+        if (obj == _itemObjectBtn)
+        {
+            if (mainNum == 1)
+            {
+                _itemObjectBtn.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 1);
+                _itemEffectBtn.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 0);
+            }
+            else if (mainNum == 2)
+            {
+                _itemObjectBtn.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 0);
+                _itemEffectBtn.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 1);
+            }
+        }
+        if (obj == _itemEffectBtn)
+        {
+            if (mainNum == 1)
+            {
+                _itemObjectBtn.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 1);
+                _itemEffectBtn.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 0);
+            }
+            else if (mainNum == 2)
+            {
+                _itemObjectBtn.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 0);
+                _itemEffectBtn.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 1);
+            }
+        }
+        if (obj != _itemEffectBtn && obj != _itemObjectBtn)
+        {
+            BtnShowHandle(secNum);
+        }
+    }
 
     protected override void OnClick(GameObject obj)
     {
         if (obj == _itemObjectBtn)
         {
+            mainNum = 1;
+            secNum = 0;
             ShowItemObjectHandle();
             TpyeBtnShowHandle(1);
             SetButtonColor(_itemObjectBtn);
@@ -117,6 +174,8 @@ public class ItemToolPanel : BasePanel
         }
         if (obj == _itemEffectBtn)
         {
+            mainNum = 2;
+            secNum = 9;
             ShowItemEffectHandle();
             TpyeBtnShowHandle(2);
             SetButtonColor(_itemEffectBtn);
@@ -126,6 +185,7 @@ public class ItemToolPanel : BasePanel
         {
             if(obj == _itemBtnList.transform.GetChild(i).gameObject)
             {
+                secNum = i;
                 PanelShowHandle(i);
                 BtnShowHandle(i);
             }
@@ -235,14 +295,12 @@ public class ItemToolPanel : BasePanel
 
     public void SetButtonColor(GameObject e)
     {
-        e.transform.Find("Image").Find("Text").GetComponent<Text>().color = new Color(0.952F, 0.706F, 0.2902F, 1);
-        e.transform.Find("Image").GetComponent<Image>().color = new Color(0.952F, 0.706F, 0.2902F, 1);
+        e.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 1);
     }
 
     public void IntButtonColor(GameObject e)
     {
-        e.transform.Find("Image").Find("Text").GetComponent<Text>().color = Color.white;
-        e.transform.Find("Image").GetComponent<Image>().color = Color.white;
+        e.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 0);
     }
 
 

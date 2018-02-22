@@ -290,7 +290,7 @@ public class TopToolPanel : BasePanel
 
     public void SetButtonColor(GameObject e)
     {
-        e.transform.Find("Text").GetComponent<Text>().color = new Color(0.952F, 0.706F, 0.2902F, 1);
+        e.transform.Find("Text").GetComponent<Text>().color = new Color(32f / 255f, 32f / 255f, 32f / 255f, 1);
     }
 
     public void IntButtonColor(GameObject e)

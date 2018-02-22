@@ -117,12 +117,12 @@ public class SwitchToolPanel : BasePanel
 
     public void SetButtonColor(GameObject e)
     {
-        e.GetComponent<Text>().color = new Color(0.952F, 0.706F, 0.2902F, 1);
+        e.transform.Find("Text").GetComponent<Text>().color = new Color(0.952F, 0.706F, 0.2902F, 1);
     }
 
     public void IntButtonColor(GameObject e)
     {
-        e.GetComponent<Text>().color = Color.white;
+        e.transform.Find("Text").GetComponent<Text>().color = Color.white;
     }
 
     void Update()
@@ -142,11 +142,11 @@ public class SwitchToolPanel : BasePanel
     }
     public void SetButtonBgColor(GameObject e)
     {
-        e.GetComponent<Text>().color = new Color(0.3059f, 0.647f, 1f, 1);
+        e.transform.Find("Image").GetComponent<Image>().color = new Color(255f / 255F, 185f / 255F, 0 / 255F, 1);
     }
 
     public void IntButtonBgColor(GameObject e)
     {
-        e.GetComponent<Text>().color = new Color(1f, 1f, 1f, 1);
+        e.transform.Find("Image").GetComponent<Image>().color = new Color(255f / 255F, 185f / 255F, 0 / 255F, 0);
     }
 }
