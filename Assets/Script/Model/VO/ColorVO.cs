@@ -4,6 +4,13 @@ using System.Text.RegularExpressions;
 
 public class ColorVO
 {
+    public static ColorVO DefColorVO
+    {
+        get { return new ColorVO(); }
+    }
+
+
+
     public Color color = Color.white;
     public float slider = 0;
     public Vector2 position = new Vector2(14, 245);

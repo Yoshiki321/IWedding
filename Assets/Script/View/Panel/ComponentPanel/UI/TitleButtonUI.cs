@@ -19,5 +19,6 @@ public class TitleButtonUI : BaseUI
     private void ClickHandle()
     {
         _action(this);
+        ui.UpdateComponent();
     }
 }

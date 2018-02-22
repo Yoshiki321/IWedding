@@ -26,6 +26,8 @@ public class SpotlightComponent : SceneComponent
 
     private void Update()
     {
+        if (!_lightBeam) return;
+
         RaycastHit hitInfo;
         LayerMask layer = 1 << LayerMask.NameToLayer("Build3D");
 

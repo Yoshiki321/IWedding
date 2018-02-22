@@ -12,15 +12,12 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -986,6 +983,7 @@
     <Compile Include="Assets\Script\Layer.cs" />
     <Compile Include="Assets\Script\LoadXml.cs" />
     <Compile Include="Assets\Script\Manager\BaseControl.cs" />
+    <Compile Include="Assets\Script\Manager\BrushManager.cs" />
     <Compile Include="Assets\Script\Manager\CameraManager.cs" />
     <Compile Include="Assets\Script\Manager\CodeManager.cs" />
     <Compile Include="Assets\Script\Manager\Control3Manager.cs" />
@@ -1003,7 +1001,6 @@
     <Compile Include="Assets\Script\Manager\KeyboardManager.cs" />
     <Compile Include="Assets\Script\Manager\Mouse3Manager.cs" />
     <Compile Include="Assets\Script\Manager\MouseManager.cs" />
-    <Compile Include="Assets\Script\Manager\BrushManager.cs" />
     <Compile Include="Assets\Script\Manager\Parsers\CodeParser.cs" />
     <Compile Include="Assets\Script\Manager\RankManager.cs" />
     <Compile Include="Assets\Script\Manager\RulerManager.cs" />
@@ -1085,6 +1082,7 @@
     <Compile Include="Assets\Script\Scene\DrawLine\DrawLineCollider.cs" />
     <Compile Include="Assets\Script\Scene\DrawLine\DrawNode.cs" />
     <Compile Include="Assets\Script\Scene\DrawLine\DrawPlane.cs" />
+    <Compile Include="Assets\Script\Scene\DrawLine\DrawPlaneEvent.cs" />
     <Compile Include="Assets\Script\Scene\Graphic\Display\AuxiliaryLine.cs" />
     <Compile Include="Assets\Script\Scene\Graphic\Display\Column2D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic\Display\Item2D.cs" />
@@ -1184,6 +1182,7 @@
     <Compile Include="Assets\Script\View\Mediators\MainPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\Mediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\ProjectPanelMediators.cs" />
+    <Compile Include="Assets\Script\View\Mediators\StorePanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\SwitchToolPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\TopToolPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Panel\BasePanel.cs" />
@@ -1250,6 +1249,8 @@
     <Compile Include="Assets\Script\View\Panel\MainPanel\MainPanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\ProjectPanel\ProjectPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ProjectPanel\ProjectPanelEvent.cs" />
+    <Compile Include="Assets\Script\View\Panel\StorePanel\StorePanel.cs" />
+    <Compile Include="Assets\Script\View\Panel\StorePanel\StorePanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\SurfaceName\SurfaceName2D.cs" />
     <Compile Include="Assets\Script\View\Panel\SwitchToolPanel\SwitchToolPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\SwitchToolPanel\SwitchToolPanelEvent.cs" />

@@ -24,15 +24,17 @@ public class CurvyColumn : MonoBehaviour
         if (_layer == null)
         {
             _layer = new GameObject();
+            _layer.name = "CurvyColumn";
             _layer.transform.parent = parentLayer;
             _layer.transform.rotation = parentLayer.rotation;
+            _layer.transform.position = new Vector3();
         }
 
         _meshPoints = value;
 
         for (int i = 0; i < _meshPoints.Count; i++)
         {
-            if (i == _meshPoints.Count) return;
+            if (i == _meshPoints.Count - 1 && !isLink) return;
 
             if (i == _meshPoints.Count - 1 && isLink)
             {

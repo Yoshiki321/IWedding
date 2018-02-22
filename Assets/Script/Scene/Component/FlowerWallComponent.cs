@@ -10,7 +10,6 @@ public class FlowerWallComponent : SceneComponent
     private bool _isInit = false;
 
     private DrawPlane drawPlane;
-    private Material panelMaterial;
 
     private List<GameObject> _objectList;
 
@@ -26,9 +25,7 @@ public class FlowerWallComponent : SceneComponent
 
         drawPlane = _item.GetComponentInChildren<DrawPlane>();
 
-        panelMaterial = new Material(Shader.Find("Standard"));
-        RenderingModeUnits.SetMaterialRenderingMode(panelMaterial, RenderingModeUnits.RenderingMode.Transparent);
-        drawPlane.SetMaterial(panelMaterial);
+        drawPlane.SetMaterial("");
 
         _objectList = new List<GameObject>();
 
@@ -65,29 +62,27 @@ public class FlowerWallComponent : SceneComponent
 
             if (value)
             {
-                _color.a = 1;
+                _color.color.a = 1;
             }
             else
             {
-                _color.a = 0;
+                _color.color.a = 0;
             }
 
-            panelMaterial.color = _color;
-            drawPlane.SetMaterial(panelMaterial);
+            drawPlane.SetMaterial("", "", _color);
         }
         get { return _visible; }
     }
 
-    Color _color;
+    ColorVO _color = new ColorVO();
 
     public ColorVO color
     {
         set
         {
-            _color = value.color;
-            _color.a = _visible ? 1 : 0;
-            panelMaterial.color = _color;
-            drawPlane.SetMaterial(panelMaterial);
+            _color = value;
+            _color.color.a = _visible ? 1 : 0;
+            drawPlane.SetMaterial("", "", _color);
         }
     }
 
@@ -97,7 +92,12 @@ public class FlowerWallComponent : SceneComponent
     {
         set
         {
+            if (_assetId == value)
+            {
+                return;
+            }
             _assetId = value;
+           
             if (_assetId == "")
             {
                 Clear();
@@ -240,6 +240,7 @@ public class FlowerWallComponent : SceneComponent
             assetId = _vo.assetId;
             visible = _vo.visible;
             color = _vo.color;
+            drawPlane.Code = _vo.panelCode;
         }
         get { return _vo; }
     }

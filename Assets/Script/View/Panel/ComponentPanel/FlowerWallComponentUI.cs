@@ -47,6 +47,11 @@ public class FlowerWallComponentUI : BaseComponentUI
         UpdateHeight();
     }
 
+    private void DrawPanelEventHandle(EventObject e)
+    {
+        UpdateComponent();
+    }
+
     private void ColorClickHandle(ButtonImageUI ui)
     {
         SelectColorPanel sp = UIManager.OpenPanel(Panel.SelectColorPanel, _color,
@@ -84,7 +89,7 @@ public class FlowerWallComponentUI : BaseComponentUI
     {
         if (gameObject.activeSelf == false) return;
         SceneManager.EnabledEditorObjectSelection(true);
-        if(_drawPanel != null) _drawPanel.isOperate = false;
+        if (_drawPanel != null) _drawPanel.isOperate = false;
     }
 
     private void LineRightClick(DrawLine line)
@@ -140,6 +145,7 @@ public class FlowerWallComponentUI : BaseComponentUI
             vo.assetId = _flowerWall[0].assetId;
             vo.color = _color;
             vo.visible = _flowerWall[0].visible;
+            vo.panelCode = _drawPanel.Code;
         }
     }
 
@@ -201,12 +207,16 @@ public class FlowerWallComponentUI : BaseComponentUI
 
             _drawPanel = items[0].GetComponentInChildren<DrawPlane>();
             _drawPanel.AddLineRightClick(LineRightClick);
+            _drawPanel.addEventListener(DrawPlaneEvent.CHANGE, DrawPanelEventHandle);
 
             foreach (ObjectSprite obj in _items)
             {
                 _oldAssets.Add(obj.VO.GetComponentVO<FlowerWallVO>().Clone());
                 _assets.Add(obj.VO.GetComponentVO<FlowerWallVO>().Clone());
             }
+
+            FlowerWallVO vo = _assets[0] as FlowerWallVO;
+            vo.panelCode = _drawPanel.Code;
 
             FillComponent();
         }

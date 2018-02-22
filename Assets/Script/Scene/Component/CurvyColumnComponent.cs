@@ -1,34 +1,51 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Build3D;
 
 public class CurvyColumnComponent : SceneComponent
 {
     private bool _isInit = false;
 
     ItemVO _itemVO;
-    CurvyColumn curvyColumn;
 
-    public override void Init(AssetSprite _item)
+    CurvyColumn _curvyColumn;
+    CurvyColumn curvyColumn
+    {
+        get
+        {
+            if (_curvyColumn == null)
+            {
+                ThickIrregularPlane3D t3 = _item.GetComponentInChildren<ThickIrregularPlane3D>();
+                if (t3)
+                {
+                    _curvyColumn = _itemVO.model.AddComponent<CurvyColumn>();
+                    _curvyColumn.SetPoints(t3.upPoints, t3.transform.parent, true);
+                    _curvyColumn.layer.transform.localScale = t3.upObj.transform.localScale;
+                    _curvyColumn.layer.transform.localPosition = new Vector3();
+                }
+                else
+                {
+
+                }
+            }
+
+            return _curvyColumn;
+        }
+    }
+
+    Item3D _item;
+
+    public override void Init(AssetSprite item)
     {
         if (_isInit) return;
         _isInit = true;
 
-        _itemVO = _item.VO as ItemVO;
+        _item = item as Item3D;
+        _itemVO = item.VO as ItemVO;
+
         if (_itemVO.GetComponentVO<CurvyColumnVO>() == null)
         {
             _itemVO.AddComponentVO<CurvyColumnVO>();
-        }
-
-        ThickIrregularPlane3D t3 = _item.GetComponentInChildren<ThickIrregularPlane3D>();
-        if (t3)
-        {
-            curvyColumn = _itemVO.model.AddComponent<CurvyColumn>();
-            curvyColumn.SetPoints(t3.upPoints, t3.transform.parent);
-            curvyColumn.layer.transform.localScale = t3.upObj.transform.localScale;
-        }
-        else
-        {
-
         }
     }
 
@@ -39,7 +56,7 @@ public class CurvyColumnComponent : SceneComponent
         set
         {
             _radius = value;
-            curvyColumn.radius = _radius;
+            if (curvyColumn) curvyColumn.radius = _radius;
         }
     }
 
@@ -51,7 +68,7 @@ public class CurvyColumnComponent : SceneComponent
         set
         {
             _colorVO = value;
-            curvyColumn.color = _colorVO.color;
+            if (curvyColumn) curvyColumn.color = _colorVO.color;
         }
 
         get { return _colorVO; }

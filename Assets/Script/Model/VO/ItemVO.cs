@@ -98,6 +98,12 @@ public class ItemVO : ObjectVO
 
             xml = code.SelectSingleNode("ThickIrregular");
             if (xml != null) AddComponentVO<ThickIrregularVO>().Code = xml;
+
+            xml = code.SelectSingleNode("FlowerWall");
+            if (xml != null) AddComponentVO<FlowerWallVO>().Code = xml;
+
+            xml = code.SelectSingleNode("CurvyColumn");
+            if (xml != null) AddComponentVO<CurvyColumnVO>().Code = xml;
         }
     }
 

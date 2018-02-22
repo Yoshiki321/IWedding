@@ -61,12 +61,19 @@ public class DrawPlane : DispatcherEventPanel
             _plane.AddComponent<BoxCollider>();
 
             _fillMaterial = new Material(Shader.Find("Standard"));
+            RenderingModeUnits.SetMaterialRenderingMode(_fillMaterial, RenderingModeUnits.RenderingMode.Transparent);
             _fillMaterial.SetTextureScale("_MainTex", new Vector2(0.01f, 0.01f));
 
             isUI = false;
         }
 
         Draw(DrawShapeManager.ShapeDrawDataList[0].nodes, 2);
+
+        if (_beforehandCode != null)
+        {
+            Code = _beforehandCode;
+            _beforehandCode = null;
+        }
     }
 
     public GameObject drawFillPanelObject
@@ -82,33 +89,37 @@ public class DrawPlane : DispatcherEventPanel
     public string id = "";
     private string _materialsUpID = "2010";
     private string _materialsDownID = "2010";
+    private ColorVO _colorVO = new ColorVO();
 
     /// <summary>
     /// 设置贴图
     /// </summary>
-    /// <param name="id"></param>
+    /// <param name="up"></param>
     /// <param name="down"></param>
-    public void SetMaterial(string id, string down = "")
+    public void SetMaterial(string up = "", string down = "", ColorVO colorVO = null)
     {
-        _materialsUpID = id;
+        if (colorVO != null) _colorVO = colorVO;
+
+        _materialsUpID = up;
         if (down == "")
-            _materialsDownID = id;
+            _materialsDownID = up;
         else
             _materialsDownID = down;
-        Material m = TexturesManager.CreateMaterials(id);
-        Texture2D t = m.GetTexture("_MainTex") as Texture2D;
-        _fillMaterial.SetTexture("_MainTex", t);
+
+        if (_fillMaterial == null) return;
+        if (up == "")
+        {
+            _fillMaterial.SetTexture("_MainTex", new Texture());
+        }
+        else
+        {
+            Material m = TexturesManager.CreateMaterials(up);
+            Texture2D t = m.GetTexture("_MainTex") as Texture2D;
+            _fillMaterial.SetTexture("_MainTex", t);
+        }
+        _fillMaterial.color = _colorVO.color;
 
         _drawFillPanel.SetMaterial(_fillMaterial);
-    }
-
-    bool isSetMaterial;
-
-    public void SetMaterial(Material m)
-    {
-        isSetMaterial = true;
-        _fillMaterial = m;
-       if(_drawFillPanel != null) _drawFillPanel.SetMaterial(_fillMaterial);
     }
 
     /// <summary>
@@ -157,10 +168,7 @@ public class DrawPlane : DispatcherEventPanel
             AddPoint(l[0], l[1], l[2]);
         }
 
-        if(!isSetMaterial)
-            SetMaterial(_materialsUpID);
-        else
-            _drawFillPanel.SetMaterial(_fillMaterial);
+        SetMaterial(_materialsUpID, _materialsDownID, _colorVO);
 
         UpdateRelation();
         FillPanel();
@@ -408,6 +416,8 @@ public class DrawPlane : DispatcherEventPanel
             {
                 _drawLine.UpdateCollider();
                 _drawLine = null;
+
+                dispatchEvent(new DrawPlaneEvent(DrawPlaneEvent.CHANGE));
             }
 
             if (_drawNode)
@@ -418,6 +428,8 @@ public class DrawPlane : DispatcherEventPanel
                     _drawNode.relationNode.line.UpdateCollider();
                 }
                 _drawNode = null;
+
+                dispatchEvent(new DrawPlaneEvent(DrawPlaneEvent.CHANGE));
             }
         }
 
@@ -510,14 +522,28 @@ public class DrawPlane : DispatcherEventPanel
         return itemvo;
     }
 
+    XmlNode _beforehandCode;
+    XmlNode _code;
+
     public XmlNode Code
     {
         set
         {
+            if (_drawFillPanelObject == null)
+            {
+                _beforehandCode = value;
+                return;
+            }
+
+            if (_code == value) return;
+            _code = value;
+
             XmlNode code = value as XmlNode;
             XmlNode drawPanelNode = code.SelectSingleNode("ThickIrregularPlane3D").SelectSingleNode("DrawPanel");
             XmlNode thickIrregularNode = code.SelectSingleNode("ThickIrregularPlane3D").SelectSingleNode("ThickIrregular");
-            SetMaterial(thickIrregularNode.Attributes["upCollageId"].Value, thickIrregularNode.Attributes["downCollageId"].Value);
+            ColorVO cvo = new ColorVO();
+            cvo.SetCode(thickIrregularNode.Attributes["color"].Value);
+            SetMaterial(thickIrregularNode.Attributes["upCollageId"].Value, thickIrregularNode.Attributes["downCollageId"].Value, cvo);
             Draw(drawPanelNode.Attributes["nodes"].Value, float.Parse(thickIrregularNode.Attributes["thickness"].Value));
             direction = drawPanelNode.Attributes["direction"].Value;
             TilingX = float.Parse(thickIrregularNode.Attributes["tilingX"].Value);
@@ -540,6 +566,7 @@ public class DrawPlane : DispatcherEventPanel
             code += "<ThickIrregular";
             code += " upCollageId = " + GetPropertyString(_materialsUpID);
             code += " downCollageId = " + GetPropertyString(_materialsDownID);
+            code += " color = " + _colorVO.ToCode();
             code += " tilingX = " + GetPropertyString(_drawFillPanel.tilingX);
             code += " tilingY = " + GetPropertyString(_drawFillPanel.tilingY);
             code += " offestX = " + GetPropertyString(_drawFillPanel.offestX);

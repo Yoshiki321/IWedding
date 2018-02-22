@@ -5,9 +5,10 @@ using BuildManager;
 
 public class FlowerWallVO : ComponentVO
 {
-    public string assetId;
+    public string assetId = "";
     public ColorVO color = new ColorVO();
     public bool visible = true;
+    public XmlNode panelCode;
 
     override public void FillFromObject(ComponentVO asset)
     {
@@ -15,6 +16,7 @@ public class FlowerWallVO : ComponentVO
         assetId = (asset as FlowerWallVO).assetId;
         visible = (asset as FlowerWallVO).visible;
         color = (asset as FlowerWallVO).color;
+        panelCode = (asset as FlowerWallVO).panelCode;
     }
 
     override public bool Equals(AssetVO asset)
@@ -24,6 +26,7 @@ public class FlowerWallVO : ComponentVO
             vo.id == id &&
             vo.assetId == assetId &&
             vo.visible == visible &&
+            vo.panelCode == panelCode &&
             vo.color.Equals(color)
             );
     }
@@ -34,6 +37,7 @@ public class FlowerWallVO : ComponentVO
         vo.id = id;
         vo.assetId = assetId;
         vo.visible = visible;
+        vo.panelCode = panelCode;
         vo.color = color;
         return vo;
     }
@@ -45,9 +49,11 @@ public class FlowerWallVO : ComponentVO
             string code = "";
             code += "<FlowerWall";
             code += " assetId = " + GetPropertyString(assetId);
-            code += " visible = " + (visible == true ? "1" : "0");
+            code += " visible = " + (visible == true ? '"' + "1" + '"' : '"' + "0" + '"');
             code += " color = " + color.ToCode();
-            code += "/>";
+            code += ">";
+            code += panelCode.OuterXml;
+            code += "</FlowerWall>";
 
             return code;
         }
@@ -57,6 +63,7 @@ public class FlowerWallVO : ComponentVO
             assetId = code.Attributes["assetId"].Value;
             visible = code.Attributes["visible"].Value == "1";
             color.SetCode(code.Attributes["color"].Value);
+            panelCode = code;
         }
     }
 }
