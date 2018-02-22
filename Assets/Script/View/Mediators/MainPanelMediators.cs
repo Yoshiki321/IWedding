@@ -7,15 +7,22 @@ public class MainPanelMediators : Mediators
 {
     public override void OnRegister()
     {
-        AddViewListener(MainPanelEvent.CreatePlan_Click, CreatePlanHandle);
+        AddViewListener(MainPanelEvent.BtnOne_Click, CreatePlanHandle);
+        AddViewListener(MainPanelEvent.BtnTwo_Click, HotelPlanHandle);
         AddViewListener(MainPanelEvent.StorePlan_Click, StorePlanHandle);
 
     }
 
     public override void OnRemove()
     {
-        RemoveViewListener(MainPanelEvent.CreatePlan_Click, CreatePlanHandle);
+        RemoveViewListener(MainPanelEvent.BtnOne_Click, CreatePlanHandle);
+        RemoveViewListener(MainPanelEvent.BtnTwo_Click, HotelPlanHandle);
         RemoveViewListener(MainPanelEvent.StorePlan_Click, StorePlanHandle);
+    }
+
+    private void HotelPlanHandle(EventObject e)
+    {
+        UIManager.OpenUI(UI.HotelPanel);
     }
 
     private void CreatePlanHandle(EventObject e)

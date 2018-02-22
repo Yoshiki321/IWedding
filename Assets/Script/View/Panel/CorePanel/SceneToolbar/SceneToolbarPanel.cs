@@ -28,18 +28,20 @@ public class SceneToolbarPanel : BasePanel
     private GameObject toolLineLightBtn;
     private GameObject toolLineVRBtn;
     private GameObject toolLineModelBtn;
+    private GameObject viewChangeContent;
 
     private bool lightFlag = true;
     private bool viewFlag = false;
 
     private int LeftSelectedNum = 1;
     private List<GameObject> toolBtnList = new List<GameObject>();
+    private List<GameObject> viewChangeList = new List<GameObject>();
 
     private void Awake()
     {
 		tooLineAddItemBtn = transform.Find("ToolLineBg").Find("ToolLineAddItem").gameObject;
 		tooLineAddHomeBtn = transform.Find("ToolLineBg").Find("ToolLineAddHome").gameObject;
-
+        viewChangeContent = transform.Find("ToolLineBg").Find("ToolLineVRBtn").Find("SelectedContent").gameObject;
         //toolLineUndoBtn = transform.Find("ToolLineBg").Find("ToolLineUndoBtn").gameObject;
         //toolLineRedoBtn = transform.Find("ToolLineBg").Find("ToolLineRedoBtn").gameObject;
         //toolLineCopyBtn = transform.Find("ToolLineBg").Find("ToolLineCopyBtn").gameObject;
@@ -59,7 +61,13 @@ public class SceneToolbarPanel : BasePanel
         toolLineLoadBtn = transform.Find("ToolLineBg").Find("ToolLineLoadBtn").gameObject;
         toolLineLightBtn = transform.Find("ToolLineBg").Find("ToolLineLightBtn").gameObject;
         toolLineModelBtn = transform.Find("ToolLineBg").Find("ToolLineModelBtn").gameObject;
-
+        for (int viewNum = 0; viewNum < viewChangeContent.transform.childCount; viewNum++)
+        {
+            viewChangeList.Add(viewChangeContent.transform.GetChild(viewNum).gameObject);
+            AddEventClick(viewChangeContent.transform.GetChild(viewNum).gameObject);
+            AddEventExit(viewChangeContent.transform.GetChild(viewNum).gameObject);
+            AddEventOver(viewChangeContent.transform.GetChild(viewNum).gameObject);
+        }
         toolBtnList.Add(tooLineAddItemBtn);
 		toolBtnList.Add(tooLineAddHomeBtn);
 
@@ -90,7 +98,6 @@ public class SceneToolbarPanel : BasePanel
             AddEventExit(toolBtnList[i]);
             AddEventOver(toolBtnList[i]);
         }
-
         viewFlag = true;
 
         Open();
@@ -105,36 +112,74 @@ public class SceneToolbarPanel : BasePanel
 
     protected override void OnEnter(GameObject obj)
     {
-        if (obj != tooLineAddItemBtn && obj != tooLineAddHomeBtn)
+        if (obj != tooLineAddItemBtn && obj != tooLineAddHomeBtn && obj != viewChangeList[0] && obj != viewChangeList[1] && obj != viewChangeList[2])
         {
             obj.transform.Find("bgImg").GetComponent<Image>().color = new Color(32f / 255F, 32f / 255F, 32f / 255F, 1);
         }
-        else {
+        else if (obj == viewChangeList[0])
+        {
+            viewOpenFlag = false;
+
+            obj.transform.GetComponent<Image>().color = new Color(135F / 255F, 135F / 255F, 135F / 255F, 1);
+        }
+        else if (obj == viewChangeList[1])
+        {
+            viewOpenFlag = false;
+
+            obj.transform.GetComponent<Image>().color = new Color(135F / 255F, 135F / 255F, 135F / 255F, 1);
+        }
+        else if (obj == viewChangeList[2])
+        {
+            viewOpenFlag = false;
+
+            obj.transform.GetComponent<Image>().color = new Color(135F / 255F, 135F / 255F, 135F / 255F, 1);
+        }
+        else
+        {
             obj.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 1);
         }
     }
 
     protected override void OnExit(GameObject obj)
     {
-        if (obj != tooLineAddItemBtn && obj != tooLineAddHomeBtn)
+        if (obj != tooLineAddItemBtn && obj != tooLineAddHomeBtn && obj != viewChangeList[0] && obj != viewChangeList[1] && obj != viewChangeList[2])
         {
             obj.transform.Find("bgImg").GetComponent<Image>().color = new Color(32f / 255F, 32f / 255F, 32f / 255F, 0);
+        }
+        else if (obj == viewChangeList[0])
+        {
+            viewOpenFlag = true;
+
+            obj.transform.GetComponent<Image>().color = new Color(135F / 255F, 135F / 255F, 135F / 255F, 0);
+        }
+        else if (obj == viewChangeList[1])
+        {
+            viewOpenFlag = true;
+
+            obj.transform.GetComponent<Image>().color = new Color(135F / 255F, 135F / 255F, 135F / 255F, 0);
+        }
+        else if (obj == viewChangeList[2])
+        {
+            viewOpenFlag = true;
+
+            obj.transform.GetComponent<Image>().color = new Color(135F / 255F, 135F / 255F, 135F / 255F, 0);
         }
         else {
             if (LeftSelectedNum == 1) {
                 tooLineAddItemBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 1);
                 tooLineAddHomeBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 0);
             }
-            else if(LeftSelectedNum == 2){
+            else if (LeftSelectedNum == 2) {
                 tooLineAddHomeBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 1);
                 tooLineAddItemBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 0);
             }
         }
     }
-
+   
     protected override void OnClick(GameObject obj)
     {
-		if (obj == tooLineAddItemBtn) {
+        viewChangeContent.SetActive(false);
+        if (obj == tooLineAddItemBtn) {
             SelectItemBtn();
             transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.ADDITEM));
         }
@@ -180,24 +225,48 @@ public class SceneToolbarPanel : BasePanel
         }
         if (obj == toolLineVRBtn)
         {
-            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.VR));
-            if (CameraManager.visual == CameraFlags.Roam)
+            if (viewChangeContent.activeSelf)
             {
-                toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "3 D 视 角";
-                toolLineVRBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/Fly", typeof(Sprite)) as Sprite;
+                viewChangeContent.SetActive(false);
             }
-            else if (CameraManager.visual == CameraFlags.Fly)
+            else
             {
-                toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "V R 视 角";
-                toolLineVRBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/VR", typeof(Sprite)) as Sprite;
+                viewChangeContent.SetActive(true);
             }
-            else if (CameraManager.visual == CameraFlags.VR)
-            {
-                toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "普 通 视 角";
-                toolLineVRBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/Roam", typeof(Sprite)) as Sprite;
-            }
+            //transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.VR));
+            //if (CameraManager.visual == CameraFlags.Roam)
+            //{
+            //    toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "3 D 视 角";
+            //    toolLineVRBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/Fly", typeof(Sprite)) as Sprite;
+            //}
+            //else if (CameraManager.visual == CameraFlags.Fly)
+            //{
+            //    toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "V R 视 角";
+            //    toolLineVRBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/VR", typeof(Sprite)) as Sprite;
+            //}
+            //else if (CameraManager.visual == CameraFlags.VR)
+            //{
+            //    toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "普 通 视 角";
+            //    toolLineVRBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/Roam", typeof(Sprite)) as Sprite;
+            //}
+        }
+        if (obj == viewChangeList[0])
+        {
+            viewChangeContent.SetActive(false);
+            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.VR, 0));
         }
 
+        if (obj == viewChangeList[1])
+        {
+            viewChangeContent.SetActive(false);
+            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.VR, 1));
+        }
+
+        if (obj == viewChangeList[2])
+        {
+            viewChangeContent.SetActive(false);
+            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.VR, 2));
+        }
 
         if (obj == toolLineChangeViewBtn)
         {
@@ -303,8 +372,21 @@ public class SceneToolbarPanel : BasePanel
     private void init()
     {
     }
+    private bool viewOpenFlag = false;
 
     void Update()
     {
+        if (Input.GetMouseButtonUp(0) || Input.GetMouseButtonUp(1) || Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (viewOpenFlag)
+            {
+                if (viewChangeContent.activeSelf)
+                {
+                    viewChangeContent.SetActive(false);
+                    viewOpenFlag = false;
+                }
+            }
+        }
+
     }
 }

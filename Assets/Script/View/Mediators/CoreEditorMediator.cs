@@ -454,6 +454,10 @@ public class CoreEditorMediator : Mediators
         {
             SceneManager.Instance.mouse3Manager.ClearSelect();
         }
+        if (CameraManager.visual == CameraFlags.Roam)
+        {
+            CameraManager.ChangeCamera(CameraFlags.Fly);
+        }
     }
 
     private void Keyboard_CombinationHandle(EventObject e)
@@ -702,7 +706,19 @@ public class CoreEditorMediator : Mediators
 
     private void SceneToolbarVRHandle(EventObject e)
     {
-        SceneManager.Instance.ToggleVRMode();
+        SceneToolbarEvent ee = e as SceneToolbarEvent;
+        if (ee.ViewId == 0)
+        {
+            CameraManager.ChangeCamera(CameraFlags.Fly);
+        }
+        else if (ee.ViewId == 1)
+        {
+            CameraManager.ChangeCamera(CameraFlags.Roam);
+        }
+        else if (ee.ViewId == 2)
+        {
+            CameraManager.ChangeCamera(CameraFlags.VR);
+        }
     }
 
     private void SceneToolbarTo3DHandle(EventObject e)

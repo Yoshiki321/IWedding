@@ -33,8 +33,11 @@ public class SceneToolbarEvent : EventObject
 	public static string LOAD = "SceneToolbarEvent_Load";
 	public static string CAMERA = "SceneToolbarEvent_CAMERA";
 
-    public SceneToolbarEvent(string types)
+    public int ViewId;
+
+    public SceneToolbarEvent(string types, int ViewId = 0)
         : base(types)
     {
+        this.ViewId = ViewId;
     }
 }

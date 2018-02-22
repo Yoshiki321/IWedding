@@ -12,7 +12,8 @@
     public static string ItemSelectPanel = "ItemSelectPanel";
 	public static string SwitchToolPanel = "SwitchToolPanel";
     public static string TopToolPanel = "TopToolPanel";
-    public static string ProjectPanel = "ProjectPanel"; 
+    public static string ProjectPanel = "ProjectPanel";
+    public static string HotelPanel = "HotelPanel";
     public static string DrawLinePanel = "DrawLinePanel";
     public static string CreateStagePanel = "CreateStagePanel"; 
     public static string LoadModelPanel = "LoadModelPanel";
