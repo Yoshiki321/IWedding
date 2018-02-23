@@ -78,9 +78,6 @@ public class BrushManager
             {
                 t.gameObject.layer = LayerMask.NameToLayer("ObjectSprite3D");
             }
-
-            //item = GameObject.CreatePrimitive(PrimitiveType.Plane);
-            //item.transform.parent = box.transform;
         }
     }
 

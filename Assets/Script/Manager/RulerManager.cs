@@ -45,7 +45,7 @@ public class RulerManager : MonoBehaviour
 
     void Update()
     {
-        //return;
+        return;
 
         if (_item == null)
         {

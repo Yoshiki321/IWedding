@@ -86,6 +86,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4377708268384786}
+  - component: {fileID: 65748182357435530}
   m_Layer: 0
   m_Name: door10
   m_TagString: Untagged
@@ -308,7 +309,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1037835501178810}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.05, z: 0}
+  m_LocalPosition: {x: 0, y: 1.192, z: 0.415}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4036230648990996}
@@ -602,6 +603,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1147345777932808}
   m_Mesh: {fileID: 4300010, guid: 9f4310f730cd10240934e4de700ba81d, type: 3}
+--- !u!65 &65748182357435530
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1194153269250728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9986258, y: 2.3900704, z: 0.31013194}
+  m_Center: {x: 0.0028116703, y: 1.1905704, z: 0.0292788}
 --- !u!95 &95886037245869118
 Animator:
   serializedVersion: 3

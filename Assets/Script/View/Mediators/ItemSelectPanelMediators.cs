@@ -21,7 +21,7 @@ public class ItemSelectPanelMediators : Mediators
         AddContextListener(SceneEvent.ADD_ITEM, EventDispatcher_AddObjectHandler);
         AddContextListener(SceneEvent.DELETE, EventDispatcher_DeleteHandler);
 
-        (panel as ItemSelectPanel).UpdateItem(AssetsModel.Instance.objectDatas);
+        (panel as ItemSelectPanel).UpdateItem(AssetsModel.Instance.itemDatas);
     }
 
     public override void OnRemove()

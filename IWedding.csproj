@@ -921,7 +921,6 @@
     <Compile Include="Assets\Resources\Item\Light\Script\LightManagerFogLights.cs" />
     <Compile Include="Assets\Resources\Item\Light\Script\LightOverride.cs" />
     <Compile Include="Assets\Resources\Item\Light\Script\MinValueAttribute.cs" />
-    <Compile Include="Assets\Resources\Item\Light\Script\MinValueDrawer.cs" />
     <Compile Include="Assets\Resources\Item\Light\TubeLight\TubeLight\Scripts\TubeLight.cs" />
     <Compile Include="Assets\Resources\Item\Light\TubeLight\TubeLight\Scripts\TubeLightShadowPlane.cs" />
     <Compile Include="Assets\Resources\Item\Particle\Sprinkle\SprinkleLine.cs" />
@@ -1158,6 +1157,7 @@
     <Compile Include="Assets\Script\Utils\MathUtils.cs" />
     <Compile Include="Assets\Script\Utils\MathUtils3D.cs" />
     <Compile Include="Assets\Script\Utils\Matrix3DUtils.cs" />
+    <Compile Include="Assets\Script\Utils\Mesh\CylinderUtils.cs" />
     <Compile Include="Assets\Script\Utils\MeshData.cs" />
     <Compile Include="Assets\Script\Utils\MeshUtils3D.cs" />
     <Compile Include="Assets\Script\Utils\MovementController.cs" />
@@ -1176,6 +1176,7 @@
     <Compile Include="Assets\Script\View\Mediators\CoreEditorMediator.cs" />
     <Compile Include="Assets\Script\View\Mediators\DrawLineMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\GizmoPanelMediators.cs" />
+    <Compile Include="Assets\Script\View\Mediators\HotelPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\ItemSelectPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\ItemToolMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\LoadModelPanelMediators.cs" />
@@ -1238,6 +1239,8 @@
     <Compile Include="Assets\Script\View\Panel\DrawLinePanel\DrawLinePanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\GizmoPanel\GizmoPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\GizmoPanel\GizmoPanelEvent.cs" />
+    <Compile Include="Assets\Script\View\Panel\HotelPanel\HotelPanel.cs" />
+    <Compile Include="Assets\Script\View\Panel\HotelPanel\HotelPanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemPanel\ItemPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemSelectPanel\ItemSelectPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemSelectPanel\ItemSelectPanelEvent.cs" />
@@ -1403,6 +1406,7 @@
     <None Include="Assets\Resources\Config\Item\Item.xml" />
     <None Include="Assets\Resources\Config\Item\ItemList.xml" />
     <None Include="Assets\Resources\Config\Item\ItemNode.xml" />
+    <None Include="Assets\Resources\Config\Layout\1001.xml" />
     <None Include="Assets\Resources\Config\Material\MaterialList.xml" />
     <None Include="Assets\Resources\Config\PlaneTextures.xml" />
     <None Include="Assets\Resources\Config\Shape\ShapeDraw.xml" />

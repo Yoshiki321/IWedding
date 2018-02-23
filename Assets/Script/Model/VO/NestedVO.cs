@@ -53,6 +53,17 @@ public class NestedVO : ObjectVO
             assetId = code.Attributes["assetId"].Value;
             lineId = code.Attributes["lineId"].Value;
 
+            ItemData itemData = ItemManager.GetItemData(assetId);
+            if (itemData != null)
+            {
+                modelId = itemData.model;
+                topImgId = itemData.topImg;
+            }
+            else
+            {
+                model = new GameObject();
+            }
+
             XmlNode transformXml = code.SelectSingleNode("Transform");
             if (transformXml != null) AddComponentVO<TransformVO>().Code = transformXml;
         }
