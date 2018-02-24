@@ -61,31 +61,26 @@ public class EventDispatcher
         if (listeners != null)
         {
             List<EventDelegate> vector = listeners[types];
-            if (vector != null)
+            if (vector != null && vector.Count > 0)
             {
-                int i = vector.IndexOf(listener);
-                if (i >= 0)
+                vector.Remove(listener);
+
+                if (vector.Count == 0)
                 {
-                    int length = vector.Count;
-                    for (int j = i + 1; j < length; j++, i++)
-                    {
-                        vector[i] = vector[j];
-                    }
-
                     listeners.Remove(types);
+                }
 
-                    foreach (KeyValuePair<String, List<EventDelegate>> o in listeners)
+                foreach (KeyValuePair<String, List<EventDelegate>> o in listeners)
+                {
+                    if (o.Key == null)
                     {
-                        if (o.Key == null)
+                        if (listeners == captureListeners)
                         {
-                            if (listeners == captureListeners)
-                            {
-                                captureListeners = null;
-                            }
-                            else
-                            {
-                                bubbleListeners = null;
-                            }
+                            captureListeners = null;
+                        }
+                        else
+                        {
+                            bubbleListeners = null;
                         }
                     }
                 }

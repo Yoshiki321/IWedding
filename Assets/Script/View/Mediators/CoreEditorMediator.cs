@@ -50,9 +50,9 @@ public class CoreEditorMediator : Mediators
 
         AddViewListener(ItemToolEvent.ITEMTOOL_LEFT, ItemToolLeftRotateHandle);
         AddViewListener(ItemToolEvent.ITEMTOOL_RIGHT, ItemToolRightRotateHandle);
-        AddViewListener(ItemToolEvent.ITEMTOOL_RESET, ItemToolResetRotateHandle); 
-        AddViewListener(ItemToolEvent.ITEMTOOL_COMBINATION, ItemToolCombinationHandle); 
-        AddViewListener(ItemToolEvent.ITEMTOOL_RESOLVE, ItemToolResolveHandle); 
+        AddViewListener(ItemToolEvent.ITEMTOOL_RESET, ItemToolResetRotateHandle);
+        AddViewListener(ItemToolEvent.ITEMTOOL_COMBINATION, ItemToolCombinationHandle);
+        AddViewListener(ItemToolEvent.ITEMTOOL_RESOLVE, ItemToolResolveHandle);
         AddViewListener(ItemToolEvent.ITEMTOOL_REMOVE, ItemToolRemoveHandle);
 
         AddViewListener(LineToolEvent.LineTool_From, LineToolFromHandle);
@@ -571,7 +571,7 @@ public class CoreEditorMediator : Mediators
 
     private void ItemToolRemoveHandle(EventObject e)
     {
-         if (Mouse3Manager.selectionItem != null && Mouse3Manager.selectionItem.Count > 0)
+        if (Mouse3Manager.selectionItem != null && Mouse3Manager.selectionItem.Count > 0)
         {
             List<AssetVO> list = new List<AssetVO>();
 
@@ -700,7 +700,8 @@ public class CoreEditorMediator : Mediators
         DispatcherEvent(new FileEvent(UndoRedoEvent.REDO));
     }
 
-    private void SceneToolbarBrushHandle(EventObject e) {
+    private void SceneToolbarBrushHandle(EventObject e)
+    {
         SceneManager.Instance.ToggleBrushMode();
     }
 

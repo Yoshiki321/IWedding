@@ -6,17 +6,17 @@ public class PointLightComponent : SceneComponent
 {
     private bool _isInit = false;
 
-    public override void Init(AssetSprite _item)
+    public override void Init(AssetSprite item)
     {
         if (_isInit) return;
         _isInit = true;
 
-        if (_item.VO.GetComponentVO<PointLightVO>() == null)
+        if (item.VO.GetComponentVO<PointLightVO>() == null)
         {
-            _item.VO.AddComponentVO<PointLightVO>();
+            item.VO.AddComponentVO<PointLightVO>();
         }
 
-        _light = _item.GetComponentInChildren<Light>();
+        _light = item.GetComponentInChildren<Light>();
     }
 
     private Light _light;

@@ -433,7 +433,6 @@ namespace RTEditor
             // scale operating and we don't want to deselect any axes while that happens.
             if (InputDevice.Instance.IsPressed(0)) return;
             DetectHoveredComponents(true);
-            Debug.Log(DetectHoveredComponents(true));
         }
 
         public bool isEnabled;

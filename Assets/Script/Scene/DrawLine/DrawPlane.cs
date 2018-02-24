@@ -135,6 +135,7 @@ public class DrawPlane : DispatcherEventPanel
 
         _nodeLines = new List<DrawNode>();
         _drawLines = new List<DrawLine>();
+        _drawLineObjectList = new List<GameObject>();
     }
 
     /// <summary>
@@ -174,6 +175,11 @@ public class DrawPlane : DispatcherEventPanel
         FillPanel();
 
         isOperate = _isOperate;
+
+        foreach (GameObject obj in _drawLineObjectList)
+        {
+            obj.transform.localRotation = Quaternion.Euler(Vector3.zero);
+        }
     }
 
     private void UpdateRelation()
@@ -228,6 +234,8 @@ public class DrawPlane : DispatcherEventPanel
         }
     }
 
+    private List<GameObject> _drawLineObjectList = new List<GameObject>();
+
     /// <summary>
     /// 添加点
     /// </summary>
@@ -247,6 +255,8 @@ public class DrawPlane : DispatcherEventPanel
         line.transform.parent = drawLineObject.transform;
         line.transform.localScale = new Vector3(1, 1, 1);
         DrawLine drawLine = line.AddComponent<DrawLine>();
+
+        _drawLineObjectList.Add(drawLineObject);
 
         if (!isUI)
         {

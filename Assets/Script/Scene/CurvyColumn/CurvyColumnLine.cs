@@ -19,7 +19,7 @@ public class CurvyColumnLine : MonoBehaviour
 
     public Color color
     {
-        set
+        set 
         {
             _color = value;
             mr.material.color = _color;

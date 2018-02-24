@@ -215,8 +215,8 @@ public class FlowerWallComponentUI : BaseComponentUI
                 _assets.Add(obj.VO.GetComponentVO<FlowerWallVO>().Clone());
             }
 
-            FlowerWallVO vo = _assets[0] as FlowerWallVO;
-            vo.panelCode = _drawPanel.Code;
+            //FlowerWallVO vo = _assets[0] as FlowerWallVO;
+            //vo.panelCode = _drawPanel.Code;
 
             FillComponent();
         }

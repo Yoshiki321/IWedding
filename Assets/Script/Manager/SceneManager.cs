@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Build3D;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson;
 
@@ -214,18 +215,12 @@ namespace BuildManager
 
             if (Input.GetKeyDown(KeyCode.F6))
             {
-                if (brushManager.brushMode == BrushManager.BrushMode.Place)
-                {
-                    brushManager.brushMode = BrushManager.BrushMode.Direct;
-                }
-                else
-                {
-                    brushManager.brushMode = BrushManager.BrushMode.Place;
-                }
+                VisibleEditor = !VisibleEditor;
             }
         }
 
-        public void ToggleBrushMode() {
+        public void ToggleBrushMode()
+        {
             if (brushManager.brushMode == BrushManager.BrushMode.Place)
             {
                 brushManager.brushMode = BrushManager.BrushMode.Direct;
@@ -236,7 +231,8 @@ namespace BuildManager
             }
         }
 
-        public void ToggleVRMode() {
+        public void ToggleVRMode()
+        {
             if (CameraManager.visual == CameraFlags.Roam)
             {
                 CameraManager.ChangeCamera(CameraFlags.Fly);
@@ -344,6 +340,33 @@ namespace BuildManager
         {
             if (!value) SceneManager.Instance.editorObjectSelection.ClearSelection(false);
             SceneManager.Instance.editorObjectSelection.gameObject.SetActive(value);
+        }
+
+        private static bool _visibleEditor = true;
+
+        public static bool VisibleEditor
+        {
+            set
+            {
+                _visibleEditor = value;
+
+                foreach (ObjectData data in AssetsModel.Instance.itemDatas)
+                {
+                    Item3D item = data.object3 as Item3D;
+                    PointLightComponent pointLightComponent = item.GetComponentInChildren<PointLightComponent>();
+                    if (pointLightComponent)
+                    {
+                        pointLightComponent.gameObject.transform.Find("Sphere").gameObject.SetActive(value);
+                    }
+
+                    SprinkleComponent sprinkleComponent = item.GetComponentInChildren<SprinkleComponent>();
+                    if (sprinkleComponent)
+                    {
+                        item.gameObject.SetActive(value);
+                    }
+                }
+            }
+            get { return _visibleEditor; }
         }
     }
 }
