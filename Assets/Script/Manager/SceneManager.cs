@@ -7,7 +7,7 @@ namespace BuildManager
 {
     public class SceneManager : MonoBehaviour
     {
-        public static string Version = "1.0.1";
+        public static string Version = "1.0.2";
 
         public static string ProjectName;
         public static string ProjectURL;
