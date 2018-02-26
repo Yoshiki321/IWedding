@@ -92,6 +92,7 @@ public class CollageComponent : SceneComponent
                         {
                             string id = vo.collages[i].id as string;
                             Material m = TexturesManager.CreateMaterials(vo.collages[i].id as string);
+                            m.color = vo.collages[i].color;
 
                             SurfacePlane3D surfacePlane = r.gameObject.GetComponent<SurfacePlane3D>();
                             if (surfacePlane)

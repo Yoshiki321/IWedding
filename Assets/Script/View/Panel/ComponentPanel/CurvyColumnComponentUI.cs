@@ -8,7 +8,7 @@ public class CurvyColumnComponentUI : BaseComponentUI
 {
     private SliderUI radius;
     private ButtonImageUI colorUI;
-    private ColorVO _color;
+    private Color _color;
     private Toggle toggle;
 
     override public void Init()
@@ -36,15 +36,15 @@ public class CurvyColumnComponentUI : BaseComponentUI
     {
         SelectColorPanel sp = UIManager.OpenPanel(Panel.SelectColorPanel, _color,
         colorUI.button.transform.position) as SelectColorPanel;
-        sp.getPos += UpdateColor;
+        sp.onPicker.AddListener(UpdateColor);
     }
 
-    private void UpdateColor(ColorVO color)
+    private void UpdateColor(Color color)
     {
         _color = color;
         foreach (CurvyColumnComponent curvyColumn in _curvyColumns) curvyColumn.color = _color;
         UpdateComponent();
-        colorUI.image.color = _color.color;
+        colorUI.image.color = _color;
     }
 
     public override void UpdateComponent()
@@ -80,7 +80,7 @@ public class CurvyColumnComponentUI : BaseComponentUI
             toggle.isOn = vo.enabled;
             EnabledCurvyColumnHandle(toggle.isOn);
             _color = vo.color;
-            colorUI.image.color = _color.color;
+            colorUI.image.color = _color;
         }
 
         _fillComponent = false;

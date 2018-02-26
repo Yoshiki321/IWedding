@@ -46,7 +46,7 @@
         UIManager.CreateComponent(UI.FlowerWallComponentUI);
         UIManager.CreateComponent(UI.CurvyColumnComponentUI);
 
-        UIManager.CreatePanel("UI/Currency/SelectColor/SelectColorPanel", Panel.SelectColorPanel);
+        UIManager.CreatePanel("UI/Currency/ColorPicker/ColorPicker", Panel.SelectColorPanel);
         UIManager.CreatePanel("UI/Currency/SelectTexture/SelectTexturePanel", Panel.SelectTexturePanel);
 
         CommandMap.MapEvent(FileEvent.SAVE, typeof(SaveCodeCommand));

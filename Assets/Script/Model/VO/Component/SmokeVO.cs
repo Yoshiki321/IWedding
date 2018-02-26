@@ -6,8 +6,8 @@ public class SmokeVO : ComponentVO
 {
     public float size = 1.5f;
     public float speed = 0f;
-    public ColorVO startColor = new ColorVO();
-    public ColorVO endColor = new ColorVO();
+    public Color startColor = new Color();
+    public Color endColor = new Color();
 
     override public void FillFromObject(ComponentVO asset)
     {
@@ -48,8 +48,8 @@ public class SmokeVO : ComponentVO
             code += "<Smoke";
             code += " size = " + GetPropertyString(size);
             code += " speed = " + GetPropertyString(speed);
-            code += " startColor = " + startColor.ToCode();
-            code += " endColor = " + endColor.ToCode();
+            code += " startColor = " + GetPropertyString(ColorUtils.ColorToHex(startColor));
+            code += " endColor = " + GetPropertyString(ColorUtils.ColorToHex(endColor));
             code += "/>";
 
             return code;
@@ -59,8 +59,8 @@ public class SmokeVO : ComponentVO
             XmlNode code = value as XmlNode;
             size = float.Parse(code.Attributes["size"].Value);
             speed = float.Parse(code.Attributes["speed"].Value);
-            startColor.SetCode(code.Attributes["startColor"].Value);
-            endColor.SetCode(code.Attributes["endColor"].Value);
+            startColor = ColorUtils.HexToColor(code.Attributes["startColor"].Value);
+            endColor = ColorUtils.HexToColor(code.Attributes["endColor"].Value);
         }
     }
 }

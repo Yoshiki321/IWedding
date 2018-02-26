@@ -46,9 +46,9 @@ public class PointLightComponent : SceneComponent
         set { _light.intensity = value; }
     }
 
-    public ColorVO color
+    public Color color
     {
-        set { _light.color = value.color; }
+        set { _light.color = value; }
     }
 
     private void Update()

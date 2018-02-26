@@ -155,18 +155,18 @@ public class RadiationLampComponent : SceneComponent
         get { return _animationDrop; }
     }
 
-    private ColorVO _colorVO;
+    private Color _color;
 
-    public ColorVO color
+    public Color color
     {
         set
         {
-            _colorVO = value;
+            _color = value;
 
             Light[] lights = GetComponentsInChildren<Light>();
             foreach (Light light in lights)
             {
-                light.color = value.color;
+                light.color = value;
             }
 
             foreach (VolumetricLightBeam lb in lightbeams)
@@ -177,12 +177,12 @@ public class RadiationLampComponent : SceneComponent
             foreach (Transform obj in transform)
             {
                 Color c = new Color();
-                c.r = value.color.r * .7f;
-                c.g = value.color.g * .7f;
-                c.b = value.color.b * .7f;
+                c.r = value.r * .7f;
+                c.g = value.g * .7f;
+                c.b = value.b * .7f;
                 c.a = .7f;
                 if (obj.Find("Sphere01") != null) obj.Find("Sphere01").GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", c);
-                if (obj.GetComponent<Light>() != null) obj.GetComponent<Light>().color = value.color;
+                if (obj.GetComponent<Light>() != null) obj.GetComponent<Light>().color = value;
             }
         }
     }

@@ -9,7 +9,7 @@ public class SpotlightVO : ComponentVO
     public float lightBrightness = 1f;
     public float spotAngle = 15f;
     public float angle;
-    public ColorVO color = new ColorVO();
+    public Color color = new Color();
     public string cookieId = "";
 
     public float fromX;
@@ -89,7 +89,7 @@ public class SpotlightVO : ComponentVO
             code += " spotAngle = " + GetPropertyString(spotAngle);
             code += " angle = " + GetPropertyString(angle);
             code += " cookieId = " + GetPropertyString(cookieId);
-            code += " color = " + color.ToCode();
+            code += " color = " + GetPropertyString(ColorUtils.ColorToHex(color));
             code += " fromX = " + GetPropertyString(fromX);
             code += " toX = " + GetPropertyString(toX);
             code += " fromY = " + GetPropertyString(fromY);
@@ -109,7 +109,7 @@ public class SpotlightVO : ComponentVO
             spotAngle = float.Parse(code.Attributes["spotAngle"].Value);
             angle = float.Parse(code.Attributes["angle"].Value);
             cookieId = code.Attributes["cookieId"].Value;
-            color.SetCode(code.Attributes["color"].Value);
+            color = ColorUtils.HexToColor(code.Attributes["color"].Value);
             fromX = float.Parse(code.Attributes["fromX"].Value);
             toX = float.Parse(code.Attributes["toX"].Value);
             fromY = float.Parse(code.Attributes["fromY"].Value);

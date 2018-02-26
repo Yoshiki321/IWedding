@@ -89,16 +89,17 @@ public class DrawPlane : DispatcherEventPanel
     public string id = "";
     private string _materialsUpID = "2010";
     private string _materialsDownID = "2010";
-    private ColorVO _colorVO = new ColorVO();
+    private Color _color = new Color();
+
 
     /// <summary>
     /// 设置贴图
     /// </summary>
     /// <param name="up"></param>
     /// <param name="down"></param>
-    public void SetMaterial(string up = "", string down = "", ColorVO colorVO = null)
+    public void SetMaterial(string up = "", string down = "", Color color = new Color())
     {
-        if (colorVO != null) _colorVO = colorVO;
+        if (color != null) _color = color;
 
         _materialsUpID = up;
         if (down == "")
@@ -117,7 +118,7 @@ public class DrawPlane : DispatcherEventPanel
             Texture2D t = m.GetTexture("_MainTex") as Texture2D;
             _fillMaterial.SetTexture("_MainTex", t);
         }
-        _fillMaterial.color = _colorVO.color;
+        _fillMaterial.color = _color;
 
         _drawFillPanel.SetMaterial(_fillMaterial);
     }
@@ -169,7 +170,7 @@ public class DrawPlane : DispatcherEventPanel
             AddPoint(l[0], l[1], l[2]);
         }
 
-        SetMaterial(_materialsUpID, _materialsDownID, _colorVO);
+        SetMaterial(_materialsUpID, _materialsDownID, _color);
 
         UpdateRelation();
         FillPanel();
@@ -551,8 +552,8 @@ public class DrawPlane : DispatcherEventPanel
             XmlNode code = value as XmlNode;
             XmlNode drawPanelNode = code.SelectSingleNode("ThickIrregularPlane3D").SelectSingleNode("DrawPanel");
             XmlNode thickIrregularNode = code.SelectSingleNode("ThickIrregularPlane3D").SelectSingleNode("ThickIrregular");
-            ColorVO cvo = new ColorVO();
-            cvo.SetCode(thickIrregularNode.Attributes["color"].Value);
+            Color cvo = new Color();
+            cvo = ColorUtils.HexToColor(thickIrregularNode.Attributes["color"].Value);
             SetMaterial(thickIrregularNode.Attributes["upCollageId"].Value, thickIrregularNode.Attributes["downCollageId"].Value, cvo);
             Draw(drawPanelNode.Attributes["nodes"].Value, float.Parse(thickIrregularNode.Attributes["thickness"].Value));
             direction = drawPanelNode.Attributes["direction"].Value;
@@ -576,7 +577,7 @@ public class DrawPlane : DispatcherEventPanel
             code += "<ThickIrregular";
             code += " upCollageId = " + GetPropertyString(_materialsUpID);
             code += " downCollageId = " + GetPropertyString(_materialsDownID);
-            code += " color = " + _colorVO.ToCode();
+            code += " color = " + GetPropertyString(ColorUtils.ColorToHex(_color));
             code += " tilingX = " + GetPropertyString(_drawFillPanel.tilingX);
             code += " tilingY = " + GetPropertyString(_drawFillPanel.tilingY);
             code += " offestX = " + GetPropertyString(_drawFillPanel.offestX);

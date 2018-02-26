@@ -53,24 +53,24 @@ public class SmokeComponent : SceneComponent
         set { _main.startSpeed = new MinMaxCurve(value); }
     }
 
-    private ColorVO _startColorVO = new ColorVO();
-    private ColorVO _endColorVO = new ColorVO();
+    private Color _startColorVO = new Color();
+    private Color _endColorVO = new Color();
 
-    public ColorVO StartColor
+    public Color StartColor
     {
         set
         {
             _startColorVO = value;
-            _main.startColor = new MinMaxGradient(_startColorVO.color, _endColorVO.color);
+            _main.startColor = new MinMaxGradient(_startColorVO, _endColorVO);
         }
     }
 
-    public ColorVO EndColor
+    public Color EndColor
     {
         set
         {
             _endColorVO = value;
-            _main.startColor = new MinMaxGradient(_startColorVO.color, _endColorVO.color);
+            _main.startColor = new MinMaxGradient(_startColorVO, _endColorVO);
         }
     }
 

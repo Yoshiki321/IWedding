@@ -6,7 +6,7 @@ using BuildManager;
 public class FlowerWallVO : ComponentVO
 {
     public string assetId = "";
-    public ColorVO color = new ColorVO();
+    public Color color = new Color();
     public bool visible = true;
     public XmlNode panelCode;
 
@@ -50,7 +50,7 @@ public class FlowerWallVO : ComponentVO
             code += "<FlowerWall";
             code += " assetId = " + GetPropertyString(assetId);
             code += " visible = " + GetBoolString(visible);
-            code += " color = " + color.ToCode();
+            code += " color = " + GetPropertyString(ColorUtils.ColorToHex(color));
             code += ">";
             code += panelCode.OuterXml;
             code += "</FlowerWall>";
@@ -62,7 +62,7 @@ public class FlowerWallVO : ComponentVO
             XmlNode code = value as XmlNode;
             assetId = code.Attributes["assetId"].Value;
             visible = code.Attributes["visible"].Value == "1";
-            color.SetCode(code.Attributes["color"].Value);
+            color = ColorUtils.HexToColor(code.Attributes["color"].Value);
             panelCode = code;
         }
     }

@@ -68,18 +68,18 @@ public class TubeLightComponent : SceneComponent
         //_tubeLight.m_ShadowPlanes = m_ShadowPlanes;
     }
 
-    private ColorVO _colorVO;
+    private Color _color;
 
-    public ColorVO Color
+    public Color Color
     {
         set
         {
-            _colorVO = value;
-            _tubeLight.m_Color = value.color;
-            _tubeLight.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", value.color);
+            _color = value;
+            _tubeLight.m_Color = value;
+            _tubeLight.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", value);
         }
 
-        get { return _colorVO; }
+        get { return _color; }
     }
 
     private float _brightness;

@@ -12,12 +12,15 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -925,10 +928,15 @@
     <Compile Include="Assets\Resources\Item\Light\TubeLight\TubeLight\Scripts\TubeLightShadowPlane.cs" />
     <Compile Include="Assets\Resources\Item\Particle\Sprinkle\SprinkleLine.cs" />
     <Compile Include="Assets\Resources\UI\CorePanel\ToolLine\DragableCard.cs" />
-    <Compile Include="Assets\Resources\UI\Currency\SelectColor\ColorCircle.cs" />
-    <Compile Include="Assets\Resources\UI\Currency\SelectColor\ColorManager.cs" />
-    <Compile Include="Assets\Resources\UI\Currency\SelectColor\ColorPanel.cs" />
-    <Compile Include="Assets\Resources\UI\Currency\SelectColor\ColorRGB.cs" />
+    <Compile Include="Assets\Resources\UI\Currency\ColorPicker\ColoredTape.cs" />
+    <Compile Include="Assets\Resources\UI\Currency\ColorPicker\ColorPalette.cs" />
+    <Compile Include="Assets\Resources\UI\Currency\ColorPicker\ColorPicker.cs" />
+    <Compile Include="Assets\Resources\UI\Currency\ColorPicker\Mesh\ColorNonius.cs" />
+    <Compile Include="Assets\Resources\UI\Currency\ColorPicker\Mesh\ImageMesh.cs" />
+    <Compile Include="Assets\Resources\UI\Currency\ColorPicker\Mesh\MainColorTape.cs" />
+    <Compile Include="Assets\Resources\UI\Currency\ColorPicker\Mesh\MultiColoredTape.cs" />
+    <Compile Include="Assets\Resources\UI\Currency\ColorPicker\Mesh\SliderHandler.cs" />
+    <Compile Include="Assets\Resources\UI\Currency\ColorPicker\Mesh\SuckerImage.cs" />
     <Compile Include="Assets\RotateTest.cs" />
     <Compile Include="Assets\Script\Camera\CameraFlags.cs" />
     <Compile Include="Assets\Script\Camera\CameraFlyController.cs" />
@@ -1022,7 +1030,6 @@
     <Compile Include="Assets\Script\Model\VO\BuildVO.cs" />
     <Compile Include="Assets\Script\Model\VO\CameraVO.cs" />
     <Compile Include="Assets\Script\Model\VO\CodeVO.cs" />
-    <Compile Include="Assets\Script\Model\VO\ColorVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\BallLampVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\BubbleVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\CollageVO.cs" />
@@ -1217,6 +1224,7 @@
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\UI\DropdownUI.cs" />
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\UI\InputFieldUI.cs" />
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\UI\SliderUI.cs" />
+    <Compile Include="Assets\Script\View\Panel\ComponentPanel\UI\TextureUI.cs" />
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\UI\TitleButtonUI.cs" />
     <Compile Include="Assets\Script\View\Panel\ComponentPanel\UI\TransformUI.cs" />
     <Compile Include="Assets\Script\View\Panel\CorePanel\CorePanel.cs" />

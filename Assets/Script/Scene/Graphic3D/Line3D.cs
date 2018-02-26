@@ -402,8 +402,8 @@ namespace Build3D
 
         public void UpdateCollage()
         {
-            _alongPlane.SetCollage(_collageStruct.id as string);
-            _inversePlane.SetCollage(_collageStruct.id as string);
+            _alongPlane.SetCollage(_collageStruct);
+            _inversePlane.SetCollage(_collageStruct);
 
             _fromPlane.SetCollage("1002");
             _fromPlane1.SetCollage("1002");

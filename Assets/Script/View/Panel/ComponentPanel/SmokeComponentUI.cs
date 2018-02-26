@@ -34,37 +34,35 @@ public class SmokeComponentUI : BaseComponentUI
         endColorBtn.onClick.AddListener(EndColorClickHandle);
     }
 
-    private ColorVO _startColor;
-    private ColorVO _endColor;
+    private Color _startColor;
+    private Color _endColor;
 
     private void StartColorClickHandle()
     {
         SelectColorPanel sp = UIManager.OpenPanel(Panel.SelectColorPanel, _startColor,
          startColorBtn.transform.position) as SelectColorPanel;
-        sp.getPos -= UpdateEndColor;
-        sp.getPos += UpdateStartColor;
+        sp.onPicker.AddListener(UpdateStartColor);
     }
 
-    private void UpdateStartColor(ColorVO color)
+    private void UpdateStartColor(Color color)
     {
         _startColor = color;
         UpdateComponent();
-        startColorImage.color = _startColor.color;
+        startColorImage.color = _startColor;
     }
 
     private void EndColorClickHandle()
     {
         SelectColorPanel sp = UIManager.OpenPanel(Panel.SelectColorPanel, _endColor,
          endColorBtn.transform.position) as SelectColorPanel;
-        sp.getPos -= UpdateStartColor;
-        sp.getPos += UpdateEndColor;
+        sp.onPicker.AddListener(UpdateEndColor);
     }
 
-    private void UpdateEndColor(ColorVO color)
+    private void UpdateEndColor(Color color)
     {
         _endColor = color;
         UpdateComponent();
-        endColorImage.color = _endColor.color;
+        endColorImage.color = _endColor;
     }
 
     private void SizeSliderHandle(float value)
@@ -113,10 +111,10 @@ public class SmokeComponentUI : BaseComponentUI
             speed.value = vo.speed;
 
             _startColor = vo.startColor;
-            startColorImage.color = _startColor.color;
+            startColorImage.color = _startColor;
 
             _endColor = vo.endColor;
-            endColorImage.color = _endColor.color;
+            endColorImage.color = _endColor;
         }
 
         _fillComponent = false;

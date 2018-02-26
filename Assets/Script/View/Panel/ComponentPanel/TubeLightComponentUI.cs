@@ -10,7 +10,7 @@ public class TubeLightComponentUI : BaseComponentUI
     private SliderUI rangeSlider;
     private SliderUI lengthSlider;
     private ButtonImageUI colorUI;
-    private ColorVO _color;
+    private Color _color;
 
     override public void Init()
     {
@@ -28,15 +28,15 @@ public class TubeLightComponentUI : BaseComponentUI
     {
         SelectColorPanel sp = UIManager.OpenPanel(Panel.SelectColorPanel, _color,
          colorUI.button.transform.position) as SelectColorPanel;
-        sp.getPos += UpdateColor;
+        sp.onPicker.AddListener(UpdateColor);
     }
 
-    private void UpdateColor(ColorVO color)
+    private void UpdateColor(Color color)
     {
         _color = color;
         foreach (TubeLightComponent tubelight in _tubelights) tubelight.Color = _color;
         UpdateComponent();
-        colorUI.image.color = _color.color;
+        colorUI.image.color = _color;
     }
 
     public override void UpdateComponent()
@@ -91,7 +91,7 @@ public class TubeLightComponentUI : BaseComponentUI
             brightnessSlider.value = vo.brightness;
 
             _color = vo.color;
-            colorUI.image.color = _color.color;
+            colorUI.image.color = _color;
         }
 
         _fillComponent = false;

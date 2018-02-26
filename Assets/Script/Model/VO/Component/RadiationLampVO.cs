@@ -8,7 +8,7 @@ public class RadiationLampVO : ComponentVO
     public float brightness = .5f;
     public float rotateSpeed = 2f;
     public float spacing = 30f;
-    public ColorVO color = new ColorVO();
+    public Color color = new Color();
 
     override public void FillFromObject(ComponentVO asset)
     {
@@ -49,7 +49,7 @@ public class RadiationLampVO : ComponentVO
             code += "<RadiationLamp";
             code += " brightness = " + GetPropertyString(brightness);
             code += " rotateSpeed = " + GetPropertyString(rotateSpeed);
-            code += " color = " + color.ToCode();
+            code += " color = " + GetPropertyString(ColorUtils.ColorToHex(color));
             code += "/>";
 
             return code;
@@ -59,7 +59,7 @@ public class RadiationLampVO : ComponentVO
             XmlNode code = value as XmlNode;
             brightness = float.Parse(code.Attributes["brightness"].Value);
             rotateSpeed = float.Parse(code.Attributes["rotateSpeed"].Value);
-            color.SetCode(code.Attributes["color"].Value);
+            color = ColorUtils.HexToColor(code.Attributes["color"].Value);
         }
     }
 }

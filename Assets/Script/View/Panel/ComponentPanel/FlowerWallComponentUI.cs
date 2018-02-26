@@ -17,7 +17,7 @@ public class FlowerWallComponentUI : BaseComponentUI
     private Button resetCBtn;
 
     private ButtonImageUI colorUI;
-    private ColorVO _color;
+    private Color _color;
 
     TitleButtonUI hideButton;
 
@@ -56,15 +56,15 @@ public class FlowerWallComponentUI : BaseComponentUI
     {
         SelectColorPanel sp = UIManager.OpenPanel(Panel.SelectColorPanel, _color,
          colorUI.button.transform.position) as SelectColorPanel;
-        sp.getPos += UpdateColor;
+        sp.onPicker.AddListener(UpdateColor);
     }
 
-    private void UpdateColor(ColorVO color)
+    private void UpdateColor(Color color)
     {
         _color = color;
         foreach (FlowerWallComponent flowerWall in _flowerWall) flowerWall.color = _color;
         UpdateComponent();
-        colorUI.image.color = _color.color;
+        colorUI.image.color = _color;
     }
 
     private void AddBtnClickHandle()
@@ -193,7 +193,7 @@ public class FlowerWallComponentUI : BaseComponentUI
             VisiblePanel(vo.visible);
 
             _color = vo.color;
-            colorUI.image.color = _color.color;
+            colorUI.image.color = _color;
         }
 
         _fillComponent = false;

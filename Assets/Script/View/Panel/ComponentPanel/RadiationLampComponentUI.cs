@@ -11,7 +11,7 @@ public class RadiationLampComponentUI : BaseComponentUI
     private SliderUI rotateSpeed;
 
     private ButtonImageUI colorUI;
-    private ColorVO _color;
+    private Color _color;
 
     override public void Init()
     {
@@ -29,15 +29,15 @@ public class RadiationLampComponentUI : BaseComponentUI
     { 
         SelectColorPanel sp = UIManager.OpenPanel(Panel.SelectColorPanel, _color,
          colorUI.button.transform.position) as SelectColorPanel;
-        sp.getPos += UpdateColor;
+        sp.onPicker.AddListener(UpdateColor);
     }
 
-    private void UpdateColor(ColorVO color)
+    private void UpdateColor(Color color)
     {
         _color = color;
         foreach (RadiationLampComponent radiationLamp in _radiationLamps) radiationLamp.color = _color;
         UpdateComponent();
-        colorUI.image.color = _color.color;
+        colorUI.image.color = _color;
     }
 
     public override void UpdateComponent()
@@ -75,7 +75,7 @@ public class RadiationLampComponentUI : BaseComponentUI
             spacing.value = rvo.spacing;
 
             _color = rvo.color;
-            colorUI.image.color = _color.color;
+            colorUI.image.color = _color;
         }
 
         _fillComponent = false;

@@ -6,7 +6,7 @@ public class PointLightVO : ComponentVO
 {
     public float range = 10f;
     public float intensity = 1f;
-    public ColorVO color = new ColorVO();
+    public Color color = Color.white;
 
     override public void FillFromObject(ComponentVO asset)
     {
@@ -45,7 +45,7 @@ public class PointLightVO : ComponentVO
             code += "<PointLight";
             code += " range = " + GetPropertyString(range);
             code += " intensity = " + GetPropertyString(intensity);
-            code += " color = " + color.ToCode();
+            code += " color = " + GetPropertyString(ColorUtils.ColorToHex(color));
             code += "/>";
 
             return code;
@@ -55,7 +55,7 @@ public class PointLightVO : ComponentVO
             XmlNode code = value as XmlNode;
             range = float.Parse(code.Attributes["range"].Value);
             intensity = float.Parse(code.Attributes["intensity"].Value);
-            color.SetCode(code.Attributes["color"].Value);
+            color = ColorUtils.HexToColor(code.Attributes["color"].Value);
         }
     }
 }

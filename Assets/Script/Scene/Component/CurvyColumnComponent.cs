@@ -72,17 +72,17 @@ public class CurvyColumnComponent : SceneComponent
         }
     }
 
-    private ColorVO _colorVO;
+    private Color _color;
 
-    public ColorVO color
+    public Color color
     {
         set
         {
-            _colorVO = value;
-            if (curvyColumn) curvyColumn.color = _colorVO.color;
+            _color = value;
+            if (curvyColumn) curvyColumn.color = _color;
         }
 
-        get { return _colorVO; }
+        get { return _color; }
     }
 
     private CurvyColumnVO _vo;

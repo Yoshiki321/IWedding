@@ -24,7 +24,7 @@ public class CollageVO : ComponentVO
         return null;
     }
 
-    public CollageStruct SetCollage(string name, string tag, object id)
+    public CollageStruct SetCollage(string name, string tag, object id, Color color = new Color())
     {
         CollageStruct c = HasCollage(tag);
         if (c != null)
@@ -33,7 +33,13 @@ public class CollageVO : ComponentVO
             c.name = name;
             return c;
         }
-        c = new CollageStruct(name, tag, id);
+
+        c = new CollageStruct();
+        c.name = name;
+        c.tag = tag;
+        c.id = id;
+        c.color = color;
+
         collages.Add(c);
         return c;
     }
@@ -95,9 +101,16 @@ public class CollageVO : ComponentVO
         }
         for (int i = 0; i < collages.Count; i++)
         {
-            if (collages[i].name != vo.collages[i].name) return false;
-            if (collages[i].tag != vo.collages[i].tag) return false;
-            if (collages[i].id != vo.collages[i].id) return false;
+            if (collages[i].name != vo.collages[i].name ||
+                collages[i].tag != vo.collages[i].tag ||
+                collages[i].id != vo.collages[i].id ||
+                collages[i].color != vo.collages[i].color ||
+                collages[i].tilingX != vo.collages[i].tilingX ||
+                collages[i].tilingY != vo.collages[i].tilingY ||
+                collages[i].offestX != vo.collages[i].offestX ||
+                collages[i].offestY != vo.collages[i].offestY
+                )
+                return false;
         }
         return true;
     }
@@ -107,33 +120,30 @@ public class CollageVO : ComponentVO
         get
         {
             string code = "";
-            code += "<Collage";
-            code += " struct = ";
-            code += '"';
+            code += "<Collage>";
             for (int i = 0; i < collages.Count; i++)
             {
-                code += collages[i].ToCode() + ((i == collages.Count - 1) ? "" : ";");
+                code += "   " + collages[i].ToCode() + ((i == collages.Count - 1) ? "" : "\n");
             }
-            code += '"';
-            code += "/>";
-
+            code += "</Collage>";
             return code;
         }
         set
         {
             XmlNode code = value as XmlNode;
-            string s = code.Attributes["struct"].Value;
-            char[] separator = { ';' };
-            string[] arr = s.Split(separator);
+            XmlNodeList list = code.SelectNodes("CollageStruct");
 
-            foreach (string sc in arr)
+            foreach(XmlNode node in list)
             {
-                if (sc != "")
-                {
-                    char[] separator1 = { ',' };
-                    string[] arr1 = sc.Split(separator1);
-                    SetCollage(arr1[0], arr1[1], arr1[2]);
-                }
+                SetCollage(
+                    node.Attributes["name"].Value, 
+                    node.Attributes["tag"].Value, 
+                    node.Attributes["id"].Value, 
+                    ColorUtils.HexToColor(node.Attributes["color"].Value));
+                //node.Attributes["tilingX"].Value;
+                //node.Attributes["tilingY"].Value;
+                //node.Attributes["offestX"].Value;
+                //node.Attributes["offestY"].Value;
             }
         }
     }
@@ -144,30 +154,45 @@ public class CollageStruct
     public string name;
     public string tag;
     public object id;
+    public Color color;
     public float tilingX;
     public float tilingY;
     public float offestX;
     public float offestY;
 
-    public CollageStruct(string name, string url, object id, Vector2 tiling = new Vector2(), Vector2 offest = new Vector2())
-    {
-        this.name = name;
-        this.tag = url;
-        this.id = id;
-        tilingX = tiling.x;
-        tilingY = tiling.y;
-        offestX = offest.x;
-        offestY = offest.y;
-    }
-
     public CollageStruct Clone()
     {
-        return new CollageStruct(name, tag, id, new Vector2(tilingX, tilingY), new Vector2(offestX, offestY));
+        CollageStruct c = new CollageStruct();
+        c.name = name;
+        c.tag = tag;
+        c.id = id;
+        c.color = color;
+        c.tilingX = tilingX;
+        c.tilingY = tilingY;
+        c.offestX = offestX;
+        c.offestY = offestY;
+        return c;
     }
 
     public string ToCode()
     {
-        return name + "," + tag + "," + id + "," + tilingX + "," + tilingY + "," + offestX + "," + offestY;
+        string code = "";
+        code += "<CollageStruct";
+        code += " name = " + GetPropertyString(name);
+        code += " tag = " + GetPropertyString(tag);
+        code += " id = " + GetPropertyString(id);
+        code += " tilingX = " + GetPropertyString(tilingX);
+        code += " tilingY = " + GetPropertyString(tilingY);
+        code += " offestX = " + GetPropertyString(offestX);
+        code += " offestY = " + GetPropertyString(offestY);
+        code += " color = " + GetPropertyString(ColorUtils.ColorToHex(color));
+        code += "/>";
+        return code;
+    }
+
+    protected string GetPropertyString(object value)
+    {
+        return '"' + value.ToString() + '"';
     }
 }
 

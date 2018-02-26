@@ -130,27 +130,27 @@ public class SpotlightComponent : SceneComponent
         get { return spot.transform.localRotation.eulerAngles.x; }
     }
 
-    private ColorVO _colorVO;
+    private Color _color;
 
-    public ColorVO Color
+    public Color Color
     {
         set
         {
-            _colorVO = value;
-            _light.color = value.color;
-            spot.GetComponent<Light>().color = value.color;
+            _color = value;
+            _light.color = value;
+            spot.GetComponent<Light>().color = value;
 
             _lightBeam.GenerateGeometry();
 
             Color c = new Color();
-            c.r = value.color.r * .7f;
-            c.g = value.color.g * .7f;
-            c.b = value.color.b * .7f;
+            c.r = value.r * .7f;
+            c.g = value.g * .7f;
+            c.b = value.b * .7f;
             c.a = .7f;
             glass.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", c);
         }
 
-        get { return _colorVO; }
+        get { return _color; }
     }
 
     private int _rotateType;

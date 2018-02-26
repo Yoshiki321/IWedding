@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class CurvyColumnVO : ComponentVO
 {
     public List<Vector3> points;
-    public ColorVO color = new ColorVO(); 
+    public Color color = new Color(); 
     public float radius = 1.5f;
     public bool enabled = false;
 
@@ -45,7 +45,7 @@ public class CurvyColumnVO : ComponentVO
         {
             string code = "";
             code += "<CurvyColumn";
-            code += " color = " + color.ToCode();
+            code += " color = " + GetPropertyString(ColorUtils.ColorToHex(color));
             code += " radius = " + GetPropertyString(radius);
             code += " enabled = " + GetBoolString(enabled);
             code += "/>";
@@ -55,7 +55,7 @@ public class CurvyColumnVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            color.SetCode(code.Attributes["color"].Value);
+            color = ColorUtils.HexToColor(code.Attributes["color"].Value);
             radius = float.Parse(code.Attributes["radius"].Value);
             enabled = code.Attributes["enabled"].Value == "1";
         }

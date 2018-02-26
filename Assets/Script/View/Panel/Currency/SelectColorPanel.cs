@@ -4,42 +4,29 @@ using UnityEngine;
 
 public class SelectColorPanel : BaseWindow
 {
-    public delegate void RetureTextuePosition(ColorVO pos);
-    public event RetureTextuePosition getPos;
-
-    ColorManager colorManager;
+    ColorPicker colorPicker;
 
     public override void Init()
     {
         base.Init();
-
-        colorManager = GetComponentInChildren<ColorManager>();
-
-        colorManager.GetColor(GetColor);
-    }
-
-    void OnEnabled()
-    {
-        colorManager.GetColor(GetColor);
-    }
-
-    void GetColor(ColorVO cvo)
-    {
-        getPos?.Invoke(cvo);
+        colorPicker = GetComponentInChildren<ColorPicker>();
     }
 
     override public void SetContent(object value)
     {
-        colorManager.SetColor(value as ColorVO);
+        if(value == null)return;
+        Color((Color)value);
     }
 
-    void Update()
+    public void Color(Color value)
     {
-
+        if (value == null) return;
+        colorPicker.SetColor(value);
     }
 
-    protected override void Close()
+    public ColorPicker.ColorPickerEvent onPicker
     {
-        getPos = null;
+        get { return colorPicker.onPicker; }
+        set { colorPicker.onPicker = value; }
     }
 }

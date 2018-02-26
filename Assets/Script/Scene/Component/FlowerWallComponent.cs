@@ -62,11 +62,11 @@ public class FlowerWallComponent : SceneComponent
 
             if (value)
             {
-                _color.color.a = 1;
+                _color.a = 1;
             }
             else
             {
-                _color.color.a = 0;
+                _color.a = 0;
             }
 
             drawPlane.SetMaterial("", "", _color);
@@ -74,14 +74,14 @@ public class FlowerWallComponent : SceneComponent
         get { return _visible; }
     }
 
-    ColorVO _color = new ColorVO();
+    Color _color = new Color();
 
-    public ColorVO color
+    public Color color
     {
         set
         {
             _color = value;
-            _color.color.a = _visible ? 1 : 0;
+            _color.a = _visible ? 1 : 0;
             drawPlane.SetMaterial("", "", _color);
         }
     }

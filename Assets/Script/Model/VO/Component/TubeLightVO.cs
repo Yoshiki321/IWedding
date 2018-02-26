@@ -7,7 +7,7 @@ public class TubeLightVO : ComponentVO
     public float brightness = 1.2f;
     public float range = 7;
     public float length = 1.4f;
-    public ColorVO color = new ColorVO();
+    public Color color = new Color();
 
     override public void FillFromObject(ComponentVO asset)
     {
@@ -49,7 +49,7 @@ public class TubeLightVO : ComponentVO
             code += " brightness = " + GetPropertyString(brightness);
             code += " range = " + GetPropertyString(range);
             code += " length = " + GetPropertyString(length);
-            code += " color = " + color.ToCode();
+            code += " color = " + GetPropertyString(ColorUtils.ColorToHex(color));
             code += "/>";
 
             return code;
@@ -60,7 +60,7 @@ public class TubeLightVO : ComponentVO
             brightness = float.Parse(code.Attributes["brightness"].Value);
             range = float.Parse(code.Attributes["range"].Value);
             length = float.Parse(code.Attributes["length"].Value);
-            color.SetCode(code.Attributes["color"].Value);
+            color = ColorUtils.HexToColor(code.Attributes["color"].Value);
         }
     }
 }
