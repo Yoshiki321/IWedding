@@ -36,10 +36,15 @@ public class SceneToolbarPanel : BasePanel
     private int LeftSelectedNum = 1;
     private List<GameObject> toolBtnList = new List<GameObject>();
     private List<GameObject> viewChangeList = new List<GameObject>();
+    private GameObject hideBtn;
+    private bool hideflag;
 
     private void Awake()
     {
-		tooLineAddItemBtn = transform.Find("ToolLineBg").Find("ToolLineAddItem").gameObject;
+        hideflag = true;
+        hideBtn = transform.Find("ToolLineBg").Find("hideBtn").gameObject;
+        AddEventClick(hideBtn);
+        tooLineAddItemBtn = transform.Find("ToolLineBg").Find("ToolLineAddItem").gameObject;
 		tooLineAddHomeBtn = transform.Find("ToolLineBg").Find("ToolLineAddHome").gameObject;
         viewChangeContent = transform.Find("ToolLineBg").Find("ToolLineVRBtn").Find("SelectedContent").gameObject;
         //toolLineUndoBtn = transform.Find("ToolLineBg").Find("ToolLineUndoBtn").gameObject;
@@ -179,6 +184,25 @@ public class SceneToolbarPanel : BasePanel
     protected override void OnClick(GameObject obj)
     {
         viewChangeContent.SetActive(false);
+        if (obj == hideBtn)
+        {
+            if (hideflag)
+            {
+                hideflag = false;
+                UIManager.CloseUI(UI.ItemToolPanel);
+                UIManager.CloseUI(UI.ChooseSurfacePanel);
+                hideBtn.transform.Find("Image").GetComponent<Image>().overrideSprite = Resources.Load("UI/ItemTool/right", typeof(Sprite)) as Sprite;
+                hideBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(25F, hideBtn.GetComponent<RectTransform>().anchoredPosition.y);
+            }
+            else
+            {
+                UIManager.OpenUI(UI.ChooseSurfacePanel);
+                UIManager.OpenUI(UI.ItemToolPanel);
+                hideflag = true;
+                hideBtn.transform.Find("Image").GetComponent<Image>().overrideSprite = Resources.Load("UI/ItemTool/left", typeof(Sprite)) as Sprite;
+                hideBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(374f, hideBtn.GetComponent<RectTransform>().anchoredPosition.y);
+            }
+        }
         if (obj == tooLineAddItemBtn) {
             SelectItemBtn();
             transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.ADDITEM));

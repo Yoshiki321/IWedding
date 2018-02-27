@@ -98,6 +98,7 @@ namespace BuildManager
         private void InitConfig()
         {
             new ItemManager();
+            new HotelManager();
             new SurfaceManager();
             new TexturesManager();
             new CookieManager();

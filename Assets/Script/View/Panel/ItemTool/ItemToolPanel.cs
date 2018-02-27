@@ -28,11 +28,14 @@ public class ItemToolPanel : BasePanel
     //定义所有的类别Btn容器;
     private int mainNum = 1;
     private int secNum = 0;
+  
+
     private void Awake()
     {
         //初始化两个大分类按钮
         _itemObjectBtn = GetUI("ItemObjectBtn");
         _itemEffectBtn = GetUI("ItemEffectBtn");
+        
         AddEventClick(_itemObjectBtn);
         AddEventClick(_itemEffectBtn);
         AddEventDown(_itemObjectBtn);
@@ -112,6 +115,7 @@ public class ItemToolPanel : BasePanel
     }
     protected override void OnEnter(GameObject obj)
     {
+       
         if (obj == _itemObjectBtn)
         {
             _itemObjectBtn.transform.Find("bgImg").GetComponent<Image>().color = new Color(26f / 255F, 26f / 255F, 26f / 255F, 1);
@@ -162,6 +166,7 @@ public class ItemToolPanel : BasePanel
 
     protected override void OnClick(GameObject obj)
     {
+        
         if (obj == _itemObjectBtn)
         {
             mainNum = 1;
@@ -170,7 +175,6 @@ public class ItemToolPanel : BasePanel
             TpyeBtnShowHandle(1);
             SetButtonColor(_itemObjectBtn);
             IntButtonColor(_itemEffectBtn);
-
         }
         if (obj == _itemEffectBtn)
         {
