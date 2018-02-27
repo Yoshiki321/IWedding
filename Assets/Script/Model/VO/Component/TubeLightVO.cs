@@ -7,7 +7,7 @@ public class TubeLightVO : ComponentVO
     public float brightness = 1.2f;
     public float range = 7;
     public float length = 1.4f;
-    public Color color = new Color();
+    public Color color = Color.white;
 
     override public void FillFromObject(ComponentVO asset)
     {

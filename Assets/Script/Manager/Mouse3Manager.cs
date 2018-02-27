@@ -269,8 +269,7 @@ public class Mouse3Manager : EventDispatcher
         }
 
         if (Input.GetMouseButtonDown(0) && selectionItemVO.Count == 1 &&
-            (Input.mousePosition.x > 350 && Input.mousePosition.x < 1520) &&
-             (Input.mousePosition.y < 1000))
+            SceneManager.InEditorArea(Input.mousePosition))
         {
             count = 0;
             canDouble = true;

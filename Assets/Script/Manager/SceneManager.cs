@@ -7,7 +7,7 @@ namespace BuildManager
 {
     public class SceneManager : MonoBehaviour
     {
-        public static string Version = "1.0.2";
+        public static string Version = "1.0.3";
 
         public static string ProjectName;
         public static string ProjectURL;
@@ -367,6 +367,17 @@ namespace BuildManager
                 }
             }
             get { return _visibleEditor; }
+        }
+
+
+        public static bool InEditorArea(Vector2 v)
+        {
+            if ((Input.mousePosition.x > 350 && Input.mousePosition.x < 1520) &&
+             (Input.mousePosition.y < 1000))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

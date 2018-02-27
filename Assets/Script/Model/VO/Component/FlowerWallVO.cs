@@ -6,7 +6,7 @@ using BuildManager;
 public class FlowerWallVO : ComponentVO
 {
     public string assetId = "";
-    public Color color = new Color();
+    public Color color = Color.white;
     public bool visible = true;
     public XmlNode panelCode;
 

@@ -115,8 +115,7 @@ public class BrushManager
 
         ClearBox();
 
-        if ((Input.mousePosition.x > 350 && Input.mousePosition.x < 1520) &&
-             (Input.mousePosition.y < 1000))
+        if (SceneManager.InEditorArea(Input.mousePosition))
         {
             Ray ray = SceneManager.Instance.Camera3D.ScreenPointToRay(Input.mousePosition);
             LayerMask layer = 1 << LayerMask.NameToLayer("Build3D");

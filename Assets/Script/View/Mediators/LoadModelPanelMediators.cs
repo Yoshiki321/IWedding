@@ -29,6 +29,8 @@ public class LoadModelPanelMediators : Mediators
     {
         FileEvent fe = e as FileEvent;
         _model = fe.obj as GameObject;
+
+        (panel as LoadModelPanel).SetModel(_model);
     }
 
     private void LoadTextureComplete(EventObject e)

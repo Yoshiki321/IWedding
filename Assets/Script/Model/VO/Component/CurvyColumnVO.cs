@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class CurvyColumnVO : ComponentVO
 {
     public List<Vector3> points;
-    public Color color = new Color(); 
+    public Color color = Color.white; 
     public float radius = 1.5f;
     public bool enabled = false;
 

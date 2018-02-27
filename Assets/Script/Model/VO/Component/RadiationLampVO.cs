@@ -8,7 +8,7 @@ public class RadiationLampVO : ComponentVO
     public float brightness = .5f;
     public float rotateSpeed = 2f;
     public float spacing = 30f;
-    public Color color = new Color();
+    public Color color = Color.white;
 
     override public void FillFromObject(ComponentVO asset)
     {

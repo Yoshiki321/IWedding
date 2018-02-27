@@ -9,7 +9,7 @@ public class SpotlightVO : ComponentVO
     public float lightBrightness = 1f;
     public float spotAngle = 15f;
     public float angle;
-    public Color color = new Color();
+    public Color color = Color.white;
     public string cookieId = "";
 
     public float fromX;

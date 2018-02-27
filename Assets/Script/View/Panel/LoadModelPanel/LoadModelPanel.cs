@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class LoadModelPanel : BasePanel
 {
-	private GameObject _modelUrlBtn;
-	private InputField _modelUrlText;
+    private GameObject _modelUrlBtn;
+    private InputField _modelUrlText;
     private GameObject _albedoUrlBtn;
     private InputField _albedoUrlText;
     private GameObject _createBtn;
     private GameObject _exitBtn;
+    private GameObject _modelLayer;
 
     void Start()
-	{
+    {
         _modelUrlBtn = GetUI("ModelUrlBtn");
         _albedoUrlBtn = GetUI("AlbedoUrlBtn");
         _createBtn = GetUI("CreateBtn");
@@ -21,14 +22,16 @@ public class LoadModelPanel : BasePanel
         _modelUrlText = GetUI("ModelUrlText").GetComponent<InputField>();
         _albedoUrlText = GetUI("AlbedoUrlText").GetComponent<InputField>();
 
-        AddEventClick(_modelUrlBtn);
-		AddEventClick(_albedoUrlBtn);
-		AddEventClick(_createBtn);
-		AddEventClick(_exitBtn);
-	}
+        _modelLayer = GetUI("ModelLayer");
 
-	protected override void OnClick(GameObject obj)
-	{
+        AddEventClick(_modelUrlBtn);
+        AddEventClick(_albedoUrlBtn);
+        AddEventClick(_createBtn);
+        AddEventClick(_exitBtn);
+    }
+
+    protected override void OnClick(GameObject obj)
+    {
         if (obj == _modelUrlBtn)
         {
             dispatchEvent(new LoadModelPanelEvent(LoadModelPanelEvent.LOAD_MODEL));
@@ -47,7 +50,13 @@ public class LoadModelPanel : BasePanel
         }
     }
 
-	void Update()
-	{
-	}
+    public void SetModel(GameObject obj)
+    {
+        obj.transform.parent = _modelLayer.transform;
+        obj.transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    void Update()
+    {
+    }
 }

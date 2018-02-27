@@ -6,8 +6,8 @@ public class SmokeVO : ComponentVO
 {
     public float size = 1.5f;
     public float speed = 0f;
-    public Color startColor = new Color();
-    public Color endColor = new Color();
+    public Color startColor = Color.white;
+    public Color endColor = Color.white;
 
     override public void FillFromObject(ComponentVO asset)
     {

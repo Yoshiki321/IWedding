@@ -94,7 +94,7 @@ public class CurvyColumnComponent : SceneComponent
             _vo = value.GetComponentVO<CurvyColumnVO>();
             color = _vo.color;
             radius = _vo.radius;
-            enabled = _vo.enabled;
+            enabledCurvyColumn = _vo.enabled;
         }
         get { return _vo; }
     }

@@ -29,7 +29,9 @@ public class CurvyColumnComponentUI : BaseComponentUI
 
         foreach (CurvyColumnComponent curvyColumn in _curvyColumns) curvyColumn.enabledCurvyColumn = value;
 
+        UpdateComponent();
         UpdateHeight();
+        DispatchUpdate();
     }
 
     private void ColorClickHandle(ButtonImageUI ui)
@@ -77,7 +79,6 @@ public class CurvyColumnComponentUI : BaseComponentUI
         {
             CurvyColumnVO vo = avo as CurvyColumnVO;
             radius.value = vo.radius;
-            toggle.isOn = vo.enabled;
             EnabledCurvyColumnHandle(toggle.isOn);
             _color = vo.color;
             colorUI.image.color = _color;

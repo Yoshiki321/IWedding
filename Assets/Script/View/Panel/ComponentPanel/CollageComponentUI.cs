@@ -100,7 +100,7 @@ public class CollageComponentUI : BaseComponentUI
         _currentValue = ui.name;
 
         SelectColorPanel sp = UIManager.OpenPanel(Panel.SelectColorPanel, null,
-        ui.color.transform.position) as SelectColorPanel;
+        ui.color.transform.position - new Vector3(237, 477/2)) as SelectColorPanel;
         sp.onPicker.AddListener(UpdateColor);
 
         foreach (CollageStruct cs in (_assets[0] as CollageVO).collages)

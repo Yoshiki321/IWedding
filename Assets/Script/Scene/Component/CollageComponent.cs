@@ -44,7 +44,7 @@ public class CollageComponent : SceneComponent
             vo.ResetCollage();
             foreach (Renderer r in _renderers)
             {
-                vo.SetCollage(r.gameObject.tag, r.gameObject.tag, "");
+                vo.SetCollage(r.gameObject.tag, r.gameObject.tag, "", Color.white);
             }
         }
 
