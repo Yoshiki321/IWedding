@@ -88,7 +88,7 @@ public class ItemVO : ObjectVO
             if (xml != null) AddComponentVO<SmokeVO>().Code = xml;
 
             xml = code.SelectSingleNode("Collage");
-            if (xml != null) AddComponentVO<CollageVO>().Code    = xml;
+            if (xml != null) AddComponentVO<CollageVO>().Code = xml;
 
             xml = code.SelectSingleNode("PointLight");
             if (xml != null) AddComponentVO<PointLightVO>().Code = xml;
@@ -101,12 +101,9 @@ public class ItemVO : ObjectVO
 
             xml = code.SelectSingleNode("FlowerWall");
             if (xml != null) AddComponentVO<FlowerWallVO>().Code = xml;
-            
+
             xml = code.SelectSingleNode("CurvyColumn");
             if (xml != null) AddComponentVO<CurvyColumnVO>().Code = xml;
-
-            xml = code.SelectSingleNode("Sprinkle");
-            if (xml != null) AddComponentVO<SprinkleVO>().Code = xml;
         }
     }
 

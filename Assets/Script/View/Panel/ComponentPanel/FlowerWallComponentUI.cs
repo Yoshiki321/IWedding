@@ -160,7 +160,6 @@ public class FlowerWallComponentUI : BaseComponentUI
         if (Input.GetKeyDown(KeyCode.E))
         {
             Fill();
-            DispatchUpdate();
         }
 
         if (Input.GetKeyDown(KeyCode.R))

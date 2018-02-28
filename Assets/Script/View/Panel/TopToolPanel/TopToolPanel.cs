@@ -299,10 +299,12 @@ public class TopToolPanel : BasePanel
     protected override void OnEnter(GameObject obj)
     {
         SetButtonBgColor(obj);
+        print(obj);
     }
     protected override void OnExit(GameObject obj)
     {
         IntButtonBgColor(obj);
+        print(obj);
     }
 
     public  void OpenFilePanel() {

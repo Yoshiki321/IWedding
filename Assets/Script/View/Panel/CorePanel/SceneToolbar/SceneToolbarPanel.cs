@@ -199,24 +199,31 @@ public class SceneToolbarPanel : BasePanel
                 hideflag = false;
                 UIManager.CloseUI(UI.ItemToolPanel);
                 UIManager.CloseUI(UI.ChooseSurfacePanel);
+                tooLineAddItemBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 1);
+                tooLineAddHomeBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 1);
                 hideBtn.transform.Find("Image").GetComponent<Image>().overrideSprite = Resources.Load("UI/ItemTool/right", typeof(Sprite)) as Sprite;
-                hideBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(25F, hideBtn.GetComponent<RectTransform>().anchoredPosition.y);
+                hideBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(15F, hideBtn.GetComponent<RectTransform>().anchoredPosition.y);
             }
             else
             {
-                UIManager.OpenUI(UI.ChooseSurfacePanel);
+                tooLineAddItemBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 1);
+                tooLineAddHomeBtn.transform.Find("Image").GetComponent<Image>().color = new Color(40F / 255F, 41F / 255F, 43F / 255F, 0);
                 UIManager.OpenUI(UI.ItemToolPanel);
                 hideflag = true;
                 hideBtn.transform.Find("Image").GetComponent<Image>().overrideSprite = Resources.Load("UI/ItemTool/left", typeof(Sprite)) as Sprite;
-                hideBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(374f, hideBtn.GetComponent<RectTransform>().anchoredPosition.y);
+                hideBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(364f, hideBtn.GetComponent<RectTransform>().anchoredPosition.y);
             }
         }
         if (obj == tooLineAddItemBtn) {
             SelectItemBtn();
+            hideBtn.transform.Find("Image").GetComponent<Image>().overrideSprite = Resources.Load("UI/ItemTool/left", typeof(Sprite)) as Sprite;
+            hideBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(364f, hideBtn.GetComponent<RectTransform>().anchoredPosition.y);
             transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.ADDITEM));
         }
         if (obj == tooLineAddHomeBtn) {
             SelectHouseBtn();
+            hideBtn.transform.Find("Image").GetComponent<Image>().overrideSprite = Resources.Load("UI/ItemTool/left", typeof(Sprite)) as Sprite;
+            hideBtn.GetComponent<RectTransform>().anchoredPosition = new Vector2(364f, hideBtn.GetComponent<RectTransform>().anchoredPosition.y);
             transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.ADDHOME));
         }
         //if (obj == toolLineUndoBtn)
