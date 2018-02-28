@@ -237,26 +237,11 @@ public class FlowerWallComponent : SceneComponent
         set
         {
             _vo = value.GetComponentVO<FlowerWallVO>();
+            assetId = _vo.assetId;
+            visible = _vo.visible;
+            color = _vo.color;
             drawPlane.Code = _vo.panelCode;
-            testDrawPlane = true;
         }
         get { return _vo; }
-    }
-
-    private bool testDrawPlane;
-
-    void Update()
-    {
-        if (testDrawPlane)
-        {
-            testDrawPlane = false;
-
-            if (drawPlane.drawLines.Count > 0)
-            {
-                assetId = _vo.assetId;
-                visible = _vo.visible;
-                color = _vo.color;
-            }
-        }
     }
 }

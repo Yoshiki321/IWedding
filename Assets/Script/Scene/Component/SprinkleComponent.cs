@@ -28,8 +28,6 @@ public class SprinkleComponent : SceneComponent
         _box = new GameObject();
         _box.name = _item.transform.gameObject.name;
         _box.transform.parent = _item.parent;
-
-        InitCode();
     }
 
     private GameObject _box;
@@ -66,7 +64,7 @@ public class SprinkleComponent : SceneComponent
             flower.layer = gameObject.layer;
             foreach (Transform t in flower.transform)
             {
-                t.gameObject.layer = LayerMask.NameToLayer("ObjectSprite3D");
+                t.gameObject.layer = gameObject.layer;
             }
             Rigidbody rigid = flower.AddComponent<Rigidbody>();
             rigid.collisionDetectionMode = CollisionDetectionMode.Continuous;
@@ -74,57 +72,9 @@ public class SprinkleComponent : SceneComponent
 
             _sprinkleVO.list.Add(flower);
             Destroy(rigid, 3f);
-
-            CreateSprinkle(data.id, data.points[i], data.rotations[i]);
         }
 
         _sprinkleVO.SetData(data);
-    }
-
-    private void CreateSprinkle(string name, Vector3 pos, Vector3 rot)
-    {
-        GameObject flower = GameObject.Instantiate(_flower);
-        flower.transform.localPosition = pos;
-        flower.transform.localRotation = Quaternion.Euler(rot);
-        flower.transform.parent = _box.transform;
-        flower.layer = gameObject.layer;
-        foreach (Transform t in flower.transform)
-        {
-            t.gameObject.layer = gameObject.layer;
-        }
-        Rigidbody rigid = flower.AddComponent<Rigidbody>();
-        rigid.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        flower.name = name;
-
-        _sprinkleVO.list.Add(flower);
-        Destroy(rigid, 3f);
-    }
-
-    public void InitCode()
-    {
-        if (_sprinkleVO.sprinkleCode != "")
-        {
-            string[] list = _sprinkleVO.sprinkleCode.Split(';');
-
-            SprinkleData data = new SprinkleData();
-            foreach (string s in list)
-            {
-                if (s != "")
-                {
-                    string[] list1 = s.Split(',');
-                    data.id = list1[0];
-
-                    for (int i = 0; i < list1.Length; i++)
-                    {
-                        Vector3 pv = new Vector3(float.Parse(list1[1]), float.Parse(list1[2]), float.Parse(list1[3]));
-                        Vector3 rv = new Vector3(float.Parse(list1[4]), float.Parse(list1[5]), float.Parse(list1[6]));
-                        data.points.Add(pv);
-                        data.rotations.Add(rv);
-                    }
-                }
-            }
-            Sprinkle(data);
-        }
     }
 
     public void Clear()

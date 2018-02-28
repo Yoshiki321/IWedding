@@ -149,20 +149,17 @@ public class CollageVO : ComponentVO
             }
             else
             {
-                if (code.Attributes["struct"] != null)
-                {
-                    string s = code.Attributes["struct"].Value;
-                    char[] separator = { ';' };
-                    string[] arr = s.Split(separator);
+                string s = code.Attributes["struct"].Value;
+                char[] separator = { ';' };
+                string[] arr = s.Split(separator);
 
-                    foreach (string sc in arr)
+                foreach (string sc in arr)
+                {
+                    if (sc != "")
                     {
-                        if (sc != "")
-                        {
-                            char[] separator1 = { ',' };
-                            string[] arr1 = sc.Split(separator1);
-                            SetCollage(arr1[0], arr1[1], arr1[2], Color.white);
-                        }
+                        char[] separator1 = { ',' };
+                        string[] arr1 = sc.Split(separator1);
+                        SetCollage(arr1[0], arr1[1], arr1[2]);
                     }
                 }
             }
