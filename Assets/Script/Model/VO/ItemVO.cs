@@ -92,7 +92,7 @@ public class ItemVO : ObjectVO
 
             xml = code.SelectSingleNode("PointLight");
             if (xml != null) AddComponentVO<PointLightVO>().Code = xml;
-            
+
             xml = code.SelectSingleNode("Relation");
             if (xml != null) AddComponentVO<RelationVO>().Code = xml;
 
@@ -104,6 +104,9 @@ public class ItemVO : ObjectVO
 
             xml = code.SelectSingleNode("CurvyColumn");
             if (xml != null) AddComponentVO<CurvyColumnVO>().Code = xml;
+
+            xml = code.SelectSingleNode("Sprinkle");
+            if (xml != null) AddComponentVO<SprinkleVO>().Code = xml;
         }
     }
 

@@ -377,7 +377,7 @@ namespace BuildManager
                 {
                     Item3D item = data.object3 as Item3D;
                     PointLightComponent pointLightComponent = item.GetComponentInChildren<PointLightComponent>();
-                    if (pointLightComponent)
+                    if (pointLightComponent && pointLightComponent.gameObject.transform.Find("Sphere") != null)
                     {
                         pointLightComponent.gameObject.transform.Find("Sphere").gameObject.SetActive(value);
                     }
