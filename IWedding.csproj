@@ -12,15 +12,12 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -1004,6 +1001,7 @@
     <Compile Include="Assets\Script\Manager\Events\Mouse3ManagerEvent.cs" />
     <Compile Include="Assets\Script\Manager\Events\MouseManagerEvent.cs" />
     <Compile Include="Assets\Script\Manager\GroupManager.cs" />
+    <Compile Include="Assets\Script\Manager\HotelManager.cs" />
     <Compile Include="Assets\Script\Manager\ItemManager.cs" />
     <Compile Include="Assets\Script\Manager\KeyboardManager.cs" />
     <Compile Include="Assets\Script\Manager\Mouse3Manager.cs" />
@@ -1016,6 +1014,7 @@
     <Compile Include="Assets\Script\Manager\SurfaceManager.cs" />
     <Compile Include="Assets\Script\Manager\TexturesManager.cs" />
     <Compile Include="Assets\Script\Manager\UIManager.cs" />
+    <Compile Include="Assets\Script\Manager\VO\HotelData.cs" />
     <Compile Include="Assets\Script\Manager\VO\ItemData.cs" />
     <Compile Include="Assets\Script\Manager\VO\ItemMaterialData.cs" />
     <Compile Include="Assets\Script\Manager\VO\ShapeDrawData.cs" />
@@ -1411,6 +1410,7 @@
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\Resources\Config\DefaultLayout.xml" />
     <None Include="Assets\Resources\Config\EffectLampCookie.xml" />
+    <None Include="Assets\Resources\Config\Hotel\Hotel.xml" />
     <None Include="Assets\Resources\Config\Item\Item.xml" />
     <None Include="Assets\Resources\Config\Item\ItemList.xml" />
     <None Include="Assets\Resources\Config\Item\ItemNode.xml" />

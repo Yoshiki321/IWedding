@@ -29,6 +29,8 @@ public class CurvyColumnComponent : SceneComponent
                 }
             }
 
+            enabledCurvyColumn = _enabledCurvyColumn;
+
             return _curvyColumn;
         }
     }
@@ -56,7 +58,7 @@ public class CurvyColumnComponent : SceneComponent
         set
         {
             _enabledCurvyColumn = value;
-            _curvyColumn.layer.SetActive(value);
+            if(_curvyColumn) _curvyColumn.layer.SetActive(value);
         }
     }
 

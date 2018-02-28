@@ -50,6 +50,7 @@ public class SpotlightComponentUI : BaseComponentUI
         foreach (SpotlightComponent spotlight in _spotlights)
             spotlight.rotateType = value;
         UpdateRotateType();
+        DispatchUpdate();
     }
 
     private void UpdateRotateType()

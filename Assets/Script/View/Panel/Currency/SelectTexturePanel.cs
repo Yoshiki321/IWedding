@@ -63,7 +63,14 @@ public class SelectTexturePanel : BaseWindow
             GameObject obj = new GameObject();
             obj.transform.parent = _content;
             Image img = obj.AddComponent<Image>();
-            img.overrideSprite = Resources.Load(hashtable[id] as string, typeof(Sprite)) as Sprite;
+            if (id == "")
+            {
+                img.color = Color.white;
+            }
+            else
+            {
+                img.overrideSprite = Resources.Load(hashtable[id] as string, typeof(Sprite)) as Sprite;
+            }
             obj.name = id.ToString();
             AddEventClick(obj);
 

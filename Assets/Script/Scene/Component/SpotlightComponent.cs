@@ -186,6 +186,7 @@ public class SpotlightComponent : SceneComponent
         timeX = data.timeX;
         timeY = data.timeY;
         rotateType = data.rotateType;
+
         if (rotateType != 0)
         {
             StartRotate();
@@ -204,9 +205,7 @@ public class SpotlightComponent : SceneComponent
 
     public void StartRotate()
     {
-        StopRotate();
-
-        if (fromY != toY)
+        if (rotateType == 1)
         {
             gameObject.transform.localRotation = Quaternion.Euler(0,
                 fromY,
@@ -221,7 +220,7 @@ public class SpotlightComponent : SceneComponent
             iTween.RotateTo(gameObject, args);
         }
 
-        if (fromX != toX)
+        if (rotateType == 2)
         {
             spot.transform.localRotation = Quaternion.Euler(fromX,
                 spot.transform.localRotation.eulerAngles.y,

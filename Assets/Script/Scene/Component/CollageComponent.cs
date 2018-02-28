@@ -44,7 +44,7 @@ public class CollageComponent : SceneComponent
             vo.ResetCollage();
             foreach (Renderer r in _renderers)
             {
-                vo.SetCollage(r.gameObject.tag, r.gameObject.tag, "", Color.white);
+                vo.SetCollage(r.gameObject.tag, r.gameObject.tag, "", r.material.color);
             }
         }
 
@@ -84,24 +84,30 @@ public class CollageComponent : SceneComponent
                 }
                 if (vo.collages[i].id is string)
                 {
-                    if (vo.collages[i].id as string == "") continue;
-
                     foreach (Renderer r in _renderers)
                     {
                         if (r.gameObject.tag == vo.collages[i].tag)
                         {
                             string id = vo.collages[i].id as string;
-                            Material m = TexturesManager.CreateMaterials(vo.collages[i].id as string);
-                            m.color = vo.collages[i].color;
 
-                            SurfacePlane3D surfacePlane = r.gameObject.GetComponent<SurfacePlane3D>();
-                            if (surfacePlane)
+                            if (vo.collages[i].id as string == "")
                             {
-                                surfacePlane.SetMaterial(m);
+                                r.material.color = vo.collages[i].color;
                             }
                             else
                             {
-                                r.material = m;
+                                Material m = TexturesManager.CreateMaterials(vo.collages[i].id as string);
+                                m.color = vo.collages[i].color;
+
+                                SurfacePlane3D surfacePlane = r.gameObject.GetComponent<SurfacePlane3D>();
+                                if (surfacePlane)
+                                {
+                                    surfacePlane.SetMaterial(m);
+                                }
+                                else
+                                {
+                                    r.material = m;
+                                }
                             }
                         }
                     }

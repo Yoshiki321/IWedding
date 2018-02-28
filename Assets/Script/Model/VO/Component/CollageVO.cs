@@ -132,18 +132,36 @@ public class CollageVO : ComponentVO
         {
             XmlNode code = value as XmlNode;
             XmlNodeList list = code.SelectNodes("CollageStruct");
-
-            foreach(XmlNode node in list)
+            if (list.Count > 0)
             {
-                SetCollage(
-                    node.Attributes["name"].Value, 
-                    node.Attributes["tag"].Value, 
-                    node.Attributes["id"].Value, 
-                    ColorUtils.HexToColor(node.Attributes["color"].Value));
-                //node.Attributes["tilingX"].Value;
-                //node.Attributes["tilingY"].Value;
-                //node.Attributes["offestX"].Value;
-                //node.Attributes["offestY"].Value;
+                foreach (XmlNode node in list)
+                {
+                    SetCollage(
+                        node.Attributes["name"].Value,
+                        node.Attributes["tag"].Value,
+                        node.Attributes["id"].Value,
+                        ColorUtils.HexToColor(node.Attributes["color"].Value));
+                    //node.Attributes["tilingX"].Value;
+                    //node.Attributes["tilingY"].Value;
+                    //node.Attributes["offestX"].Value;
+                    //node.Attributes["offestY"].Value;
+                }
+            }
+            else
+            {
+                string s = code.Attributes["struct"].Value;
+                char[] separator = { ';' };
+                string[] arr = s.Split(separator);
+
+                foreach (string sc in arr)
+                {
+                    if (sc != "")
+                    {
+                        char[] separator1 = { ',' };
+                        string[] arr1 = sc.Split(separator1);
+                        SetCollage(arr1[0], arr1[1], arr1[2]);
+                    }
+                }
             }
         }
     }
