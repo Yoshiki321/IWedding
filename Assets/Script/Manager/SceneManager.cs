@@ -220,14 +220,26 @@ namespace BuildManager
             }
         }
 
-        public void ToggleBrushMode()
+        public void OpenBrushHandle()
+        {
+            brushManager.brushMode = BrushManager.BrushMode.Direct;
+        }
+
+        public void CloseBrushHandle()
+        {
+            brushManager.brushMode = BrushManager.BrushMode.Place;
+        }
+
+    public void ToggleBrushMode()
         {
             if (brushManager.brushMode == BrushManager.BrushMode.Place)
             {
+                TopToolPanel.Instance.CloseBrush();
                 brushManager.brushMode = BrushManager.BrushMode.Direct;
             }
             else
             {
+                TopToolPanel.Instance.OpenBrush();
                 brushManager.brushMode = BrushManager.BrushMode.Place;
             }
         }
@@ -251,6 +263,16 @@ namespace BuildManager
         public void ToggleLightHandle()
         {
             SetSceneLightActive(!activeSceneLight);
+        }
+
+        public void OpenLightHandle()
+        {
+            SetSceneLightActive(true);
+        }
+
+        public void CloseLightHandle()
+        {
+            SetSceneLightActive(false);
         }
 
         public void TakePhotoHandle()

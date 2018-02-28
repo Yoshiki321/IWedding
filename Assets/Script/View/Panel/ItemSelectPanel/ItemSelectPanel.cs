@@ -10,7 +10,7 @@ public class ItemSelectPanel : BasePanel
 
     private void Awake()
     {
-        _content = GetUI("View/ScrollImg/Content");
+        _content = GetUI("View/ScrollImg/Image/Content");
     }
 
     public void UpdateItem(List<ObjectData> lists)

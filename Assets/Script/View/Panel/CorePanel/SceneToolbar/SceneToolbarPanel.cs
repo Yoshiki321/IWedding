@@ -39,8 +39,16 @@ public class SceneToolbarPanel : BasePanel
     private GameObject hideBtn;
     private bool hideflag;
 
+    private static SceneToolbarPanel _Instance;
+
+    public static SceneToolbarPanel Instance
+    {
+        get { return _Instance; }
+    }
+
     private void Awake()
     {
+        _Instance = this;
         hideflag = true;
         hideBtn = transform.Find("ToolLineBg").Find("hideBtn").gameObject;
         AddEventClick(hideBtn);
@@ -350,15 +358,46 @@ public class SceneToolbarPanel : BasePanel
 		}
     }
 
+    public void IFBrushIsOpenedHandle()
+    {
+        toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "关 闭 笔 刷";
+    }
+
+    public void IFBrushIsClosedHandle() {
+        toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "开 启 笔 刷";
+    }
+
+    public void IFLightIsOpenedHandle()
+    {
+        toolLineLightBtn.transform.Find("Text").GetComponent<Text>().text = "关 闭 灯 光";
+    }
+
+    public void IFLightIsClosedHandle()
+    {
+        toolLineLightBtn.transform.Find("Text").GetComponent<Text>().text = "开 启 灯 光";
+    }
+
+    public void IFViewIs3DHandle()
+    {
+        toolLineChangeViewBtn.transform.Find("Text").GetComponent<Text>().text = "切 换 2 D";
+    }
+
+    public void IFViewIs2DHandle()
+    {
+        toolLineChangeViewBtn.transform.Find("Text").GetComponent<Text>().text = "切 换 3 D";
+    }
+
     private void ToggleLight()
     {
         if (lightFlag)
         {
+            TopToolPanel.Instance.OpenLight();
             lightFlag = false;
             toolLineLightBtn.transform.Find("Text").GetComponent<Text>().text = "开 启 灯 光";
         }
         else
         {
+            TopToolPanel.Instance.CloseLight();
             lightFlag = true;
             toolLineLightBtn.transform.Find("Text").GetComponent<Text>().text = "关 闭 灯 光";
         }

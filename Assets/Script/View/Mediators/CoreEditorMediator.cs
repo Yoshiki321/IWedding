@@ -47,6 +47,16 @@ public class CoreEditorMediator : Mediators
         SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.FOCUSON_SELECTION, Keyboard_FocusOnSelectionHandle);
         SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.OPEN_DRAWLINEPANEL, Keyboard_OpenDrawLinePanelHandle);
         SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.LOAD_COMBINATION, Keyboard_LoadCombinationHandle);
+        SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.OPEN_FILTERPANEL, Keyboard_OpenFilterPanelHandle);
+        SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.CHANGEVIEW_ONE, Keyboard_ChangeViewOneHandle);
+        SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.CHANGEVIEW_TWO, Keyboard_ChangeViewTwoHandle);
+        SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.CHANGEVIEW_THREE, Keyboard_ChangeViewThreeHandle);
+        SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.OPEN_BRUSH, Keyboard_OpenBrushHandle);
+        SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.CLOSE_BRUSH, Keyboard_CloseBrushHandle);
+        SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.CHANGEVIEW_3D, Keyboard_ChangeView3DHandle);
+        SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.CHANGEVIEW_2D, Keyboard_ChangeView2DHandle);
+        SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.OPEN_LIGHT, Keyboard_OpenLightHandle);
+        SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.CLOSE_LIGHT, Keyboard_CloseLightHandle);
 
         AddViewListener(ItemToolEvent.ITEMTOOL_LEFT, ItemToolLeftRotateHandle);
         AddViewListener(ItemToolEvent.ITEMTOOL_RIGHT, ItemToolRightRotateHandle);
@@ -71,12 +81,23 @@ public class CoreEditorMediator : Mediators
         AddContextListener(TopToolPanelEvent.DELETE, Keyboard_DeleteHandle);
         AddContextListener(TopToolPanelEvent.GROUP, Keyboard_CombinationHandle);
         AddContextListener(TopToolPanelEvent.REGROUP, Keyboard_CancelCombinationHandle);
-
         AddContextListener(TopToolPanelEvent.FILTER, SceneToolbarFilterHandle);
-
         AddContextListener(TopToolPanelEvent.ADDITEM, SceneToolbarAddItemHandle);
         AddContextListener(TopToolPanelEvent.ADDHOME, SceneToolbarAddHomeHandle);
 
+        AddContextListener(TopToolPanelEvent.OPENBRUSH, Keyboard_OpenBrushHandle);
+        AddContextListener(TopToolPanelEvent.CLOSEBRUSH, Keyboard_CloseBrushHandle);
+        AddContextListener(TopToolPanelEvent.ALIGN, SceneToolbarAlignHandle);
+        AddContextListener(TopToolPanelEvent.PHOTO, SceneToolbarFilterHandle);
+        AddContextListener(TopToolPanelEvent.VIEWONE, Keyboard_ChangeViewOneHandle);
+        AddContextListener(TopToolPanelEvent.VIEWTWO, Keyboard_ChangeViewTwoHandle);
+        AddContextListener(TopToolPanelEvent.VIEWTHREE, Keyboard_ChangeViewThreeHandle);
+        AddContextListener(TopToolPanelEvent.VIEWFOUR, Keyboard_ChangeView3DHandle);
+        AddContextListener(TopToolPanelEvent.VIEWFIVE, Keyboard_ChangeView2DHandle);
+        AddContextListener(TopToolPanelEvent.OPENLIGHT, Keyboard_OpenLightHandle);
+        AddContextListener(TopToolPanelEvent.CLOSELIGHT, Keyboard_CloseLightHandle);
+        AddContextListener(TopToolPanelEvent.OPENDRAWPANEL, openDrawLinePanelHandle);
+        AddContextListener(TopToolPanelEvent.OPENMODELPANEL, SceneLoadModelHandle);
         //顶部工具条
         AddViewListener(SceneToolbarEvent.UNDO, SceneToolbarUndoHandle);
         AddViewListener(SceneToolbarEvent.REDO, SceneToolbarRedoHandle);
@@ -176,6 +197,18 @@ public class CoreEditorMediator : Mediators
         SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.CANCEL_COMBINATION, Keyboard_CancelCombinationHandle);
         SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.FOCUSON_SELECTION, Keyboard_FocusOnSelectionHandle);
         SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.OPEN_DRAWLINEPANEL, Keyboard_OpenDrawLinePanelHandle);
+        SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.OPEN_FILTERPANEL, Keyboard_OpenFilterPanelHandle);
+        SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.CHANGEVIEW_ONE, Keyboard_ChangeViewOneHandle);
+        SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.CHANGEVIEW_TWO, Keyboard_ChangeViewTwoHandle);
+        SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.CHANGEVIEW_THREE, Keyboard_ChangeViewThreeHandle);
+
+        SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.OPEN_BRUSH, Keyboard_OpenBrushHandle);
+        SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.CLOSE_BRUSH, Keyboard_CloseBrushHandle);
+        SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.CHANGEVIEW_3D, Keyboard_ChangeView3DHandle);
+        SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.CHANGEVIEW_2D, Keyboard_ChangeView2DHandle);
+        SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.OPEN_LIGHT, Keyboard_OpenLightHandle);
+        SceneManager.Instance.keyboardManager.removeEventListener(KeyboardManagerEvent.CLOSE_LIGHT, Keyboard_CloseLightHandle);
+
 
         RemoveViewListener(LineToolEvent.LineTool_From, LineToolFromHandle);
         RemoveViewListener(LineToolEvent.LineTool_To, LineToolToHandle);
@@ -185,7 +218,6 @@ public class CoreEditorMediator : Mediators
         //上方文件工具条
         RemoveContextListener(TopToolPanelEvent.SAVE, SceneToolbarSaveHandle);
         RemoveContextListener(TopToolPanelEvent.LOAD, SceneToolbarLoadHandle);
-
         RemoveContextListener(TopToolPanelEvent.UNDO, SceneToolbarUndoHandle);
         RemoveContextListener(TopToolPanelEvent.REDO, SceneToolbarRedoHandle);
         RemoveContextListener(TopToolPanelEvent.COPY, Keyboard_CopyHandle);
@@ -194,11 +226,23 @@ public class CoreEditorMediator : Mediators
         RemoveContextListener(SceneToolbarEvent.BRUSH, SceneToolbarBrushHandle);
         RemoveContextListener(TopToolPanelEvent.GROUP, Keyboard_CombinationHandle);
         RemoveContextListener(TopToolPanelEvent.REGROUP, Keyboard_CancelCombinationHandle);
-
         RemoveContextListener(TopToolPanelEvent.FILTER, SceneToolbarFilterHandle);
-
         RemoveContextListener(TopToolPanelEvent.ADDITEM, SceneToolbarAddItemHandle);
         RemoveContextListener(TopToolPanelEvent.ADDHOME, SceneToolbarAddHomeHandle);
+
+        RemoveContextListener(TopToolPanelEvent.OPENBRUSH, Keyboard_OpenBrushHandle);
+        RemoveContextListener(TopToolPanelEvent.CLOSEBRUSH, Keyboard_CloseBrushHandle);
+        RemoveContextListener(TopToolPanelEvent.ALIGN, SceneToolbarAlignHandle);
+        RemoveContextListener(TopToolPanelEvent.PHOTO, SceneToolbarFilterHandle);
+        RemoveContextListener(TopToolPanelEvent.VIEWONE, Keyboard_ChangeViewOneHandle);
+        RemoveContextListener(TopToolPanelEvent.VIEWTWO, Keyboard_ChangeViewTwoHandle);
+        RemoveContextListener(TopToolPanelEvent.VIEWTHREE, Keyboard_ChangeViewThreeHandle);
+        RemoveContextListener(TopToolPanelEvent.VIEWFOUR, Keyboard_ChangeView3DHandle);
+        RemoveContextListener(TopToolPanelEvent.VIEWFIVE, Keyboard_ChangeView2DHandle);
+        RemoveContextListener(TopToolPanelEvent.OPENLIGHT, Keyboard_OpenLightHandle);
+        RemoveContextListener(TopToolPanelEvent.CLOSELIGHT, Keyboard_CloseLightHandle);
+        RemoveContextListener(TopToolPanelEvent.OPENDRAWPANEL, openDrawLinePanelHandle);
+        RemoveContextListener(TopToolPanelEvent.OPENMODELPANEL, SceneLoadModelHandle);
 
         //顶部工具条
         RemoveViewListener(SceneToolbarEvent.UNDO, SceneToolbarUndoHandle);
@@ -482,9 +526,70 @@ public class CoreEditorMediator : Mediators
         UIManager.OpenUI(UI.DrawLinePanel);
     }
 
+    private void Keyboard_OpenFilterPanelHandle(EventObject e)
+    {
+        SceneManager.Instance.mouse3Manager.SelectCamera();
+    }
+
     private void Keyboard_LoadCombinationHandle(EventObject e)
     {
         DispatcherEvent(new FileEvent(FileEvent.LOAD_COMBINATION));
+    }
+
+    private void Keyboard_ChangeViewOneHandle(EventObject e) {
+        CameraManager.ChangeCamera(CameraFlags.Fly);
+    }
+
+    private void Keyboard_ChangeViewTwoHandle(EventObject e)
+    {
+        CameraManager.ChangeCamera(CameraFlags.Roam);
+    }
+
+    private void Keyboard_ChangeViewThreeHandle(EventObject e)
+    {
+        CameraManager.ChangeCamera(CameraFlags.VR);
+    }
+
+    private void Keyboard_OpenBrushHandle(EventObject e)
+    {
+        SceneToolbarPanel.Instance.IFBrushIsOpenedHandle();
+        SceneManager.Instance.OpenBrushHandle();
+    }
+
+    private void Keyboard_CloseBrushHandle(EventObject e)
+    {
+        SceneToolbarPanel.Instance.IFBrushIsClosedHandle();
+        SceneManager.Instance.CloseBrushHandle();
+    }
+
+    private void Keyboard_ChangeView3DHandle(EventObject e)
+    {
+        SceneToolbarPanel.Instance.IFViewIs3DHandle();
+        DispatcherEvent(new CameraCommandEvent(CameraCommandEvent.CHANGE, CameraFlags.Fly));
+
+        SceneManager.Instance.mouseManager.ClearSelect();
+        SceneManager.Instance.mouse3Manager.ClearSelect();
+    }
+
+    private void Keyboard_ChangeView2DHandle(EventObject e)
+    {
+        SceneToolbarPanel.Instance.IFViewIs2DHandle();
+        DispatcherEvent(new CameraCommandEvent(CameraCommandEvent.CHANGE, CameraFlags.Two));
+
+        SceneManager.Instance.mouseManager.ClearSelect();
+        SceneManager.Instance.mouse3Manager.ClearSelect();
+    }
+
+    private void Keyboard_OpenLightHandle(EventObject e)
+    {
+        SceneToolbarPanel.Instance.IFLightIsOpenedHandle();
+        SceneManager.Instance.OpenLightHandle();
+    }
+
+    private void Keyboard_CloseLightHandle(EventObject e)
+    {
+        SceneToolbarPanel.Instance.IFLightIsClosedHandle();
+        SceneManager.Instance.CloseLightHandle();
     }
 
     #endregion
@@ -796,6 +901,16 @@ public class CoreEditorMediator : Mediators
     }
 
     private void SceneToolbarLoadHandle(EventObject e)
+    {
+        DispatcherEvent(new FileEvent(FileEvent.OPEN_PROJECT));
+    }
+
+    private void SceneLoadModelHandle(EventObject e)
+    {
+        UIManager.OpenUI(UI.LoadModelPanel);
+    }
+
+    private void SceneOpenDrawHandle(EventObject e)
     {
         DispatcherEvent(new FileEvent(FileEvent.OPEN_PROJECT));
     }

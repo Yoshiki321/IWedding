@@ -26,6 +26,20 @@ public class TopToolPanelMediators : Mediators
 
         AddViewListener(TopToolPanelEvent.HELP, TopToolHelpHandle);
 
+        AddViewListener(TopToolPanelEvent.OPENBRUSH, TopToolOpenBrushHandle);
+        AddViewListener(TopToolPanelEvent.CLOSEBRUSH, TopToolCloseBrushHandle);
+        AddViewListener(TopToolPanelEvent.ALIGN, TopToolAlignStageHandle);
+        AddViewListener(TopToolPanelEvent.PHOTO, TopToolPhotoStageHandle);
+        AddViewListener(TopToolPanelEvent.VIEWONE, TopToolViewOneStageHandle);
+        AddViewListener(TopToolPanelEvent.VIEWTWO, TopToolViewTwoStageHandle);
+        AddViewListener(TopToolPanelEvent.VIEWTHREE, TopToolViewThreeStageHandle);
+        AddViewListener(TopToolPanelEvent.VIEWFOUR, TopToolViewFourStageHandle);
+        AddViewListener(TopToolPanelEvent.VIEWFIVE, TopToolViewFiveStageHandle);
+        AddViewListener(TopToolPanelEvent.OPENLIGHT, TopToolOpenLightStageHandle);
+        AddViewListener(TopToolPanelEvent.CLOSELIGHT, TopToolCloseLightStageHandle);
+        AddViewListener(TopToolPanelEvent.OPENDRAWPANEL, TopToolOpenDrawStageHandle);
+        AddViewListener(TopToolPanelEvent.OPENMODELPANEL, TopToolOpenModelStageHandle);
+
         AddContextListener(FileEvent.OPEN_PROJECT_SUCCESS, ProjectOpenSuccessHandle);
     }
 
@@ -48,13 +62,90 @@ public class TopToolPanelMediators : Mediators
         RemoveViewListener(TopToolPanelEvent.ADDHOME, TopToolAddHomeHandle);
 
         RemoveViewListener(TopToolPanelEvent.HELP, TopToolHelpHandle);
-
+        RemoveViewListener(TopToolPanelEvent.OPENBRUSH, TopToolOpenBrushHandle);
+        RemoveViewListener(TopToolPanelEvent.CLOSEBRUSH, TopToolCloseBrushHandle);
+        RemoveViewListener(TopToolPanelEvent.ALIGN, TopToolAlignStageHandle);
+        RemoveViewListener(TopToolPanelEvent.PHOTO, TopToolPhotoStageHandle);
+        RemoveViewListener(TopToolPanelEvent.VIEWONE, TopToolViewOneStageHandle);
+        RemoveViewListener(TopToolPanelEvent.VIEWTWO, TopToolViewTwoStageHandle);
+        RemoveViewListener(TopToolPanelEvent.VIEWTHREE, TopToolViewThreeStageHandle);
+        RemoveViewListener(TopToolPanelEvent.VIEWFOUR, TopToolViewFourStageHandle);
+        RemoveViewListener(TopToolPanelEvent.VIEWFIVE, TopToolViewFiveStageHandle);
+        RemoveViewListener(TopToolPanelEvent.OPENLIGHT, TopToolOpenLightStageHandle);
+        RemoveViewListener(TopToolPanelEvent.CLOSELIGHT, TopToolCloseLightStageHandle);
+        RemoveViewListener(TopToolPanelEvent.OPENDRAWPANEL, TopToolOpenDrawStageHandle);
+        RemoveViewListener(TopToolPanelEvent.OPENMODELPANEL, TopToolOpenModelStageHandle);
         RemoveContextListener(FileEvent.OPEN_PROJECT_SUCCESS, ProjectOpenSuccessHandle);
     }
 
     private void ProjectOpenSuccessHandle(EventObject e)
     {
 
+    }
+
+    private void TopToolOpenDrawStageHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.OPENDRAWPANEL));
+    }
+
+    private void TopToolOpenModelStageHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.OPENMODELPANEL));
+    }
+
+    private void TopToolViewOneStageHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.VIEWONE));
+    }
+
+    private void TopToolViewTwoStageHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.VIEWTWO));
+    }
+
+    private void TopToolViewThreeStageHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.VIEWTHREE));
+    }
+
+    private void TopToolViewFourStageHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.VIEWFOUR));
+    }
+
+    private void TopToolViewFiveStageHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.VIEWFIVE));
+    }
+
+    private void TopToolOpenLightStageHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.OPENLIGHT));
+    }
+    
+    private void TopToolCloseLightStageHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.CLOSELIGHT));
+    }
+
+    private void TopToolOpenBrushHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.OPENBRUSH));
+    }
+
+    private void TopToolCloseBrushHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.CLOSEBRUSH));
+    }
+
+    private void TopToolAlignStageHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.ALIGN));
+    }
+
+    private void TopToolPhotoStageHandle(EventObject e)
+    {
+        DispatcherEvent(new TopToolPanelEvent(TopToolPanelEvent.PHOTO));
     }
 
     private void TopToolSaveHandle(EventObject e)

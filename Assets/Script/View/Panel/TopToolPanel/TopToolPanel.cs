@@ -59,6 +59,9 @@ public class TopToolPanel : BasePanel
         TopToolEditBtnList.Add(TopToolBtnList[1].transform.Find("Btn3").gameObject);
         TopToolEditBtnList.Add(TopToolBtnList[1].transform.Find("Btn4").gameObject);
         TopToolEditBtnList.Add(TopToolBtnList[1].transform.Find("Btn5").gameObject);
+        TopToolEditBtnList.Add(TopToolBtnList[1].transform.Find("Btn6").gameObject);
+        TopToolEditBtnList.Add(TopToolBtnList[1].transform.Find("Btn7").gameObject);
+        TopToolEditBtnList.Add(TopToolBtnList[1].transform.Find("Btn8").gameObject);
 
         for (int i = 0; i < TopToolEditBtnList.Count; i++)
         {
@@ -70,6 +73,11 @@ public class TopToolPanel : BasePanel
         }
 
         TopToolFilterBtnList.Add(TopToolBtnList[2].transform.Find("Btn1").gameObject);
+        TopToolFilterBtnList.Add(TopToolBtnList[2].transform.Find("Btn2").gameObject);
+        TopToolFilterBtnList.Add(TopToolBtnList[2].transform.Find("Btn3").gameObject);
+        TopToolFilterBtnList.Add(TopToolBtnList[2].transform.Find("Btn4").gameObject);
+        TopToolFilterBtnList.Add(TopToolBtnList[2].transform.Find("Btn5").gameObject);
+        TopToolFilterBtnList.Add(TopToolBtnList[2].transform.Find("Btn6").gameObject);
         for (int i = 0; i < TopToolFilterBtnList.Count; i++)
         {
             AddEventClick(TopToolFilterBtnList[i]);
@@ -81,6 +89,8 @@ public class TopToolPanel : BasePanel
 
         TopToolWindowBtnList.Add(TopToolBtnList[3].transform.Find("Btn1").gameObject);
         TopToolWindowBtnList.Add(TopToolBtnList[3].transform.Find("Btn2").gameObject);
+        TopToolWindowBtnList.Add(TopToolBtnList[3].transform.Find("Btn3").gameObject);
+        TopToolWindowBtnList.Add(TopToolBtnList[3].transform.Find("Btn4").gameObject);
         for (int i = 0; i < TopToolWindowBtnList.Count; i++)
         {
             AddEventClick(TopToolWindowBtnList[i]);
@@ -151,11 +161,60 @@ public class TopToolPanel : BasePanel
         {
             dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.DELETE));
         }
+        if (obj == TopToolEditBtnList[5])
+        {
+            if (SceneManager.Instance.brushManager.brushMode == BrushManager.BrushMode.Place)
+            {
+                dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.OPENBRUSH));
+                OpenBrush();
+            }
+            else
+            {
+                dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.CLOSEBRUSH));
+                CloseBrush();
+            }
+        }
+        if (obj == TopToolEditBtnList[6])
+        {
+            dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.ALIGN));
+        }
+        if (obj == TopToolEditBtnList[7])
+        {
+            dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.PHOTO));
+        }
         //滤镜
         //相机滤镜 
         if (obj == TopToolFilterBtnList[0])
         {
             dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.FILTER));
+        }
+        if (obj == TopToolFilterBtnList[1])
+        {
+            dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.VIEWONE));
+        }
+        if (obj == TopToolFilterBtnList[2])
+        {
+            dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.VIEWTWO));
+        }
+        if (obj == TopToolFilterBtnList[3])
+        {
+            dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.VIEWTHREE));
+        }
+        if (obj == TopToolFilterBtnList[4])
+        {
+            dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.VIEWFOUR));
+        }
+        if (obj == TopToolFilterBtnList[5])
+        {
+            if (SceneManager.activeSceneLight)
+            {
+                dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.OPENLIGHT));
+                OpenLight();
+            }
+            else {
+                CloseLight();
+                dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.CLOSELIGHT));
+            }
         }
         //窗口
         //物品添加 
@@ -168,6 +227,14 @@ public class TopToolPanel : BasePanel
         {
             dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.ADDHOME));
         }
+        if (obj == TopToolWindowBtnList[2])
+        {
+            dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.OPENDRAWPANEL));
+        }
+        if (obj == TopToolWindowBtnList[3])
+        {
+            dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.OPENMODELPANEL));
+        }
         //帮助
         //帮助信息 
         if (obj == TopToolHelpBtnList[0])
@@ -175,6 +242,42 @@ public class TopToolPanel : BasePanel
             dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.HELP));
         }
     }
+
+    public void OpenLight()
+    {
+        TopToolFilterBtnList[5].transform.Find("Text").GetComponent<Text>().text = "开启灯光";
+        TopToolFilterBtnList[5].transform.Find("Tip").GetComponent<Text>().text = "Ctrl+L";
+    }
+
+    public void CloseLight()
+    {
+        TopToolFilterBtnList[5].transform.Find("Text").GetComponent<Text>().text = "关闭灯光";
+        TopToolFilterBtnList[5].transform.Find("Tip").GetComponent<Text>().text = "Ctrl+Shift+L";
+    }
+
+    public void ChangeTo3d()
+    {
+        TopToolFilterBtnList[4].transform.Find("Text").GetComponent<Text>().text = "2D模式";
+        TopToolFilterBtnList[4].transform.Find("Tip").GetComponent<Text>().text = "Ctrl+Shift+5";
+    }
+
+    public void ChangeTo2d()
+    {
+        TopToolFilterBtnList[4].transform.Find("Text").GetComponent<Text>().text = "3D模式";
+        TopToolFilterBtnList[4].transform.Find("Tip").GetComponent<Text>().text = "Ctrl+Shift+4";
+    }
+
+    public void OpenBrush() {
+        TopToolEditBtnList[5].transform.Find("Text").GetComponent<Text>().text = "关闭笔刷";
+        TopToolEditBtnList[5].transform.Find("Tip").GetComponent<Text>().text = "Ctrl+Shift+B";
+    }
+
+    public void CloseBrush()
+    {
+        TopToolEditBtnList[5].transform.Find("Text").GetComponent<Text>().text = "3D笔刷";
+        TopToolEditBtnList[5].transform.Find("Tip").GetComponent<Text>().text = "Ctrl+B";
+    }
+
     protected override void OnDown(GameObject obj)
     {
         TopToolFlag = true;

@@ -18,6 +18,19 @@ public class TopToolPanelEvent : EventObject
     public static string GROUP = "TopToolPanelEvent_Group";
     public static string REGROUP = "TopToolPanelEvent_ReGroup";
     public static string DRAWSTAGE = "TopToolPanelEvent_DRAWSTAGE";
+    public static string OPENBRUSH = "TopToolPanelEvent_BRUSH";
+    public static string CLOSEBRUSH = "TopToolPanelEvent_BRUSH";
+    public static string ALIGN = "TopToolPanelEvent_AGLIN";
+    public static string PHOTO = "TopToolPanelEvent_PHOTO";
+    public static string VIEWONE = "TopToolPanelEvent_VIEWONE";
+    public static string VIEWTWO = "TopToolPanelEvent_VIEWTWO";
+    public static string VIEWTHREE = "TopToolPanelEvent_VIEWTHREE";
+    public static string VIEWFOUR = "TopToolPanelEvent_VIEWFOUR";
+    public static string VIEWFIVE = "TopToolPanelEvent_VIEWFIVE";
+    public static string OPENLIGHT = "TopToolPanelEvent_OPENLIGHT";
+    public static string CLOSELIGHT = "TopToolPanelEvent_CLOSELIGHT";
+    public static string OPENDRAWPANEL = "TopToolPanelEvent_OPENDRAWPANEL";
+    public static string OPENMODELPANEL = "TopToolPanelEvent_OPENMODELPANEL";
 
     public string name;
 

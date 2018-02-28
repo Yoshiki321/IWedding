@@ -85,11 +85,60 @@ public class KeyboardManager : EventDispatcher
             dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.CANCEL_COMBINATION));
         }
 
-        if (ctrl && shift && Input.GetKeyDown(KeyCode.L))
+        if (ctrl && shift && Input.GetKeyDown(KeyCode.D))
         {
             dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.OPEN_DRAWLINEPANEL));
         }
 
+        if (ctrl && shift && Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.CHANGEVIEW_ONE));
+        }
+
+        if (ctrl && shift && Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.CHANGEVIEW_TWO));
+        }
+
+        if (ctrl && shift && Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.CHANGEVIEW_THREE));
+        }
+
+        if (ctrl && Input.GetKeyDown(KeyCode.B))
+        {
+            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.OPEN_BRUSH));
+        }
+
+        if (ctrl && shift && Input.GetKeyDown(KeyCode.B))
+        {
+            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.CLOSE_BRUSH));
+        }
+
+        if (ctrl && Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.CHANGEVIEW_3D));
+        }
+
+        if (ctrl && Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.CHANGEVIEW_2D));
+        }
+
+        if (ctrl && Input.GetKeyDown(KeyCode.L))
+        {
+            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.OPEN_LIGHT));
+        }
+
+        if (ctrl && shift && Input.GetKeyDown(KeyCode.L))
+        {
+            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.CLOSE_LIGHT));
+        }
+
+        if (ctrl && Input.GetKeyDown(KeyCode.U))
+        {
+            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.OPEN_FILTERPANEL));
+        }
         //if (Input.GetKeyDown(KeyCode.F6))
         //{
         //    dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.LOAD_COMBINATION));

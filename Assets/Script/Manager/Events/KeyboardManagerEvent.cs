@@ -17,6 +17,17 @@
     public static string OPEN_DRAWLINEPANEL = "OPEN_DRAWLINEPANEL";
 
     public static string LOAD_COMBINATION = "LOAD_COMBINATION";
+    public static string OPEN_FILTERPANEL = "OPEN_FILTERPANEL";
+    public static string CHANGEVIEW_ONE = "CHANGEVIEW_ONE";
+    public static string CHANGEVIEW_TWO = "CHANGEVIEW_TWO";
+    public static string CHANGEVIEW_THREE = "CHANGEVIEW_THREE";
+
+    public static string OPEN_BRUSH = "OPEN_BRUSH";
+    public static string CLOSE_BRUSH = "CLOSE_BRUSH";
+    public static string CHANGEVIEW_3D = "CHANGEVIEW_3D";
+    public static string CHANGEVIEW_2D = "CHANGEVIEW_2D";
+    public static string OPEN_LIGHT = "OPEN_LIGHT";
+    public static string CLOSE_LIGHT = "CLOSE_LIGHT";
 
     public ObjectSprite objectSprite;
 
