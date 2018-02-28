@@ -8,7 +8,7 @@ public class SprinkleVO : ComponentVO
     public List<GameObject> list = new List<GameObject>();
     public XmlNode xml;
 
-    public string sprinkleCode;
+    public string sprinkleCode = "";
     public List<SprinkleData> dataList = new List<SprinkleData>();
 
     public float count = 5;
@@ -64,11 +64,13 @@ public class SprinkleVO : ComponentVO
             code += " count = " + GetPropertyString(count);
             code += " data = ";
 
+            code += '"';
             foreach (GameObject obj in list)
             {
                 code += obj.name + "," + obj.transform.position.x + "," + obj.transform.position.y + "," + obj.transform.position.z + "," +
                      obj.transform.rotation.eulerAngles.x + "," + obj.transform.rotation.eulerAngles.y + "," + obj.transform.rotation.eulerAngles.z + ";";
             }
+            code += '"';
 
             code += "/>";
 
@@ -77,6 +79,9 @@ public class SprinkleVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
+            id = code.Attributes["id"].Value;
+            count = float.Parse(code.Attributes["count"].Value);
+            sprinkleCode = code.Attributes["data"].Value;
         }
     }
 }
