@@ -230,7 +230,14 @@ namespace BuildManager
             brushManager.brushMode = BrushManager.BrushMode.Place;
         }
 
-    public void ToggleBrushMode()
+        public void TakephotoHandle()
+        {
+            UILayer.SetActive(false);
+            ScreenCapture.CaptureScreenshot("Screenshot.png");
+            Invoke("CaptureScreenshot", .1f);
+        }
+
+        public void ToggleBrushMode()
         {
             if (brushManager.brushMode == BrushManager.BrushMode.Place)
             {

@@ -88,7 +88,7 @@ public class CoreEditorMediator : Mediators
         AddContextListener(TopToolPanelEvent.OPENBRUSH, Keyboard_OpenBrushHandle);
         AddContextListener(TopToolPanelEvent.CLOSEBRUSH, Keyboard_CloseBrushHandle);
         AddContextListener(TopToolPanelEvent.ALIGN, SceneToolbarAlignHandle);
-        AddContextListener(TopToolPanelEvent.PHOTO, SceneToolbarFilterHandle);
+        AddContextListener(TopToolPanelEvent.PHOTO, SceneToolbarTakePhotoHandle);
         AddContextListener(TopToolPanelEvent.VIEWONE, Keyboard_ChangeViewOneHandle);
         AddContextListener(TopToolPanelEvent.VIEWTWO, Keyboard_ChangeViewTwoHandle);
         AddContextListener(TopToolPanelEvent.VIEWTHREE, Keyboard_ChangeViewThreeHandle);
@@ -120,7 +120,7 @@ public class CoreEditorMediator : Mediators
 
         AddViewListener(SceneToolbarEvent.ALIGN, SceneToolbarAlignHandle);
         AddViewListener(SceneToolbarEvent.FILTER, openDrawLinePanelHandle);
-        AddViewListener(SceneToolbarEvent.RENDER, SceneToolbarRenderHandle);
+        AddViewListener(SceneToolbarEvent.RENDER, SceneToolbarTakePhotoHandle);
         AddViewListener(SceneToolbarEvent.ADDHOME, SceneToolbarAddHomeHandle);
         AddViewListener(SceneToolbarEvent.ADDITEM, SceneToolbarAddItemHandle);
 
@@ -233,12 +233,12 @@ public class CoreEditorMediator : Mediators
         RemoveContextListener(TopToolPanelEvent.OPENBRUSH, Keyboard_OpenBrushHandle);
         RemoveContextListener(TopToolPanelEvent.CLOSEBRUSH, Keyboard_CloseBrushHandle);
         RemoveContextListener(TopToolPanelEvent.ALIGN, SceneToolbarAlignHandle);
-        RemoveContextListener(TopToolPanelEvent.PHOTO, SceneToolbarFilterHandle);
+        RemoveContextListener(TopToolPanelEvent.PHOTO, SceneToolbarTakePhotoHandle);
         RemoveContextListener(TopToolPanelEvent.VIEWONE, Keyboard_ChangeViewOneHandle);
         RemoveContextListener(TopToolPanelEvent.VIEWTWO, Keyboard_ChangeViewTwoHandle);
         RemoveContextListener(TopToolPanelEvent.VIEWTHREE, Keyboard_ChangeViewThreeHandle);
-        RemoveContextListener(TopToolPanelEvent.VIEWFOUR, Keyboard_ChangeView3DHandle);
-        RemoveContextListener(TopToolPanelEvent.VIEWFIVE, Keyboard_ChangeView2DHandle);
+        RemoveContextListener(TopToolPanelEvent.VIEWFOUR, SceneToolbarTo3DHandle);
+        RemoveContextListener(TopToolPanelEvent.VIEWFIVE, SceneToolbarTo2DHandle);
         RemoveContextListener(TopToolPanelEvent.OPENLIGHT, Keyboard_OpenLightHandle);
         RemoveContextListener(TopToolPanelEvent.CLOSELIGHT, Keyboard_CloseLightHandle);
         RemoveContextListener(TopToolPanelEvent.OPENDRAWPANEL, openDrawLinePanelHandle);
@@ -264,7 +264,7 @@ public class CoreEditorMediator : Mediators
 
         RemoveViewListener(SceneToolbarEvent.ALIGN, SceneToolbarAlignHandle);
         RemoveViewListener(SceneToolbarEvent.FILTER, openDrawLinePanelHandle);
-        RemoveViewListener(SceneToolbarEvent.RENDER, SceneToolbarRenderHandle);
+        RemoveViewListener(SceneToolbarEvent.RENDER, SceneToolbarTakePhotoHandle);
         RemoveViewListener(SceneToolbarEvent.ADDHOME, SceneToolbarAddHomeHandle);
         RemoveViewListener(SceneToolbarEvent.ADDITEM, SceneToolbarAddItemHandle);
 
@@ -552,8 +552,8 @@ public class CoreEditorMediator : Mediators
 
     private void Keyboard_OpenBrushHandle(EventObject e)
     {
-        SceneToolbarPanel.Instance.IFBrushIsOpenedHandle();
         SceneManager.Instance.OpenBrushHandle();
+        SceneToolbarPanel.Instance.IFBrushIsOpenedHandle();
     }
 
     private void Keyboard_CloseBrushHandle(EventObject e)
@@ -895,8 +895,7 @@ public class CoreEditorMediator : Mediators
         UIManager.CloseUI(UI.ChooseSurfacePanel);
     }
 
-    private void SceneToolbarRenderHandle(EventObject e)
-    {
+    private void SceneToolbarTakePhotoHandle(EventObject e) {
         SceneManager.Instance.TakePhotoHandle();
     }
 

@@ -252,14 +252,17 @@ public class SceneToolbarPanel : BasePanel
         }
         if (obj == toolLineBrushBtn)
         {
-            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.BRUSH));
             if (SceneManager.Instance.brushManager.brushMode == BrushManager.BrushMode.Place)
             {
-                toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "开 启 笔 刷";
+                SceneManager.Instance.brushManager.brushMode = BrushManager.BrushMode.Direct;
+                toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "关 闭 笔 刷";
+                TopToolPanel.Instance.OpenBrush();
             }
             else
             {
-                toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "关 闭 笔 刷";
+                SceneManager.Instance.brushManager.brushMode = BrushManager.BrushMode.Place;
+                TopToolPanel.Instance.CloseBrush();
+                toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "3 D 笔 刷";
             }
         }
         if (obj == toolLineVRBtn)
@@ -356,9 +359,19 @@ public class SceneToolbarPanel : BasePanel
 
         if (obj == toolLineLightBtn)
 		{
-            ToggleLight();
-            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.LIGHT));
-		}
+            if (!SceneManager.activeSceneLight)
+            {
+                SceneManager.Instance.OpenLightHandle();
+                TopToolPanel.Instance.CloseLight();
+                IFLightIsOpenedHandle();
+            }
+            else
+            {
+                SceneManager.Instance.CloseLightHandle();
+                TopToolPanel.Instance.OpenLight();
+                IFLightIsClosedHandle();
+            }
+        }
 		if (obj == toolLineVRBtn)
 		{
 			transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.CAMERA));
@@ -371,7 +384,7 @@ public class SceneToolbarPanel : BasePanel
     }
 
     public void IFBrushIsClosedHandle() {
-        toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "开 启 笔 刷";
+        toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "3 D 笔 刷";
     }
 
     public void IFLightIsOpenedHandle()

@@ -66,19 +66,53 @@ public class SwitchToolPanel : BasePanel
     {
        
     }
-
     protected override void OnEnter(GameObject obj)
     {
+        for (int i = 0; i < TopBtnList.Count; i++)
+        {
+            IntButtonBgColor(TopBtnList[i]);
+        }
         SetButtonBgColor(obj);
+        if (clickFlag)
+        {
+            if (obj.name == "FileBtn")
+            {
+                dispatchEvent(new SwitchToolPanelEvent(SwitchToolPanelEvent.FILE));
+            }
+            if (obj.name == "EditBtn")
+            {
+                dispatchEvent(new SwitchToolPanelEvent(SwitchToolPanelEvent.EDIT));
+            }
+            if (obj.name == "FilterBtn")
+            {
+                dispatchEvent(new SwitchToolPanelEvent(SwitchToolPanelEvent.FILTER));
+            }
+            if (obj.name == "WindowBtn")
+            {
+                dispatchEvent(new SwitchToolPanelEvent(SwitchToolPanelEvent.WINDOW));
+            }
+            if (obj.name == "HelpBtn")
+            {
+                dispatchEvent(new SwitchToolPanelEvent(SwitchToolPanelEvent.HELP));
+            }
+            if (obj.name == "ReturnBtn")
+            {
+                dispatchEvent(new SwitchToolPanelEvent(SwitchToolPanelEvent.RETURN));
+            }
+        }
     }
     protected override void OnExit(GameObject obj)
     {
-        IntButtonBgColor(obj);
+        if (!clickFlag)
+        {
+            IntButtonBgColor(obj);
+        }
     }
-
+    public bool clickFlag = false;
     protected override void OnClick(GameObject obj)
     {
-
+        clickFlag = true;
+        SetButtonBgColor(obj);
         if (obj.name == "FileBtn")
         {
             dispatchEvent(new SwitchToolPanelEvent(SwitchToolPanelEvent.FILE));
@@ -129,6 +163,11 @@ public class SwitchToolPanel : BasePanel
 	{
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetKeyDown(KeyCode.Escape))
         {
+            clickFlag = false;
+            for (int i = 0; i < TopBtnList.Count; i++)
+            {
+                IntButtonBgColor(TopBtnList[i]);
+            }
             if (!TopToolPanel.Instance.TopToolFlag) {
                 dispatchEvent(new SwitchToolPanelEvent(SwitchToolPanelEvent.CLOSE));
                 TopToolPanel.Instance.TopToolFlag = false;
@@ -142,11 +181,11 @@ public class SwitchToolPanel : BasePanel
     }
     public void SetButtonBgColor(GameObject e)
     {
-        e.transform.Find("Image").GetComponent<Image>().color = new Color(255f / 255F, 185f / 255F, 0 / 255F, 1);
+        e.transform.Find("Image").GetComponent<Image>().color = new Color(75f / 255F, 75f / 255F, 75 / 255F, 1);
     }
 
     public void IntButtonBgColor(GameObject e)
     {
-        e.transform.Find("Image").GetComponent<Image>().color = new Color(255f / 255F, 185f / 255F, 0 / 255F, 0);
+        e.transform.Find("Image").GetComponent<Image>().color = new Color(75f / 255F, 75f / 255F, 75 / 255F, 0);
     }
 }
