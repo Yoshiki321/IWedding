@@ -104,7 +104,7 @@ public class DrawLinePanel : BasePanel
         {
             _dataNum++;
             GameObject obj = new GameObject();
-            obj.transform.parent = shapeDraw.transform.Find("DrawTypePanel").transform;
+            obj.transform.parent = shapeDraw.transform.Find("DrawTypePanel/Scroll View/Viewport/Content").transform;
             Image img = obj.AddComponent<Image>();
             hash.Add(obj, data);
             img.overrideSprite = Resources.Load("UI/DrawLinePanel/" + _dataNum.ToString(), typeof(Sprite)) as Sprite;
