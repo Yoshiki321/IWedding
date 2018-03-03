@@ -498,6 +498,10 @@ public class CoreEditorMediator : Mediators
         {
             SceneManager.Instance.mouse3Manager.ClearSelect();
         }
+        if (CameraManager.visual == CameraFlags.Two)
+        {
+            SceneManager.Instance.mouseManager.ClearSelect();
+        }
         if (CameraManager.visual == CameraFlags.Roam)
         {
             CameraManager.ChangeCamera(CameraFlags.Fly);
@@ -536,7 +540,8 @@ public class CoreEditorMediator : Mediators
         DispatcherEvent(new FileEvent(FileEvent.LOAD_COMBINATION));
     }
 
-    private void Keyboard_ChangeViewOneHandle(EventObject e) {
+    private void Keyboard_ChangeViewOneHandle(EventObject e)
+    {
         CameraManager.ChangeCamera(CameraFlags.Fly);
     }
 

@@ -8,6 +8,7 @@ public class ObjectSprite2D : AssetSprite
     protected BoxCollider2D boxCollider;
 
     protected GameObject _textureObject;
+    protected Vector3 _textureObjectOffest;
 
     override public void Instantiate(ObjectVO vo)
     {
@@ -102,10 +103,14 @@ public class ObjectSprite2D : AssetSprite
         //scaleY = tvo.scaleY;
         //scaleZ = tvo.scaleZ;
 
-        rotationX = tvo.rotateX;
-        rotationZ = 360 - tvo.rotateY;
+        //rotationX = tvo.rotateX;
+        rotationZ = tvo.rotateY;
+    }
 
-        _textureObject.transform.localPosition = Vector3.zero;
+    public override float rotationZ
+    {
+        set { transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, 360 - value); UpdateRotation(); }
+        get { return 360 - transform.localRotation.eulerAngles.z; }
     }
 
     private void OnEnable()
@@ -124,22 +129,22 @@ public class ObjectSprite2D : AssetSprite
         //vo.scaleY = scaleY;
         //vo.scaleZ = scaleZ;
 
-        vo.rotateX = rotationX;
-        vo.rotateY = 360 - rotationZ;
+        //vo.rotateX = rotationX;
+        vo.rotateY = rotationZ;
     }
 
     override protected void UpdatePosition()
     {
-        _textureObject.transform.localPosition = Vector3.zero;
+        _textureObject.transform.localPosition = Vector3.zero + _textureObjectOffest;
     }
 
     override protected void UpdateScale()
     {
-        _textureObject.transform.localPosition = Vector3.zero;
+        _textureObject.transform.localScale = new Vector3(1, 1, 1);
     }
 
     override protected void UpdateRotation()
     {
-        _textureObject.transform.localPosition = Vector3.zero;
+        _textureObject.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 }

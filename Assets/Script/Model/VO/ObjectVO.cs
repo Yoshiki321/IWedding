@@ -15,9 +15,12 @@ public class ObjectVO : AssetVO
     {
         Vector3 v = MeshUtils3D.BoundSizeBoxCollider(value);
 
-        sizeX = v.x;
-        sizeY = v.y;
-        sizeZ = v.z;
+        if (v.x != 0 && v.y != 0 && v.z != 0)
+        {
+            sizeX = v.x;
+            sizeY = v.y;
+            sizeZ = v.z;
+        }
 
         //Vector3 vf = _model.transform.position + Vector3.forward * sizeX / 2;
         //Vector3 vb = _model.transform.position + Vector3.back * sizeX / 2;
@@ -45,7 +48,13 @@ public class ObjectVO : AssetVO
         set
         {
             _model = value;
-            UpdateSize(_model);
+
+            if (_model != null && sizeX == 0 && sizeY == 0 && sizeZ == 0)
+            {
+                _model.AddBoxCollider(false);
+
+                UpdateSize(_model);
+            }
         }
         get { return _model; }
     }
@@ -68,9 +77,9 @@ public class ObjectVO : AssetVO
         get { return _topImgTexture; }
     }
 
-    public float sizeX;
-    public float sizeY;
-    public float sizeZ;
+    public float sizeX = 0;
+    public float sizeY = 0;
+    public float sizeZ = 0;
 
     public void FillFromObject(ObjectVO asset)
     {

@@ -22,7 +22,7 @@ public class ChooseSurfaceMediators : Mediators
     {
         ChooseSurfacePanelEvent ce = (ChooseSurfacePanelEvent)e;
 
-        SurfaceVO vo = CreateLayout(ce.points, 1, 1, .15f, ce.name);
+        SurfaceVO vo = CreateLayout(ce.points, 1, 1, .4f, ce.name);
 
         DispatcherEvent(new SceneEvent(SceneEvent.ADD_SURFACE,
             new List<AssetVO>() { null },

@@ -220,13 +220,9 @@ public class DrawPlane : DispatcherEventPanel
             if (_plane && _plane.GetComponent<BoxCollider>())
                 _plane.GetComponent<BoxCollider>().enabled = value;
 
-            foreach (DrawNode dn in _nodeLines)
-            {
-                dn.gameObject.SetActive(value);
-            }
             foreach (DrawLine dl in _drawLines)
             {
-                dl.gameObject.SetActive(value);
+                dl.transform.parent.gameObject.SetActive(value);
             }
         }
         get
@@ -498,6 +494,44 @@ public class DrawPlane : DispatcherEventPanel
         return list;
     }
 
+    private List<Vector2> ResetPanelPoints(List<Vector2> list)
+    {
+        float[] xs = new float[list.Count];
+        float[] ys = new float[list.Count];
+
+        for (int i = 0; i < list.Count; i++)
+        {
+            xs[i] = list[i].x;
+            ys[i] = list[i].y;
+        }
+
+        float maxx = 0;
+        float minx = 0;
+        for (int i = 0; i < xs.Length; i++)
+        {
+            maxx = Mathf.Max(maxx, xs[i]);
+            minx = Mathf.Min(minx, xs[i]);
+        }
+
+        float maxy = 0;
+        float miny = 0;
+        for (int i = 0; i < ys.Length; i++)
+        {
+            maxy = Mathf.Max(maxy, ys[i]);
+            miny = Mathf.Min(miny, ys[i]);
+        }
+
+        Vector2 p = new Vector2(minx + (maxx - minx) / 2, miny + (maxy - miny) / 2);
+
+        List<Vector2> listr = new List<Vector2>();
+        foreach (Vector2 v in list)
+        {
+            listr.Add(v - p);
+        }
+
+        return listr;
+    }
+
     private GameObject _drawPanelObject;
     ThickIrregularPlane3D _thickIrregularPlane3D;
 
@@ -505,7 +539,7 @@ public class DrawPlane : DispatcherEventPanel
     {
         _drawPanelObject = new GameObject("DrawPanel");
         _thickIrregularPlane3D = _drawPanelObject.AddComponent<ThickIrregularPlane3D>();
-        _thickIrregularPlane3D.SetPoints(GetPanelPoints(), thickness);
+        _thickIrregularPlane3D.SetPoints(ResetPanelPoints(GetPanelPoints()), thickness);
         _thickIrregularPlane3D.upPanelCollage(_materialsUpID);
         _thickIrregularPlane3D.downPanelCollage(_materialsDownID);
 
@@ -584,7 +618,7 @@ public class DrawPlane : DispatcherEventPanel
             code += " offestY = " + GetPropertyString(_drawFillPanel.offestY);
             code += " thickness = " + GetPropertyString(_thickness);
 
-            List<Vector2> _list = GetPanelPoints();
+            List<Vector2> _list = ResetPanelPoints(GetPanelPoints());
             string p = "";
             for (int i = 0; i < _list.Count; i++)
             {

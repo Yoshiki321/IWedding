@@ -93,9 +93,14 @@ public class ControlManager : EventDispatcher
 
         if (Input.touchCount == 0)
         {
-            mouseMoveX = (Input.mousePosition.x - _lastDownX) * Time.deltaTime * 5;
-            mouseMoveY = (Input.mousePosition.y - _lastDownY) * Time.deltaTime * 5;
+            mouseMoveX = (Input.mousePosition.x - _lastDownX) * Time.deltaTime * 1;
+            mouseMoveY = (Input.mousePosition.y - _lastDownY) * Time.deltaTime * 1;
         }
+
+        if (mouseMoveX > 5)
+            mouseMoveX = 0;
+        if (mouseMoveY > 5)
+            mouseMoveY = 0;
 
         mouseWheel = 0;
 
@@ -545,7 +550,7 @@ public class ControlManager : EventDispatcher
 
         line.fromNode.mousePoint = line.fromNode.point;
         line.toNode.mousePoint = line.toNode.point;
-       
+
         List<Vector2> movePoints = BisectorMoveUtils.GetLineMovePoint(new Bisector(line.fromNode.mousePoint, line.toNode.mousePoint), _limitFromBisector, _limitToBisector, speed);
         line.fromNode.mousePoint = movePoints[0];
         line.toNode.mousePoint = movePoints[1];
@@ -616,7 +621,7 @@ public class ControlManager : EventDispatcher
 
         line.surface.UpdateVO();
 
-        UpdateNestedSurfaceMoveHandle(line.surface);
+        UpdateNestedLineMoveHandle(line);
         return;
     }
 
@@ -1110,8 +1115,11 @@ public class ControlManager : EventDispatcher
     {
         for (int i = 0; i < nested.lines.Count; i++)
         {
-            Line2D l2 = BuilderModel.Instance.GetLineData(nested.lines[i]).line;
-            Line3D l3 = BuilderModel.Instance.GetLineData(nested.lines[i]).line3;
+            LineData data = BuilderModel.Instance.GetLineData(nested.lines[i]);
+
+            if (data == null) continue;
+            Line2D l2 = data.line;
+            Line3D l3 = data.line3;
             for (int j = 0; j < l2.holeDatas.Count; j++)
             {
                 if (l2.holeDatas[j].nestedId == nested.id)
@@ -1235,18 +1243,23 @@ public class ControlManager : EventDispatcher
     {
         foreach (Line2D l in surface.lines)
         {
-            if (l.holeDatas != null)
-            {
-                List<string> ls = new List<string>();
-                foreach (HoleVO hd in l.holeDatas)
-                {
-                    ls.Add(hd.nestedId);
-                }
+            UpdateNestedLineMoveHandle(l);
+        }
+    }
 
-                foreach (string id in ls)
-                {
-                    UpdateNestedMoveHandle(id);
-                }
+    private void UpdateNestedLineMoveHandle(Line2D line)
+    {
+        if (line.holeDatas != null)
+        {
+            List<string> ls = new List<string>();
+            foreach (HoleVO hd in line.holeDatas)
+            {
+                ls.Add(hd.nestedId);
+            }
+
+            foreach (string id in ls)
+            {
+                UpdateNestedMoveHandle(id);
             }
         }
     }

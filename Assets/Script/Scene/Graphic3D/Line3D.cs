@@ -72,7 +72,7 @@ namespace Build3D
             if (_collageVO == null)
             {
                 _collageVO = linevo.AddComponentVO<CollageVO>();
-                _collageStruct = _collageVO.SetCollage("墙面", "Collage0", "0001");
+                _collageStruct = _collageVO.SetCollage("墙面", "Collage0", "0001", Color.white);
             }
             else
             {

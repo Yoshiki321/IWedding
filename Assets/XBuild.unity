@@ -2031,7 +2031,7 @@ MonoBehaviour:
   restoreFOV: 0
   openDestinationFolder: 1
   ambisonicsSupportTest: 0
-  fullPath: "D:\\project\\iwedding\\\u77AC\u95F4Build v0.2\\VR_Sequence\\"
+  fullPath: "D:\\project\\\u9020\u7269\u7A7A\u95F4\\IWedding\\VR_Sequence\\"
   customPath: 0
   customPathFolder: C:/
   encodeToMp4: 1
@@ -2758,6 +2758,29 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &338783416 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1569657693178158, guid: 65cc99b75571e49b7aa42e053c26d5df,
+    type: 2}
+  m_PrefabInternal: {fileID: 1981163677}
+--- !u!114 &338783417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 338783416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b765e0b5af3bcf4a9deb5895e477da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetFactor: 0
+  offsetUnits: 0
+  _downsampleFactor: 4
+  _iterations: 2
+  _blurMinSpread: 0.65
+  _blurSpread: 0.25
+  _blurIntensity: 0.3
 --- !u!1 &356673313
 GameObject:
   m_ObjectHideFlags: 0
@@ -5471,6 +5494,7 @@ GameObject:
   - component: {fileID: 945911710}
   - component: {fileID: 1050116700}
   - component: {fileID: 945911712}
+  - component: {fileID: 945911713}
   - component: {fileID: 945911711}
   m_Layer: 0
   m_Name: Camera (eye)
@@ -5496,8 +5520,7 @@ Transform:
 --- !u!114 &945911711
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114587645795333802, guid: 8661dc9697b85470bb6c239d9a23c42c,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 945911709}
   m_Enabled: 1
@@ -5516,6 +5539,18 @@ Behaviour:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 945911709}
   m_Enabled: 1
+--- !u!114 &945911713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 945911709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 794aeac3dfd564f4cbd1660b7f59e95b, type: 2}
 --- !u!1 &973623934
 GameObject:
   m_ObjectHideFlags: 0
@@ -7014,6 +7049,7 @@ GameObject:
   - component: {fileID: 1226907871}
   - component: {fileID: 1226907870}
   - component: {fileID: 1226907869}
+  - component: {fileID: 1226907873}
   m_Layer: 5
   m_Name: Camera
   m_TagString: Untagged
@@ -7096,6 +7132,18 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1226907873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1226907867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: eb477c7730152de4d898bdfe06fa270c, type: 2}
 --- !u!1 &1252660459
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,18 +5,20 @@ using UnityEngine;
 
 public class FaceToCamera : MonoBehaviour
 {
-    public Vector3 Normal = new Vector3(0, 1, 0);
-    Quaternion direction;
+    //public Vector3 Normal = new Vector3(0, 1, 0);
+    //Quaternion direction;
 
     void Start()
     {
-        direction = Quaternion.FromToRotation(new Vector3(0, 1, 0), Normal);
+        //direction = Quaternion.FromToRotation(new Vector3(0, 1, 0), Normal);
     }
 
     void Update()
     {
-        Quaternion q = SceneManager.Instance.Camera3D.transform.rotation * direction;
-        Vector3 v = transform.localRotation.eulerAngles;
-        transform.localRotation = Quaternion.Euler(v.x, q.eulerAngles.y, v.z);
+        //Quaternion q = SceneManager.Instance.Camera3D.transform.rotation * direction;
+        //Vector3 v = transform.localRotation.eulerAngles;
+        //transform.localRotation = Quaternion.Euler(v.x, q.eulerAngles.y, v.z);
+
+        transform.LookAt(SceneManager.Instance.Camera3D.transform.position);
     }
 }

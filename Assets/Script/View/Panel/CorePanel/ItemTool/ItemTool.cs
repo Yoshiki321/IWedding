@@ -48,7 +48,7 @@ public class ItemTool : BasePanel
 
     public void UpdateCombination()
     {
-        if (_items.Count > 1)
+        if (_items != null && _items.Count > 1)
         {
             string id = "";
             bool same = true;

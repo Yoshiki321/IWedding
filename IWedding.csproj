@@ -12,12 +12,15 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -1105,6 +1108,7 @@
     <Compile Include="Assets\Script\Scene\Graphic3D\Base\BasePlane3D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic3D\Base\IrregularPlane3D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic3D\Base\RectPenetratePlane3D.cs" />
+    <Compile Include="Assets\Script\Scene\Graphic3D\Billboard.cs" />
     <Compile Include="Assets\Script\Scene\Graphic3D\CeilingLine3D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic3D\Column3D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic3D\Controller\BaseController.cs" />
@@ -1408,7 +1412,9 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
-    <None Include="Assets\Resources\Config\DefaultLayout.xml" />
+    <None Include="Assets\Resources\Config\DefaultLayout.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Assets\Resources\Config\EffectLampCookie.xml" />
     <None Include="Assets\Resources\Config\Hotel\Hotel.xml" />
     <None Include="Assets\Resources\Config\Item\Item.xml" />

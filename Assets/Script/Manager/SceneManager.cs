@@ -230,7 +230,7 @@ namespace BuildManager
             brushManager.brushMode = BrushManager.BrushMode.Place;
         }
 
-    public void ToggleBrushMode()
+        public void ToggleBrushMode()
         {
             if (brushManager.brushMode == BrushManager.BrushMode.Place)
             {
@@ -386,6 +386,12 @@ namespace BuildManager
                     if (sprinkleComponent)
                     {
                         item.gameObject.SetActive(value);
+                    }
+
+                    BallLampComponent ballLampComponent = item.GetComponentInChildren<BallLampComponent>();
+                    if (ballLampComponent && ballLampComponent.gameObject.transform.Find("Sphere") != null)
+                    {
+                        ballLampComponent.gameObject.transform.Find("Sphere").gameObject.SetActive(value);
                     }
                 }
             }

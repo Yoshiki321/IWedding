@@ -30,6 +30,26 @@ public class MouseManager : EventDispatcher
         SelectedItem = null;
         SelectedNested = null;
         SelectedPlane = null;
+
+        ClearHighlighter();
+    }
+
+    private void ClearHighlighter()
+    {
+        foreach (ObjectData data in AssetsModel.Instance.itemDatas)
+        {
+            data.object2.Selected = false;
+        }
+
+        foreach (LineData data in BuilderModel.Instance.lineDatas)
+        {
+            data.line.Selected = false;
+        }
+
+        foreach (SurfaceData data in BuilderModel.Instance.surfaceDatas)
+        {
+            data.surface.Selected = false;
+        }
     }
 
     public static bool CanUpSelect = true;
@@ -47,6 +67,8 @@ public class MouseManager : EventDispatcher
             DownSurface = null;
             DownLine = null;
             DownPlane = null;
+
+            ClearHighlighter();
         }
 
         LayerMask layerGraphic2D = 1 << LayerMask.NameToLayer("Graphic2D");
@@ -80,27 +102,25 @@ public class MouseManager : EventDispatcher
             {
                 clickGameObject = overGameObject;
 
-                if (Mathf.Abs(lastMousePointX - Input.mousePosition.x) < 1 &&
-                    Mathf.Abs(lastMousePointY - Input.mousePosition.y) < 1)
+                if (clickGameObject)
                 {
-                    if (clickGameObject)
-                    {
-                        SelectedItem = clickGameObject.GetComponentInParent<Item2D>();
-                        SelectedNested = clickGameObject.GetComponentInParent<Nested2D>();
-                    }
+                    SelectedItem = clickGameObject.GetComponentInParent<Item2D>();
+                    SelectedNested = clickGameObject.GetComponentInParent<Nested2D>();
+                }
 
-                    if (SelectedItem)
-                    {
-                        dispatchEvent(new MouseManagerEvent(MouseManagerEvent.SELECT_OBJECT, SelectedItem));
-                    }
-                    else if (SelectedNested)
-                    {
-                        dispatchEvent(new MouseManagerEvent(MouseManagerEvent.SELECT_OBJECT, SelectedNested));
-                    }
-                    else
-                    {
-                        dispatchEvent(new MouseManagerEvent(MouseManagerEvent.RELEASE_OBJECT, null));
-                    }
+                if (SelectedItem)
+                {
+                    SelectedItem.Selected = true;
+                    dispatchEvent(new MouseManagerEvent(MouseManagerEvent.SELECT_OBJECT, SelectedItem));
+                }
+                else if (SelectedNested)
+                {
+                    SelectedNested.Selected = true;
+                    dispatchEvent(new MouseManagerEvent(MouseManagerEvent.SELECT_OBJECT, SelectedNested));
+                }
+                else
+                {
+                    dispatchEvent(new MouseManagerEvent(MouseManagerEvent.RELEASE_OBJECT, null));
                 }
             }
         }
@@ -147,32 +167,30 @@ public class MouseManager : EventDispatcher
                 {
                     clickGameObject = overGameObject;
 
-                    if (Mathf.Abs(lastMousePointX - Input.mousePosition.x) < 1 &&
-                        Mathf.Abs(lastMousePointY - Input.mousePosition.y) < 1)
+                    if (clickGameObject)
                     {
-                        if (clickGameObject)
-                        {
-                            SelectedLine = clickGameObject.GetComponent<Line2D>();
-                            SelectedSurface = clickGameObject.GetComponent<Surface2D>();
-                            SelectedPlane = clickGameObject.GetComponent<Plane2D>();
-                        }
+                        SelectedLine = clickGameObject.GetComponent<Line2D>();
+                        SelectedSurface = clickGameObject.GetComponent<Surface2D>();
+                        SelectedPlane = clickGameObject.GetComponent<Plane2D>();
+                    }
 
-                        if (SelectedLine)
-                        {
-                            dispatchEvent(new MouseManagerEvent(MouseManagerEvent.SELECT_OBJECT, SelectedLine));
-                        }
-                        else if (SelectedSurface)
-                        {
-                            dispatchEvent(new MouseManagerEvent(MouseManagerEvent.SELECT_OBJECT, SelectedSurface));
-                        }
-                        else if (SelectedPlane)
-                        {
-                            dispatchEvent(new MouseManagerEvent(MouseManagerEvent.SELECT_OBJECT, SelectedPlane));
-                        }
-                        else
-                        {
-                            dispatchEvent(new MouseManagerEvent(MouseManagerEvent.RELEASE_OBJECT, null));
-                        }
+                    if (SelectedLine)
+                    {
+                        SelectedLine.Selected = true;
+                        dispatchEvent(new MouseManagerEvent(MouseManagerEvent.SELECT_OBJECT, SelectedLine));
+                    }
+                    else if (SelectedSurface)
+                    {
+                        SelectedSurface.Selected = true;
+                        dispatchEvent(new MouseManagerEvent(MouseManagerEvent.SELECT_OBJECT, SelectedSurface));
+                    }
+                    else if (SelectedPlane)
+                    {
+                        dispatchEvent(new MouseManagerEvent(MouseManagerEvent.SELECT_OBJECT, SelectedPlane));
+                    }
+                    else
+                    {
+                        dispatchEvent(new MouseManagerEvent(MouseManagerEvent.RELEASE_OBJECT, null));
                     }
                 }
                 else

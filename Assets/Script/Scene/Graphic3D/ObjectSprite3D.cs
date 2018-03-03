@@ -107,9 +107,6 @@ public class ObjectSprite3D : AssetSprite
             else
             {
                 _model.transform.localScale = new Vector3(1, 1, 1);
-
-                gameObject.AddBoxCollider(false);
-                _vo.UpdateSize(gameObject);
             }
 
             if (_model.GetComponent<TransformComponent>() == null)

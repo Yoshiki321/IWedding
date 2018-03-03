@@ -66,14 +66,15 @@ namespace Build2D
 
             if (float.IsNaN(v.x) || float.IsNaN(v.y) || float.IsNaN(v.z))
             {
-                _textureObject.transform.localPosition = Vector3.zero;
+                _textureObjectOffest = Vector3.zero;
             }
             else
             {
-                _textureObject.transform.localPosition = new Vector3(v.x * 4.79f, v.z * 4.79f, 0);
+                _textureObjectOffest = new Vector3(v.x * 4.79f, v.z * 4.79f, 0);
+                UpdatePosition();
             }
 
-            if (width != 0 && height != 0)
+            if (width != 0 && height != 0 && (VO as ObjectVO).sizeX != 0 && (VO as ObjectVO).sizeY != 0 && (VO as ObjectVO).sizeZ != 0)
             {
                 //_textureObject.transform.localScale = new Vector3(_textureObject.transform.localScale.x / width * ((VO as ObjectVO).sizeX) * VO.GetComponentVO<TransformVO>().scaleX,
                 //                                  _textureObject.transform.localScale.y / height * ((VO as ObjectVO).sizeZ) * VO.GetComponentVO<TransformVO>().scaleZ, 1);
