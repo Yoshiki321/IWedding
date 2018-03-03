@@ -115,6 +115,8 @@ public class TopToolPanel : BasePanel
 
     protected override void OnClick(GameObject obj)
     {
+        IntButtonBgColor(obj);
+
         for (int i = 0; i < TopToolBtnList.Count; i++)
         {
             TopToolBtnList[i].SetActive(false);
@@ -165,12 +167,14 @@ public class TopToolPanel : BasePanel
         {
             if (SceneManager.Instance.brushManager.brushMode == BrushManager.BrushMode.Place)
             {
-                dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.OPENBRUSH));
+                SceneManager.Instance.brushManager.brushMode = BrushManager.BrushMode.Direct;
+                SceneToolbarPanel.Instance.IFBrushIsOpenedHandle();
                 OpenBrush();
             }
             else
             {
-                dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.CLOSEBRUSH));
+                SceneManager.Instance.brushManager.brushMode = BrushManager.BrushMode.Place;
+                SceneToolbarPanel.Instance.IFBrushIsClosedHandle();
                 CloseBrush();
             }
         }
@@ -206,14 +210,19 @@ public class TopToolPanel : BasePanel
         }
         if (obj == TopToolFilterBtnList[5])
         {
-            if (SceneManager.activeSceneLight)
+            if (!SceneManager.activeSceneLight)
             {
-                dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.OPENLIGHT));
-                OpenLight();
-            }
-            else {
+                SceneManager.Instance.OpenLightHandle();
+                SceneToolbarPanel.Instance.IFLightIsOpenedHandle();
                 CloseLight();
-                dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.CLOSELIGHT));
+            }
+            else
+            {
+                SceneManager.Instance.CloseLightHandle();
+                SceneToolbarPanel.Instance.IFLightIsClosedHandle();
+                OpenLight();
+                
+                
             }
         }
         //窗口
