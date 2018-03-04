@@ -7,7 +7,7 @@ namespace BuildManager
 {
     public class SceneManager : MonoBehaviour
     {
-        public static string Version = "1.0.3";
+        public static string Version = "1.0.4";
 
         public static string ProjectName;
         public static string ProjectURL;
@@ -103,6 +103,7 @@ namespace BuildManager
             new TexturesManager();
             new CookieManager();
             new DrawShapeManager();
+            new SprinkleManager();
         }
 
         private void InitComponent()

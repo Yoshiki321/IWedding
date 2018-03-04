@@ -9,6 +9,9 @@ using BuildManager;
 public class SprinkleComponentUI : BaseComponentUI
 {
     private SliderUI _countSliderUI;
+    private ButtonImageUI _buttonUI;
+
+    private string _itemId;
 
     override public void Init()
     {
@@ -24,7 +27,26 @@ public class SprinkleComponentUI : BaseComponentUI
         CreateTitleButtonUI("撒花", "快捷键 E", value => { Sprinkle(); });
         CreateTitleButtonUI("清空", "清空花瓣", value => { Clear(); });
 
+        _buttonUI = CreateButtonImageUI("样式", SprinkleClickHandle);
+
         UpdateHeight();
+    }
+
+    private void SprinkleClickHandle(ButtonImageUI ui)
+    {
+        SelectTexturePanel sp = UIManager.OpenPanel(Panel.SelectTexturePanel, SprinkleManager.SprinkleImageList,
+           _buttonUI.button.transform.position - new Vector3(30, 0)) as SelectTexturePanel;
+        sp.getTextue += UpdateTexture;
+        sp.selectItem = _itemId;
+    }
+
+    private void UpdateTexture(string id)
+    {
+        foreach (AssetVO avo in _assets)
+        {
+            _itemId = id;
+            UpdateComponent();
+        }
     }
 
     private void Clear()
@@ -42,6 +64,7 @@ public class SprinkleComponentUI : BaseComponentUI
         {
             SprinkleVO vo = _assets[i] as SprinkleVO;
             vo.count = _countSliderUI.value;
+            vo.itemId = _itemId;
 
             foreach (SprinkleData data in _sprinkle[i].vo.dataList)
             {

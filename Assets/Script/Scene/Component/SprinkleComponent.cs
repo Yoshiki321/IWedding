@@ -23,8 +23,6 @@ public class SprinkleComponent : SceneComponent
             _sprinkleVO = _item.VO.AddComponentVO<SprinkleVO>();
         }
 
-        _flower = Resources.Load("Item/Petal/Petal1") as GameObject;
-
         _box = new GameObject();
         _box.name = _item.transform.gameObject.name;
         _box.transform.parent = _item.parent;
@@ -38,6 +36,7 @@ public class SprinkleComponent : SceneComponent
     {
         SprinkleData data = new SprinkleData();
         data.id = NumberUtils.GetGuid();
+        data.itemId = _sprinkleVO.itemId;
 
         for (int i = 0; i < value; i++)
         {
@@ -59,13 +58,14 @@ public class SprinkleComponent : SceneComponent
     {
         for (int i = 0; i < data.rotations.Count; i++)
         {
-            CreateSprinkle(data.id, data.points[i], data.rotations[i]);
+            CreateSprinkle(data.id, data.points[i], data.rotations[i], data.itemId);
         }
         _sprinkleVO.SetData(data);
     }
 
-    private void CreateSprinkle(string name, Vector3 pos, Vector3 rot)
+    private void CreateSprinkle(string name, Vector3 pos, Vector3 rot, string id)
     {
+        _flower = Resources.Load(SprinkleManager.GetModel(id)) as GameObject;
         GameObject flower = GameObject.Instantiate(_flower);
         flower.transform.localPosition = pos;
         flower.transform.localRotation = Quaternion.Euler(rot);
@@ -96,11 +96,12 @@ public class SprinkleComponent : SceneComponent
                 {
                     string[] list1 = s.Split(',');
                     data.id = list1[0];
+                    data.id = list1[1];
 
                     for (int i = 0; i < list1.Length; i++)
                     {
-                        Vector3 pv = new Vector3(float.Parse(list1[1]), float.Parse(list1[2]), float.Parse(list1[3]));
-                        Vector3 rv = new Vector3(float.Parse(list1[4]), float.Parse(list1[5]), float.Parse(list1[6]));
+                        Vector3 pv = new Vector3(float.Parse(list1[2]), float.Parse(list1[3]), float.Parse(list1[4]));
+                        Vector3 rv = new Vector3(float.Parse(list1[5]), float.Parse(list1[6]), float.Parse(list1[7]));
                         data.points.Add(pv);
                         data.rotations.Add(rv);
                     }

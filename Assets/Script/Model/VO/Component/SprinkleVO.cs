@@ -13,6 +13,8 @@ public class SprinkleVO : ComponentVO
 
     public float count = 5;
 
+    public string itemId = "1001";
+
     public void SetData(SprinkleData data)
     {
         dataList.Add(data);
@@ -21,6 +23,7 @@ public class SprinkleVO : ComponentVO
     override public void FillFromObject(ComponentVO asset)
     {
         id = (asset as SprinkleVO).id;
+        itemId = (asset as SprinkleVO).itemId;
 
         dataList = new List<SprinkleData>();
         SprinkleVO sprinkleVO = (asset as SprinkleVO);
@@ -37,7 +40,8 @@ public class SprinkleVO : ComponentVO
 
         return (
             dataList.Count == vo.dataList.Count &&
-            count == vo.count
+            count == vo.count &&
+            itemId == vo.itemId
             );
     }
 
@@ -46,6 +50,7 @@ public class SprinkleVO : ComponentVO
         SprinkleVO vo = new SprinkleVO();
         vo.id = id;
         vo.count = count;
+        vo.itemId = itemId;
 
         foreach (SprinkleData data in dataList)
         {
@@ -62,6 +67,7 @@ public class SprinkleVO : ComponentVO
             code += "<Sprinkle";
             code += " id = " + GetPropertyString(id);
             code += " count = " + GetPropertyString(count);
+            code += " itemId = " + GetPropertyString(itemId);
             code += " data = ";
 
             code += '"';
@@ -82,6 +88,7 @@ public class SprinkleVO : ComponentVO
             id = code.Attributes["id"].Value;
             count = float.Parse(code.Attributes["count"].Value);
             sprinkleCode = code.Attributes["data"].Value;
+            itemId = code.Attributes["itemId"].Value;
         }
     }
 }
@@ -90,6 +97,7 @@ public class SprinkleVO : ComponentVO
 public class SprinkleData
 {
     public string id;
+    public string itemId;
     public List<Vector3> points = new List<Vector3>();
     public List<Vector3> rotations = new List<Vector3>();
 
@@ -103,6 +111,7 @@ public class SprinkleData
         if (id != data.id) return false;
         if (points.Count != data.points.Count) return false;
         if (rotations.Count != data.rotations.Count) return false;
+        if (itemId != data.itemId) return false;
         return true;
     }
 
@@ -110,6 +119,7 @@ public class SprinkleData
     {
         SprinkleData data = new SprinkleData();
         data.id = id;
+        data.itemId = itemId;
         foreach (Vector3 v in points)
         {
             data.points.Add(v.Clone());

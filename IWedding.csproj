@@ -1014,6 +1014,7 @@
     <Compile Include="Assets\Script\Manager\RulerManager.cs" />
     <Compile Include="Assets\Script\Manager\SceneManager.cs" />
     <Compile Include="Assets\Script\Manager\SorptionManager.cs" />
+    <Compile Include="Assets\Script\Manager\SprinkleManager.cs" />
     <Compile Include="Assets\Script\Manager\SurfaceManager.cs" />
     <Compile Include="Assets\Script\Manager\TexturesManager.cs" />
     <Compile Include="Assets\Script\Manager\UIManager.cs" />
@@ -1412,14 +1413,15 @@
     <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\UberSecondPass.cginc" />
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
-    <None Include="Assets\Resources\Config\DefaultLayout.xml">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Assets\Resources\Config\DefaultLayout.xml" />
     <None Include="Assets\Resources\Config\EffectLampCookie.xml" />
     <None Include="Assets\Resources\Config\Hotel\Hotel.xml" />
-    <None Include="Assets\Resources\Config\Item\Item.xml" />
+    <None Include="Assets\Resources\Config\Item\Item.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Assets\Resources\Config\Item\ItemList.xml" />
     <None Include="Assets\Resources\Config\Item\ItemNode.xml" />
+    <None Include="Assets\Resources\Config\Item\SprinkleItem.xml" />
     <None Include="Assets\Resources\Config\Layout\1001.xml" />
     <None Include="Assets\Resources\Config\Material\MaterialList.xml" />
     <None Include="Assets\Resources\Config\PlaneTextures.xml" />
