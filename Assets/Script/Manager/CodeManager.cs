@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using BuildManager;
 using System;
 using Build3D;
+using Build2D;
 
 public class CodeManager
 {
@@ -90,6 +91,11 @@ public class CodeManager
 
         XmlNodeList nestedList = assetsNode.SelectNodes("Nested");
         AssetsModel.Instance.CreateNested(nestedList);
+
+        foreach (ObjectData data in AssetsModel.Instance.nestedDatas)
+        {
+            SceneManager.Instance.controlManager.UpdateNestedOnLine(data.object2 as Nested2D);
+        }
     }
 
     public static List<AssetVO> LoadCombination(string url)

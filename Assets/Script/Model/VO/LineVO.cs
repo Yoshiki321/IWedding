@@ -84,10 +84,10 @@ public class LineVO : AssetVO
             code += " ito = " + ito.GetCode();
             code += ">";
 
-            foreach (HoleVO vo in holes)
-            {
-                code += vo.Code.OuterXml;
-            }
+            //foreach (HoleVO vo in holes)
+            //{
+            //    code += vo.Code.OuterXml;
+            //}
 
             foreach (ComponentVO vo in componentVOList)
             {
@@ -114,16 +114,16 @@ public class LineVO : AssetVO
             ifrom = ifrom.SetCode(code.Attributes["ifrom"].Value);
             ito = ito.SetCode(code.Attributes["ito"].Value);
 
-            XmlNodeList holesNodes = code.SelectNodes("Hole");
-            if (holesNodes != null)
-            {
-                foreach (XmlNode holesXml in holesNodes)
-                {
-                    HoleVO hvo = new HoleVO();
-                    hvo.Code = holesXml;
-                    holes.Add(hvo);
-                }
-            }
+            //XmlNodeList holesNodes = code.SelectNodes("Hole");
+            //if (holesNodes != null)
+            //{
+            //    foreach (XmlNode holesXml in holesNodes)
+            //    {
+            //        HoleVO hvo = new HoleVO();
+            //        hvo.Code = holesXml;
+            //        holes.Add(hvo);
+            //    }
+            //}
 
             code = code.SelectSingleNode("Collage");
             if (code != null) AddComponentVO<CollageVO>().Code = code;

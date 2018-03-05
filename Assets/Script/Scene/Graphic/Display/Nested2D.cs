@@ -13,8 +13,9 @@ namespace Build2D
 
         private List<string> _lines = new List<string>();
 
-        void Start()
+        override public void Start()
         {
+            base.Start();
             gameObject.transform.localScale = new Vector3(1, 1, 0);
         }
 

@@ -39,7 +39,7 @@ public class ObjectSprite : MonoBehaviour
 
     private HighlighterController highlighterController;
 
-    private void Start()
+    public virtual void Start()
     {
         highlighterController = gameObject.AddComponent<HighlighterController>();
     }
