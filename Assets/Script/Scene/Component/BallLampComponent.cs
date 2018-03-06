@@ -62,6 +62,6 @@ public class BallLampComponent : SceneComponent
 
     void Update()
     {
-        gameObject.transform.Rotate(new Vector3(rotateX, rotateY, rotateZ));
+        gameObject.transform.Find("Light").transform.Rotate(new Vector3(rotateX, rotateY, rotateZ));
     }
 }

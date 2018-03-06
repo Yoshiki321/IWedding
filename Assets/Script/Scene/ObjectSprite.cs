@@ -50,6 +50,7 @@ public class ObjectSprite : MonoBehaviour
     {
         set
         {
+            if (highlighterController == null) return;
             if (_selected == value) return;
             _selected = value;
             UpdateHighlighter();

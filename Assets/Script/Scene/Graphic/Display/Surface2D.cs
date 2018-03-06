@@ -90,10 +90,10 @@ namespace Build2D
             _meshCollider = this.gameObject.AddComponent<MeshCollider>();
 
             _meshRenderer.material.SetFloat("_Glossiness", 0f);
-            _meshRenderer.material.SetColor("_Color", ColorUtils.HexToColor("a4a7a7FF"));
             RenderingModeUnits.SetMaterialRenderingMode(_meshRenderer.material, RenderingModeUnits.RenderingMode.Transparent);
 
             this.gameObject.layer = LayerMask.NameToLayer("Graphic2D");
+            _meshRenderer.material.SetColor("_Color", ColorUtils.HexToColor("a4a7a7FF"));
 
             VO = surfacevo;
 
@@ -118,7 +118,7 @@ namespace Build2D
         {
             //if (Selected)
             //{
-            //    _meshRenderer.material.SetColor("_Color", ColorUtils.HexToColor("e8e8e8ff"));
+            //    _meshRenderer.material.SetColor("_Color", ColorUtils.HexToColor("e8e8e8"));
             //}
             //else
             //{

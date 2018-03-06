@@ -54,7 +54,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4696250869055234}
   - component: {fileID: 33320239461373620}
-  - component: {fileID: 135094181200650226}
   - component: {fileID: 23330982280798710}
   - component: {fileID: 114312869528150140}
   m_Layer: 0
@@ -72,8 +71,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4327422826305942}
-  - component: {fileID: 65254284825595624}
   - component: {fileID: 114687604572812462}
+  - component: {fileID: 135945573252515902}
   m_Layer: 0
   m_Name: PointLight
   m_TagString: Untagged
@@ -104,7 +103,7 @@ Transform:
   m_GameObject: {fileID: 1439926659111580}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1501672, y: 0.15016708, z: 0.15016708}
+  m_LocalScale: {x: 0.40841487, y: 0.40841472, z: 0.40841472}
   m_Children: []
   m_Father: {fileID: 4696250869055234}
   m_RootOrder: 0
@@ -184,7 +183,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: df858c6e4056e134eb2c870cfa2e7d56, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -232,18 +231,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65254284825595624
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1896054809088724}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.098659426, y: 0.10066801, z: 0.10059732}
-  m_Center: {x: 0.0010035187, y: 0.0020075738, z: 0.0000072717667}
 --- !u!108 &108308264934965472
 Light:
   m_ObjectHideFlags: 1
@@ -302,15 +289,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ca5088501db784eb4c9bfe77035df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &135094181200650226
+--- !u!135 &135945573252515902
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1505895129995626}
+  m_GameObject: {fileID: 1896054809088724}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}

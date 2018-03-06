@@ -29,4 +29,11 @@ public class SelectColorPanel : BaseWindow
         get { return colorPicker.onPicker; }
         set { colorPicker.onPicker = value; }
     }
+
+    protected override void Close()
+    {
+        base.Close();
+
+        onPicker.RemoveAllListeners();
+    }
 }

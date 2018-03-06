@@ -53,8 +53,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4549267994811724}
-  - component: {fileID: 65191938062488840}
   - component: {fileID: 114684388897823592}
+  - component: {fileID: 135222795648885222}
   m_Layer: 0
   m_Name: BallLamp
   m_TagString: Untagged
@@ -183,7 +183,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5dd74bc4070e17945aeba8764481aedd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -231,18 +231,6 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65191938062488840
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1374903575259740}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &108313769518975938
 Light:
   m_ObjectHideFlags: 1
@@ -304,3 +292,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00de5d81c456b64e9b9d306982d78de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &135222795648885222
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1374903575259740}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.33
+  m_Center: {x: 0, y: 0, z: 0}
