@@ -65,6 +65,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4927946827541260}
   - component: {fileID: 114587039267261946}
+  - component: {fileID: 65912753820396590}
   m_Layer: 9
   m_Name: LaserSpotlight
   m_TagString: Untagged
@@ -833,6 +834,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1861776580552482}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65912753820396590
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1229533386330882}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.30000004, y: 0.42, z: 0.30000007}
+  m_Center: {x: 0.000000017881394, y: 0, z: 0}
 --- !u!108 &108111532342059718
 Light:
   m_ObjectHideFlags: 1

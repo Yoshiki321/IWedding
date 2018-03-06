@@ -68,6 +68,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4755663452225876}
+  - component: {fileID: 65388263608999916}
+  - component: {fileID: 65134028979458172}
   m_Layer: 0
   m_Name: caocong
   m_TagString: Untagged
@@ -214,3 +216,27 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1660010385444854}
   m_Mesh: {fileID: 4300558, guid: a55cc8bed882e46409b25d50b2f7904c, type: 3}
+--- !u!65 &65134028979458172
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1922152817143272}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.741333, y: 2.3107824, z: 8.370442}
+  m_Center: {x: -0.15561187, y: 0.9404248, z: 0.24276644}
+--- !u!65 &65388263608999916
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1922152817143272}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.7415543, y: 2.3138318, z: 8.370499}
+  m_Center: {x: -0.15550148, y: 1.288396, z: 0.24273834}

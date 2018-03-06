@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4862758091008146}
+  - component: {fileID: 65158936306539940}
   m_Layer: 0
   m_Name: feima
   m_TagString: Untagged
@@ -140,3 +141,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1488719939875872}
   m_Mesh: {fileID: 4300004, guid: a55cc8bed882e46409b25d50b2f7904c, type: 3}
+--- !u!65 &65158936306539940
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1470713753501566}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.7929544, y: 6.8566527, z: 5.800048}
+  m_Center: {x: -0.56998205, y: 2.712597, z: -0.6049432}
