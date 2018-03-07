@@ -67,7 +67,6 @@ public class SprinkleVO : ComponentVO
             code += "<Sprinkle";
             code += " id = " + GetPropertyString(id);
             code += " count = " + GetPropertyString(count);
-            code += " itemId = " + GetPropertyString(itemId);
             code += " data = ";
 
             code += '"';

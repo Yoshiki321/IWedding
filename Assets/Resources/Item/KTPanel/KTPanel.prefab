@@ -53,8 +53,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4150452192237996}
-  - component: {fileID: 65645828042032384}
   - component: {fileID: 114821137016428896}
+  - component: {fileID: 65531048427171886}
+  - component: {fileID: 65670594077536214}
   m_Layer: 0
   m_Name: KTPanel
   m_TagString: Untagged
@@ -83,26 +84,26 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1226801201545776}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: -0.5}
   m_LocalPosition: {x: 0, y: 1.47, z: 0}
   m_LocalScale: {x: 0.26, y: 1.0000005, z: 0.2900001}
   m_Children: []
   m_Father: {fileID: 4150452192237996}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 90}
 --- !u!4 &4919564341121312
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1269197931302798}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0.7071068, w: -0}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: -0.5}
   m_LocalPosition: {x: 0, y: 1.47, z: 0}
   m_LocalScale: {x: 0.26, y: 1, z: 0.29}
   m_Children: []
   m_Father: {fileID: 4150452192237996}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -270, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: -270, y: 0, z: 90}
 --- !u!23 &23735671582811514
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -185,7 +186,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1269197931302798}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65645828042032384
+--- !u!65 &65531048427171886
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -195,8 +196,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.6075325, y: 2.9206948, z: 0.063292}
-  m_Center: {x: 0.0072026253, y: 1.4633868, z: 0.011423275}
+  m_Size: {x: 2.220446e-16, y: 2.8999999, z: 2.6}
+  m_Center: {x: 0, y: 1.47, z: 0}
+--- !u!65 &65670594077536214
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1574533639861324}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.220447e-16, y: 2.900001, z: 2.6}
+  m_Center: {x: 0, y: 1.47, z: 0}
 --- !u!114 &114821137016428896
 MonoBehaviour:
   m_ObjectHideFlags: 1

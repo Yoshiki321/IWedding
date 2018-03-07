@@ -77,7 +77,7 @@ public class SprinkleComponent : SceneComponent
         }
         Rigidbody rigid = flower.AddComponent<Rigidbody>();
         rigid.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        flower.name = name;
+        flower.name = flower.gameObject.GetInstanceID().ToString();
 
         _sprinkleVO.list.Add(flower);
         Destroy(rigid, 3f);
@@ -95,13 +95,12 @@ public class SprinkleComponent : SceneComponent
                 if (s != "")
                 {
                     string[] list1 = s.Split(',');
-                    data.id = list1[0];
-                    data.id = list1[1];
+                    data.itemId = list1[0];
 
                     for (int i = 0; i < list1.Length; i++)
                     {
-                        Vector3 pv = new Vector3(float.Parse(list1[2]), float.Parse(list1[3]), float.Parse(list1[4]));
-                        Vector3 rv = new Vector3(float.Parse(list1[5]), float.Parse(list1[6]), float.Parse(list1[7]));
+                        Vector3 pv = new Vector3(float.Parse(list1[1]), float.Parse(list1[2]), float.Parse(list1[3]));
+                        Vector3 rv = new Vector3(float.Parse(list1[4]), float.Parse(list1[5]), float.Parse(list1[6]));
                         data.points.Add(pv);
                         data.rotations.Add(rv);
                     }

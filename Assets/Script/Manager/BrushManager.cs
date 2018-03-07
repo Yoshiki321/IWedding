@@ -63,8 +63,10 @@ public class BrushManager
 
         if (itemData != null)
         {
-            item = GameObject.Instantiate(Resources.Load(itemData.model), new Vector3(), new Quaternion()) as GameObject;
+            item = GameObject.Instantiate(Resources.Load(itemData.model)) as GameObject;
             item.transform.parent = box.transform;
+            item.transform.localPosition = new Vector3();
+            item.transform.localRotation = Quaternion.Euler(new Vector3(0, -90, 0));
             MeshRenderer[] mrs = item.GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer mr in mrs)
             {
@@ -76,7 +78,7 @@ public class BrushManager
             Transform[] ts = item.GetComponentsInChildren<Transform>();
             foreach (Transform t in ts)
             {
-                t.gameObject.layer = LayerMask.NameToLayer("ObjectSprite3D");
+                t.gameObject.layer = LayerMask.NameToLayer("Water");
             }
         }
     }
@@ -123,14 +125,17 @@ public class BrushManager
 
             if (Physics.Raycast(ray, out hit, 9999999))
             {
-                Vector3 pos = hit.point;
-                //pos.y += 0.5f;
-
-                item.transform.localPosition = pos;
-                item.transform.LookAt(hit.point - hit.normal);
-                item.transform.Rotate(new Vector3(-90, 0, 0));
-                Vector3 v = item.transform.rotation.eulerAngles;
-                item.transform.rotation = Quaternion.Euler(new Vector3(0, v.y, 0));
+                box.transform.position = hit.point;
+                if (hit.transform.GetComponentInParent<SurfacePlane3D>() == null)
+                {
+                    box.transform.LookAt(hit.point - hit.normal);
+                    box.transform.Translate(Vector3.back * 0.05f);
+                }
+                else
+                {
+                    box.transform.rotation = Quaternion.Euler(new Vector3());
+                }
+                Vector3 v = box.transform.rotation.eulerAngles;
 
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -139,7 +144,7 @@ public class BrushManager
                 if (Input.GetMouseButtonUp(0) && down)
                 {
                     down = false;
-                    clickFun(pos, item.transform.rotation.eulerAngles);
+                    clickFun(box.transform.position, new Vector3(0, v.y - 90, 0));
                 }
             }
         }

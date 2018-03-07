@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4338797259383920}
+  - component: {fileID: 65417784551840318}
   m_Layer: 0
   m_Name: shuteng
   m_TagString: Untagged
@@ -111,3 +112,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1735792843670572}
   m_Mesh: {fileID: 4300022, guid: f072df5a0e1a4fe45b787b07a2aadc94, type: 3}
+--- !u!65 &65417784551840318
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1886311500251322}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2316561, y: 0.93704665, z: 3.257983}
+  m_Center: {x: 0.13213173, y: 0.50740767, z: 0.22435358}

@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4424512796820466}
+  - component: {fileID: 65969744083660304}
   m_Layer: 0
   m_Name: dalishi
   m_TagString: Untagged
@@ -111,3 +112,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1074187513071856}
   m_Mesh: {fileID: 4300016, guid: f072df5a0e1a4fe45b787b07a2aadc94, type: 3}
+--- !u!65 &65969744083660304
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1293822859320868}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.11223288, y: 3.2654884, z: 2.310688}
+  m_Center: {x: -0.00000005372131, y: 1.68, z: 0}

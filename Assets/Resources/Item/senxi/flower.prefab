@@ -19,6 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4438953497918328}
+  - component: {fileID: 65603785710119110}
+  - component: {fileID: 65128888124800268}
+  - component: {fileID: 65380103489498472}
   m_Layer: 0
   m_Name: flower
   m_TagString: Untagged
@@ -318,3 +321,39 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1315864924896804}
   m_Mesh: {fileID: 4300024, guid: f072df5a0e1a4fe45b787b07a2aadc94, type: 3}
+--- !u!65 &65128888124800268
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015192939144234}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.72429585, y: 0.51453304, z: 0.6951918}
+  m_Center: {x: -0.033274066, y: 0.18561888, z: -0.050357223}
+--- !u!65 &65380103489498472
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015192939144234}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.6479207, y: 0.37372622, z: 0.64497626}
+  m_Center: {x: 0.09085178, y: 0.19845913, z: 0.075465016}
+--- !u!65 &65603785710119110
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1015192939144234}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.73918694, y: 0.45773607, z: 0.58926886}
+  m_Center: {x: -0.04521869, y: 0.184241, z: -0.057463445}

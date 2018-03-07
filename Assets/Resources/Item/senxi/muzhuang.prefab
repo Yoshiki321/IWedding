@@ -19,6 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4912731269908018}
+  - component: {fileID: 65261014371851536}
   m_Layer: 0
   m_Name: muzhuang
   m_TagString: Untagged
@@ -111,3 +112,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1146521476175116}
   m_Mesh: {fileID: 4300020, guid: f072df5a0e1a4fe45b787b07a2aadc94, type: 3}
+--- !u!65 &65261014371851536
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1074352798364686}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.54631, y: 1.0356816, z: 0.5635229}
+  m_Center: {x: 0.010147204, y: 0.54184073, z: 0.0041301404}

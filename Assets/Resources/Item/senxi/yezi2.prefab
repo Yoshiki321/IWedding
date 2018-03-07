@@ -117,6 +117,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4196058988402394}
+  - component: {fileID: 65862726885461276}
+  - component: {fileID: 65980775333935470}
+  - component: {fileID: 65103101182622810}
+  - component: {fileID: 65360464839261092}
   m_Layer: 0
   m_Name: yezi2
   m_TagString: Untagged
@@ -385,3 +389,51 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1537319078441558}
   m_Mesh: {fileID: 4300002, guid: f072df5a0e1a4fe45b787b07a2aadc94, type: 3}
+--- !u!65 &65103101182622810
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1800206933558100}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0051557, y: 1.7573636, z: 1.0009809}
+  m_Center: {x: -0.100026354, y: 1.0798315, z: -0.2511158}
+--- !u!65 &65360464839261092
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1800206933558100}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0684922, y: 1.887898, z: 1.0706556}
+  m_Center: {x: -0.11977632, y: 1.0745832, z: -0.26344314}
+--- !u!65 &65862726885461276
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1800206933558100}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1236222, y: 2.0689986, z: 1.3356731}
+  m_Center: {x: -0.11464116, y: 0.9965946, z: -0.057670176}
+--- !u!65 &65980775333935470
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1800206933558100}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.75709087, y: 1.0972568, z: 0.79765236}
+  m_Center: {x: -0.06296766, y: 1.5653864, z: -0.12857902}
