@@ -77,7 +77,7 @@ public class SprinkleComponent : SceneComponent
         }
         Rigidbody rigid = flower.AddComponent<Rigidbody>();
         rigid.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        flower.name = name + "@" + id;
+        flower.name = name + "-" + id;
 
         _sprinkleVO.list.Add(flower);
         Destroy(rigid, 3f);
@@ -94,21 +94,18 @@ public class SprinkleComponent : SceneComponent
             List<string> itemids = new List<string>();
             foreach (string id in list)
             {
-                if (id != "")
+                string[] list1 = id.Split(',');
+                bool has = false;
+                foreach (string id1 in itemids)
                 {
-                    string[] list1 = id.Split(',');
-                    bool has = false;
-                    foreach (string id1 in itemids)
+                    if (id1 == list1[0].ToString().Split('-')[1])
                     {
-                        if (id1 == list1[0].ToString().Split('@')[1])
-                        {
-                            has = true;
-                        }
+                        has = true;
                     }
-                    if (!has)
-                    {
-                        itemids.Add(list1[0].ToString().Split('@')[1]);
-                    }
+                }
+                if (!has)
+                {
+                    itemids.Add(list1[0].ToString().Split('-')[1]);
                 }
             }
 
@@ -120,10 +117,10 @@ public class SprinkleComponent : SceneComponent
                     if (s != "")
                     {
                         string[] list1 = s.Split(',');
-                        if (id == list1[0].ToString().Split('@')[1])
+                        if(id == list1[0].ToString().Split('-')[1])
                         {
-                            data.id = list1[0].ToString().Split('@')[0];
-                            data.itemId = list1[0].ToString().Split('@')[1];
+                            data.id = list1[0].ToString().Split('-')[0];
+                            data.itemId = list1[0].ToString().Split('-')[1];
 
                             for (int i = 0; i < list1.Length; i++)
                             {
@@ -172,7 +169,7 @@ public class SprinkleComponent : SceneComponent
                 bool has = false;
                 foreach (SprinkleData data in vo.dataList)
                 {
-                    if (_sprinkleVO.list[i].name.Split('@')[0] == data.id)
+                    if (_sprinkleVO.list[i].name.Split('-')[0] == data.id)
                     {
                         has = true;
                         continue;
@@ -192,7 +189,7 @@ public class SprinkleComponent : SceneComponent
                 bool has = false;
                 foreach (GameObject obj in _sprinkleVO.list)
                 {
-                    if (vo.dataList[i].id == obj.name.Split('@')[0])
+                    if (vo.dataList[i].id == obj.name.Split('-')[0])
                     {
                         has = true;
                         continue;

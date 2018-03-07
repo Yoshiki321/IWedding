@@ -87,6 +87,7 @@ public class SprinkleVO : ComponentVO
             id = code.Attributes["id"].Value;
             count = float.Parse(code.Attributes["count"].Value);
             sprinkleCode = code.Attributes["data"].Value;
+            itemId = code.Attributes["itemId"].Value;
         }
     }
 }
