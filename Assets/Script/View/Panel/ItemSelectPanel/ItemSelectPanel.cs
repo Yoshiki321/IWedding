@@ -52,6 +52,7 @@ public class ItemSelectPanel : BasePanel
 
         items.Add(obj);
         images.Add(obj.transform.Find("Image").GetComponent<Image>());
+        Destroy(obj.GetComponent<List>());
 
         foreach (ItemVO vo in list)
         {
@@ -82,7 +83,9 @@ public class ItemSelectPanel : BasePanel
 
         items.Add(obj);
         images.Add(obj.transform.Find("Image").GetComponent<Image>());
-        AddEventClick(obj);
+        obj.GetComponent<Button>().onClick.AddListener(delegate () {
+            this.OnClick(obj);
+        });
     }
 
     public void UpdateTextName()

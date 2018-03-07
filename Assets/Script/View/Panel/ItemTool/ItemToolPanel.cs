@@ -118,8 +118,10 @@ public class ItemToolPanel : BasePanel
                         _itemImg.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
                         _itemImg.GetComponent<Image>().overrideSprite = Resources.Load(_itemList[_itemListNum].thumbnail, typeof(Sprite)) as Sprite;
                         _itemImg.name = _itemList[_itemListNum].id + ":" + _itemList[_itemListNum].classify;
-                    AddEventClick(_itemImg);
                 }
+                _itemImg.GetComponent<Button>().onClick.AddListener(delegate () {
+                    this.OnClickHandle(_itemImg);
+                });
             }
 
         }
@@ -158,7 +160,22 @@ public class ItemToolPanel : BasePanel
             }
         }
     }
-
+    public void OnClickHandle(GameObject obj) {
+        for (int _itemContentNum = 0; _itemContentNum < _itemContent.transform.childCount; _itemContentNum++)
+        {
+            if (obj == _itemContent.transform.GetChild(_itemContentNum).gameObject)
+            {
+                if (_itemList[_itemContentNum].type == "ItemObjectGroup")
+                {
+                    dispatchEvent(new ItemToolPanelEvent(ItemToolPanelEvent.Create_Combination, _itemList[_itemContentNum].id));
+                }
+                else
+                {
+                    dispatchEvent(new ItemToolPanelEvent(ItemToolPanelEvent.Create_Item, _itemList[_itemContentNum].id));
+                }
+            }
+        }
+    }
     protected override void OnExit(GameObject obj)
     {
         if (obj == _itemObjectBtn)
@@ -264,20 +281,7 @@ public class ItemToolPanel : BasePanel
                 SetButtonTextColor(0);
             }
         }
-        for (int _itemContentNum = 0; _itemContentNum < _itemContent.transform.childCount; _itemContentNum++)
-        {
-            if (obj == _itemContent.transform.GetChild(_itemContentNum).gameObject)
-            {
-                if (_itemList[_itemContentNum].type == "ItemObjectGroup")
-                {
-                    dispatchEvent(new ItemToolPanelEvent(ItemToolPanelEvent.Create_Combination, _itemList[_itemContentNum].id));
-                }
-                else
-                {
-                    dispatchEvent(new ItemToolPanelEvent(ItemToolPanelEvent.Create_Item, _itemList[_itemContentNum].id));
-                }
-            }
-        }
+        
 
     }
     private void init()
