@@ -77,7 +77,7 @@ public class SprinkleComponent : SceneComponent
         }
         Rigidbody rigid = flower.AddComponent<Rigidbody>();
         rigid.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        flower.name = flower.gameObject.GetInstanceID().ToString();
+        flower.name = name + "-" + id;
 
         _sprinkleVO.list.Add(flower);
         Destroy(rigid, 3f);
@@ -89,24 +89,51 @@ public class SprinkleComponent : SceneComponent
         {
             string[] list = _sprinkleVO.sprinkleCode.Split(';');
 
-            SprinkleData data = new SprinkleData();
-            foreach (string s in list)
-            {
-                if (s != "")
-                {
-                    string[] list1 = s.Split(',');
-                    data.itemId = list1[0];
+            List<SprinkleData> sprinkleDatas = new List<SprinkleData>();
 
-                    for (int i = 0; i < list1.Length; i++)
+            List<string> itemids = new List<string>();
+            foreach (string id in list)
+            {
+                string[] list1 = id.Split(',');
+                bool has = false;
+                foreach (string id1 in itemids)
+                {
+                    if (id1 == list1[0].ToString().Split('-')[1])
                     {
-                        Vector3 pv = new Vector3(float.Parse(list1[1]), float.Parse(list1[2]), float.Parse(list1[3]));
-                        Vector3 rv = new Vector3(float.Parse(list1[4]), float.Parse(list1[5]), float.Parse(list1[6]));
-                        data.points.Add(pv);
-                        data.rotations.Add(rv);
+                        has = true;
                     }
                 }
+                if (!has)
+                {
+                    itemids.Add(list1[0].ToString().Split('-')[1]);
+                }
             }
-            Sprinkle(data);
+
+            foreach (string id in itemids)
+            {
+                SprinkleData data = new SprinkleData();
+                foreach (string s in list)
+                {
+                    if (s != "")
+                    {
+                        string[] list1 = s.Split(',');
+                        if(id == list1[0].ToString().Split('-')[1])
+                        {
+                            data.id = list1[0].ToString().Split('-')[0];
+                            data.itemId = list1[0].ToString().Split('-')[1];
+
+                            for (int i = 0; i < list1.Length; i++)
+                            {
+                                Vector3 pv = new Vector3(float.Parse(list1[1]), float.Parse(list1[2]), float.Parse(list1[3]));
+                                Vector3 rv = new Vector3(float.Parse(list1[4]), float.Parse(list1[5]), float.Parse(list1[6]));
+                                data.points.Add(pv);
+                                data.rotations.Add(rv);
+                            }
+                        }
+                    }
+                }
+                Sprinkle(data);
+            }
         }
     }
 
@@ -142,7 +169,7 @@ public class SprinkleComponent : SceneComponent
                 bool has = false;
                 foreach (SprinkleData data in vo.dataList)
                 {
-                    if (_sprinkleVO.list[i].name == data.id)
+                    if (_sprinkleVO.list[i].name.Split('-')[0] == data.id)
                     {
                         has = true;
                         continue;
@@ -162,7 +189,7 @@ public class SprinkleComponent : SceneComponent
                 bool has = false;
                 foreach (GameObject obj in _sprinkleVO.list)
                 {
-                    if (vo.dataList[i].id == obj.name)
+                    if (vo.dataList[i].id == obj.name.Split('-')[0])
                     {
                         has = true;
                         continue;
