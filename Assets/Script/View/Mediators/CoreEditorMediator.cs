@@ -117,7 +117,7 @@ public class CoreEditorMediator : Mediators
         AddViewListener(SceneToolbarEvent.POSTION, SceneToolbarPostionHandle);
         AddViewListener(SceneToolbarEvent.ROTATION, SceneToolbarRotationHandle);
         AddViewListener(SceneToolbarEvent.SCALE, SceneToolbarScaleHandle);
-
+        AddViewListener(SceneToolbarEvent.CLEAR, SceneToolbarClearHandle);
         AddViewListener(SceneToolbarEvent.ALIGN, SceneToolbarAlignHandle);
         AddViewListener(SceneToolbarEvent.FILTER, openDrawLinePanelHandle);
         AddViewListener(SceneToolbarEvent.RENDER, SceneToolbarTakePhotoHandle);
@@ -261,7 +261,7 @@ public class CoreEditorMediator : Mediators
         RemoveViewListener(SceneToolbarEvent.POSTION, SceneToolbarPostionHandle);
         RemoveViewListener(SceneToolbarEvent.ROTATION, SceneToolbarRotationHandle);
         RemoveViewListener(SceneToolbarEvent.SCALE, SceneToolbarScaleHandle);
-
+        RemoveViewListener(SceneToolbarEvent.CLEAR, SceneToolbarClearHandle);
         RemoveViewListener(SceneToolbarEvent.ALIGN, SceneToolbarAlignHandle);
         RemoveViewListener(SceneToolbarEvent.FILTER, openDrawLinePanelHandle);
         RemoveViewListener(SceneToolbarEvent.RENDER, SceneToolbarTakePhotoHandle);
@@ -861,6 +861,12 @@ public class CoreEditorMediator : Mediators
     private void SceneToolbarScaleHandle(EventObject e)
     {
         SceneManager.Instance.editorGizmoSystem.ActiveGizmoType = RTEditor.GizmoType.Scale;
+    }
+
+    private void SceneToolbarClearHandle(EventObject e)
+    {
+        //BuilderModel.Instance.Clear();
+        AssetsModel.Instance.Clear();
     }
 
     private void SceneToolbarAlignHandle(EventObject e)

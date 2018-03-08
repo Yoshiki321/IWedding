@@ -19,7 +19,7 @@ public class SceneToolbarPanel : BasePanel
     private GameObject toolLineChangeViewBtn;
 
     private GameObject toolLineAlignBtn;
-
+    private GameObject toolLineClearBtn;
     private GameObject toolLinePhotoBtn;
     private GameObject toolLineFilterBtn;
     private GameObject toolLineRenderBtn;
@@ -67,7 +67,7 @@ public class SceneToolbarPanel : BasePanel
         toolLineChangeViewBtn = transform.Find("ToolLineBg").Find("ToolLineChangeView").gameObject;
 
         toolLineAlignBtn = transform.Find("ToolLineBg").Find("ToolLineAlignBtn").gameObject;
-
+        toolLineClearBtn = transform.Find("ToolLineBg").Find("ToolLineClearBtn").gameObject;
         toolLineFilterBtn = transform.Find("ToolLineBg").Find("ToolLineFilterBtn").gameObject;
         toolLineRenderBtn = transform.Find("ToolLineBg").Find("ToolLineRenderBtn").gameObject;
         toolLineSaveBtn = transform.Find("ToolLineBg").Find("ToolLineSaveBtn").gameObject;
@@ -99,10 +99,11 @@ public class SceneToolbarPanel : BasePanel
         toolBtnList.Add(toolLineLoadBtn);
         toolBtnList.Add(toolLineLightBtn);
         toolBtnList.Add(toolLineModelBtn);
-        
+        toolBtnList.Add(toolLineModelBtn);
+
         toolBtnList.Add(toolLineAlignBtn);
 
-        toolBtnList.Add(toolLineVRBtn);
+        toolBtnList.Add(toolLineClearBtn);
 
 		for (int i = 0; i < toolBtnList.Count; i++) {
 			AddEventClick (toolBtnList [i]);
@@ -275,22 +276,6 @@ public class SceneToolbarPanel : BasePanel
             {
                 viewChangeContent.SetActive(true);
             }
-            //transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.VR));
-            //if (CameraManager.visual == CameraFlags.Roam)
-            //{
-            //    toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "3 D 视 角";
-            //    toolLineVRBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/Fly", typeof(Sprite)) as Sprite;
-            //}
-            //else if (CameraManager.visual == CameraFlags.Fly)
-            //{
-            //    toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "V R 视 角";
-            //    toolLineVRBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/VR", typeof(Sprite)) as Sprite;
-            //}
-            //else if (CameraManager.visual == CameraFlags.VR)
-            //{
-            //    toolLineBrushBtn.transform.Find("Text").GetComponent<Text>().text = "普 通 视 角";
-            //    toolLineVRBtn.GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/Roam", typeof(Sprite)) as Sprite;
-            //}
         }
         if (obj == viewChangeList[0])
         {
@@ -355,6 +340,11 @@ public class SceneToolbarPanel : BasePanel
         if (obj == toolLineAlignBtn)
         {
             transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.ALIGN));
+        }
+
+        if (obj == toolLineClearBtn)
+        {
+            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.CLEAR));
         }
 
         if (obj == toolLineLightBtn)
