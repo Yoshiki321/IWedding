@@ -87,6 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4377708268384786}
   - component: {fileID: 65748182357435530}
+  - component: {fileID: 65767411892381000}
+  - component: {fileID: 65007434132047052}
   m_Layer: 0
   m_Name: door10
   m_TagString: Untagged
@@ -309,8 +311,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1037835501178810}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.192, z: 0.579}
-  m_LocalScale: {x: 1, y: 1.54, z: 1}
+  m_LocalPosition: {x: 0, y: 2.19, z: 1.04}
+  m_LocalScale: {x: 2.1460106, y: 2.7245536, z: 1.8241072}
   m_Children:
   - {fileID: 4036230648990996}
   m_Father: {fileID: 4377708268384786}
@@ -603,6 +605,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1147345777932808}
   m_Mesh: {fileID: 4300010, guid: 9f4310f730cd10240934e4de700ba81d, type: 3}
+--- !u!65 &65007434132047052
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1194153269250728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.264282, y: 0.10489702, z: 0.89643925}
+  m_Center: {x: 0.008718491, y: 4.3256454, z: -0.0035289228}
 --- !u!65 &65748182357435530
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -613,8 +627,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9985802, y: 2.3900704, z: 0.51553327}
-  m_Center: {x: 0.0027889013, y: 1.1905704, z: -0.0139403045}
+  m_Size: {x: 0.11884737, y: 4.349248, z: 0.87439287}
+  m_Center: {x: -2.0649173, y: 2.1864042, z: -0.02248472}
+--- !u!65 &65767411892381000
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1194153269250728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13390493, y: 4.3614345, z: 0.89201087}
+  m_Center: {x: 2.078953, y: 2.191086, z: -0.008188039}
 --- !u!95 &95886037245869118
 Animator:
   serializedVersion: 3
