@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4197975447762676}
   - component: {fileID: 114267140048235026}
-  - component: {fileID: 65618014478409500}
+  - component: {fileID: 65617070835569934}
   m_Layer: 0
   m_Name: Frame1
   m_TagString: Untagged
@@ -87,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1338524181956120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.7834463, y: 0.01, z: -7.1598883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4285880169162292}
@@ -102,39 +102,39 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1073324096225122}
-  m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: 0.00000017881393, w: 0.00000017881393}
+  m_LocalRotation: {x: 0.50000006, y: 0.5, z: 0.50000006, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: -0.014000002}
   m_LocalScale: {x: 0.100000165, y: 0.10000018, z: 0.10000008}
   m_Children: []
   m_Father: {fileID: 4197975447762676}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90.00001}
 --- !u!4 &4430749675898650
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1126787530541718}
-  m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: 0.00000017881393, w: 0.00000017881393}
+  m_LocalRotation: {x: -0.50000006, y: -0.5, z: 0.50000006, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: -0.014000002}
   m_LocalScale: {x: 0.100000165, y: 0.10000018, z: 0.10000008}
   m_Children: []
   m_Father: {fileID: 4197975447762676}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90.00001}
 --- !u!4 &4788991585895086
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1043678456375766}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: -0.7071068, w: 0}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: -0.5}
   m_LocalPosition: {x: -0.000000092723255, y: 0.151, z: -0.017}
   m_LocalScale: {x: 0.047939382, y: 0.047381997, z: 0.07611316}
   m_Children: []
   m_Father: {fileID: 4197975447762676}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: -270, y: -90, z: 90}
+  m_LocalEulerAnglesHint: {x: -270, y: 0, z: 90}
 --- !u!23 &23114205986829218
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -144,6 +144,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -159,6 +160,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -176,6 +178,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -191,6 +194,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -208,6 +212,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -223,6 +228,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -261,12 +267,12 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Convex: 0
-  m_InflateMesh: 0
+  m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65618014478409500
+--- !u!65 &65617070835569934
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -276,8 +282,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.49026787, y: 0.7667388, z: 0.013710568}
-  m_Center: {x: 0.0012683272, y: 0.14959139, z: -0.01394496}
+  m_Size: {x: 0.021003425, y: 0.7622938, z: 0.4776721}
+  m_Center: {x: 0.0015638173, y: 0.14700246, z: -0.010946989}
 --- !u!114 &114267140048235026
 MonoBehaviour:
   m_ObjectHideFlags: 1

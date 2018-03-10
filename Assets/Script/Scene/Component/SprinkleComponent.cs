@@ -77,7 +77,7 @@ public class SprinkleComponent : SceneComponent
         }
         Rigidbody rigid = flower.AddComponent<Rigidbody>();
         rigid.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        flower.name = name + "-" + id;
+        flower.name = name + "@" + id;
 
         _sprinkleVO.list.Add(flower);
         Destroy(rigid, 3f);
@@ -94,18 +94,21 @@ public class SprinkleComponent : SceneComponent
             List<string> itemids = new List<string>();
             foreach (string id in list)
             {
-                string[] list1 = id.Split(',');
-                bool has = false;
-                foreach (string id1 in itemids)
+                if (id != "")
                 {
-                    if (id1 == list1[0].ToString().Split('@')[1])
+                    string[] list1 = id.Split(',');
+                    bool has = false;
+                    foreach (string id1 in itemids)
                     {
-                        has = true;
+                        if (id1 == list1[0].ToString().Split('@')[1])
+                        {
+                            has = true;
+                        }
                     }
-                }
-                if (!has)
-                {
-                    itemids.Add(list1[0].ToString().Split('@')[1]);
+                    if (!has)
+                    {
+                        itemids.Add(list1[0].ToString().Split('@')[1]);
+                    }
                 }
             }
 
@@ -117,18 +120,15 @@ public class SprinkleComponent : SceneComponent
                     if (s != "")
                     {
                         string[] list1 = s.Split(',');
-                        if(id == list1[0].ToString().Split('@')[1])
+                        if (id == list1[0].ToString().Split('@')[1])
                         {
                             data.id = list1[0].ToString().Split('@')[0];
                             data.itemId = list1[0].ToString().Split('@')[1];
 
-                            for (int i = 0; i < list1.Length; i++)
-                            {
-                                Vector3 pv = new Vector3(float.Parse(list1[1]), float.Parse(list1[2]), float.Parse(list1[3]));
-                                Vector3 rv = new Vector3(float.Parse(list1[4]), float.Parse(list1[5]), float.Parse(list1[6]));
-                                data.points.Add(pv);
-                                data.rotations.Add(rv);
-                            }
+                            Vector3 pv = new Vector3(float.Parse(list1[1]), float.Parse(list1[2]), float.Parse(list1[3]));
+                            Vector3 rv = new Vector3(float.Parse(list1[4]), float.Parse(list1[5]), float.Parse(list1[6]));
+                            data.points.Add(pv);
+                            data.rotations.Add(rv);
                         }
                     }
                 }

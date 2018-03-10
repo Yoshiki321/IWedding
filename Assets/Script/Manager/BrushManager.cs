@@ -128,8 +128,11 @@ public class BrushManager
                 box.transform.position = hit.point;
                 if (hit.transform.GetComponentInParent<SurfacePlane3D>() == null)
                 {
-                    box.transform.LookAt(hit.point - hit.normal);
-                    box.transform.Translate(Vector3.back * 0.05f);
+                    if (itemId == "10070017" || itemId == "10070018")
+                    {
+                        box.transform.LookAt(hit.point - hit.normal);
+                        box.transform.Translate(Vector3.back * 0.05f);
+                    }
                 }
                 else
                 {
