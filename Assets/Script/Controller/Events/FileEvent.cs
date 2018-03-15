@@ -20,6 +20,9 @@
     public const string LOAD_TEXTURE = "FileEvent_LOAD_TEXTURE";
     public const string LOAD_TEXTURE_COMPLETE = "FileEvent_LOAD_TEXTURE_COMPLETE";
 
+    public const string LOAD_SOUND = "FileEvent_LOAD_SOUND";
+    public const string LOAD_SOUND_COMPLETE = "FileEvent_LOAD_SOUND_COMPLETE";
+
     public const string SAVE_COMBINATION = "FileEvent_SAVE_COMBINATION";
     public const string LOAD_COMBINATION = "FileEvent_LOAD_COMBINATION"; 
     public const string LOAD_COMBINATION_COMPLETE = "FileEvent_LOAD_COMBINATION_COMPLETE"; 

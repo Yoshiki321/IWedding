@@ -9,6 +9,8 @@ namespace Build3D
         public bool TranslationEnabled = true;
         public bool RotationEnabled = true;
 
+        public GameObject relationBox;
+
         public override AssetVO VO
         {
             set
@@ -17,6 +19,13 @@ namespace Build3D
 
                 this.gameObject.name = "Item3 " + _vo.id;
             }
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+
+            Destroy(relationBox);
         }
     }
 }

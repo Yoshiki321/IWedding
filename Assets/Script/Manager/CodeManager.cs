@@ -133,4 +133,13 @@ public class CodeManager
 
         return code;
     }
+
+    public static XmlDocument GetGroupCatalogXml()
+    {
+        XmlDocument xml = new XmlDocument();
+        string code = "<GroupCatalog>";
+        code += "</GroupCatalog>";
+        xml.LoadXml(code);
+        return xml;
+    }
 }

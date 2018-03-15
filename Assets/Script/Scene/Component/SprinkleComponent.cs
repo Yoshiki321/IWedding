@@ -12,20 +12,22 @@ public class SprinkleComponent : SceneComponent
 
     private SprinkleVO _sprinkleVO;
 
-    public override void Init(AssetSprite _item)
+    public override void Init(AssetSprite item)
     {
         if (_isInit) return;
         _isInit = true;
 
-        _sprinkleVO = _item.VO.GetComponentVO<SprinkleVO>();
+        _sprinkleVO = item.VO.GetComponentVO<SprinkleVO>();
         if (_sprinkleVO == null)
         {
-            _sprinkleVO = _item.VO.AddComponentVO<SprinkleVO>();
+            _sprinkleVO = item.VO.AddComponentVO<SprinkleVO>();
         }
 
         _box = new GameObject();
-        _box.name = _item.transform.gameObject.name;
-        _box.transform.parent = _item.parent;
+        _box.name = item.transform.gameObject.name;
+        _box.transform.parent = item.parent;
+
+        (item as Item3D).relationBox = _box;
 
         InitCode();
     }

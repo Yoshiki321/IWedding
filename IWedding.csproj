@@ -12,12 +12,15 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -318,6 +321,9 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/43903/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio">
+      <HintPath>Assets/Plugins/NAudio.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -941,6 +947,10 @@
     <Compile Include="Assets\Script\Camera\HoverController.cs" />
     <Compile Include="Assets\Script\Constant.cs" />
     <Compile Include="Assets\Script\Context.cs" />
+    <Compile Include="Assets\Script\Controller\Account\GroupCommandEvent.cs" />
+    <Compile Include="Assets\Script\Controller\Account\LoginCommand.cs" />
+    <Compile Include="Assets\Script\Controller\Account\LoginEvent.cs" />
+    <Compile Include="Assets\Script\Controller\Account\SaveGroupCommand.cs" />
     <Compile Include="Assets\Script\Controller\Camera\ChangeCameraCommand.cs" />
     <Compile Include="Assets\Script\Controller\Camera\Events\CameraChangeEvent.cs" />
     <Compile Include="Assets\Script\Controller\Command.cs" />
@@ -1006,6 +1016,7 @@
     <Compile Include="Assets\Script\Manager\KeyboardManager.cs" />
     <Compile Include="Assets\Script\Manager\Mouse3Manager.cs" />
     <Compile Include="Assets\Script\Manager\MouseManager.cs" />
+    <Compile Include="Assets\Script\Manager\AudioSourceManager.cs" />
     <Compile Include="Assets\Script\Manager\Parsers\CodeParser.cs" />
     <Compile Include="Assets\Script\Manager\RankManager.cs" />
     <Compile Include="Assets\Script\Manager\RulerManager.cs" />
@@ -1020,6 +1031,7 @@
     <Compile Include="Assets\Script\Manager\VO\ItemMaterialData.cs" />
     <Compile Include="Assets\Script\Manager\VO\ShapeDrawData.cs" />
     <Compile Include="Assets\Script\Manager\VO\SurfaceDrawData.cs" />
+    <Compile Include="Assets\Script\Model\AccountModel.cs" />
     <Compile Include="Assets\Script\Model\Actor.cs" />
     <Compile Include="Assets\Script\Model\AssetsModel.cs" />
     <Compile Include="Assets\Script\Model\BuilderModel.cs" />
@@ -1040,6 +1052,7 @@
     <Compile Include="Assets\Script\Model\VO\Component\FrameVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\MaterialsVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\MultipleSpotlightVO.cs" />
+    <Compile Include="Assets\Script\Model\VO\Component\PhotoWallVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\PointLightVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\RadiationLampVO.cs" />
     <Compile Include="Assets\Script\Model\VO\Component\RelationVO.cs" />
@@ -1071,6 +1084,7 @@
     <Compile Include="Assets\Script\Scene\Component\FrameComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\LaserSpotlightComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\MultipleSpotlightComponent.cs" />
+    <Compile Include="Assets\Script\Scene\Component\PhotoWallComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\PointLightComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\RadiationLampComponent.cs" />
     <Compile Include="Assets\Script\Scene\Component\RelationComponent.cs" />
@@ -1089,6 +1103,7 @@
     <Compile Include="Assets\Script\Scene\DrawLine\DrawNode.cs" />
     <Compile Include="Assets\Script\Scene\DrawLine\DrawPlane.cs" />
     <Compile Include="Assets\Script\Scene\DrawLine\DrawPlaneEvent.cs" />
+    <Compile Include="Assets\Script\Scene\Graphic3D\PhotoWall3D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic\Display\AuxiliaryLine.cs" />
     <Compile Include="Assets\Script\Scene\Graphic\Display\Column2D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic\Display\Item2D.cs" />
@@ -1413,7 +1428,9 @@
     <None Include="Assets\Resources\Config\DefaultLayout.xml" />
     <None Include="Assets\Resources\Config\EffectLampCookie.xml" />
     <None Include="Assets\Resources\Config\Hotel\Hotel.xml" />
-    <None Include="Assets\Resources\Config\Item\Item.xml" />
+    <None Include="Assets\Resources\Config\Item\Item.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Assets\Resources\Config\Item\ItemList.xml" />
     <None Include="Assets\Resources\Config\Item\ItemNode.xml" />
     <None Include="Assets\Resources\Config\Item\SprinkleItem.xml" />

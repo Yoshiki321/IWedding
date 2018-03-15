@@ -72,13 +72,46 @@ public class AssetsModel : Actor<AssetsModel>
 
     public void CreateItem(XmlNodeList xml)
     {
+        List<ItemVO> list = new List<ItemVO>();
         foreach (XmlNode node in xml)
         {
             ItemVO vo = new ItemVO();
             vo.Code = node;
-            CreateItem(vo);
+            list.Add(vo);
+        }
+
+        ProgressLoadItem(list);
+    }
+
+    #region progressLoadItem;
+
+    int _progressItemCurrent = 0;
+    int _progressItemTotal = 0;
+
+    public int progressItemCurrent { get { return _progressItemCurrent; } }
+    public int progressItemTotal { get { return _progressItemTotal; } }
+
+    List<ItemVO> _progressLoadItem;
+    public void ProgressLoadItem(List<ItemVO> list)
+    {
+        _progressItemCurrent = 0;
+        _progressItemTotal = list.Count;
+        _progressLoadItem = list;
+    }
+
+    public void Update()
+    {
+        if (_progressLoadItem != null && _progressLoadItem.Count > 0)
+        {
+            _progressItemCurrent++;
+
+            ObjectData data = CreateItem(_progressLoadItem[0]);
+            (data.object2 as Item2D).UpdateSize();
+            _progressLoadItem.RemoveAt(0);
         }
     }
+
+    #endregion;
 
     public void CreateItem(XmlNodeList xml, string combination = "")
     {

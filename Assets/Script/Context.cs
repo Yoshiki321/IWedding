@@ -58,6 +58,7 @@
         CommandMap.MapEvent(FileEvent.LOAD_THICKIRREGULAR, typeof(LoadThickIrregularCommand));
         CommandMap.MapEvent(FileEvent.LOAD_OBJ, typeof(LoadOBJCommand));
         CommandMap.MapEvent(FileEvent.LOAD_TEXTURE, typeof(LoadTextureCommand));
+        CommandMap.MapEvent(FileEvent.LOAD_SOUND, typeof(LoadSoundCommand));
 
         CommandMap.MapEvent(FileEvent.SAVE_COMBINATION, typeof(SaveCombinationCommand));
         CommandMap.MapEvent(FileEvent.LOAD_COMBINATION, typeof(LoadCombinationCommand));

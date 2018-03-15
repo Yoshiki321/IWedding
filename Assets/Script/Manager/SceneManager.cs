@@ -1,7 +1,10 @@
 ﻿using Build3D;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
+using NAudio.Wave;
+using Build2D;
 
 namespace BuildManager
 {
@@ -26,6 +29,7 @@ namespace BuildManager
         public GameObject UILayer;
 
         public BrushManager brushManager;
+        public AudioSourceManager audioSourceManager;
         public ControlManager controlManager;
         public Control3Manager control3Manager;
         public KeyboardManager keyboardManager;
@@ -59,7 +63,6 @@ namespace BuildManager
             InitComponent();
             InitUI();
             InitCamera();
-            InitSound();
 
             InitGrapics2();
 
@@ -90,11 +93,6 @@ namespace BuildManager
             UIManager.OpenUI(UI.MainPanel);
         }
 
-        private void InitSound()
-        {
-            GetComponent<AudioSource>().Play();
-        }
-
         private void InitConfig()
         {
             new ItemManager();
@@ -109,6 +107,7 @@ namespace BuildManager
         private void InitComponent()
         {
             brushManager = new BrushManager();
+            audioSourceManager = new AudioSourceManager();
             controlManager = new ControlManager();
             control3Manager = new Control3Manager();
             keyboardManager = new KeyboardManager();
@@ -156,6 +155,7 @@ namespace BuildManager
                 mouse3Manager.Update();
             }
 
+            AssetsModel.Instance.Update();
             keyboardManager.Update();
             brushManager.Update();
 
@@ -218,6 +218,39 @@ namespace BuildManager
             if (Input.GetKeyDown(KeyCode.F6))
             {
                 VisibleEditor = !VisibleEditor;
+            }
+
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                if (Mouse3Manager.selectedSurface)
+                {
+                    SurfaceVO svo = Mouse3Manager.selectedSurface.VO as SurfaceVO;
+                    svo.height = 20;
+                    SurfaceData sData = BuilderModel.Instance.GetSurfaceData(svo.id);
+                    sData.surface3.VO = svo;
+                    foreach (LineVO linevo in svo.linesVO)
+                    {
+                        LineData linedata = BuilderModel.Instance.GetLineData(linevo.id);
+                        linedata.vo.height = 20;
+                        linedata.line3.VO = linedata.vo;
+                        linedata.line3.UpdateNow();
+                    }
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.F4))
+            {
+                CommandMap.DispatcherEvent(new FileEvent(FileEvent.LOAD_SOUND));
+            }
+
+            if (Input.GetKeyDown(KeyCode.LeftBracket))
+            {
+                audioSourceManager.Volume -= .1f;
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightBracket))
+            {
+                audioSourceManager.Volume += .1f;
             }
         }
 
