@@ -16,7 +16,7 @@ public class SceneToolbarEvent : EventObject
     public static string GROUP = "SceneToolbarEvent_Group";
     public static string REGROUP = "SceneToolbarEvent_ReGroup";
     public static string PHOTO = "SceneToolbarEvent_PHOTO";
-
+    public static string CLEAR = "SceneToolbarEvent_CLEAR";
     public static string TO2D = "SceneToolbarEvent_To2D";
     public static string TO3D = "SceneToolbarEvent_To3D";
     public static string POSTION = "SceneToolbarEvent_Postion";
