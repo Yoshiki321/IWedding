@@ -298,6 +298,9 @@
     <Reference Include="TCM">
       <HintPath>Assets/Module/ImperialFur/Editor/TCM.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio">
+      <HintPath>Assets/Plugins/NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms">
       <HintPath>Assets/Plugins/System.Windows.Forms.dll</HintPath>
     </Reference>
@@ -321,9 +324,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/43903/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="NAudio">
-      <HintPath>Assets/Plugins/NAudio.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -996,6 +996,7 @@
     <Compile Include="Assets\Script\Drag.cs" />
     <Compile Include="Assets\Script\Layer.cs" />
     <Compile Include="Assets\Script\LoadXml.cs" />
+    <Compile Include="Assets\Script\Manager\AudioSourceManager.cs" />
     <Compile Include="Assets\Script\Manager\BaseControl.cs" />
     <Compile Include="Assets\Script\Manager\BrushManager.cs" />
     <Compile Include="Assets\Script\Manager\CameraManager.cs" />
@@ -1016,7 +1017,6 @@
     <Compile Include="Assets\Script\Manager\KeyboardManager.cs" />
     <Compile Include="Assets\Script\Manager\Mouse3Manager.cs" />
     <Compile Include="Assets\Script\Manager\MouseManager.cs" />
-    <Compile Include="Assets\Script\Manager\AudioSourceManager.cs" />
     <Compile Include="Assets\Script\Manager\Parsers\CodeParser.cs" />
     <Compile Include="Assets\Script\Manager\RankManager.cs" />
     <Compile Include="Assets\Script\Manager\RulerManager.cs" />
@@ -1103,7 +1103,6 @@
     <Compile Include="Assets\Script\Scene\DrawLine\DrawNode.cs" />
     <Compile Include="Assets\Script\Scene\DrawLine\DrawPlane.cs" />
     <Compile Include="Assets\Script\Scene\DrawLine\DrawPlaneEvent.cs" />
-    <Compile Include="Assets\Script\Scene\Graphic3D\PhotoWall3D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic\Display\AuxiliaryLine.cs" />
     <Compile Include="Assets\Script\Scene\Graphic\Display\Column2D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic\Display\Item2D.cs" />
@@ -1143,6 +1142,7 @@
     <Compile Include="Assets\Script\Scene\Graphic3D\Nested3D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic3D\ObjectSprite3D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic3D\Penetrate.cs" />
+    <Compile Include="Assets\Script\Scene\Graphic3D\PhotoWall3D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic3D\SceneCamera3D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic3D\Surface3D.cs" />
     <Compile Include="Assets\Script\Scene\Graphic3D\SurfacePlane3D.cs" />
@@ -1205,6 +1205,7 @@
     <Compile Include="Assets\Script\View\Mediators\LoadModelPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\MainPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\Mediators.cs" />
+    <Compile Include="Assets\Script\View\Mediators\ProgressPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\ProjectPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\StorePanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\SwitchToolPanelMediators.cs" />
@@ -1274,6 +1275,7 @@
     <Compile Include="Assets\Script\View\Panel\LoadModelPanel\LoadModelPanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\MainPanel\MainPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\MainPanel\MainPanelEvent.cs" />
+    <Compile Include="Assets\Script\View\Panel\ProgressPanel\ProgressPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ProjectPanel\ProjectPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ProjectPanel\ProjectPanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\StorePanel\StorePanel.cs" />
@@ -1428,9 +1430,7 @@
     <None Include="Assets\Resources\Config\DefaultLayout.xml" />
     <None Include="Assets\Resources\Config\EffectLampCookie.xml" />
     <None Include="Assets\Resources\Config\Hotel\Hotel.xml" />
-    <None Include="Assets\Resources\Config\Item\Item.xml">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="Assets\Resources\Config\Item\Item.xml" />
     <None Include="Assets\Resources\Config\Item\ItemList.xml" />
     <None Include="Assets\Resources\Config\Item\ItemNode.xml" />
     <None Include="Assets\Resources\Config\Item\SprinkleItem.xml" />

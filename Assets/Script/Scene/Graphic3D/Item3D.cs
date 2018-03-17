@@ -27,5 +27,17 @@ namespace Build3D
 
             Destroy(relationBox);
         }
+
+        private float _alpha;
+
+        public float Alpha
+        {
+            set
+            {
+                _alpha = value;
+                gameObject.Alpha(value);
+            }
+            get { return _alpha; }
+        }
     }
 }

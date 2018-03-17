@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using System.Xml;
 using BuildManager;
+using System.Collections;
 
 /// <summary>
 /// 将此组件添加到一个GameObject上开启绘制功能
@@ -379,6 +380,7 @@ public class DrawPlane : DispatcherEventPanel
                     _lastPoint = _plane.transform.InverseTransformPoint(hitInfo.point);
                 }
             }
+
             if (Input.GetMouseButton(0))
             {
                 Ray ray = SceneManager.Instance.Camera3D.ScreenPointToRay(Input.mousePosition);
@@ -732,10 +734,26 @@ public class DrawPlane : DispatcherEventPanel
             point -= (_lastMousePoint - Input.mousePosition);
             point = new Vector3(point.x, point.y);
 
-            _drawNode.Move(point);
+            List<Vector2> vs = new List<Vector2>();
+            foreach (DrawNode node in _nodeLines)
+            {
+                if (_drawNode.transform.position != node.transform.position)
+                {
+                    vs.Add(node.transform.position);
+                }
+            }
+
+            Hashtable o = SorptionManager.NodeToPointLine(point, vs, 4f);
+            Vector2 p = (Vector2)o["p"];
+            if (p.IsNull())
+            {
+                p = point;
+            }
+
+            _drawNode.Move(p);
             if (_drawNode.relationNode != null && _drawNode.name != "NodeCurve")
             {
-                _drawNode.relationNode.Move(point);
+                _drawNode.relationNode.Move(p);
             }
 
             _lastMousePoint = Input.mousePosition;

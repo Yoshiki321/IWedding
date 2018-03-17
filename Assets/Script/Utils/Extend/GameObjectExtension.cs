@@ -4,6 +4,28 @@ using System.Collections.Generic;
 
 public static class GameObjectExtension
 {
+    public static void Alpha(this GameObject gameObject, float value = 1)
+    {
+        if (value > 1) value = 1;
+        if (value < 0) value = 0;
+
+        MeshRenderer[] mrs = gameObject.GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer mr in mrs)
+        {
+            Material m = mr.material;
+            m.color = new Color(m.color.r, m.color.g, m.color.b, value);
+
+            if (value == 1)
+            {
+                RenderingModeUnits.SetMaterialRenderingMode(m, RenderingModeUnits.RenderingMode.Opaque);
+            }
+            else
+            {
+                RenderingModeUnits.SetMaterialRenderingMode(m, RenderingModeUnits.RenderingMode.Transparent);
+            }
+        }
+    }
+
     public static void AddBoxCollider(this GameObject gameObject, bool remove = false, bool enabled = true)
     {
         BoxCollider[] bList = gameObject.GetComponentsInChildren<BoxCollider>();

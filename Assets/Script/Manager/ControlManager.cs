@@ -704,14 +704,15 @@ public class ControlManager : EventDispatcher
     private List<Vector2> _sorptionPointToPointLineList = new List<Vector2>();
     private List<Vector2> _sorptionIsLineForPointToPointLineList = new List<Vector2>();
 
-    /**
-     * 获取吸附点 
-     * @param node 移动点
-     * @param canPointLine 是否检测所有点的水平垂直线
-     * @param isLine 是否拖动的线
-     * @return 
-     * 
-     */
+    /// <summary>
+    /// 获取吸附点
+    /// </summary>
+    /// <param name="node">移动点</param>
+    /// <param name="canPointLine">是否检测所有点的水平垂直线</param>
+    /// <param name="isLine">是否拖动的线</param>
+    /// <param name="surface"></param>
+    /// <param name="bisector"></param>
+    /// <returns></returns>
     private Vector2 GetSorptionPoint(Node2D node, bool canPointLine = true, bool isLine = false, Surface2D surface = null, Bisector bisector = null)
     {
         List<Node2D> surfacePoints = new List<Node2D>();

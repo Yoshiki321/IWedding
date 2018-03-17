@@ -96,6 +96,8 @@ public class CodeManager
         {
             SceneManager.Instance.controlManager.UpdateNestedOnLine(data.object2 as Nested2D);
         }
+
+        UIManager.OpenUI(UI.ProgressPanel);
     }
 
     public static List<AssetVO> LoadCombination(string url)

@@ -17,6 +17,7 @@
     public static string DrawLinePanel = "DrawLinePanel";
     public static string CreateStagePanel = "CreateStagePanel"; 
     public static string LoadModelPanel = "LoadModelPanel";
+    public static string ProgressPanel = "ProgressPanel";
 
     public static string ComponentPanel = "ComponentPanel";
 

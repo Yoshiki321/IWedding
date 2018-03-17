@@ -17,14 +17,13 @@ public class SorptionManager
         set { _dotToDotEnabled = value; }
     }
 
-    /**
-     * 水平垂直上的点 
-     * @param node
-     * @param nodes
-     * @param isLine
-     * @return 
-     * 
-     */
+    /// <summary>
+    /// 水平垂直上的点
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="nodes"></param>
+    /// <param name="range"></param>
+    /// <returns></returns>
     public static Hashtable NodeToPointLine(Vector2 node, List<Vector2> nodes, float range = 10)
     {
         if (!_dotToDotEnabled) return null;
@@ -80,13 +79,13 @@ public class SorptionManager
         return h;
     }
 
-    /**
-     * 点对点吸附 
-     * @param node
-     * @param nodes
-     * @return 
-     * 
-     */
+    /// <summary>
+    /// 点对点吸附
+    /// </summary>
+    /// <param name="point"></param>
+    /// <param name="points"></param>
+    /// <param name="range"></param>
+    /// <returns></returns>
     public static Vector2 PointToPoint(Vector2 point, List<Vector2> points, float range = 10)
     {
         if (!_dotToDotEnabled) return new Vector2().Null();
@@ -104,13 +103,13 @@ public class SorptionManager
         return new Vector2().Null();
     }
 
-    /**
-     * 点对线吸附 
-     * @param node
-     * @param lines
-     * @return 
-     * 
-     */
+    /// <summary>
+    /// 点对线吸附 
+    /// </summary>
+    /// <param name="point"></param>
+    /// <param name="bisectors"></param>
+    /// <param name="range"></param>
+    /// <returns></returns>
     public static Hashtable PointToLine(Vector2 point, List<Bisector> bisectors, float range = 10)
     {
         if (!_dotToLineEnabled) return null;

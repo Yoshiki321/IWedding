@@ -67,13 +67,7 @@ public class BrushManager
             item.transform.parent = box.transform;
             item.transform.localPosition = new Vector3();
             item.transform.localRotation = Quaternion.Euler(new Vector3(0, -90, 0));
-            MeshRenderer[] mrs = item.GetComponentsInChildren<MeshRenderer>();
-            foreach (MeshRenderer mr in mrs)
-            {
-                Material m = mr.material;
-                m.color = new Color(m.color.r, m.color.g, m.color.b, .5f);
-                RenderingModeUnits.SetMaterialRenderingMode(m, RenderingModeUnits.RenderingMode.Transparent);
-            }
+            item.Alpha(.5f);
 
             Transform[] ts = item.GetComponentsInChildren<Transform>();
             foreach (Transform t in ts)
