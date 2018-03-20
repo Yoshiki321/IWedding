@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Build3D;
+using Common;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -73,17 +75,52 @@ public class CollageComponentUI : BaseComponentUI
 
     private void AddBtn(int value, string name)
     {
-        textureUI = CreateTextureUI(name, CollageButtonClickHandle, ColorButtonClickHandle);
+        textureUI = CreateTextureUI(name, URLButtonClickHandle, CollageButtonClickHandle, ColorButtonClickHandle);
         textureUI.name = value.ToString();
         _collageBtns.Add(textureUI);
+    }
+
+    private void URLButtonClickHandle(TextureUI ui)
+    {
+        _currentValue = ui.name;
+
+        FileControllor f = new FileControllor();
+        OpenFileDlg dlg = f.OpenProject(FileType.TEXTURE);
+        if (dlg == null) return;
+        string url = dlg.file;
+
+        foreach (AssetVO avo in _assets)
+        {
+            CollageVO vo = avo as CollageVO;
+            foreach (CollageStruct c in vo.collages)
+            {
+                if (c.tag.Contains(_currentValue))
+                {
+                    c.id = "";
+                    c.url = url;
+                }
+            }
+        }
+
+        DispatchUpdate();
     }
 
     private void CollageButtonClickHandle(TextureUI ui)
     {
         _currentValue = ui.name;
 
-        SelectTexturePanel sp = UIManager.OpenPanel(Panel.SelectTexturePanel, TexturesManager.CollageImageList,
-        ui.texture.transform.position - new Vector3(30, 0)) as SelectTexturePanel;
+        SelectTexturePanel sp;
+        if (items[0] is Item3D)
+        {
+            sp = UIManager.OpenPanel(Panel.SelectTexturePanel, TexturesManager.CollageImageList,
+                    ui.texture.transform.position - new Vector3(30, 0)) as SelectTexturePanel;
+        }
+        else
+        {
+            sp = UIManager.OpenPanel(Panel.SelectTexturePanel, TexturesManager.FloorImageList,
+                    ui.texture.transform.position - new Vector3(30, 0)) as SelectTexturePanel;
+        }
+
         sp.getTextue += UpdateTexture;
 
         foreach (CollageStruct cs in (_assets[0] as CollageVO).collages)
@@ -100,7 +137,7 @@ public class CollageComponentUI : BaseComponentUI
         _currentValue = ui.name;
 
         SelectColorPanel sp = UIManager.OpenPanel(Panel.SelectColorPanel, null,
-        ui.color.transform.position - new Vector3(237, 477/2)) as SelectColorPanel;
+        ui.color.transform.position - new Vector3(237, 477 / 2)) as SelectColorPanel;
         sp.onPicker.AddListener(UpdateColor);
 
         foreach (CollageStruct cs in (_assets[0] as CollageVO).collages)
@@ -142,6 +179,7 @@ public class CollageComponentUI : BaseComponentUI
                 if (c.tag.Contains(_currentValue))
                 {
                     c.id = id;
+                    c.url = "";
                 }
             }
         }

@@ -1,14 +1,12 @@
 ﻿<ItemCode>
-  <Item id = "10010001" classify="1" type="ItemObjectLight" thumbnail="UI/ItemTool/WeddingToolImg/WP/light/1" topimg="TopImg/Lamp" model="Item/Chandelier/Chandelier/Chandelier2">
-    <Material order="0" id ="1001" replace="1001,1002,1003,1004,1005"></Material>
-    <Material order="1" id ="1003" replace="1001,1002,1003,1004,1005"></Material>
+  <Item id = "10010001" classify="1" type="ItemObjectLight" thumbnail="UI/ItemTool/WeddingToolImg/WP/light/1" topimg="TopImg/Lamp" model="Item/Chandelier/Chandelier/Chandelier2" place="1">
   </Item>
   <Item id = "10010002" classify="1" type="ItemObjectLight" thumbnail="Item/20180207/img/3" topimg="TopImg/Lamp" model="Item/20180207/diaodeng">
   </Item>
-  
+
   <Item id = "10020001" classify="2" type="ItemObjectStage" thumbnail="UI/ItemTool/WeddingToolImg/WP/stage/1" topimg="TopImg/tstage2" model="Item/Stage/Stage1">
   </Item>
-  
+
   <Item id = "10030001" classify="3" type="ItemObjectVase" thumbnail="UI/ItemTool/WeddingToolImg/WP/vase/1" topimg="TopImg/Flower" model="Item/Flower/Flower">
   </Item>
   <Item id = "10030002" classify="1" type="ItemObjectVase" thumbnail="UI/ItemTool/WeddingToolImg/WP/vase/2" topimg="TopImg/Flower" model="Item/Flower/Flower1">
@@ -24,7 +22,7 @@
   </Item>
   <Item id = "10040003" classify="3" type="ItemObjectTstage" thumbnail="UI/ItemTool/WeddingToolImg/WP/tstage/3" topimg="TopImg/Stage1" model="Item/Stage/Stage6">
   </Item>
-  
+
   <Item id = "10050001" classify="1" type="ItemObjectTable" thumbnail="UI/ItemTool/WeddingToolImg/WP/table/1" topimg="TopImg/stage" model="Item/Table/Table3">
   </Item>
   <Item id = "10050002" classify="2" type="ItemObjectTable" thumbnail="UI/ItemTool/WeddingToolImg/WP/table/2" topimg="TopImg/桌子" model="Item/Table/Table5">
@@ -35,7 +33,7 @@
   </Item>
   <Item id = "10050005" classify="2" type="ItemObjectTable" thumbnail="UI/ItemTool/WeddingToolImg/WP/chinese/21" topimg="TopImg/桌子" model="Item/ChineseStage/21">
   </Item>
-  
+
   <Item id = "10060001" classify="1" type="ItemObjectGantry" thumbnail="UI/ItemTool/WeddingToolImg/WP/gantry/1" topimg="TopImg/Stage" model="Item/Gantry/Gantry">
   </Item>
   <Item id = "10060002" classify="3" type="ItemObjectGantry" thumbnail="UI/ItemTool/WeddingToolImg/WP/gantry/2" topimg="TopImg/Stage" model="Item/Gantry/Gantry1">
@@ -153,7 +151,7 @@
   </Item>
   <Item id = "20020004" classify="ItemEffect" type="ItemEffectFenwei" thumbnail="UI/ItemTool/WeddingToolImg/TX/fenwei/4" topimg="TopImg/Stage" model="Item/FlowerGroup/FlowerWall">
   </Item>
-  
+
   <Item id = "20030001" classify="ItemEffect" type="ItemEffectPeople" thumbnail="UI/ItemTool/WeddingToolImg/TX/people/1" topimg="TopImg/Stage" model="Item/Role/Man">
   </Item>
   <Item id = "20030002" classify="ItemEffect" type="ItemEffectPeople" thumbnail="UI/ItemTool/WeddingToolImg/TX/people/2" topimg="TopImg/Stage" model="Item/Role/Girl">

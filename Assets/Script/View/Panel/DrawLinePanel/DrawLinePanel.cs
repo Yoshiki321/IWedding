@@ -31,12 +31,7 @@ public class DrawLinePanel : BasePanel
     private GameObject _helpPlane;
     private GameObject _closeHelpPanelBtn;
 
-    private DrawPlane _drawPanel;
-
-    public DrawPlane drawPanel
-    {
-        get { return _drawPanel; }
-    }
+    public DrawPlane drawPanel { get; private set; }
 
     void Awake()
     {
@@ -87,17 +82,17 @@ public class DrawLinePanel : BasePanel
         AddEventClick(_closeHelpPanelBtn);
         AddEventClick(_helpBtn);
 
-        _drawPanel = GetComponentInChildren<DrawPlane>();
+        drawPanel = GetComponentInChildren<DrawPlane>();
 
         heightText.text = "50";
 
         heightText.onEndEdit.AddListener(HeightTextEditHandle);
         direction.onValueChanged.AddListener(SelectDirectionHandle);
 
-        _drawPanel.AddLineRightClick(LineRightClick);
-        _drawPanel.AddLineClick(LineClick);
-        _drawPanel.AddNodeClick(NodeClick);
-        _drawPanel.isOperate = true;
+        drawPanel.AddLineRightClick(LineRightClick);
+        drawPanel.AddLineClick(LineClick);
+        drawPanel.AddNodeClick(NodeClick);
+        drawPanel.isOperate = true;
 
         var _dataNum = 0;
         foreach (ShapeDrawData data in DrawShapeManager.ShapeDrawDataList)
@@ -116,22 +111,22 @@ public class DrawLinePanel : BasePanel
 
     private void TilingXChangeHandle(float value)
     {
-        _drawPanel.TilingX = value;
+        drawPanel.TilingX = value;
     }
 
     private void TilingYChangeHandle(float value)
     {
-        _drawPanel.TilingY = value;
+        drawPanel.TilingY = value;
     }
 
     private void OffestXChangeHandle(float value)
     {
-        _drawPanel.OffestX = value;
+        drawPanel.OffestX = value;
     }
 
     private void OffestYChangeHandle(float value)
     {
-        _drawPanel.OffestY = value;
+        drawPanel.OffestY = value;
     }
 
     private void OpenTextureHandle()
@@ -148,7 +143,7 @@ public class DrawLinePanel : BasePanel
 
     private void UpdateTexture(string id)
     {
-        _drawPanel.SetMaterial(id);
+        drawPanel.SetMaterial(id);
     }
 
     private Hashtable hash = new Hashtable();
@@ -175,18 +170,18 @@ public class DrawLinePanel : BasePanel
 
     private void HeightTextEditHandle(string value)
     {
-        _drawPanel.thickness = float.Parse(value);
+        drawPanel.thickness = float.Parse(value);
     }
 
     private void SelectDirectionHandle(int value)
     {
         if (value == 0)
         {
-            _drawPanel.direction = DrawPlane.HORIZONTAL;
+            drawPanel.direction = DrawPlane.HORIZONTAL;
         }
         else
         {
-            _drawPanel.direction = DrawPlane.VERTICAL;
+            drawPanel.direction = DrawPlane.VERTICAL;
         }
     }
 
@@ -194,34 +189,37 @@ public class DrawLinePanel : BasePanel
     {
         if (content != null)
         {
-            _drawPanel.ClearAll();
-            _drawPanel.Code = content as XmlNode;
+            drawPanel.ClearAll();
+            drawPanel.id = (content as ItemVO).id;
+            drawPanel.Code = (content as ItemVO).GetComponentVO<ThickIrregularVO>().xml as XmlNode;
         }
         else
         {
             heightText.text = DrawShapeManager.ShapeDrawDataList[0].thickness.ToString();
-            _drawPanel.Draw(DrawShapeManager.ShapeDrawDataList[0].nodes, float.Parse(heightText.text));
-            _drawPanel.id = "";
+            drawPanel.Draw(DrawShapeManager.ShapeDrawDataList[0].nodes, float.Parse(heightText.text));
+            drawPanel.id = "";
 
-            _drawPanel.TilingX = 0.01f;
-            _drawPanel.TilingY = 0.01f;
-            _drawPanel.OffestX = 0;
-            _drawPanel.OffestY = 0;
+            drawPanel.TilingX = 0.01f;
+            drawPanel.TilingY = 0.01f;
+            drawPanel.OffestX = 0;
+            drawPanel.OffestY = 0;
         }
 
-        _tilingXSlider.value = _drawPanel.TilingX;
-        _tilingYSlider.value = _drawPanel.TilingY;
-        _offestXSlider.value = _drawPanel.OffestX;
-        _offestYSlider.value = _drawPanel.OffestY;
+        _tilingXSlider.value = drawPanel.TilingX;
+        _tilingYSlider.value = drawPanel.TilingY;
+        _offestXSlider.value = drawPanel.OffestX;
+        _offestYSlider.value = drawPanel.OffestY;
     }
 
     protected override void OnClick(GameObject obj)
     {
-        if (obj == _helpBtn) {
+        if (obj == _helpBtn)
+        {
             _helpPlane.SetActive(true);
             foreach (Transform child in this.transform)
             {
-                if (child.name == "drawFillPanel") {
+                if (child.name == "drawFillPanel")
+                {
                     child.gameObject.SetActive(false);
                 }
                 if (child.name == "DrawLineObject")
@@ -251,38 +249,39 @@ public class DrawLinePanel : BasePanel
         }
         if (obj == createBtn)
         {
-            ItemVO itemvo = _drawPanel.CreateMesh();
-            dispatchEvent(new DrawLinePanelEvent(DrawLinePanelEvent.ADD_ITEM, itemvo, _drawPanel.Code));
+            ItemVO itemvo = drawPanel.CreateMesh();
+            dispatchEvent(new DrawLinePanelEvent(DrawLinePanelEvent.ADD_ITEM, itemvo, drawPanel.Code));
         }
         if (obj == resetBtn)
         {
             content = null;
-            _drawPanel.ClearAll();
+            drawPanel.ClearAll();
             DrawDefault();
         }
         if (obj == reviseBtn)
         {
-            ItemVO itemvo = _drawPanel.CreateMesh();
-            dispatchEvent(new DrawLinePanelEvent(DrawLinePanelEvent.REVISE_ITEM, itemvo, _drawPanel.Code));
+
+            ItemVO itemvo = drawPanel.CreateMesh();
+            dispatchEvent(new DrawLinePanelEvent(DrawLinePanelEvent.REVISE_ITEM, itemvo, drawPanel.Code));
         }
         if (obj == addBtn)
         {
-            _drawPanel.AddLine(_rline);
+            drawPanel.AddLine(_rline);
             menu.SetActive(false);
         }
         if (obj == removeBtn)
         {
-            _drawPanel.RemoveLine(_rline);
+            drawPanel.RemoveLine(_rline);
             menu.SetActive(false);
         }
         if (obj == resetCBtn)
         {
-            _drawPanel.ResetCurve(_rline);
+            drawPanel.ResetCurve(_rline);
             menu.SetActive(false);
         }
         if (hash[obj] != null)
         {
-            _drawPanel.Draw((hash[obj] as ShapeDrawData).nodes, float.Parse(heightText.text));
+            drawPanel.Draw((hash[obj] as ShapeDrawData).nodes, float.Parse(heightText.text));
         }
         if (obj == _openTextureBtn)
         {
@@ -290,7 +289,7 @@ public class DrawLinePanel : BasePanel
         }
         if (obj == _saveModelBtn)
         {
-            dispatchEvent(new DrawLinePanelEvent(DrawLinePanelEvent.SAVE, null, _drawPanel.Code));
+            dispatchEvent(new DrawLinePanelEvent(DrawLinePanelEvent.SAVE, null, drawPanel.Code));
         }
         if (obj == _loadModelBtn)
         {

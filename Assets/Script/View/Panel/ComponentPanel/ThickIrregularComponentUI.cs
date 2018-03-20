@@ -16,7 +16,7 @@ public class ThickIrregularComponentUI : BaseComponentUI
 
     private void CookieClickHandle(ButtonImageUI ui)
     {
-        UIManager.OpenUI(UI.DrawLinePanel, _items[0].VO.GetComponentVO<ThickIrregularVO>().xml);
+        UIManager.OpenUI(UI.DrawLinePanel, _items[0].VO);
     }
 
     public override void UpdateComponent()

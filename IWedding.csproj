@@ -16,6 +16,7 @@
     </TargetFrameworkProfile>
     <CompilerResponseFile>
     </CompilerResponseFile>
+    <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
@@ -1171,6 +1172,7 @@
     <Compile Include="Assets\Script\Utils\Extend\GameObjectExtension.cs" />
     <Compile Include="Assets\Script\Utils\Extend\ImageExtension.cs" />
     <Compile Include="Assets\Script\Utils\Extend\ListAssetsExtension.cs" />
+    <Compile Include="Assets\Script\Utils\Extend\MaterialExtension.cs" />
     <Compile Include="Assets\Script\Utils\Extend\TextureExtension.cs" />
     <Compile Include="Assets\Script\Utils\Extend\VectorExtend.cs" />
     <Compile Include="Assets\Script\Utils\FaceToCamera.cs" />
@@ -1198,6 +1200,7 @@
     <Compile Include="Assets\Script\View\Mediators\ComponentPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\CoreEditorMediator.cs" />
     <Compile Include="Assets\Script\View\Mediators\DrawLineMediators.cs" />
+    <Compile Include="Assets\Script\View\Mediators\Event\ProgressEvent.cs" />
     <Compile Include="Assets\Script\View\Mediators\GizmoPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\HotelPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\ItemSelectPanelMediators.cs" />
@@ -1276,6 +1279,7 @@
     <Compile Include="Assets\Script\View\Panel\MainPanel\MainPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\MainPanel\MainPanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\ProgressPanel\ProgressPanel.cs" />
+    <Compile Include="Assets\Script\View\Panel\ProgressPanel\ProgressPanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\ProjectPanel\ProjectPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ProjectPanel\ProjectPanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\StorePanel\StorePanel.cs" />
@@ -1429,6 +1433,7 @@
     <None Include="Assets\PostProcessing\Utilities\CustomMotionTexture\Shaders\CustomMotionVectorTexture.shader" />
     <None Include="Assets\Resources\Config\DefaultLayout.xml" />
     <None Include="Assets\Resources\Config\EffectLampCookie.xml" />
+    <None Include="Assets\Resources\Config\FloorTextures.xml" />
     <None Include="Assets\Resources\Config\Hotel\Hotel.xml" />
     <None Include="Assets\Resources\Config\Item\Item.xml" />
     <None Include="Assets\Resources\Config\Item\ItemList.xml" />

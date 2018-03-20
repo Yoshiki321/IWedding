@@ -150,20 +150,22 @@ public class BaseComponentUI : DispatcherEventPanel
         return ui;
     }
 
-    protected TextureUI CreateTextureUI(string name, Action<TextureUI> action = null, Action<TextureUI> actionColor = null)
+    protected TextureUI CreateTextureUI(string name, Action<TextureUI> actionURL = null, Action<TextureUI> actionTexture = null, Action<TextureUI> actionColor = null)
     {
         GameObject obj = Instantiate(Resources.Load("UI/Component/TextureUI")) as GameObject;
         obj.transform.parent = content;
         TextureUI ui = obj.AddComponent<TextureUI>();
         ui.ui = this;
         ui.text = obj.transform.Find("Content").Find("Text").GetComponent<Text>();
+        ui.url = obj.transform.Find("Content").Find("URL").GetComponent<Button>();
         ui.texture = obj.transform.Find("Content").Find("Texture").GetComponent<Button>();
         ui.color = obj.transform.Find("Content").Find("Image").GetComponent<Button>();
         ui.text.text = name;
         ui.name = name;
         UpdateHeight();
 
-        if (action != null) ui.OnClickTexture(action);
+        if (actionURL != null) ui.OnClickURL(actionURL);
+        if (actionTexture != null) ui.OnClickTexture(actionTexture);
         if (actionColor != null) ui.OnClickColor(actionColor);
         return ui;
     }

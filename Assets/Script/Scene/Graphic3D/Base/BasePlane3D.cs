@@ -241,9 +241,9 @@ public class BasePlane3D : MonoBehaviour
 
         _mesh = new Mesh();
         _mf.mesh = _mesh;
-        _mesh.RecalculateNormals();
-        _mesh.RecalculateBounds();
-        _mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.TwoSided;
+        //_mesh.RecalculateNormals();
+        //_mesh.RecalculateBounds();
+        //_mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.TwoSided;
 
         UpdatePlane();
     }

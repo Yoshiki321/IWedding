@@ -12,7 +12,6 @@ public class ProgressPanel : BasePanel
     {
         progress = GetUI("Progress");
         text = GetUI("Text").GetComponent<Text>();
-        
     }
 
     void Update()
@@ -28,6 +27,7 @@ public class ProgressPanel : BasePanel
 
         if (AssetsModel.Instance.progressItemCurrent == AssetsModel.Instance.progressItemTotal)
         {
+            dispatchEvent(new ProgressPanelEvent(ProgressPanelEvent.LOAD_COMPLETE));
             CloseSelf();
         }
     }

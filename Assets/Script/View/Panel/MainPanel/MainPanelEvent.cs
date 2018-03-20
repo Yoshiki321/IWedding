@@ -11,8 +11,8 @@ public class MainPanelEvent : EventObject
     public static string BtnTwo_Click = "MainPanelEvent_BtnTwo_Click";
     public static string CloseBtn_Click = "MainPanelEvent_CloseBtn_Click";
 
-    public MainPanelEvent(string types, bool bubbles = false, bool cancelable = false)
-		: base(types, bubbles, cancelable)
+    public MainPanelEvent(string types)
+		: base(types)
 	{
 	}
 }

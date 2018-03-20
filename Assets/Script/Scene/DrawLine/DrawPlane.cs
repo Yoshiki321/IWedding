@@ -13,8 +13,6 @@ public class DrawPlane : DispatcherEventPanel
     private SurfacePlane3D _drawFillPanel;
     private Material _fillMaterial;
 
-    GameObject _drawFillPanelObject;
-
     /// <summary>
     /// 是否UI界面
     /// </summary>
@@ -22,20 +20,20 @@ public class DrawPlane : DispatcherEventPanel
 
     void Start()
     {
-        _drawFillPanelObject = new GameObject();
-        _drawFillPanelObject.name = "drawFillPanel";
-        _drawFillPanelObject.transform.localRotation = Quaternion.Euler(new Vector3(-90, 0, 0));
-        _drawFillPanelObject.transform.parent = transform;
-        _drawFillPanelObject.layer = gameObject.layer;
+        drawFillPanelObject = new GameObject();
+        drawFillPanelObject.name = "drawFillPanel";
+        drawFillPanelObject.transform.localRotation = Quaternion.Euler(new Vector3(-90, 0, 0));
+        drawFillPanelObject.transform.parent = transform;
+        drawFillPanelObject.layer = gameObject.layer;
 
-        _drawFillPanel = _drawFillPanelObject.AddComponent<SurfacePlane3D>();
+        _drawFillPanel = drawFillPanelObject.AddComponent<SurfacePlane3D>();
         _drawFillPanel.TwoSided = true;
 
         if (transform.GetComponent<Canvas>())
         {
             transform.GetComponent<Canvas>().planeDistance = 101;
-            _drawFillPanelObject.transform.localPosition = new Vector3(_drawFillPanelObject.transform.localPosition.x,
-                _drawFillPanelObject.transform.localPosition.y, _drawFillPanelObject.transform.localPosition.z + 1);
+            drawFillPanelObject.transform.localPosition = new Vector3(drawFillPanelObject.transform.localPosition.x,
+                drawFillPanelObject.transform.localPosition.y, drawFillPanelObject.transform.localPosition.z + 1);
             isUI = true;
 
             _fillMaterial = new Material(Shader.Find("Unlit/Texture"));
@@ -44,22 +42,22 @@ public class DrawPlane : DispatcherEventPanel
         else
         {
             gameObject.transform.localScale = new Vector3(.03f, .03f, .03f);
-            _drawFillPanelObject.transform.localPosition = new Vector3();
-            _drawFillPanelObject.layer = LayerMask.NameToLayer("Water");
+            drawFillPanelObject.transform.localPosition = new Vector3();
+            drawFillPanelObject.layer = LayerMask.NameToLayer("Water");
 
-            _plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
-            _plane.transform.localRotation = Quaternion.Euler(90, 0, 0);
-            _plane.layer = LayerMask.NameToLayer("DrawLine");
-            _plane.transform.parent = transform;
-            _plane.transform.localPosition = new Vector3();
-            _plane.transform.localScale = new Vector3(999, 999, 999);
-            _plane.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Standard"));
-            Material m = _plane.GetComponent<MeshRenderer>().material;
+            plane = GameObject.CreatePrimitive(PrimitiveType.Plane);
+            plane.transform.localRotation = Quaternion.Euler(90, 0, 0);
+            plane.layer = LayerMask.NameToLayer("DrawLine");
+            plane.transform.parent = transform;
+            plane.transform.localPosition = new Vector3();
+            plane.transform.localScale = new Vector3(999, 999, 999);
+            plane.GetComponent<MeshRenderer>().material = new Material(Shader.Find("Standard"));
+            Material m = plane.GetComponent<MeshRenderer>().material;
             m.color = new Color(0, 0, 0, 0f);
             RenderingModeUnits.SetMaterialRenderingMode(m, RenderingModeUnits.RenderingMode.Cutout);
 
-            Destroy(_plane.GetComponent<MeshCollider>());
-            _plane.AddComponent<BoxCollider>();
+            Destroy(plane.GetComponent<MeshCollider>());
+            plane.AddComponent<BoxCollider>();
 
             _fillMaterial = new Material(Shader.Find("Standard"));
             RenderingModeUnits.SetMaterialRenderingMode(_fillMaterial, RenderingModeUnits.RenderingMode.Transparent);
@@ -77,15 +75,9 @@ public class DrawPlane : DispatcherEventPanel
         }
     }
 
-    public GameObject drawFillPanelObject
-    {
-        get { return _drawFillPanelObject; }
-    }
+    public GameObject drawFillPanelObject { get; private set; }
 
-    public GameObject plane
-    {
-        get { return _plane; }
-    }
+    public GameObject plane { get; private set; }
 
     public string id = "";
     private string _materialsUpID = "2010";
@@ -129,14 +121,14 @@ public class DrawPlane : DispatcherEventPanel
     /// </summary>
     public void ClearAll()
     {
-        foreach (DrawLine line in _drawLines)
+        foreach (DrawLine line in drawLines)
         {
             line.Dispose();
             Destroy(line.gameObject.transform.parent.gameObject);
         }
 
         _nodeLines = new List<DrawNode>();
-        _drawLines = new List<DrawLine>();
+        drawLines = new List<DrawLine>();
         _drawLineObjectList = new List<GameObject>();
     }
 
@@ -203,12 +195,8 @@ public class DrawPlane : DispatcherEventPanel
     }
 
     private List<DrawNode> _nodeLines = new List<DrawNode>();
-    private List<DrawLine> _drawLines = new List<DrawLine>();
 
-    public List<DrawLine> drawLines
-    {
-        get { return _drawLines; }
-    }
+    public List<DrawLine> drawLines { get; private set; } = new List<DrawLine>();
 
     private bool _isOperate;
 
@@ -218,10 +206,10 @@ public class DrawPlane : DispatcherEventPanel
         {
             _isOperate = value;
 
-            if (_plane && _plane.GetComponent<BoxCollider>())
-                _plane.GetComponent<BoxCollider>().enabled = value;
+            if (plane && plane.GetComponent<BoxCollider>())
+                plane.GetComponent<BoxCollider>().enabled = value;
 
-            foreach (DrawLine dl in _drawLines)
+            foreach (DrawLine dl in drawLines)
             {
                 dl.transform.parent.gameObject.SetActive(value);
             }
@@ -269,7 +257,7 @@ public class DrawPlane : DispatcherEventPanel
         drawLine.nodeFrom.line = drawLine;
         drawLine.nodeTo.line = drawLine;
         drawLine.nodeCurve.line = drawLine;
-        _drawLines.Add(drawLine);
+        drawLines.Add(drawLine);
         _nodeLines.Add(drawLine.nodeFrom);
         _nodeLines.Add(drawLine.nodeTo);
 
@@ -318,17 +306,12 @@ public class DrawPlane : DispatcherEventPanel
         get { return _drawFillPanel.offestY; }
     }
 
-    private MeshData _meshData;
-
-    public MeshData meshData
-    {
-        get { return _meshData; }
-    }
+    public MeshData meshData { get; private set; }
 
     private void FillPanel()
     {
-        _meshData = Triangulator.GetMeshData(GetPanelPoints());
-        _drawFillPanel.BuildIrregularGeometry(_meshData);
+        meshData = Triangulator.GetMeshData(GetPanelPoints());
+        _drawFillPanel.BuildIrregularGeometry(meshData);
         _drawFillPanel.SetMaterial(_fillMaterial);
 
         Destroy(_drawFillPanel.gameObject.GetComponent<MeshCollider>());
@@ -349,8 +332,6 @@ public class DrawPlane : DispatcherEventPanel
 
     RaycastHit hitInfo;
     private Vector3 _lastPoint;
-
-    private GameObject _plane;
 
     void Update()
     {
@@ -377,7 +358,7 @@ public class DrawPlane : DispatcherEventPanel
                 layer = 1 << LayerMask.NameToLayer("DrawLine");
                 if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layer))
                 {
-                    _lastPoint = _plane.transform.InverseTransformPoint(hitInfo.point);
+                    _lastPoint = plane.transform.InverseTransformPoint(hitInfo.point);
                 }
             }
 
@@ -387,7 +368,7 @@ public class DrawPlane : DispatcherEventPanel
                 LayerMask layer = 1 << LayerMask.NameToLayer("DrawLine");
                 if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity, layer))
                 {
-                    Vector3 inversePoint = (_plane.transform.InverseTransformPoint(hitInfo.point) - _lastPoint) * 1000;
+                    Vector3 inversePoint = (plane.transform.InverseTransformPoint(hitInfo.point) - _lastPoint) * 1000;
 
                     if (_drawLine)
                     {
@@ -409,7 +390,7 @@ public class DrawPlane : DispatcherEventPanel
                         FillPanel();
                     }
 
-                    _lastPoint = _plane.transform.InverseTransformPoint(hitInfo.point);
+                    _lastPoint = plane.transform.InverseTransformPoint(hitInfo.point);
                 }
             }
         }
@@ -467,7 +448,7 @@ public class DrawPlane : DispatcherEventPanel
 
         _nodeLines.Remove(line.nodeFrom);
         _nodeLines.Remove(line.nodeTo);
-        _drawLines.Remove(line);
+        drawLines.Remove(line);
         line.Dispose();
         UpdateRelation();
         FillPanel();
@@ -477,7 +458,9 @@ public class DrawPlane : DispatcherEventPanel
     {
         List<Vector2> list = new List<Vector2>();
 
-        startNode = _drawLines[0].nodeFrom;
+        if (drawLines.Count <= 0) return list;
+
+        startNode = drawLines[0].nodeFrom;
         endNode = startNode.relationNode;
 
         list.AddRange(startNode.line.points);
@@ -542,8 +525,8 @@ public class DrawPlane : DispatcherEventPanel
         _drawPanelObject = new GameObject("DrawPanel");
         _thickIrregularPlane3D = _drawPanelObject.AddComponent<ThickIrregularPlane3D>();
         _thickIrregularPlane3D.SetPoints(ResetPanelPoints(GetPanelPoints()), thickness);
-        _thickIrregularPlane3D.upPanelCollage(_materialsUpID);
-        _thickIrregularPlane3D.downPanelCollage(_materialsDownID);
+        _thickIrregularPlane3D.UpPanelCollage(_materialsUpID);
+        _thickIrregularPlane3D.DownPanelCollage(_materialsDownID);
 
         if (id == "")
         {
@@ -563,7 +546,7 @@ public class DrawPlane : DispatcherEventPanel
         itemvo.id = _thickIrregularPlane3D.id;
 
         TransformVO tvo = itemvo.GetComponentVO<TransformVO>();
-        tvo.rotateX = (_direction == HORIZONTAL) ? 0 : -90;
+        tvo.rotateX = (direction == HORIZONTAL) ? 0 : -90;
 
         CollageVO cvo = itemvo.GetComponentVO<CollageVO>();
         return itemvo;
@@ -576,7 +559,7 @@ public class DrawPlane : DispatcherEventPanel
     {
         set
         {
-            if (_drawFillPanelObject == null)
+            if (drawFillPanelObject == null)
             {
                 _beforehandCode = value;
                 return;
@@ -588,16 +571,22 @@ public class DrawPlane : DispatcherEventPanel
             XmlNode code = value as XmlNode;
             XmlNode drawPanelNode = code.SelectSingleNode("ThickIrregularPlane3D").SelectSingleNode("DrawPanel");
             XmlNode thickIrregularNode = code.SelectSingleNode("ThickIrregularPlane3D").SelectSingleNode("ThickIrregular");
-            Color cvo = new Color();
-            cvo = ColorUtils.HexToColor(thickIrregularNode.Attributes["color"].Value);
+
+            Color cvo = Color.white;
+            if (thickIrregularNode.Attributes["color"] != null)
+            {
+                cvo = ColorUtils.HexToColor(thickIrregularNode.Attributes["color"].Value);
+            }
             SetMaterial(thickIrregularNode.Attributes["upCollageId"].Value, thickIrregularNode.Attributes["downCollageId"].Value, cvo);
+
             Draw(drawPanelNode.Attributes["nodes"].Value, float.Parse(thickIrregularNode.Attributes["thickness"].Value));
             direction = drawPanelNode.Attributes["direction"].Value;
             TilingX = float.Parse(thickIrregularNode.Attributes["tilingX"].Value);
             TilingY = float.Parse(thickIrregularNode.Attributes["tilingY"].Value);
             OffestX = float.Parse(thickIrregularNode.Attributes["offestX"].Value);
             OffestY = float.Parse(thickIrregularNode.Attributes["offestY"].Value);
-            id = drawPanelNode.Attributes["id"].Value;
+
+            id = drawPanelNode.Attributes["id"] == null ? id : drawPanelNode.Attributes["id"].Value;
         }
         get
         {
@@ -607,7 +596,7 @@ public class DrawPlane : DispatcherEventPanel
             code += "   <DrawPanel ";
             code += " id = " + '"' + id + '"';
             code += " nodes = " + '"' + GetNodeCode() + '"';
-            code += " direction = " + '"' + _direction + '"';
+            code += " direction = " + '"' + direction + '"';
             code += "/>" + "\n";
 
             code += "<ThickIrregular";
@@ -618,7 +607,7 @@ public class DrawPlane : DispatcherEventPanel
             code += " tilingY = " + GetPropertyString(_drawFillPanel.tilingY);
             code += " offestX = " + GetPropertyString(_drawFillPanel.offestX);
             code += " offestY = " + GetPropertyString(_drawFillPanel.offestY);
-            code += " thickness = " + GetPropertyString(_thickness);
+            code += " thickness = " + GetPropertyString(thickness);
 
             List<Vector2> _list = ResetPanelPoints(GetPanelPoints());
             string p = "";
@@ -642,7 +631,7 @@ public class DrawPlane : DispatcherEventPanel
 
     private DrawLine GetDrawLine(Vector3 f, Vector3 t)
     {
-        foreach (DrawLine line in _drawLines)
+        foreach (DrawLine line in drawLines)
         {
             if (line.nodeFrom.transform.localPosition == f || line.nodeTo.transform.localPosition == t)
             {
@@ -682,33 +671,21 @@ public class DrawPlane : DispatcherEventPanel
     public string GetNodeCode()
     {
         string code = "";
-        for (int i = 0; i < _drawLines.Count; i++)
+        for (int i = 0; i < drawLines.Count; i++)
         {
-            code += _drawLines[i].nodeFrom.transform.localPosition.x + "," + _drawLines[i].nodeFrom.transform.localPosition.y + "," +
-                _drawLines[i].nodeTo.transform.localPosition.x + "," + _drawLines[i].nodeTo.transform.localPosition.y + "," +
-                _drawLines[i].nodeCurve.transform.localPosition.x + "," + _drawLines[i].nodeCurve.transform.localPosition.y + ((i == _drawLines.Count - 1) ? "" : ";");
+            code += drawLines[i].nodeFrom.transform.localPosition.x + "," + drawLines[i].nodeFrom.transform.localPosition.y + "," +
+                drawLines[i].nodeTo.transform.localPosition.x + "," + drawLines[i].nodeTo.transform.localPosition.y + "," +
+                drawLines[i].nodeCurve.transform.localPosition.x + "," + drawLines[i].nodeCurve.transform.localPosition.y + ((i == drawLines.Count - 1) ? "" : ";");
         }
         return code;
     }
 
-    private float _thickness = 50;
-
-    public float thickness
-    {
-        set { _thickness = value; }
-        get { return _thickness; }
-    }
+    public float thickness { set; get; } = 50;
 
     public static string HORIZONTAL = "Horizontal";
     public static string VERTICAL = "Vertical";
 
-    private string _direction = "Horizontal";
-
-    public string direction
-    {
-        set { _direction = value; }
-        get { return _direction; }
-    }
+    public string direction { set; get; } = "Horizontal";
 
     protected string GetPropertyString(object value)
     {

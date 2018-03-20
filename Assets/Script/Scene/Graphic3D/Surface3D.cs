@@ -48,8 +48,8 @@ namespace Build3D
             if (_collageVO == null)
             {
                 _collageVO = surfacevo.AddComponentVO<CollageVO>();
-                _collageVO.SetCollage("地板", "Collage0", "1001");
-                _collageVO.SetCollage("屋顶", "Collage1", "1002");
+                _collageVO.SetCollage("地板", "Collage0", "F0001");
+                _collageVO.SetCollage("屋顶", "Collage1", "F0002");
             }
             else
             {
@@ -132,8 +132,8 @@ namespace Build3D
 
         public void UpdateCollage()
         {
-            _floorPlane.SetCollage(_collageVO.GetCollageByUrl("Collage0").id as string);
-            _ceilingPlane.SetCollage(_collageVO.GetCollageByUrl("Collage1").id as string);
+            _floorPlane.SetCollage(_collageVO.collages[0]);
+            _ceilingPlane.SetCollage(_collageVO.collages[1]);
         }
 
         public Vector3 CenterPoint()

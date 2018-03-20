@@ -24,12 +24,13 @@ public class CollageVO : ComponentVO
         return null;
     }
 
-    public CollageStruct SetCollage(string name, string tag, object id, Color color = new Color())
+    public CollageStruct SetCollage(string name, string tag, string id, Color color = new Color(), string url = "")
     {
         CollageStruct c = HasCollage(tag);
         if (c != null)
         {
             c.id = id;
+            c.url = url;
             c.name = name;
             return c;
         }
@@ -38,6 +39,7 @@ public class CollageVO : ComponentVO
         c.name = name;
         c.tag = tag;
         c.id = id;
+        c.url = url;
         c.color = color;
 
         collages.Add(c);
@@ -104,6 +106,7 @@ public class CollageVO : ComponentVO
             if (collages[i].name != vo.collages[i].name ||
                 collages[i].tag != vo.collages[i].tag ||
                 collages[i].id != vo.collages[i].id ||
+                collages[i].url != vo.collages[i].url ||
                 collages[i].color != vo.collages[i].color ||
                 collages[i].tilingX != vo.collages[i].tilingX ||
                 collages[i].tilingY != vo.collages[i].tilingY ||
@@ -140,7 +143,8 @@ public class CollageVO : ComponentVO
                         node.Attributes["name"].Value,
                         node.Attributes["tag"].Value,
                         node.Attributes["id"].Value,
-                        ColorUtils.HexToColor(node.Attributes["color"].Value));
+                        ColorUtils.HexToColor(node.Attributes["color"].Value),
+                        node.Attributes["url"] != null ? node.Attributes["url"].Value : "");
                     //node.Attributes["tilingX"].Value;
                     //node.Attributes["tilingY"].Value;
                     //node.Attributes["offestX"].Value;
@@ -174,8 +178,9 @@ public class CollageStruct
 {
     public string name;
     public string tag;
-    public object id;
-    public Color color;
+    public string id;
+    public string url;
+    public Color color = Color.white;
     public float tilingX;
     public float tilingY;
     public float offestX;
@@ -187,6 +192,7 @@ public class CollageStruct
         c.name = name;
         c.tag = tag;
         c.id = id;
+        c.url = url;
         c.color = color;
         c.tilingX = tilingX;
         c.tilingY = tilingY;
@@ -202,6 +208,7 @@ public class CollageStruct
         code += " name = " + GetPropertyString(name);
         code += " tag = " + GetPropertyString(tag);
         code += " id = " + GetPropertyString(id);
+        code += " url = " + GetPropertyString(url);
         code += " tilingX = " + GetPropertyString(tilingX);
         code += " tilingY = " + GetPropertyString(tilingY);
         code += " offestX = " + GetPropertyString(offestX);

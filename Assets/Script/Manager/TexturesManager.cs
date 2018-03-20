@@ -7,42 +7,68 @@ public class TexturesManager
 {
     public TexturesManager()
     {
+        InitFloorTextures();
+        InitPlaneTextures();
+    }
+
+    private void InitFloorTextures()
+    {
         XmlDocument xml = new XmlDocument();
-        xml.LoadXml(Resources.Load("Config/PlaneTextures").ToString());
+        xml.LoadXml(Resources.Load("Config/FloorTextures").ToString());
 
-        XmlNode xmlNode = xml.SelectSingleNode("PlaneTextures");
+        XmlNode xmlNode = xml.SelectSingleNode("FloorTextures");
 
-        _collageImageList = new Hashtable();
-        _collageDataList = new List<CollageData>();
+        FloorImageList = new Hashtable();
+        FloorDataList = new List<CollageData>();
         foreach (XmlNode node in xmlNode)
         {
             CollageData c = new CollageData();
             c.id = node.Attributes["id"].Value;
             c.materialsUrl = node.Attributes["url"].Value;
             c.thumbnailUrl = node.Attributes["thumbnail"].Value;
-            _collageDataList.Add(c);
+            FloorDataList.Add(c);
 
-            _collageImageList.Add(c.id, c.thumbnailUrl);
+            FloorImageList.Add(c.id, c.thumbnailUrl);
         }
     }
 
-    private static Hashtable _collageImageList;
+    public static Hashtable FloorImageList { get; private set; }
+    public static List<CollageData> FloorDataList { get; private set; }
 
-    public static Hashtable CollageImageList
+    private void InitPlaneTextures()
     {
-        get { return _collageImageList; }
+        XmlDocument xml = new XmlDocument();
+        xml.LoadXml(Resources.Load("Config/PlaneTextures").ToString());
+
+        XmlNode xmlNode = xml.SelectSingleNode("PlaneTextures");
+
+        CollageImageList = new Hashtable();
+        CollageDataList = new List<CollageData>();
+        foreach (XmlNode node in xmlNode)
+        {
+            CollageData c = new CollageData();
+            c.id = node.Attributes["id"].Value;
+            c.materialsUrl = node.Attributes["url"].Value;
+            c.thumbnailUrl = node.Attributes["thumbnail"].Value;
+            CollageDataList.Add(c);
+
+            CollageImageList.Add(c.id, c.thumbnailUrl);
+        }
     }
 
-    private static List<CollageData> _collageDataList;
+    public static Hashtable CollageImageList { get; private set; }
+    public static List<CollageData> CollageDataList { get; private set; }
 
-    public static List<CollageData> CollageDataList
+    public static CollageData GetData(string id)
     {
-        get { return _collageDataList; }
-    }
-
-    public static CollageData GetCollageData(string id)
-    {
-        foreach (CollageData c in _collageDataList)
+        foreach (CollageData c in CollageDataList)
+        {
+            if (c.id == id)
+            {
+                return c;
+            }
+        }
+        foreach (CollageData c in FloorDataList)
         {
             if (c.id == id)
             {
@@ -54,6 +80,10 @@ public class TexturesManager
 
     public static Material CreateMaterials(string id)
     {
-        return Resources.Load(GetCollageData(id).materialsUrl) as Material;
+        if (GetData(id) == null)
+        {
+            return Resources.Load(GetData("F0001").materialsUrl) as Material;
+        }
+        return Resources.Load(GetData(id).materialsUrl) as Material;
     }
 }

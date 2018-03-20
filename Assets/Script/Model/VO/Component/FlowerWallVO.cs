@@ -52,7 +52,7 @@ public class FlowerWallVO : ComponentVO
             code += " visible = " + GetBoolString(visible);
             code += " color = " + GetPropertyString(ColorUtils.ColorToHex(color));
             code += ">";
-            code += panelCode.OuterXml;
+            code += panelCode.InnerXml;
             code += "</FlowerWall>";
 
             return code;

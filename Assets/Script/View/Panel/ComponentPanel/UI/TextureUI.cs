@@ -5,10 +5,12 @@ using UnityEngine;
 public class TextureUI : BaseUI
 {
     public Text text;
+    public Button url;
     public Button texture;
     public Button color;
 
-    private Action<TextureUI> _action;
+    private Action<TextureUI> _actionURL;
+    private Action<TextureUI> _actionTexture;
     private Action<TextureUI> _actionColor;
 
     public void OnClickColor(Action<TextureUI> action)
@@ -20,7 +22,13 @@ public class TextureUI : BaseUI
     public void OnClickTexture(Action<TextureUI> action)
     {
         texture.onClick.AddListener(TextureClickHandle);
-        _action = action;
+        _actionTexture = action;
+    }
+
+    public void OnClickURL(Action<TextureUI> action)
+    {
+        url.onClick.AddListener(URLClickHandle);
+        _actionURL = action;
     }
 
     private void ColorClickHandle()
@@ -30,7 +38,12 @@ public class TextureUI : BaseUI
 
     private void TextureClickHandle()
     {
-        _action(this);
+        _actionTexture(this);
+    }
+
+    private void URLClickHandle()
+    {
+        _actionURL(this);
     }
 
     public void SetActive(bool value)

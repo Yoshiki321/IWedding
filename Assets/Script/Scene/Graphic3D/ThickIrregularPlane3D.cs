@@ -9,37 +9,24 @@ using System.Xml;
 public class ThickIrregularPlane3D : MonoBehaviour
 {
     public string id;
-    private List<Vector2> _list;
     private float _thickness;
 
     private string _upCollageId;
     private string _downCollageId;
 
-    public List<Vector2> list
-    {
-        get { return _list; }
-    }
+    public List<Vector2> list { get; private set; }
 
-    private List<Vector3> _upPoints;
-    private List<Vector3> _downPoints;
+    public List<Vector3> upPoints { get; private set; }
 
-    public List<Vector3> upPoints
-    {
-        get { return _upPoints; }
-    }
+    public List<Vector3> downPoints { get; private set; }
 
-    public List<Vector3> downPoints
-    {
-        get { return _downPoints; }
-    }
-
-    public void upPanelCollage(string id)
+    public void UpPanelCollage(string id)
     {
         _upCollageId = id;
         _upPanel.SetCollage(id);
     }
 
-    public void downPanelCollage(string id)
+    public void DownPanelCollage(string id)
     {
         _downCollageId = id;
         _downPanel.SetCollage(id);
@@ -50,18 +37,9 @@ public class ThickIrregularPlane3D : MonoBehaviour
 
     private BoxCollider _boxCollider;
 
-    private GameObject _upObj;
-    private GameObject _downObj;
+    public GameObject upObj { get; private set; }
 
-    public GameObject upObj
-    {
-        get { return _upObj; }
-    }
-
-    public GameObject downObj
-    {
-        get { return _downObj; }
-    }
+    public GameObject downObj { get; private set; }
 
     /// <summary>
     ///  添加一个面的按顺序的点
@@ -80,32 +58,32 @@ public class ThickIrregularPlane3D : MonoBehaviour
             _boxCollider.enabled = false;
         }
 
-        _list = list;
+        this.list = list;
         _thickness = thickness;
 
         List<Vector3> meshPoints = new List<Vector3>();
-        _upPoints = new List<Vector3>();
-        _downPoints = new List<Vector3>();
+        upPoints = new List<Vector3>();
+        downPoints = new List<Vector3>();
         foreach (Vector2 v in list)
         {
-            _upPoints.Add(new Vector3(v.x, thickness, v.y));
-            _downPoints.Add(new Vector3(v.x, 0, v.y));
+            upPoints.Add(new Vector3(v.x, thickness, v.y));
+            downPoints.Add(new Vector3(v.x, 0, v.y));
         }
-        meshPoints.AddRange(_upPoints);
-        meshPoints.AddRange(_downPoints);
+        meshPoints.AddRange(upPoints);
+        meshPoints.AddRange(downPoints);
 
-        _upObj = new GameObject("UpObj");
-        _downObj = new GameObject("DownObj");
-        _upPanel = _upObj.AddComponent<SurfacePlane3D>();
-        _downPanel = _downObj.AddComponent<SurfacePlane3D>();
+        upObj = new GameObject("UpObj");
+        downObj = new GameObject("DownObj");
+        _upPanel = upObj.AddComponent<SurfacePlane3D>();
+        _downPanel = downObj.AddComponent<SurfacePlane3D>();
         _upPanel.TwoSided = true;
         _downPanel.TwoSided = true;
         _upPanel.BuildIrregularGeometry(Triangulator.GetMeshData(list, thickness));
         _downPanel.InversionTexture = true;
         _downPanel.BuildIrregularGeometry(Triangulator.GetMeshData(list));
 
-        _upObj.tag = "Collage0";
-        _downObj.tag = "Collage1";
+        upObj.tag = "Collage0";
+        downObj.tag = "Collage1";
 
         _upPanel.SetCollage(upid);
         _downPanel.SetCollage(downid);
@@ -124,28 +102,28 @@ public class ThickIrregularPlane3D : MonoBehaviour
 
         mr.material = new Material(Shader.Find("Standard"));
 
-        _upObj.transform.parent = transform;
-        _downObj.transform.parent = transform;
+        upObj.transform.parent = transform;
+        downObj.transform.parent = transform;
         obj.transform.parent = transform;
 
-        _upObj.layer = gameObject.layer;
-        _downObj.layer = gameObject.layer;
+        upObj.layer = gameObject.layer;
+        downObj.layer = gameObject.layer;
         obj.layer = gameObject.layer;
 
-        _upObj.transform.localEulerAngles = new Vector3();
-        _downObj.transform.localEulerAngles = new Vector3();
+        upObj.transform.localEulerAngles = new Vector3();
+        downObj.transform.localEulerAngles = new Vector3();
         obj.transform.localEulerAngles = new Vector3();
 
-        _upObj.transform.localPosition = new Vector3();
-        _downObj.transform.localPosition = new Vector3();
+        upObj.transform.localPosition = new Vector3();
+        downObj.transform.localPosition = new Vector3();
         obj.transform.localPosition = new Vector3();
 
-        _upObj.transform.localScale = new Vector3(.01f, .01f, .01f);
-        _downObj.transform.localScale = new Vector3(.01f, .01f, .01f);
+        upObj.transform.localScale = new Vector3(.01f, .01f, .01f);
+        downObj.transform.localScale = new Vector3(.01f, .01f, .01f);
         obj.transform.localScale = new Vector3(.01f, .01f, .01f);
 
-        _upObj.AddComponent<MeshCollider>();
-        _downObj.AddComponent<MeshCollider>();
+        upObj.AddComponent<MeshCollider>();
+        downObj.AddComponent<MeshCollider>();
         obj.AddComponent<MeshCollider>();
 
         List<Vector2> uvList = new List<Vector2>();
@@ -362,9 +340,9 @@ public class ThickIrregularPlane3D : MonoBehaviour
             code += " thickness = " + GetPropertyString(_thickness);
 
             string p = "";
-            for (int i = 0; i < _list.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
-                p += _list[i].x + "," + _list[i].y + ((i == _list.Count - 1) ? "" : ";");
+                p += list[i].x + "," + list[i].y + ((i == list.Count - 1) ? "" : ";");
             }
             code += " points = " + GetPropertyString(p);
 

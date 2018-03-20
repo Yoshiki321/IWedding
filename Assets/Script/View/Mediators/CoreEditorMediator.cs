@@ -709,12 +709,12 @@ public class CoreEditorMediator : Mediators
 
     private void ItemToolLeftRotateHandle(EventObject e)
     {
-        RotateItemY(-30);
+        RotateItemY(-45);
     }
 
     private void ItemToolRightRotateHandle(EventObject e)
     {
-        RotateItemY(30);
+        RotateItemY(45);
     }
 
     private void ItemToolResetRotateHandle(EventObject e)

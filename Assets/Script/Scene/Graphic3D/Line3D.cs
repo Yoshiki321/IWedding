@@ -54,8 +54,8 @@ namespace Build3D
             _maskPlane = _mask.AddComponent<WallPlane3D>();
             _maskPlane1 = _mask1.AddComponent<WallPlane3D>();
 
-            _ag.AddComponent<TubeLightShadowPlane>();
-            _ig.AddComponent<TubeLightShadowPlane>();
+            //_ag.AddComponent<TubeLightShadowPlane>();
+            //_ig.AddComponent<TubeLightShadowPlane>();
 
             this.gameObject.layer = LayerMask.NameToLayer("Build3D");
             _ag.transform.gameObject.layer = LayerMask.NameToLayer("Build3D");
@@ -405,13 +405,13 @@ namespace Build3D
             _alongPlane.SetCollage(_collageStruct);
             _inversePlane.SetCollage(_collageStruct);
 
-            _fromPlane.SetCollage("1002");
-            _fromPlane1.SetCollage("1002");
-            _toPlane.SetCollage("1002");
-            _toPlane1.SetCollage("1002");
-            _topPlane.SetCollage("1002");
-            _maskPlane.SetCollage("1002");
-            _maskPlane1.SetCollage("1002");
+            _fromPlane.SetCollage("F0001");
+            _fromPlane1.SetCollage("F0001");
+            _toPlane.SetCollage("F0001");
+            _toPlane1.SetCollage("F0001");
+            _topPlane.SetCollage("F0001");
+            _maskPlane.SetCollage("F0001");
+            _maskPlane1.SetCollage("F0001");
         }
 
         private List<Vector3> drawList = new List<Vector3>();

@@ -79,17 +79,11 @@ public class ControlManager : EventDispatcher
 
     #region Loop
 
-    public bool loop
-    {
-        set { _loop = value; }
-        get { return _loop; }
-    }
-
-    private bool _loop = true;
+    public bool loop { set; get; } = true;
 
     public void LateUpdate()
     {
-        if (!_loop) return;
+        if (!loop) return;
 
         if (Input.touchCount == 0)
         {
@@ -302,34 +296,27 @@ public class ControlManager : EventDispatcher
     }
 
     #endregion
-
     #region Surface
-
-    private Surface2D _operateSurface;
 
     private void UpdateSurface()
     {
         if (CanDispatchVO())
         {
             dispatchEvent(new ControlManagerEvent(ControlManagerEvent.CHANGE_SURFACE,
-                new List<ObjectSprite>() { _operateSurface },
+                new List<ObjectSprite>() { operateSurface },
                 oldAssetsVO,
                 newAssetsVO
                 ));
         }
     }
 
-    public Surface2D operateSurface
-    {
-        set { _operateSurface = value; }
-        get { return _operateSurface; }
-    }
+    public Surface2D operateSurface { set; get; }
 
     private void LoopSurface()
     {
-        if (_operateSurface)
+        if (operateSurface)
         {
-            ChangeSurfaceHandle(_operateSurface, mouseMoveX, mouseMoveY);
+            ChangeSurfaceHandle(operateSurface, mouseMoveX, mouseMoveY);
             lineTool.UpdateLine();
         }
     }
@@ -398,17 +385,7 @@ public class ControlManager : EventDispatcher
         UpdateNestedSurfaceMoveHandle(surface);
     }
 
-    #endregion
-
-    #region Node
-
-    private Node2D _operateNode;
-
-    public Node2D operateNode
-    {
-        set { _operateNode = value; }
-        get { return _operateNode; }
-    }
+    public Node2D operateNode { set; get; }
 
     public void SetOperateNode(Node2D node)
     {
@@ -418,9 +395,9 @@ public class ControlManager : EventDispatcher
 
     private void LoopNode()
     {
-        if (_operateNode)
+        if (operateNode)
         {
-            ChangeNodeHandle(_operateNode, mouseMoveX, mouseMoveY);
+            ChangeNodeHandle(operateNode, mouseMoveX, mouseMoveY);
             lineTool.UpdateLine();
         }
     }
@@ -439,7 +416,7 @@ public class ControlManager : EventDispatcher
         if (CanDispatchVO())
         {
             dispatchEvent(new ControlManagerEvent(ControlManagerEvent.CHANGE_SURFACE,
-                new List<ObjectSprite>() { _operateNode },
+                new List<ObjectSprite>() { operateNode },
                 oldAssetsVO,
                 newAssetsVO
                 ));
@@ -463,9 +440,9 @@ public class ControlManager : EventDispatcher
 
     private void LoopLine()
     {
-        if (_operateLine)
+        if (operateLine)
         {
-            ChangeLineHandle(_operateLine, mouseMoveX, mouseMoveY);
+            ChangeLineHandle(operateLine, mouseMoveX, mouseMoveY);
             lineTool.UpdateLine();
         }
     }
@@ -473,13 +450,7 @@ public class ControlManager : EventDispatcher
     private Bisector _limitFromBisector;
     private Bisector _limitToBisector;
 
-    private Line2D _operateLine;
-
-    public Line2D operateLine
-    {
-        set { _operateLine = value; }
-        get { return _operateLine; }
-    }
+    public Line2D operateLine { set; get; }
 
     public void ChangeLineLength(Line2D line, float length)
     {
@@ -796,23 +767,13 @@ public class ControlManager : EventDispatcher
         //auxiliaryLines = new List<AuxiliaryLine>();
     }
 
-    #endregion
-
-    #region Item
-
-    private Item2D _operateItem;
-
-    public Item2D operateItem
-    {
-        set { _operateItem = value; }
-        get { return _operateItem; }
-    }
+    public Item2D operateItem { set; get; }
 
     private void LoopItem()
     {
-        if (_operateItem)
+        if (operateItem)
         {
-            ChangeItemHandle(_operateItem, mouseMoveX, mouseMoveY);
+            ChangeItemHandle(operateItem, mouseMoveX, mouseMoveY);
         }
     }
 
@@ -908,7 +869,7 @@ public class ControlManager : EventDispatcher
         newAssetVOs.Add(AssetsModel.Instance.GetTransformVO(item));
 
         dispatchEvent(new ControlManagerEvent(ControlManagerEvent.TRANSFORM_MOVE,
-         new List<ObjectSprite>() { _operateItem },
+         new List<ObjectSprite>() { operateItem },
          oldAssetsVO,
          newAssetVOs
          ));
@@ -917,15 +878,15 @@ public class ControlManager : EventDispatcher
     private void ItemSaveOldHandle()
     {
         oldAssetsVO = new List<AssetVO>();
-        oldAssetsVO.Add(AssetsModel.Instance.GetTransformVO(_operateItem));
+        oldAssetsVO.Add(AssetsModel.Instance.GetTransformVO(operateItem));
     }
 
     private void ItemReleaseHandle()
     {
         newAssetsVO = new List<AssetVO>();
-        newAssetsVO.Add(AssetsModel.Instance.GetTransformVO(_operateItem));
+        newAssetsVO.Add(AssetsModel.Instance.GetTransformVO(operateItem));
 
-        List<ObjectSprite> list = new List<ObjectSprite>() { _operateItem };
+        List<ObjectSprite> list = new List<ObjectSprite>() { operateItem };
         dispatchEvent(new ControlManagerEvent(ControlManagerEvent.TRANSFORM_RELEASE,
             list,
             oldAssetsVO,
@@ -949,27 +910,17 @@ public class ControlManager : EventDispatcher
         }
     }
 
-    #endregion
-
-    #region Nested
-
-    private Nested2D _operateNested;
-
-    public Nested2D operateNested
-    {
-        set { _operateNested = value; }
-        get { return _operateNested; }
-    }
+    public Nested2D operateNested { set; get; }
 
     private void LoopNested()
     {
-        if (_operateNested)
+        if (operateNested)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             Physics.Raycast(ray, out hit);
 
-            ChangeNestedHandle(_operateNested, hit.point);
+            ChangeNestedHandle(operateNested, hit.point);
         }
     }
 
@@ -1282,7 +1233,7 @@ public class ControlManager : EventDispatcher
         if (CanDispatchVO())
         {
             dispatchEvent(new ControlManagerEvent(ControlManagerEvent.CHANGE_NESTED,
-                new List<ObjectSprite>() { _operateNested },
+                new List<ObjectSprite>() { operateNested },
                 oldAssetsVO,
                 newAssetsVO
                 ));

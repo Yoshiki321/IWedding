@@ -197,15 +197,15 @@ public class FlowerWallComponent : SceneComponent
 
             if (isIn)
             {
-                GameObject obj = GameObject.Instantiate(Resources.Load("Item/新欧式/huaqiang") as GameObject);
+                GameObject obj = Instantiate(Resources.Load("Item/新欧式/huaqiang") as GameObject);
                 obj.transform.parent = transform;
                 obj.transform.localPosition = new Vector3(tdx, tdy, 0);
                 obj.transform.localScale = new Vector3(60f, 60f, 60f);
-                obj.transform.localRotation = Quaternion.Euler(UnityEngine.Random.value * 360, -90f, -90f);
+                obj.transform.localRotation = Quaternion.Euler(Random.value * 360, -90f, -90f);
 
-                float r = UnityEngine.Random.Range(0f, 1f);
-                float g = UnityEngine.Random.Range(0f, 1f);
-                float b = UnityEngine.Random.Range(0f, 1f);
+                float r = Random.Range(0f, 1f);
+                float g = Random.Range(0f, 1f);
+                float b = Random.Range(0f, 1f);
                 Color color = new Color(r, g, b);
 
                 obj.GetComponentInChildren<MeshRenderer>().material.color = color;

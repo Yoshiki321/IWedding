@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Build3D;
+using BuildManager;
+using System.IO;
 
 public class CollageComponent : SceneComponent
 {
@@ -74,19 +76,11 @@ public class CollageComponent : SceneComponent
 
             for (int i = 0; i < vo.collages.Count; i++)
             {
-                if (vo.collages[i].id is Color)
+                foreach (Renderer r in _renderers)
                 {
-                    //list1[i].material.color = (Color)vo.collages[i].id;
-                }
-                if (vo.collages[i].id is uint)
-                {
-                    //list1[i].material.color = ColorUtils.HexToColor
-                }
-                if (vo.collages[i].id is string)
-                {
-                    foreach (Renderer r in _renderers)
+                    if (r.gameObject.tag == vo.collages[i].tag)
                     {
-                        if (r.gameObject.tag == vo.collages[i].tag)
+                        if (vo.collages[i].url == "")
                         {
                             string id = vo.collages[i].id as string;
 
@@ -97,6 +91,10 @@ public class CollageComponent : SceneComponent
                             else
                             {
                                 Material m = TexturesManager.CreateMaterials(vo.collages[i].id as string);
+                                if (m == null)
+                                {
+                                    return;
+                                }
                                 m.color = vo.collages[i].color;
 
                                 SurfacePlane3D surfacePlane = r.gameObject.GetComponent<SurfacePlane3D>();
@@ -110,9 +108,33 @@ public class CollageComponent : SceneComponent
                                 }
                             }
                         }
+                        else
+                        {
+                            Material m = new Material(Shader.Find("Standard"));
+                            string url = vo.collages[i].url as string;
+
+                            Texture2D tex;
+                            if (url.Contains(":\\"))
+                            {
+                                WWW www = new WWW("file:///" + url);
+                                tex = www.texture;
+                                string name = NumberUtils.GetGuid() + ".png";
+                                string urlName = SceneManager.ProjectPictureURL + "\\" + name;
+                                byte[] bytes = tex.EncodeToPNG();
+                                File.WriteAllBytes(urlName, bytes);
+                                vo.collages[i].url = name;
+                            }
+                            else
+                            {
+                                WWW www = new WWW("file:///" + SceneManager.ProjectPictureURL + "\\" + url);
+                                tex = www.texture;
+                            }
+                            m.SetTexture("_MainTex", tex);
+                            r.material = m;
+                        }
                     }
-                    //list1[i].material = TexturesManager.CreateMaterials(vo.collages[i].id as string);
                 }
+                //list1[i].material = TexturesManager.CreateMaterials(vo.collages[i].id as string);
             }
         }
         get { return _vo; }

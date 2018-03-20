@@ -11,10 +11,10 @@ public class CorePanel : BasePanel
 
     void Start()
     {
-        lineTool = GetUI("LineTool").AddComponent<LineTool>();
-        itemTool = GetUI("ItemTool").AddComponent<ItemTool>();
-        rankTool = GetUI("RankTool").AddComponent<RankToolPanel>();
-        sceneToolbarPanel = GetUI("SceneTopTool").AddComponent<SceneToolbarPanel>();
+        lineTool = GetUI("LineTool").GetComponent<LineTool>();
+        itemTool = GetUI("ItemTool").GetComponent<ItemTool>();
+        rankTool = GetUI("RankTool").GetComponent<RankToolPanel>();
+        sceneToolbarPanel = GetUI("SceneTopTool").GetComponent<SceneToolbarPanel>();
 
         SetActiveLineTool(false);
         SetActiveItemTool(false);

@@ -21,7 +21,7 @@ public class ItemSelectPanelMediators : Mediators
         AddContextListener(SceneEvent.ADD_ITEM, EventDispatcher_AddObjectHandler);
         AddContextListener(SceneEvent.DELETE, EventDispatcher_DeleteHandler);
 
-        (panel as ItemSelectPanel).UpdateItem(AssetsModel.Instance.itemDatas);
+        AddContextListener(ProgressEvent.LOAD_COMPLETE, LoadCompleteHandle);
     }
 
     public override void OnRemove()
@@ -37,6 +37,13 @@ public class ItemSelectPanelMediators : Mediators
 
         RemoveContextListener(SceneEvent.ADD_ITEM, EventDispatcher_AddObjectHandler);
         RemoveContextListener(SceneEvent.DELETE, EventDispatcher_DeleteHandler);
+
+        RemoveContextListener(ProgressEvent.LOAD_COMPLETE, LoadCompleteHandle);
+    }
+
+    private void LoadCompleteHandle(EventObject e)
+    {
+        (panel as ItemSelectPanel).UpdateItem(AssetsModel.Instance.itemDatas);
     }
 
     private void SelectObject3Handle(EventObject e)

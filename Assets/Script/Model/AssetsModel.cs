@@ -9,17 +9,26 @@ using BuildManager;
 
 public class AssetsModel : Actor<AssetsModel>
 {
+    //public void GetQuoteFileURL()
+    //{
+    //    List<string> imgs = new List<string>();
+    //    foreach (ObjectData data in itemDataList)
+    //    {
+    //        Item3D item3 = data.object3 as Item3D;
+    //    }
+    //}
+
     public void Clear()
     {
-        foreach (ObjectData data in objectDataList)
+        foreach (ObjectData data in objectDatas)
         {
             data.object2.Dispose();
             data.object3.Dispose();
         }
 
-        objectDataList = new List<ObjectData>();
-        itemDataList = new List<ObjectData>();
-        nestedDataList = new List<ObjectData>();
+        objectDatas = new List<ObjectData>();
+        itemDatas = new List<ObjectData>();
+        nestedDatas = new List<ObjectData>();
     }
 
     public ObjectData Remove(string id)
@@ -85,17 +94,15 @@ public class AssetsModel : Actor<AssetsModel>
 
     #region progressLoadItem;
 
-    int _progressItemCurrent = 0;
-    int _progressItemTotal = 0;
+    public int progressItemCurrent { get; private set; } = 0;
 
-    public int progressItemCurrent { get { return _progressItemCurrent; } }
-    public int progressItemTotal { get { return _progressItemTotal; } }
+    public int progressItemTotal { get; private set; } = 0;
 
     List<ItemVO> _progressLoadItem;
     public void ProgressLoadItem(List<ItemVO> list)
     {
-        _progressItemCurrent = 0;
-        _progressItemTotal = list.Count;
+        progressItemCurrent = 0;
+        progressItemTotal = list.Count;
         _progressLoadItem = list;
     }
 
@@ -103,7 +110,7 @@ public class AssetsModel : Actor<AssetsModel>
     {
         if (_progressLoadItem != null && _progressLoadItem.Count > 0)
         {
-            _progressItemCurrent++;
+            progressItemCurrent++;
 
             ObjectData data = CreateItem(_progressLoadItem[0]);
             (data.object2 as Item2D).UpdateSize();
@@ -231,41 +238,20 @@ public class AssetsModel : Actor<AssetsModel>
         return data;
     }
 
-    //----------------
-    //----------------
-    //----------------
-    //----------------
-    //----------------
-
-    private List<ObjectData> objectDataList = new List<ObjectData>();
-    private List<ObjectData> itemDataList = new List<ObjectData>();
-    private List<ObjectData> nestedDataList = new List<ObjectData>();
-
-    public List<ObjectData> objectDatas
-    {
-        get { return objectDataList; }
-    }
-
-    public List<ObjectData> itemDatas
-    {
-        get { return itemDataList; }
-    }
-
-    public List<ObjectData> nestedDatas
-    {
-        get { return nestedDataList; }
-    }
+    public List<ObjectData> objectDatas { get; private set; } = new List<ObjectData>();
+    public List<ObjectData> itemDatas { get; private set; } = new List<ObjectData>();
+    public List<ObjectData> nestedDatas { get; private set; } = new List<ObjectData>();
 
     public void SetObjectData(ObjectData data)
     {
-        objectDataList.Add(data);
-        if (data.vo is ItemVO) itemDataList.Add(data);
-        if (data.vo is NestedVO) nestedDataList.Add(data);
+        objectDatas.Add(data);
+        if (data.vo is ItemVO) itemDatas.Add(data);
+        if (data.vo is NestedVO) nestedDatas.Add(data);
     }
 
     public ObjectData GetObjectData(String id)
     {
-        foreach (ObjectData objectData in objectDataList)
+        foreach (ObjectData objectData in objectDatas)
         {
             if (objectData.vo.id == id)
             {
@@ -277,7 +263,7 @@ public class AssetsModel : Actor<AssetsModel>
 
     public ObjectData GetItemData(String id)
     {
-        foreach (ObjectData objectData in itemDataList)
+        foreach (ObjectData objectData in itemDatas)
         {
             if (objectData.vo.id == id)
             {
@@ -289,7 +275,7 @@ public class AssetsModel : Actor<AssetsModel>
 
     public ObjectData GetNestedData(String id)
     {
-        foreach (ObjectData objectData in nestedDataList)
+        foreach (ObjectData objectData in nestedDatas)
         {
             if (objectData.vo.id == id)
             {
@@ -315,13 +301,13 @@ public class AssetsModel : Actor<AssetsModel>
 
     public ObjectData RemoveObjectData(String id)
     {
-        foreach (ObjectData objectData in objectDataList)
+        foreach (ObjectData objectData in objectDatas)
         {
             if (objectData.vo.id == id)
             {
-                objectDataList.Remove(objectData);
-                if (objectData.vo is ItemVO) itemDataList.Remove(objectData);
-                if (objectData.vo is NestedVO) nestedDataList.Remove(objectData);
+                objectDatas.Remove(objectData);
+                if (objectData.vo is ItemVO) itemDatas.Remove(objectData);
+                if (objectData.vo is NestedVO) nestedDatas.Remove(objectData);
                 return objectData;
             }
         }
@@ -332,7 +318,7 @@ public class AssetsModel : Actor<AssetsModel>
     {
         List<ItemVO> list = new List<ItemVO>();
 
-        foreach (ObjectData data in itemDataList)
+        foreach (ObjectData data in itemDatas)
         {
             if ((data.vo as ItemVO).groupId == id)
             {
@@ -347,7 +333,7 @@ public class AssetsModel : Actor<AssetsModel>
     {
         List<string> list = new List<string>();
 
-        foreach (ObjectData data in itemDataList)
+        foreach (ObjectData data in itemDatas)
         {
             if ((data.vo as ItemVO).groupId != "")
             {
