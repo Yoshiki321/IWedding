@@ -15,52 +15,44 @@ namespace Build2D
 
         public void Init(LineVO linevo)
         {
-            _meshFilter = this.gameObject.AddComponent<MeshFilter>();
-            _meshRenderer = this.gameObject.AddComponent<MeshRenderer>();
-            _meshCollider = this.gameObject.AddComponent<MeshCollider>();
+            _meshFilter = gameObject.AddComponent<MeshFilter>();
+            _meshRenderer = gameObject.AddComponent<MeshRenderer>();
+            _meshCollider = gameObject.AddComponent<MeshCollider>();
 
             _meshRenderer.material = new Material(Shader.Find("Standard"));
 
-            _path = new Path2D();
+            path = new Path2D();
 
-            this.gameObject.layer = LayerMask.NameToLayer("Graphic2D");
+            gameObject.layer = LayerMask.NameToLayer("Graphic2D");
 
             InitScale();
             VO = linevo;
         }
 
-        private Path2D _path;
-
-        private Node2D _fromNode;
-        private Node2D _toNode;
-
-        public Path2D path
-        {
-            get { return _path; }
-        }
+        public Path2D path { get; private set; }
 
         public Vector2 from
         {
             set
             {
-                _path.from = value.Round();
+                path.from = value.Round();
 
-                _fromNode.x = value.x;
-                _fromNode.y = value.y;
+                fromNode.x = value.x;
+                fromNode.y = value.y;
             }
-            get { return _path.from; }
+            get { return path.from; }
         }
 
         public Vector2 to
         {
             set
             {
-                _path.to = value.Round();
+                path.to = value.Round();
 
-                _toNode.x = value.x;
-                _toNode.y = value.y;
+                toNode.x = value.x;
+                toNode.y = value.y;
             }
-            get { return _path.to; }
+            get { return path.to; }
         }
 
         public Vector2 interiorFrom
@@ -104,73 +96,59 @@ namespace Build2D
 
         public float thickness
         {
-            get { return _path.thickness; }
+            get { return path.thickness; }
         }
 
         public Bisector bisector
         {
-            get { return _path.bisector; }
+            get { return path.bisector; }
         }
 
         public Bisector bisectorAlong
         {
-            get { return _path.bisectorAlong; }
+            get { return path.bisectorAlong; }
         }
 
         public Bisector bisectorInverse
         {
-            get { return _path.bisectorInverse; }
+            get { return path.bisectorInverse; }
         }
 
         public Bisector bisectorAlongN
         {
-            get { return _path.bisectorAlongN; }
+            get { return path.bisectorAlongN; }
         }
 
         public Bisector bisectorInverseN
         {
-            get { return _path.bisectorInverseN; }
+            get { return path.bisectorInverseN; }
         }
 
         public Bisector bisectorAlongO
         {
-            get { return _path.bisectorAlongO; }
+            get { return path.bisectorAlongO; }
         }
 
         public Bisector bisectorInverseO
         {
-            get { return _path.bisectorInverseO; }
+            get { return path.bisectorInverseO; }
         }
 
         public Vector2 bisectorAlongCenter
         {
-            get { return _path.bisectorAlong.center; }
+            get { return path.bisectorAlong.center; }
         }
 
         public Vector2 bisectorInverseCenter
         {
-            get { return _path.bisectorInverse.center; }
+            get { return path.bisectorInverse.center; }
         }
 
-        public Node2D fromNode
-        {
-            set { _fromNode = value; }
-            get { return _fromNode; }
-        }
+        public Node2D fromNode { set; get; }
 
-        public Node2D toNode
-        {
-            set { _toNode = value; }
-            get { return _toNode; }
-        }
+        public Node2D toNode { set; get; }
 
-        private float _height3D = 1;
-
-        public float height3D
-        {
-            set { _height3D = value; }
-            get { return _height3D; }
-        }
+        public float height3D { set; get; } = 1;
 
         public Vector2 Other(Vector2 p, bool same = true)
         {
@@ -519,12 +497,12 @@ namespace Build2D
 
             if (type == "from")
             {
-                node = _fromNode;
+                node = fromNode;
                 angle = PlaneUtils.Angle(path.from, path.to, true);
             }
             else
             {
-                node = _toNode;
+                node = toNode;
                 angle = PlaneUtils.Angle(path.to, path.from, true);
             }
 
@@ -551,7 +529,7 @@ namespace Build2D
                 }
                 else
                 {
-                    node2f = this.toNode;
+                    node2f = toNode;
                     node2t = targetLine.fromNode;
                     node2f1 = targetLine.toNode;
 
@@ -832,9 +810,9 @@ namespace Build2D
                 _lineVO = value as LineVO ;
 
                 id = value.id;
-                this.gameObject.name = "Line2 " + _lineVO.id;
+                gameObject.name = "Line2 " + _lineVO.id;
 
-                _path.setPoint(_lineVO.from, _lineVO.to, _lineVO.thickness);
+                path.setPoint(_lineVO.from, _lineVO.to, _lineVO.thickness);
 
                 height3D = _lineVO.height;
                 interiorAlong = _lineVO.interiorAlong;
@@ -847,6 +825,19 @@ namespace Build2D
                 {
                     holeDatas.Add(_lineVO.holes[i].Clone());
                 };
+            }
+        }
+
+        public bool Enabled
+        {
+            get
+            {
+                return enabled;
+            }
+
+            set
+            {
+                enabled = value;
             }
         }
     }

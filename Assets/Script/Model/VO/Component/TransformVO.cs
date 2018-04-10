@@ -84,15 +84,15 @@ public class TransformVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            x = float.Parse(code.Attributes["x"].Value);
-            y = float.Parse(code.Attributes["y"].Value);
-            z = float.Parse(code.Attributes["z"].Value);
-            scaleX = float.Parse(code.Attributes["scaleX"].Value);
-            scaleY = float.Parse(code.Attributes["scaleY"].Value);
-            scaleZ = float.Parse(code.Attributes["scaleZ"].Value);
-            rotateX = float.Parse(code.Attributes["rotateX"].Value);
-            rotateY = float.Parse(code.Attributes["rotateY"].Value);
-            rotateZ = float.Parse(code.Attributes["rotateZ"].Value);
+            x = code.GetFloat("x");
+            y = code.GetFloat("y");
+            z = code.GetFloat("z");
+            scaleX = code.GetFloat("scaleX");
+            scaleY = code.GetFloat("scaleY");
+            scaleZ = code.GetFloat("scaleZ");
+            rotateX = code.GetFloat("rotateX");
+            rotateY = code.GetFloat("rotateY");
+            rotateZ = code.GetFloat("rotateZ");
         }
     }
 }

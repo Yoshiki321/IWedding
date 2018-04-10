@@ -20,7 +20,7 @@ public class AddNestedCommand : HistoryCommand
             NestedVO oldAssets = se.oldAssets[0] as NestedVO;
             NestedVO newAssets = se.newAssets[0] as NestedVO;
 
-            AssetsModel.Instance.CreateNested(newAssets);
+            BuilderModel.Instance.CreateNested(newAssets);
 
             CommitHistoryEvent((SceneEvent)e);
         }

@@ -13,7 +13,7 @@ public class HotelManager
         //解析到XML-第1标签-ItemCode
         XmlNode xmlNode = xml.SelectSingleNode("HotelCode");
         //实例化列表用来置放子物体
-        _HotelDataList = new List<HotelData>();
+        HotelDataList = new List<HotelData>();
 
         foreach (XmlNode node in xmlNode)
         {
@@ -28,20 +28,15 @@ public class HotelManager
             data.size = node.Attributes["size"].Value;
             data.date = node.Attributes["date"].Value;
             data.hotelimg = node.Attributes["hotelimg"].Value;
-            _HotelDataList.Add(data);
+            HotelDataList.Add(data);
         }
     }
 
-    private static List<HotelData> _HotelDataList;
-
-    public static List<HotelData> HotelDataList
-    {
-        get { return _HotelDataList; }
-    }
+    public static List<HotelData> HotelDataList { get; private set; }
 
     public static HotelData GetHotelData(string id)
     {
-        foreach (HotelData data in _HotelDataList)
+        foreach (HotelData data in HotelDataList)
         {
             if (data.id == id)
             {

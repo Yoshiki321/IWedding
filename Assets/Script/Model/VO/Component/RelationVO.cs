@@ -45,7 +45,7 @@ public class RelationVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            itemId = code.Attributes["itemId"].Value;
+            itemId = code.GetString("itemId");
         }
     }
 }

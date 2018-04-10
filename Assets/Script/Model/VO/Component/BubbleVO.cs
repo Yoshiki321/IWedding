@@ -57,10 +57,10 @@ public class BubbleVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            size = float.Parse(code.Attributes["size"].Value);
-            speed = float.Parse(code.Attributes["speed"].Value);
-            speed = float.Parse(code.Attributes["density"].Value);
-            directionX = float.Parse(code.Attributes["directionX"].Value);
+            size = code.GetFloat("size");
+            speed = code.GetFloat("speed");
+            speed = code.GetFloat("density");
+            directionX = code.GetFloat("directionX");
         }
     }
 }

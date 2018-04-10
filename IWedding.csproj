@@ -12,16 +12,13 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -299,8 +296,35 @@
     <Reference Include="TCM">
       <HintPath>Assets/Module/ImperialFur/Editor/TCM.dll</HintPath>
     </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>Assets/Plugins/EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel">
+      <HintPath>Assets/Plugins/Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.CJK">
+      <HintPath>Assets/Plugins/I18N.CJK.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N">
+      <HintPath>Assets/Plugins/I18N.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.Other">
+      <HintPath>Assets/Plugins/I18N.Other.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.Rare">
+      <HintPath>Assets/Plugins/I18N.Rare.dll</HintPath>
+    </Reference>
+    <Reference Include="I18N.West">
+      <HintPath>Assets/Plugins/I18N.West.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>Assets/Plugins/ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="NAudio">
       <HintPath>Assets/Plugins/NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <HintPath>Assets/Plugins/System.Data.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms">
       <HintPath>Assets/Plugins/System.Windows.Forms.dll</HintPath>
@@ -340,7 +364,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\MirrorReflection.cs" />
     <Compile Include="Assets\Module\HighlightingSystem\Scripts\Advanced\CameraTargeting.cs" />
     <Compile Include="Assets\Module\HighlightingSystem\Scripts\Advanced\CompoundObjectController.cs" />
     <Compile Include="Assets\Module\HighlightingSystem\Scripts\Advanced\FlashingController.cs" />
@@ -993,7 +1016,6 @@
     <Compile Include="Assets\Script\Controller\Scene\TransformCommand.cs" />
     <Compile Include="Assets\Script\Controller\Scene\UndoCommand.cs" />
     <Compile Include="Assets\Script\Controller\UndoRedoCommand.cs" />
-    <Compile Include="Assets\Script\Design.cs" />
     <Compile Include="Assets\Script\Drag.cs" />
     <Compile Include="Assets\Script\Layer.cs" />
     <Compile Include="Assets\Script\LoadXml.cs" />
@@ -1018,7 +1040,6 @@
     <Compile Include="Assets\Script\Manager\KeyboardManager.cs" />
     <Compile Include="Assets\Script\Manager\Mouse3Manager.cs" />
     <Compile Include="Assets\Script\Manager\MouseManager.cs" />
-    <Compile Include="Assets\Script\Manager\Parsers\CodeParser.cs" />
     <Compile Include="Assets\Script\Manager\RankManager.cs" />
     <Compile Include="Assets\Script\Manager\RulerManager.cs" />
     <Compile Include="Assets\Script\Manager\SceneManager.cs" />
@@ -1164,6 +1185,7 @@
     <Compile Include="Assets\Script\Utils\ColorUtils.cs" />
     <Compile Include="Assets\Script\Utils\DES.cs" />
     <Compile Include="Assets\Script\Utils\DES_zaowu.cs" />
+    <Compile Include="Assets\Script\Utils\DoExcel.cs" />
     <Compile Include="Assets\Script\Utils\Event\EventDispatcher.cs" />
     <Compile Include="Assets\Script\Utils\Event\EventObject.cs" />
     <Compile Include="Assets\Script\Utils\Event\EventPhase.cs" />
@@ -1175,6 +1197,7 @@
     <Compile Include="Assets\Script\Utils\Extend\MaterialExtension.cs" />
     <Compile Include="Assets\Script\Utils\Extend\TextureExtension.cs" />
     <Compile Include="Assets\Script\Utils\Extend\VectorExtend.cs" />
+    <Compile Include="Assets\Script\Utils\Extend\XmlNodeExtension.cs" />
     <Compile Include="Assets\Script\Utils\FaceToCamera.cs" />
     <Compile Include="Assets\Script\Utils\File\FileControllor.cs" />
     <Compile Include="Assets\Script\Utils\File\FileDlg.cs" />
@@ -1186,11 +1209,14 @@
     <Compile Include="Assets\Script\Utils\MeshData.cs" />
     <Compile Include="Assets\Script\Utils\MeshUtils3D.cs" />
     <Compile Include="Assets\Script\Utils\MovementController.cs" />
+    <Compile Include="Assets\Script\Utils\NewMonoBehaviour1.cs" />
     <Compile Include="Assets\Script\Utils\NumberUtils.cs" />
     <Compile Include="Assets\Script\Utils\PlaneUtils.cs" />
     <Compile Include="Assets\Script\Utils\RenderingModeUnits.cs" />
     <Compile Include="Assets\Script\Utils\RotationController.cs" />
     <Compile Include="Assets\Script\Utils\SceneAmbientLight.cs" />
+    <Compile Include="Assets\Script\Utils\Style\MirrorReflection.cs" />
+    <Compile Include="Assets\Script\Utils\TransformationZwkjtiobj.cs" />
     <Compile Include="Assets\Script\Utils\Triangle.cs" />
     <Compile Include="Assets\Script\Utils\Triangle3D.cs" />
     <Compile Include="Assets\Script\Utils\Triangulator.cs" />

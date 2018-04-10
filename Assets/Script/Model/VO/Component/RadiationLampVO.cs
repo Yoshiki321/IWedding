@@ -49,6 +49,7 @@ public class RadiationLampVO : ComponentVO
             code += "<RadiationLamp";
             code += " brightness = " + GetPropertyString(brightness);
             code += " rotateSpeed = " + GetPropertyString(rotateSpeed);
+            code += " spacing = " + GetPropertyString(spacing);
             code += " color = " + GetPropertyString(ColorUtils.ColorToHex(color));
             code += "/>";
 
@@ -57,9 +58,10 @@ public class RadiationLampVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            brightness = float.Parse(code.Attributes["brightness"].Value);
-            rotateSpeed = float.Parse(code.Attributes["rotateSpeed"].Value);
-            color = ColorUtils.HexToColor(code.Attributes["color"].Value);
+            brightness = code.GetFloat("brightness");
+            rotateSpeed = code.GetFloat("rotateSpeed");
+            spacing = code.GetFloat("spacing");
+            color = code.GetColor("color");
         }
     }
 }

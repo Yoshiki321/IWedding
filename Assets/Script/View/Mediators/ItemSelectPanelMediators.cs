@@ -70,7 +70,7 @@ public class ItemSelectPanelMediators : Mediators
             SceneManager.Instance.mouse3Manager.ClearSelect();
             SceneManager.Instance.editorObjectSelection.SetSelectedObjects(new List<GameObject>()
             {
-                AssetsModel.Instance.GetItemData(se.name).object3.gameObject
+                AssetsModel.Instance.GetItemData(se.name).item3.gameObject
             }, false);
         }
     }

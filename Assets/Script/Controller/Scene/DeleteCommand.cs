@@ -58,7 +58,7 @@ public class DeleteCommand : HistoryCommand
 
             if (vo is NestedVO)
             {
-                AssetsModel.Instance.CreateNested(vo as NestedVO);
+                BuilderModel.Instance.CreateNested(vo as NestedVO);
             }
         }
     }

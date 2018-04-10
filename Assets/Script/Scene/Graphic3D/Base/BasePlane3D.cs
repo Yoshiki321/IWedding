@@ -17,9 +17,15 @@ public class BasePlane3D : MonoBehaviour
     protected int _nextVertexIndex;
     protected int _currentIndex;
 
-    public BasePlane3D()
+    private MirrorReflection _mirrorReflection;
+    private bool _mirror;
+
+    void Start()
     {
         Reset();
+
+        _mirrorReflection = gameObject.AddComponent<MirrorReflection>();
+        _mirrorReflection.enabled = _mirror;
     }
 
     public void Reset()
@@ -29,25 +35,52 @@ public class BasePlane3D : MonoBehaviour
         _trianglesList = new List<int>();
     }
 
+    public bool Mirror
+    {
+        set
+        {
+            if (_mirrorReflection)
+            {
+                _mirrorReflection.enabled = value;
+            }
+
+            _mirror = value;
+          
+            if (_mirror)
+            {
+                _mr.material = new Material(Shader.Find("FX/MirrorReflection"));
+            }
+            else
+            {
+                if (_mt)
+                {
+                    SetMaterial(_mt);
+                }
+                else
+                {
+                    SetMaterial(new Material(Shader.Find("Standard")));
+                }
+            }
+        }
+        get { return _mirror; }
+    }
+
     /// <summary>
     /// 设置墙体皮肤
-    /// </summary>
+    /// </summary>`
     /// <param name="string"></param>
     public void SetMaterial(Material m)
     {
+        if (Mirror) return;
+
         if (_mr == null) return;
         _mt = m;
         _mr.material = _mt;
+
         UpdateTiling();
     }
 
-    private bool _tilingAccordingScale = false;
-
-    public bool TilingAccordingScale
-    {
-        set { _tilingAccordingScale = value; }
-        get { return _tilingAccordingScale; }
-    }
+    public bool TilingAccordingScale { set; get; } = false;
 
     private float _tilingX = 1;
 
@@ -104,7 +137,7 @@ public class BasePlane3D : MonoBehaviour
 
     private void UpdateTiling()
     {
-        if (_tilingAccordingScale)
+        if (TilingAccordingScale)
         {
             _mr.material.SetTextureScale("_MainTex", gameObject.transform.localScale);
         }
@@ -119,21 +152,9 @@ public class BasePlane3D : MonoBehaviour
         get { return _mr.material; }
     }
 
-    private bool _inversionTexture;
+    public bool InversionTexture { get; set; }
 
-    public bool InversionTexture
-    {
-        get { return _inversionTexture; }
-        set { _inversionTexture = value; }
-    }
-
-    private bool _twoSided;
-
-    public bool TwoSided
-    {
-        get { return _twoSided; }
-        set { _twoSided = value; }
-    }
+    public bool TwoSided { get; set; }
 
     public void UpdateTexture()
     {
@@ -151,7 +172,7 @@ public class BasePlane3D : MonoBehaviour
 
     public void AddIndexData(int index0, int index1, int index2)
     {
-        if (_twoSided)
+        if (TwoSided)
         {
             _trianglesList.Add(index0);
             _trianglesList.Add(index1);
@@ -163,7 +184,7 @@ public class BasePlane3D : MonoBehaviour
         }
         else
         {
-            if (!_inversionTexture)
+            if (!InversionTexture)
             {
                 _trianglesList.Add(index0);
                 _trianglesList.Add(index1);
@@ -205,7 +226,7 @@ public class BasePlane3D : MonoBehaviour
         {
             uvs[i] = _uvsList[i];
 
-            if (!_inversionTexture)
+            if (!InversionTexture)
             {
                 normals[i] = new Vector3(0, 1, 0);
             }

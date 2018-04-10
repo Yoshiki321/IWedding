@@ -42,16 +42,11 @@ namespace BuildManager
         public RTEditor.EditorObjectSelection editorObjectSelection;
         public RTEditor.EditorGizmoSystem editorGizmoSystem;
 
-        private static SceneManager _Instance;
-
-        public static SceneManager Instance
-        {
-            get { return _Instance; }
-        }
+        public static SceneManager Instance { get; private set; }
 
         void Start()
         {
-            _Instance = this;
+            Instance = this;
 
             RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
             RenderSettings.ambientSkyColor = Color.white;
@@ -66,7 +61,7 @@ namespace BuildManager
 
             InitGrapics2();
 
-            _surfaceLight = true;
+            activeSceneLight = true;
         }
 
         private void InitCamera()
@@ -144,7 +139,7 @@ namespace BuildManager
 
         void Update()
         {
-            if (_Instance == null) _Instance = this;
+            if (Instance == null) Instance = this;
 
             if (CameraManager.visual == CameraFlags.Two)
             {
@@ -226,11 +221,11 @@ namespace BuildManager
                 {
                     SurfaceVO svo = Mouse3Manager.selectedSurface.VO as SurfaceVO;
                     svo.height = 20;
-                    SurfaceData sData = BuilderModel.Instance.GetSurfaceData(svo.id);
+                    SurfaceStruct sData = BuilderModel.Instance.GetSurfaceData(svo.id);
                     sData.surface3.VO = svo;
                     foreach (LineVO linevo in svo.linesVO)
                     {
-                        LineData linedata = BuilderModel.Instance.GetLineData(linevo.id);
+                        LineStruct linedata = BuilderModel.Instance.GetLineData(linevo.id);
                         linedata.vo.height = 20;
                         linedata.line3.VO = linedata.vo;
                         linedata.line3.UpdateNow();
@@ -330,13 +325,11 @@ namespace BuildManager
             UILayer.SetActive(true);
         }
 
-        private static bool _surfaceLight;
-
         public static void SetSceneLightActive(bool value)
         {
-            _surfaceLight = value;
+            activeSceneLight = value;
 
-            if (_surfaceLight)
+            if (activeSceneLight)
             {
                 RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
                 RenderSettings.ambientSkyColor = ColorUtils.HexToColor("E1E1E1");
@@ -352,10 +345,7 @@ namespace BuildManager
             }
         }
 
-        public static bool activeSceneLight
-        {
-            get { return _surfaceLight; }
-        }
+        public static bool activeSceneLight { get; private set; }
 
         /// <summary>
         /// 获取场景里的3D物体（包括墙）
@@ -364,20 +354,20 @@ namespace BuildManager
         /// <returns></returns>
         public static ObjectSprite GetObject3(string id)
         {
-            ObjectData data = AssetsModel.Instance.GetObjectData(id);
+            ItemStruct data = AssetsModel.Instance.GetItemData(id);
 
             if (id == "EditorCamera")
             {
-                return SceneManager.Instance.EditorCamera.GetComponent<SceneCamera3D>();
+                return Instance.EditorCamera.GetComponent<SceneCamera3D>();
             }
 
             ObjectSprite item = null;
             if (data != null)
-                item = AssetsModel.Instance.GetObjectData(id).object3;
+                item = AssetsModel.Instance.GetItemData(id).item3;
 
             if (!item)
             {
-                LineData ld = BuilderModel.Instance.GetLineData(id);
+                LineStruct ld = BuilderModel.Instance.GetLineData(id);
                 if (ld != null) item = BuilderModel.Instance.GetLineData(id).line3;
             }
 
@@ -387,11 +377,11 @@ namespace BuildManager
             return item;
         }
 
-        public static List<ObjectData> GetSameAssetItemData(string id)
+        public static List<ItemStruct> GetSameAssetItemData(string id)
         {
-            List<ObjectData> list = new List<ObjectData>();
+            List<ItemStruct> list = new List<ItemStruct>();
 
-            foreach (ObjectData data in AssetsModel.Instance.objectDatas)
+            foreach (ItemStruct data in AssetsModel.Instance.itemDatas)
             {
                 if (data.vo.assetId == id)
                 {
@@ -404,8 +394,8 @@ namespace BuildManager
 
         public static void EnabledEditorObjectSelection(bool value)
         {
-            if (!value) SceneManager.Instance.editorObjectSelection.ClearSelection(false);
-            SceneManager.Instance.editorObjectSelection.gameObject.SetActive(value);
+            if (!value) Instance.editorObjectSelection.ClearSelection(false);
+            Instance.editorObjectSelection.gameObject.SetActive(value);
         }
 
         private static bool _visibleEditor = true;
@@ -416,9 +406,9 @@ namespace BuildManager
             {
                 _visibleEditor = value;
 
-                foreach (ObjectData data in AssetsModel.Instance.itemDatas)
+                foreach (ItemStruct data in AssetsModel.Instance.itemDatas)
                 {
-                    Item3D item = data.object3 as Item3D;
+                    Item3D item = data.item3 as Item3D;
                     PointLightComponent pointLightComponent = item.GetComponentInChildren<PointLightComponent>();
                     if (pointLightComponent && pointLightComponent.gameObject.transform.Find("Sphere") != null)
                     {

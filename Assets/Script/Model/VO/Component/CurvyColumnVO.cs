@@ -55,9 +55,9 @@ public class CurvyColumnVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            color = ColorUtils.HexToColor(code.Attributes["color"].Value);
-            radius = float.Parse(code.Attributes["radius"].Value);
-            enabled = code.Attributes["enabled"].Value == "1";
+            color = code.GetColor("color");
+            radius = code.GetFloat("radius");
+            enabled = code.GetBool("enabled");
         }
     }
 }

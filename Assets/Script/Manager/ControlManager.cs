@@ -10,6 +10,44 @@ public class ControlManager : EventDispatcher
     public List<AssetVO> oldAssetsVO = new List<AssetVO>();
     public List<AssetVO> newAssetsVO = new List<AssetVO>();
 
+    private bool _enabledBuild;
+
+    public bool EnabledBuild
+    {
+        get { return _enabledBuild; }
+        set
+        {
+            _enabledBuild = value;
+            foreach (LineStruct data in BuilderModel.Instance.lineDatas)
+            {
+                data.line.enabled = value;
+            }
+            foreach (SurfaceStruct data in BuilderModel.Instance.surfaceDatas)
+            {
+                data.surface.enabled = value;
+            }
+            foreach (NestedStruct data in BuilderModel.Instance.nestedDatas)
+            {
+                data.nested2.enabled = value;
+            }
+        }
+    }
+
+    private bool _enabledAssets;
+
+    public bool EnabledAssets
+    {
+        get { return _enabledAssets; }
+        set
+        {
+            _enabledAssets = value;
+            foreach (ItemStruct data in AssetsModel.Instance.itemDatas)
+            {
+                data.item2.enabled = value;
+            }
+        }
+    }
+
     private CorePanel corePanel;
 
     public ControlManager()
@@ -296,10 +334,13 @@ public class ControlManager : EventDispatcher
     }
 
     #endregion
+
     #region Surface
 
     private void UpdateSurface()
     {
+
+
         if (CanDispatchVO())
         {
             dispatchEvent(new ControlManagerEvent(ControlManagerEvent.CHANGE_SURFACE,
@@ -896,7 +937,7 @@ public class ControlManager : EventDispatcher
 
     private void FindItemSurface(Item2D item)
     {
-        foreach (SurfaceData surfaceData in BuilderModel.Instance.surfaceDatas)
+        foreach (SurfaceStruct surfaceData in BuilderModel.Instance.surfaceDatas)
         {
             if (surfaceData.surface.polygon.inside(item.transform.position))
             {
@@ -1067,7 +1108,7 @@ public class ControlManager : EventDispatcher
     {
         for (int i = 0; i < nested.lines.Count; i++)
         {
-            LineData data = BuilderModel.Instance.GetLineData(nested.lines[i]);
+            LineStruct data = BuilderModel.Instance.GetLineData(nested.lines[i]);
 
             if (data == null) continue;
             Line2D l2 = data.line;
@@ -1121,9 +1162,9 @@ public class ControlManager : EventDispatcher
     {
         foreach (Line2D line in surface.lines)
         {
-            for (int i = 0; i < AssetsModel.Instance.objectDatas.Count; i++)
+            for (int i = 0; i < BuilderModel.Instance.nestedDatas.Count; i++)
             {
-                Nested2D nested = AssetsModel.Instance.objectDatas[i].object2 as Nested2D;
+                Nested2D nested = BuilderModel.Instance.nestedDatas[i].nested2 as Nested2D;
                 if (nested != null)
                 {
                     foreach (string lid in nested.lines)
@@ -1218,7 +1259,7 @@ public class ControlManager : EventDispatcher
 
     private void UpdateNestedMoveHandle(string nestedId)
     {
-        Nested2D nested = AssetsModel.Instance.GetObjectData(nestedId).object2 as Nested2D;
+        Nested2D nested = BuilderModel.Instance.GetNestedData(nestedId).nested2 as Nested2D;
 
         if (!nested || nested.lineId == "" || nested.lineId == null) return;
 

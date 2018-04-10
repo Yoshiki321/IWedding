@@ -53,9 +53,9 @@ public class PointLightVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            range = float.Parse(code.Attributes["range"].Value);
-            intensity = float.Parse(code.Attributes["intensity"].Value);
-            color = ColorUtils.HexToColor(code.Attributes["color"].Value);
+            range = code.GetFloat("range");
+            intensity = code.GetFloat("intensity");
+            color = code.GetColor("color");
         }
     }
 }

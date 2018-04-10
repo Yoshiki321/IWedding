@@ -54,7 +54,7 @@ public class ProjectPanelMediators : Mediators
     private void ProjectCompleteHandle(EventObject e)
     {
         IntoProjectHandle();
-        CodeManager.LoadCode("Config/DefaultLayout", true);
+        CodeManager.LoadBuildCode("Config/DefaultLayout", true);
         CodeManager.SaveCode();
     }
 

@@ -31,7 +31,7 @@ public class BuilderModel : Actor<BuilderModel>
         return linevo;
     }
 
-    public LineData CreateLine(LineVO linevo)
+    public LineStruct CreateLine(LineVO linevo)
     {
         GameObject _line = new GameObject();
         Line2D line = _line.AddComponent<Line2D>();
@@ -66,12 +66,12 @@ public class BuilderModel : Actor<BuilderModel>
         Line3D line3 = _line3.AddComponent<Line3D>();
         line3.Instantiate(linevo);
 
-        LineData data = new LineData();
+        LineStruct data = new LineStruct();
         data.line = line;
         data.line3 = line3;
         data.vo = linevo;
 
-        lineDataList.Add(data);
+        lineDatas.Add(data);
 
         _line.transform.parent = SceneManager.Instance.Graphics2D.LineLayer.transform;
         _line3.transform.parent = SceneManager.Instance.Graphics3D.LineLayer.transform;
@@ -86,24 +86,21 @@ public class BuilderModel : Actor<BuilderModel>
 
     public void Clear()
     {
-        foreach (LineData data in lineDataList)
+        foreach (LineStruct data in lineDatas)
         {
             data.line.Dispose();
             data.line3.Dispose();
         }
 
-        foreach (SurfaceData data in surfaceDataList)
+        foreach (SurfaceStruct data in surfaceDatas)
         {
             data.surface.Dispose();
             data.surface3.Dispose();
         }
 
-        lineDataList = new List<LineData>();
-        surfaceDataList = new List<SurfaceData>();
+        lineDatas = new List<LineStruct>();
+        surfaceDatas = new List<SurfaceStruct>();
     }
-
-    private List<LineData> lineDataList = new List<LineData>();
-    private List<SurfaceData> surfaceDataList = new List<SurfaceData>();
 
     public SurfaceVO CreateSurfaceVO(List<LineVO> lines, string name)
     {
@@ -115,7 +112,7 @@ public class BuilderModel : Actor<BuilderModel>
         return surfaceVO;
     }
 
-    public SurfaceData CreateSurface(SurfaceVO surfaceVO)
+    public SurfaceStruct CreateSurface(SurfaceVO surfaceVO)
     {
         foreach (LineVO vo in surfaceVO.linesVO)
         {
@@ -133,12 +130,12 @@ public class BuilderModel : Actor<BuilderModel>
         Surface3D surface3 = surfaceObject3.AddComponent<Surface3D>();
         surface3.Init(surfaceVO);
 
-        SurfaceData data = new SurfaceData();
+        SurfaceStruct data = new SurfaceStruct();
         data.surface = surface;
         data.surface3 = surface3;
         data.vo = surfaceVO;
 
-        surfaceDataList.Add(data);
+        surfaceDatas.Add(data);
 
         surface.transform.parent = SceneManager.Instance.Graphics2D.SurfaceLayer.transform;
         surface3.transform.parent = SceneManager.Instance.Graphics3D.SurfaceLayer.transform;
@@ -168,25 +165,18 @@ public class BuilderModel : Actor<BuilderModel>
         }
     }
 
-    public List<SurfaceData> surfaceDatas
-    {
-        get { return surfaceDataList; }
-    }
+    public List<SurfaceStruct> surfaceDatas { get; private set; } = new List<SurfaceStruct>();
+    public List<LineStruct> lineDatas { get; private set; } = new List<LineStruct>();
 
-    public List<LineData> lineDatas
+    public List<LineStruct> GetLineDataToPoint(Vector2 f, Vector2 t)
     {
-        get { return lineDataList; }
-    }
-
-    public List<LineData> GetLineDataToPoint(Vector2 f, Vector2 t)
-    {
-        List<LineData> rl = new List<LineData>();
-        for (int i = 0; i < lineDataList.Count; i++)
+        List<LineStruct> rl = new List<LineStruct>();
+        for (int i = 0; i < lineDatas.Count; i++)
         {
-            if ((lineDataList[i].vo.from.Equals(f) && lineDataList[i].vo.to.Equals(t)) ||
-                (lineDataList[i].vo.from.Equals(t) && lineDataList[i].vo.to.Equals(f)))
+            if ((lineDatas[i].vo.from.Equals(f) && lineDatas[i].vo.to.Equals(t)) ||
+                (lineDatas[i].vo.from.Equals(t) && lineDatas[i].vo.to.Equals(f)))
             {
-                rl.Add(lineDataList[i]);
+                rl.Add(lineDatas[i]);
             }
         }
         return rl;
@@ -197,7 +187,7 @@ public class BuilderModel : Actor<BuilderModel>
         get
         {
             List<Node2D> ns = new List<Node2D>();
-            foreach (LineData l in lineDatas)
+            foreach (LineStruct l in lineDatas)
 
             {
                 ns.Add(l.line.fromNode);
@@ -278,7 +268,7 @@ public class BuilderModel : Actor<BuilderModel>
         return ra;
     }
 
-    public LineData GetLineData(string id)
+    public LineStruct GetLineData(string id)
     {
         for (int i = 0; i < lineDatas.Count; i++)
         {
@@ -290,13 +280,13 @@ public class BuilderModel : Actor<BuilderModel>
         return null;
     }
 
-    public SurfaceData GetSurfaceData(string id)
+    public SurfaceStruct GetSurfaceData(string id)
     {
-        for (int i = 0; i < surfaceDataList.Count; i++)
+        for (int i = 0; i < surfaceDatas.Count; i++)
         {
-            if (surfaceDataList[i].vo.id == id)
+            if (surfaceDatas[i].vo.id == id)
             {
-                return surfaceDataList[i];
+                return surfaceDatas[i];
             }
         }
         return null;
@@ -304,48 +294,48 @@ public class BuilderModel : Actor<BuilderModel>
 
     public void RemoveLine(string id)
     {
-        for (int i = 0; i < lineDataList.Count; i++)
+        for (int i = 0; i < lineDatas.Count; i++)
         {
-            if (lineDataList[i].vo.id == id)
+            if (lineDatas[i].vo.id == id)
             {
-                lineDataList[i].line.Dispose();
-                lineDataList[i].line3.Dispose();
-                lineDataList.Remove(lineDataList[i]);
+                lineDatas[i].line.Dispose();
+                lineDatas[i].line3.Dispose();
+                lineDatas.Remove(lineDatas[i]);
             }
         }
     }
 
     public void RemoveSurface(string id)
     {
-        for (int i = 0; i < surfaceDataList.Count; i++)
+        for (int i = 0; i < surfaceDatas.Count; i++)
         {
-            if (surfaceDataList[i].vo.id == id)
+            if (surfaceDatas[i].vo.id == id)
             {
-                foreach (LineVO vo in surfaceDataList[i].vo.linesVO)
+                foreach (LineVO vo in surfaceDatas[i].vo.linesVO)
                 {
                     RemoveLine(vo.id);
                 }
 
-                surfaceDataList[i].surface.Dispose();
-                surfaceDataList[i].surface3.Dispose();
-                surfaceDataList.Remove(surfaceDataList[i]);
+                surfaceDatas[i].surface.Dispose();
+                surfaceDatas[i].surface3.Dispose();
+                surfaceDatas.Remove(surfaceDatas[i]);
             }
         }
     }
 
     public void UpdatedDepth()
     {
-        for (int i = 0; i < surfaceDataList.Count; i++)
+        for (int i = 0; i < surfaceDatas.Count; i++)
         {
-            var v = surfaceDataList[i].surface.transform.position;
+            var v = surfaceDatas[i].surface.transform.position;
             v.z = (i + 1) * -.01f;
-            surfaceDataList[i].surface.transform.position = v;
+            surfaceDatas[i].surface.transform.position = v;
         }
     }
 
     public void UpdateLine2(Line2D line)
     {
-        LineData lineData = GetLineData(line.VO.id);
+        LineStruct lineData = GetLineData(line.VO.id);
         lineData.line.UpdateVO();
         lineData.line3.VO = line.VO as LineVO;
     }
@@ -357,7 +347,7 @@ public class BuilderModel : Actor<BuilderModel>
             UpdateLine2(l);
         }
 
-        SurfaceData surfaceData = GetSurfaceData(surface.VO.id);
+        SurfaceStruct surfaceData = GetSurfaceData(surface.VO.id);
         surfaceData.surface.UpdateVO();
         surfaceData.surface3.VO = surface.VO as SurfaceVO;
     }
@@ -370,9 +360,77 @@ public class BuilderModel : Actor<BuilderModel>
             l.UpdateCollage();
         }
     }
+
+    #region Nested
+
+    public List<NestedStruct> nestedDatas { get; private set; } = new List<NestedStruct>();
+
+    public void CreateNested(XmlNodeList xml)
+    {
+        foreach (XmlNode node in xml)
+        {
+            NestedVO vo = new NestedVO();
+            vo.Code = node;
+            CreateNested(vo);
+        }
+    }
+
+    public NestedStruct CreateNested(NestedVO nestedvo, bool save = true)
+    {
+        GameObject _nested = new GameObject();
+        Nested2D nested2d = _nested.AddComponent<Nested2D>();
+        nested2d.parent = SceneManager.Instance.Graphics2D.NestedLayer.transform;
+        nested2d.Instantiate(nestedvo);
+
+        GameObject _nested3 = new GameObject();
+        _nested3.transform.parent = SceneManager.Instance.Graphics3D.NestedLayer.transform;
+        Nested3D nested3d = _nested3.AddComponent<Nested3D>();
+        nested3d.Instantiate(nestedvo);
+
+        nestedvo.name = nestedvo.assetId.ToString();
+
+        nested2d.height3D = nested3d.sizeY;
+        nested2d.width = nested3d.sizeX;
+        nested2d.widthZ = nested3d.sizeZ;
+
+        NestedStruct data = new NestedStruct();
+        data.nested2 = nested2d;
+        data.nested3 = nested3d;
+        data.vo = nestedvo;
+
+        if (save)
+        {
+            nestedDatas.Add(data);
+        }
+
+        return data;
+    }
+
+    public NestedStruct GetNestedData(string id)
+    {
+        foreach (NestedStruct objectData in nestedDatas)
+        {
+            if (objectData.vo.id == id)
+            {
+                return objectData;
+            }
+        }
+        return null;
+    }
+
+    public void RemoveNested(NestedStruct data)
+    {
+        Nested2D nested = data.nested2 as Nested2D;
+        Nested3D nested3 = data.nested3 as Nested3D;
+
+        nested.Dispose();
+        nested3.Dispose();
+    }
+
+    #endregion
 }
 
-public class LineData
+public class LineStruct
 {
     public Line2D line;
     public Line3D line3;
@@ -384,7 +442,7 @@ public class LineData
     }
 }
 
-public class SurfaceData
+public class SurfaceStruct
 {
     public Surface2D surface;
     public Surface3D surface3;
@@ -394,4 +452,12 @@ public class SurfaceData
     {
         get { return vo.id; }
     }
+}
+
+public class NestedStruct
+{
+    public Nested2D nested2;
+    public Nested3D nested3;
+    public NestedVO vo;
+    public string id { get { return vo.id; } }
 }

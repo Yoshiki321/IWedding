@@ -13,7 +13,7 @@ public class ItemSelectPanel : BasePanel
         _content = GetUI("View/ScrollImg/Image/Content");
     }
 
-    public void UpdateItem(List<ObjectData> lists)
+    public void UpdateItem(List<ItemStruct> lists)
     {
         foreach (Transform t in _content.transform)
         {
@@ -30,7 +30,7 @@ public class ItemSelectPanel : BasePanel
             CreateGroupName(list, id);
         }
 
-        foreach (ObjectData item in lists)
+        foreach (ItemStruct item in lists)
         {
             if ((item.vo as ItemVO).groupId == "")
             {

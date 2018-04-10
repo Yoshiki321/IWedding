@@ -43,7 +43,8 @@ public class OpenProjectCommand : Command
                 SceneManager.ProjectModelURL = fileEvent.url + "/" + "Resources" + "/" + "Model";
                 SceneManager.ProjectPictureURL = fileEvent.url + "/" + "Resources" + "/" + "Picture";
 
-                CodeManager.LoadCode(fileEvent.url + "\\" + str);
+                CodeManager.LoadBuildCode(fileEvent.url + "\\" + str + "_Build");
+                CodeManager.LoadAssetsCode(fileEvent.url + "\\" + str + "_Assets");
                 DispatchEvent(new FileEvent(FileEvent.OPEN_PROJECT_SUCCESS));
             }
         }

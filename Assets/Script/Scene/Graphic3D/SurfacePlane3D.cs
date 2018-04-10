@@ -51,7 +51,15 @@ public class SurfacePlane3D : IrregularPlane3D
 
     public void SetCollage(string id)
     {
-        SetMaterial(TexturesManager.CreateMaterials(id));
+        if (id == "mirror")
+        {
+            Mirror = true;
+        }
+        else
+        {
+            Mirror = false;
+            SetMaterial(TexturesManager.CreateMaterials(id));
+        }
     }
 
     //private bool _selected;

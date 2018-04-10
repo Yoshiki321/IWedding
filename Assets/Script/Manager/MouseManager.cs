@@ -36,17 +36,17 @@ public class MouseManager : EventDispatcher
 
     private void ClearHighlighter()
     {
-        foreach (ObjectData data in AssetsModel.Instance.itemDatas)
+        foreach (ItemStruct data in AssetsModel.Instance.itemDatas)
         {
-            data.object2.Selected = false;
+            data.item2.Selected = false;
         }
 
-        foreach (LineData data in BuilderModel.Instance.lineDatas)
+        foreach (LineStruct data in BuilderModel.Instance.lineDatas)
         {
             data.line.Selected = false;
         }
 
-        foreach (SurfaceData data in BuilderModel.Instance.surfaceDatas)
+        foreach (SurfaceStruct data in BuilderModel.Instance.surfaceDatas)
         {
             data.surface.Selected = false;
         }

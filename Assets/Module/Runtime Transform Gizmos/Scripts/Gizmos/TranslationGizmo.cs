@@ -33,6 +33,18 @@ namespace RTEditor
             Box
         }
 
+        public bool BecameVisible;
+
+        void OnBecameVisible()
+        {
+            BecameVisible = true;
+        }
+
+        void OnBecameInvisible()
+        {
+            BecameVisible = false;
+        }
+
         #region Private Variables
         /// <summary>
         /// Shortcut keys.

@@ -12,9 +12,9 @@ public class ChangeGroupItemCommand : HistoryCommand
 
         for (int i = 0;i < se.newAssets.Count;i++)
         {
-            ObjectData o = AssetsModel.Instance.GetObjectData(se.newAssets[i].id);
-            ((o.object2 as Item2D).VO as ItemVO).groupId = (se.newAssets[i] as ItemVO).groupId;
-            ((o.object3 as Item3D).VO as ItemVO).groupId = (se.newAssets[i] as ItemVO).groupId;
+            ItemStruct o = AssetsModel.Instance.GetItemData(se.newAssets[i].id);
+            ((o.item2 as Item2D).VO as ItemVO).groupId = (se.newAssets[i] as ItemVO).groupId;
+            ((o.item3 as Item3D).VO as ItemVO).groupId = (se.newAssets[i] as ItemVO).groupId;
             (o.vo as ItemVO).groupId = (se.newAssets[i] as ItemVO).groupId;
         }
 

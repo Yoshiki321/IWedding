@@ -104,19 +104,19 @@ public class SpotlightVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            volumeBrightness = float.Parse(code.Attributes["volumeBrightness"].Value);
-            lightBrightness = float.Parse(code.Attributes["lightBrightness"].Value);
-            spotAngle = float.Parse(code.Attributes["spotAngle"].Value);
-            angle = float.Parse(code.Attributes["angle"].Value);
-            cookieId = code.Attributes["cookieId"].Value;
-            color = ColorUtils.HexToColor(code.Attributes["color"].Value);
-            fromX = float.Parse(code.Attributes["fromX"].Value);
-            toX = float.Parse(code.Attributes["toX"].Value);
-            fromY = float.Parse(code.Attributes["fromY"].Value);
-            toY = float.Parse(code.Attributes["toY"].Value);
-            timeX = float.Parse(code.Attributes["timeX"].Value);
-            timeY = float.Parse(code.Attributes["timeY"].Value);
-            rotateType = int.Parse(code.Attributes["startRotate"].Value);
+            volumeBrightness = code.GetFloat("volumeBrightness");
+            lightBrightness = code.GetFloat("lightBrightness");
+            spotAngle = code.GetFloat("spotAngle");
+            angle = code.GetFloat("angle");
+            cookieId = code.GetString("cookieId");
+            color = code.GetColor("color");
+            fromX = code.GetFloat("fromX");
+            toX = code.GetFloat("toX");
+            fromY = code.GetFloat("fromY");
+            toY = code.GetFloat("toY");
+            timeX = code.GetFloat("timeX");
+            timeY = code.GetFloat("timeY");
+            rotateType = code.GetInt("startRotate");
         }
     }
 }

@@ -78,7 +78,7 @@ public class ThickIrregularPlane3D : MonoBehaviour
         _downPanel = downObj.AddComponent<SurfacePlane3D>();
         _upPanel.TwoSided = true;
         _downPanel.TwoSided = true;
-        _upPanel.BuildIrregularGeometry(Triangulator.GetMeshData(list, thickness));
+        _upPanel.BuildIrregularGeometry(Triangulator.GetMeshData(list));
         _downPanel.InversionTexture = true;
         _downPanel.BuildIrregularGeometry(Triangulator.GetMeshData(list));
 
@@ -114,7 +114,7 @@ public class ThickIrregularPlane3D : MonoBehaviour
         downObj.transform.localEulerAngles = new Vector3();
         obj.transform.localEulerAngles = new Vector3();
 
-        upObj.transform.localPosition = new Vector3();
+        upObj.transform.localPosition = new Vector3(0,thickness/100,0);
         downObj.transform.localPosition = new Vector3();
         obj.transform.localPosition = new Vector3();
 

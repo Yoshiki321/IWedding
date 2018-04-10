@@ -21,14 +21,15 @@ public class ProgressPanel : BasePanel
         float c = pc / pt;
         float xx = c * 1400;
         progress.GetComponent<RectTransform>().sizeDelta = new Vector2(xx, progress.GetComponent<RectTransform>().sizeDelta.y);
-        Debug.Log((965 - 265) * c + 265);
         progress.GetComponent<RectTransform>().anchoredPosition = new Vector2((965 - 265) * c + 265, progress.GetComponent<RectTransform>().anchoredPosition.y);
         text.text = AssetsModel.Instance.progressItemCurrent + " / " + AssetsModel.Instance.progressItemTotal;
 
         if (AssetsModel.Instance.progressItemCurrent == AssetsModel.Instance.progressItemTotal)
         {
             dispatchEvent(new ProgressPanelEvent(ProgressPanelEvent.LOAD_COMPLETE));
+            AssetsModel.Instance.GetQuoteFileURL();
             CloseSelf();
+
         }
     }
 }

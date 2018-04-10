@@ -1,9 +1,5 @@
 ﻿using BuildManager;
 using Common;
-using System.Collections;
-using System.Collections.Generic;
-using System.Xml;
-using UnityEngine;
 
 public class LoadCodeCommand : Command
 {
@@ -23,6 +19,7 @@ public class LoadCodeCommand : Command
         SceneManager.ProjectName = fileName;
         SceneManager.ProjectURL = urlFile;
 
-        CodeManager.LoadCode(url);
+        CodeManager.LoadBuildCode(url + "_Build");
+        CodeManager.LoadAssetsCode(url + "_Assets");
     }
 }

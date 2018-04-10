@@ -67,14 +67,12 @@ public class EditorCameraVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            XmlAttribute xx = code.Attributes["postExposure"];
-            string s = code.Attributes["postExposure"].Value;
-            postExposure = float.Parse(code.Attributes["postExposure"].Value);
-            temperature = float.Parse(code.Attributes["temperature"].Value);
-            tint = float.Parse(code.Attributes["tint"].Value);
-            hueShift = float.Parse(code.Attributes["hueShift"].Value);
-            contrast = float.Parse(code.Attributes["contrast"].Value);
-            saturation = float.Parse(code.Attributes["saturation"].Value);
+            postExposure = code.GetFloat("postExposure");
+            temperature = code.GetFloat("temperature");
+            tint = code.GetFloat("tint");
+            hueShift = code.GetFloat("hueShift");
+            contrast = code.GetFloat("contrast");
+            saturation = code.GetFloat("saturation");
         }
     }
 }

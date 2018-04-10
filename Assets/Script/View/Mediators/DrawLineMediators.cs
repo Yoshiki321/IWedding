@@ -47,10 +47,10 @@ public class DrawLineMediators : Mediators
     private void ReviseItemHandle(EventObject e)
     {
         DrawLinePanelEvent dpe = e as DrawLinePanelEvent;
-        ObjectData data = AssetsModel.Instance.GetItemData(dpe.itemVO.id);
+        ItemStruct data = AssetsModel.Instance.GetItemData(dpe.itemVO.id);
         if (data != null)
         {
-            Item3D item = data.object3 as Item3D;
+            Item3D item = data.item3 as Item3D;
             ThickIrregularPlane3D t3 = (item.VO as ItemVO).model.GetComponent<ThickIrregularPlane3D>();
             if (t3 != null)
             {

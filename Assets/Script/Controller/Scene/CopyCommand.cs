@@ -14,8 +14,8 @@ public class CopyCommand : HistoryCommand
             ItemVO assets = se.oldAssets[i] as ItemVO;
             ItemVO newAssets = se.newAssets[i] as ItemVO;
 
-            ObjectData data = AssetsModel.Instance.GetObjectData(newAssets.id);
-            data.object3.UpdateVO();
+            ItemStruct data = AssetsModel.Instance.GetItemData(newAssets.id);
+            data.item3.UpdateVO();
         }
 
         CommitHistoryEvent((SceneEvent)e);

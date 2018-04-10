@@ -46,7 +46,7 @@ public class PhotoWallVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            url = code.Attributes["url"].Value;
+            url = code.GetString("url");
         }
     }
 }

@@ -21,7 +21,7 @@ public class AddItemCommand : HistoryCommand
 
             foreach (ItemVO vo in se.newAssets)
             {
-                Item3D item = AssetsModel.Instance.CreateItem(vo).object3 as Item3D;
+                Item3D item = AssetsModel.Instance.CreateItem(vo).item3 as Item3D;
 
                 item.mousePoint = item.transform.position;
 

@@ -104,6 +104,25 @@ public class ItemTool : BasePanel
             combinationBtn.transform.localPosition = new Vector3(sp.x - 45, sp.y - 310, sp.z);
             resolveBtn.transform.localPosition = new Vector3(sp.x + 45, sp.y - 310, sp.z);
         }
+
+        if (SceneManager.Instance.editorGizmoSystem.TranslationGizmo.BecameVisible)
+        {
+            leftBtn.gameObject.SetActive(true);
+            rightBtn.gameObject.SetActive(true);
+            resetBtn.gameObject.SetActive(true);
+            removeBtn.gameObject.SetActive(true);
+            combinationBtn.gameObject.SetActive(true);
+            resolveBtn.gameObject.SetActive(true);
+        }
+        else
+        {
+            leftBtn.gameObject.SetActive(false);
+            rightBtn.gameObject.SetActive(false);
+            resetBtn.gameObject.SetActive(false);
+            removeBtn.gameObject.SetActive(false);
+            combinationBtn.gameObject.SetActive(false);
+            resolveBtn.gameObject.SetActive(false);
+        }
     }
 
     void Update()

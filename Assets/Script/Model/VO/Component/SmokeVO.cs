@@ -57,10 +57,10 @@ public class SmokeVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            size = float.Parse(code.Attributes["size"].Value);
-            speed = float.Parse(code.Attributes["speed"].Value);
-            startColor = ColorUtils.HexToColor(code.Attributes["startColor"].Value);
-            endColor = ColorUtils.HexToColor(code.Attributes["endColor"].Value);
+            size = code.GetFloat("size");
+            speed = code.GetFloat("speed");
+            startColor = code.GetColor("startColor");
+            endColor = code.GetColor("endColor");
         }
     }
 }

@@ -60,9 +60,9 @@ public class FlowerWallVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            assetId = code.Attributes["assetId"].Value;
-            visible = code.Attributes["visible"].Value == "1";
-            color = ColorUtils.HexToColor(code.Attributes["color"].Value);
+            assetId = code.GetString("assetId");
+            visible = code.GetBool("visible");
+            color = code.GetColor("color");
             panelCode = code;
         }
     }

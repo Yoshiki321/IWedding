@@ -104,10 +104,10 @@ public class Mouse3Manager : EventDispatcher
         selectionItemVO = new List<ItemVO>();
         foreach (ItemVO itemvo in vos)
         {
-            ObjectData data = AssetsModel.Instance.GetItemData(itemvo.id);
+            ItemStruct data = AssetsModel.Instance.GetItemData(itemvo.id);
             if (data != null)
             {
-                Item3D item3 = data.object3 as Item3D;
+                Item3D item3 = data.item3 as Item3D;
                 if (item3.SelectEnabled)
                 {
                     objSelectionItem.Add(item3.gameObject);
@@ -145,13 +145,13 @@ public class Mouse3Manager : EventDispatcher
         List<GameObject> objSelectionItem = new List<GameObject>();
         selectionObject = new ArrayList();
         selectionItem = new List<Item3D>();
-        foreach (ObjectData d in AssetsModel.Instance.itemDatas)
+        foreach (ItemStruct d in AssetsModel.Instance.itemDatas)
         {
-            if ((d.object3.VO as ItemVO).assetId == selectionItemVO[0].assetId)
+            if (d.vo.assetId == selectionItemVO[0].assetId)
             {
-                objSelectionItem.Add(d.object3.gameObject);
-                selectionObject.Add(d.object3);
-                selectionItem.Add(d.object3 as Item3D);
+                objSelectionItem.Add(d.item3.gameObject);
+                selectionObject.Add(d.item3);
+                selectionItem.Add(d.item3 as Item3D);
             }
         }
 
@@ -188,7 +188,7 @@ public class Mouse3Manager : EventDispatcher
     {
         List<ItemVO> lists = new List<ItemVO>();
 
-        foreach (ObjectData ob in AssetsModel.Instance.itemDatas)
+        foreach (ItemStruct ob in AssetsModel.Instance.itemDatas)
         {
             if ((ob.vo as ItemVO).groupId == id)
             {
@@ -227,7 +227,7 @@ public class Mouse3Manager : EventDispatcher
             l.Selected = false;
         }
 
-        foreach (SurfaceData sData in BuilderModel.Instance.surfaceDatas)
+        foreach (SurfaceStruct sData in BuilderModel.Instance.surfaceDatas)
         {
             sData.surface3.Selected = false;
         }

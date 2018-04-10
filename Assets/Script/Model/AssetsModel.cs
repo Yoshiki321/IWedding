@@ -6,60 +6,113 @@ using Build2D;
 using Build3D;
 using System.Xml;
 using BuildManager;
+using System.IO;
 
 public class AssetsModel : Actor<AssetsModel>
 {
-    //public void GetQuoteFileURL()
-    //{
-    //    List<string> imgs = new List<string>();
-    //    foreach (ObjectData data in itemDataList)
-    //    {
-    //        Item3D item3 = data.object3 as Item3D;
-    //    }
-    //}
+    public void GetQuoteFileURL()
+    {
+        List<string> imgs = new List<string>();
+        List<string> models = new List<string>();
+
+        foreach (ItemStruct data in itemDatas)
+        {
+            Item3D item3 = data.item3 as Item3D;
+
+            FrameVO framevo = item3.VO.GetComponentVO<FrameVO>();
+            if (framevo != null)
+            {
+                imgs.Add(framevo.url);
+            }
+
+            CollageVO collagevo = item3.VO.GetComponentVO<CollageVO>();
+            if (collagevo != null)
+            {
+                foreach (CollageStruct cs in collagevo.collages)
+                {
+                    if (cs.url != "")
+                    {
+                        imgs.Add(cs.url);
+                    }
+                }
+            }
+
+            ThickIrregularVO thickIrregularvo = item3.VO.GetComponentVO<ThickIrregularVO>();
+            if (thickIrregularvo != null)
+            {
+                models.Add(thickIrregularvo.url);
+            }
+        }
+
+        bool has = false;
+        List<string> list = new List<string>();
+        String[] files = Directory.GetFiles(SceneManager.ProjectPictureURL, "*", SearchOption.AllDirectories);
+        foreach (string f in files)
+        {
+            has = false;
+            foreach (string imgurl in imgs)
+            {
+                if (f.Contains(imgurl))
+                {
+                    has = true;
+                    break;
+                }
+            }
+            if (!has)
+            {
+                File.Delete(f);
+            }
+        }
+
+        files = Directory.GetFiles(SceneManager.ProjectModelURL, "*", SearchOption.AllDirectories);
+        foreach (string f in files)
+        {
+            has = false;
+            foreach (string modelurl in models)
+            {
+                if (f.Contains(modelurl))
+                {
+                    has = true;
+                    break;
+                }
+            }
+            if (!has)
+            {
+                File.Delete(f);
+            }
+        }
+    }
 
     public void Clear()
     {
-        foreach (ObjectData data in objectDatas)
+        foreach (ItemStruct data in itemDatas)
         {
-            data.object2.Dispose();
-            data.object3.Dispose();
+            data.item2.Dispose();
+            data.item3.Dispose();
         }
-
-        objectDatas = new List<ObjectData>();
-        itemDatas = new List<ObjectData>();
-        nestedDatas = new List<ObjectData>();
+        itemDatas = new List<ItemStruct>();
     }
 
-    public ObjectData Remove(string id)
+    public ItemStruct Remove(string id)
     {
-        ObjectData objectData = GetObjectData(id);
+        ItemStruct objectData = GetItemData(id);
 
         if (objectData == null) return null;
 
         Remove(objectData);
 
-        return RemoveObjectData(id);
+        return RemoveData(id);
     }
 
-    public void Remove(ObjectData objectData)
+    public void Remove(ItemStruct objectData)
     {
-        if (objectData.object2 is Item2D)
+        if (objectData.item2 is Item2D)
         {
-            Item2D item = objectData.object2 as Item2D;
-            Item3D item3 = objectData.object3 as Item3D;
+            Item2D item = objectData.item2 as Item2D;
+            Item3D item3 = objectData.item3 as Item3D;
 
             item.Dispose();
             item3.Dispose();
-        }
-
-        if (objectData.object2 is Nested2D)
-        {
-            Nested2D nested = objectData.object2 as Nested2D;
-            Nested3D nested3 = objectData.object3 as Nested3D;
-
-            nested.Dispose();
-            nested3.Dispose();
         }
     }
 
@@ -112,8 +165,8 @@ public class AssetsModel : Actor<AssetsModel>
         {
             progressItemCurrent++;
 
-            ObjectData data = CreateItem(_progressLoadItem[0]);
-            (data.object2 as Item2D).UpdateSize();
+            ItemStruct data = CreateItem(_progressLoadItem[0]);
+            (data.item2 as Item2D).UpdateSize();
             _progressLoadItem.RemoveAt(0);
         }
     }
@@ -146,16 +199,6 @@ public class AssetsModel : Actor<AssetsModel>
         return lists;
     }
 
-    public void CreateNested(XmlNodeList xml)
-    {
-        foreach (XmlNode node in xml)
-        {
-            NestedVO vo = new NestedVO();
-            vo.Code = node;
-            CreateNested(vo);
-        }
-    }
-
     private void FillObjectVO(ObjectVO vo, string id)
     {
         ItemData itemData = ItemManager.GetItemData(id);
@@ -180,7 +223,7 @@ public class AssetsModel : Actor<AssetsModel>
     //----------------
     //----------------
 
-    public ObjectData CreateItem(ItemVO itemvo, bool save = true)
+    public ItemStruct CreateItem(ItemVO itemvo, bool save = true)
     {
         GameObject _item = new GameObject();
         Item2D item2d = _item.AddComponent<Item2D>();
@@ -194,64 +237,24 @@ public class AssetsModel : Actor<AssetsModel>
 
         itemvo.name = itemvo.assetId.ToString();
 
-        ObjectData data = new ObjectData();
-        data.object2 = item2d;
-        data.object3 = item3d;
+        ItemStruct data = new ItemStruct();
+        data.item2 = item2d;
+        data.item3 = item3d;
         data.vo = itemvo;
 
         if (save)
         {
-            SetObjectData(data);
+            itemDatas.Add(data);
         }
 
         return data;
     }
 
-    public ObjectData CreateNested(NestedVO nestedvo, bool save = true)
+    public List<ItemStruct> itemDatas { get; private set; } = new List<ItemStruct>();
+
+    public ItemStruct GetItemData(String id)
     {
-        GameObject _nested = new GameObject();
-        Nested2D nested2d = _nested.AddComponent<Nested2D>();
-        nested2d.parent = SceneManager.Instance.Graphics2D.NestedLayer.transform;
-        nested2d.Instantiate(nestedvo);
-
-        GameObject _nested3 = new GameObject();
-        _nested3.transform.parent = SceneManager.Instance.Graphics3D.NestedLayer.transform;
-        Nested3D nested3d = _nested3.AddComponent<Nested3D>();
-        nested3d.Instantiate(nestedvo);
-
-        nestedvo.name = nestedvo.assetId.ToString();
-
-        nested2d.height3D = nested3d.sizeY;
-        nested2d.width = nested3d.sizeX;
-        nested2d.widthZ = nested3d.sizeZ;
-
-        ObjectData data = new ObjectData();
-        data.object2 = nested2d;
-        data.object3 = nested3d;
-        data.vo = nestedvo;
-
-        if (save)
-        {
-            SetObjectData(data);
-        }
-
-        return data;
-    }
-
-    public List<ObjectData> objectDatas { get; private set; } = new List<ObjectData>();
-    public List<ObjectData> itemDatas { get; private set; } = new List<ObjectData>();
-    public List<ObjectData> nestedDatas { get; private set; } = new List<ObjectData>();
-
-    public void SetObjectData(ObjectData data)
-    {
-        objectDatas.Add(data);
-        if (data.vo is ItemVO) itemDatas.Add(data);
-        if (data.vo is NestedVO) nestedDatas.Add(data);
-    }
-
-    public ObjectData GetObjectData(String id)
-    {
-        foreach (ObjectData objectData in objectDatas)
+        foreach (ItemStruct objectData in itemDatas)
         {
             if (objectData.vo.id == id)
             {
@@ -261,53 +264,28 @@ public class AssetsModel : Actor<AssetsModel>
         return null;
     }
 
-    public ObjectData GetItemData(String id)
-    {
-        foreach (ObjectData objectData in itemDatas)
-        {
-            if (objectData.vo.id == id)
-            {
-                return objectData;
-            }
-        }
-        return null;
-    }
 
-    public ObjectData GetNestedData(String id)
-    {
-        foreach (ObjectData objectData in nestedDatas)
-        {
-            if (objectData.vo.id == id)
-            {
-                return objectData;
-            }
-        }
-        return null;
-    }
-
-    public List<ObjectSprite> GetObjectData(List<AssetVO> vos)
+    public List<ObjectSprite> GetItemData(List<AssetVO> vos)
     {
         List<ObjectSprite> list = new List<ObjectSprite>();
         foreach (AssetVO vo in vos)
         {
-            ObjectData objectData = GetObjectData(vo.id);
+            ItemStruct objectData = GetItemData(vo.id);
             if (objectData != null)
             {
-                list.Add(objectData.object3);
+                list.Add(objectData.item3);
             }
         }
         return list;
     }
 
-    public ObjectData RemoveObjectData(String id)
+    public ItemStruct RemoveData(String id)
     {
-        foreach (ObjectData objectData in objectDatas)
+        foreach (ItemStruct objectData in itemDatas)
         {
             if (objectData.vo.id == id)
             {
-                objectDatas.Remove(objectData);
-                if (objectData.vo is ItemVO) itemDatas.Remove(objectData);
-                if (objectData.vo is NestedVO) nestedDatas.Remove(objectData);
+                itemDatas.Remove(objectData);
                 return objectData;
             }
         }
@@ -318,7 +296,7 @@ public class AssetsModel : Actor<AssetsModel>
     {
         List<ItemVO> list = new List<ItemVO>();
 
-        foreach (ObjectData data in itemDatas)
+        foreach (ItemStruct data in itemDatas)
         {
             if ((data.vo as ItemVO).groupId == id)
             {
@@ -333,7 +311,7 @@ public class AssetsModel : Actor<AssetsModel>
     {
         List<string> list = new List<string>();
 
-        foreach (ObjectData data in itemDatas)
+        foreach (ItemStruct data in itemDatas)
         {
             if ((data.vo as ItemVO).groupId != "")
             {
@@ -405,7 +383,6 @@ public class AssetsModel : Actor<AssetsModel>
         vo.rotateType = spotlightComponent.rotateType;
         return vo;
     }
-
 }
 
 //----------------
@@ -414,10 +391,10 @@ public class AssetsModel : Actor<AssetsModel>
 //----------------
 //----------------
 
-public class ObjectData
+public class ItemStruct
 {
-    public ObjectSprite object2;
-    public ObjectSprite object3;
-    public ObjectVO vo;
+    public Item2D item2;
+    public Item3D item3;
+    public ItemVO vo;
     public string id { get { return vo.id; } }
 }

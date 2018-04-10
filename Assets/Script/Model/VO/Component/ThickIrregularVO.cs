@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Xml;
-using BuildManager;
+﻿using System.Xml;
 
 public class ThickIrregularVO : ComponentVO
 {
@@ -46,7 +43,7 @@ public class ThickIrregularVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            url = code.Attributes["url"].Value;
+            url = code.GetString("url");
         }
     }
 }

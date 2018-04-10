@@ -57,10 +57,10 @@ public class TubeLightVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            brightness = float.Parse(code.Attributes["brightness"].Value);
-            range = float.Parse(code.Attributes["range"].Value);
-            length = float.Parse(code.Attributes["length"].Value);
-            color = ColorUtils.HexToColor(code.Attributes["color"].Value);
+            brightness = code.GetFloat("brightness");
+            range = code.GetFloat("range");
+            length = code.GetFloat("length");
+            color = code.GetColor("color");
         }
     }
 }

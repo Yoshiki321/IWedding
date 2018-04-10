@@ -54,7 +54,7 @@ public class ComponentPanelMediators : Mediators
 
     private void TransformItem3UpdateHandle(EventObject e)
     {
-        UIManager.UpdateComponent(UI.TransformComponentUI, AssetsModel.Instance.GetObjectData((e as Control3ManagerEvent).newAssetVOs));
+        UIManager.UpdateComponent(UI.TransformComponentUI, AssetsModel.Instance.GetItemData((e as Control3ManagerEvent).newAssetVOs));
     }
 
     private void TransformChangeComponentHandle(EventObject e)

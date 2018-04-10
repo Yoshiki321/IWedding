@@ -956,11 +956,6 @@ public class CoreEditorMediator : Mediators
         UIManager.OpenUI(UI.ItemToolPanel);
     }
 
-    public void CompleteNested(ObjectData nestedData)
-    {
-
-    }
-
     #endregion
 
     #region SceneEvent
@@ -1093,9 +1088,9 @@ public class CoreEditorMediator : Mediators
 
     private void EventDispatcher_AddSurfaceHandler(EventObject e)
     {
-        foreach (ObjectData obj in AssetsModel.Instance.itemDatas)
+        foreach (ItemStruct obj in AssetsModel.Instance.itemDatas)
         {
-            TubeLightComponent light = obj.object3.GetComponentInChildren<TubeLightComponent>();
+            TubeLightComponent light = obj.item3.GetComponentInChildren<TubeLightComponent>();
             if (light)
             {
                 light.UpdateShadowPlanes();
@@ -1116,7 +1111,7 @@ public class CoreEditorMediator : Mediators
         List<GameObject> lists = new List<GameObject>();
         foreach (AssetVO vo in se.newAssets)
         {
-            lists.Add(AssetsModel.Instance.GetObjectData(vo.id).object3.gameObject);
+            lists.Add(AssetsModel.Instance.GetItemData(vo.id).item3.gameObject);
         }
 
         if (CameraManager.visual != CameraFlags.Two && SceneManager.Instance.brushManager.brushMode == BrushManager.BrushMode.Place)
@@ -1149,7 +1144,7 @@ public class CoreEditorMediator : Mediators
 
         for (int i = 0; i < assets.Count; i++)
         {
-            UpdateObjectHandle(AssetsModel.Instance.GetObjectData(assets[i].id).object3.VO as ObjectVO);
+            UpdateObjectHandle(AssetsModel.Instance.GetItemData(assets[i].id).item3.VO as ObjectVO);
         }
 
         if ((e as SceneEvent).isRedoAction == true || (e as SceneEvent).isUndoAction == true)
@@ -1213,25 +1208,25 @@ public class CoreEditorMediator : Mediators
 
     private void ApplyItem(ItemVO vo)
     {
-        ObjectData data = AssetsModel.Instance.GetObjectData(vo.id);
-        (data.object2 as Item2D).VO = vo;
-        (data.object3 as Item3D).VO = vo;
+        ItemStruct data = AssetsModel.Instance.GetItemData(vo.id);
+        (data.item2 as Item2D).VO = vo;
+        (data.item3 as Item3D).VO = vo;
         data.vo = vo;
     }
 
     private void ApplyNested(NestedVO vo)
     {
-        ObjectData data = AssetsModel.Instance.GetObjectData(vo.id);
-        (data.object2 as Nested2D).VO = vo;
-        (data.object3 as Nested3D).VO = vo;
+        NestedStruct data = BuilderModel.Instance.GetNestedData(vo.id);
+        (data.nested2 as Nested2D).VO = vo;
+        (data.nested3 as Nested3D).VO = vo;
         data.vo = vo;
 
-        SceneManager.Instance.controlManager.UpdateNestedOnLine(data.object2 as Nested2D);
+        SceneManager.Instance.controlManager.UpdateNestedOnLine(data.nested2 as Nested2D);
     }
 
     public void ApplyLine(LineVO vo)
     {
-        LineData data = BuilderModel.Instance.GetLineData(vo.id);
+        LineStruct data = BuilderModel.Instance.GetLineData(vo.id);
         data.line.VO = vo;
         data.line3.VO = vo;
         data.vo = vo;
@@ -1239,7 +1234,7 @@ public class CoreEditorMediator : Mediators
 
     public void ApplySurface(SurfaceVO vo)
     {
-        SurfaceData surfaceData = BuilderModel.Instance.GetSurfaceData(vo.id);
+        SurfaceStruct surfaceData = BuilderModel.Instance.GetSurfaceData(vo.id);
 
         foreach (LineVO linevo in vo.linesVO)
         {
@@ -1247,7 +1242,7 @@ public class CoreEditorMediator : Mediators
         }
         foreach (LineVO linevo in vo.linesVO)
         {
-            LineData data = BuilderModel.Instance.GetLineData(linevo.id);
+            LineStruct data = BuilderModel.Instance.GetLineData(linevo.id);
             data.line.UpdateNow();
         }
 

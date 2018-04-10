@@ -64,11 +64,11 @@ public class BallLampVO : ComponentVO
         set
         {
             XmlNode code = value as XmlNode;
-            cookieId = code.Attributes["cookieId"].Value;
-            rotateX = float.Parse(code.Attributes["rotateX"].Value);
-            rotateY = float.Parse(code.Attributes["rotateY"].Value);
-            rotateZ = float.Parse(code.Attributes["rotateZ"].Value);
-            range = float.Parse(code.Attributes["range"].Value);
+            cookieId = code.GetString("cookieId");
+            rotateX = code.GetFloat("rotateX");
+            rotateY = code.GetFloat("rotateY");
+            rotateZ = code.GetFloat("rotateZ");
+            range = code.GetFloat("range");
         }
     }
 }

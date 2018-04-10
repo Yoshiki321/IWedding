@@ -18,7 +18,7 @@ public class TransformCommand : HistoryCommand
 
             for (int i = 0; i < assets.Count; i++)
             {
-                ObjectSprite item = AssetsModel.Instance.GetObjectData(assets[i].id).object3;
+                ObjectSprite item = AssetsModel.Instance.GetItemData(assets[i].id).item3;
                 objects.Add(item.gameObject);
                 item.VO.GetComponentVO<TransformVO>().FillFromObject(assets[i] as ComponentVO);
             }
@@ -32,10 +32,10 @@ public class TransformCommand : HistoryCommand
         for (int i = 0; i < assets.Count; i++)
         {
             TransformVO vo = se.newAssets[i] as TransformVO;
-            ObjectData data = AssetsModel.Instance.GetObjectData(vo.id);
+            ItemStruct data = AssetsModel.Instance.GetItemData(vo.id);
             if (data != null)
             {
-                ObjectSprite item = data.object3;
+                ObjectSprite item = data.item3;
                 TransformVO itemvo = item.VO.GetComponentVO<TransformVO>();
 
                 itemvo.x = vo.x;

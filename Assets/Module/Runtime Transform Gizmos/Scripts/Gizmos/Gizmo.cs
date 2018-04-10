@@ -171,7 +171,7 @@ namespace RTEditor
         public static float MinGizmoBaseScale { get { return 0.01f; } }
         public static Color DefaultXAxisColor { get { return new Color(219.0f / 255.0f, 62.0f / 255.0f, 29.0f / 255.0f, 1.0f); } }
         public static Color DefaultYAxisColor { get { return new Color(154.0f / 255.0f, 243.0f / 255.0f, 72.0f / 255.0f, 1.0f); } }
-        public static Color DefaultZAxisColor { get { return new Color(58.0f / 255.0f, 122.0f / 255.0f, 248.0f / 255.0f, 1.0f);} }
+        public static Color DefaultZAxisColor { get { return new Color(58.0f / 255.0f, 122.0f / 255.0f, 248.0f / 255.0f, 1.0f); } }
         public static Color DefaultSelectedAxisColor { get { return new Color(246.0f / 255.0f, 242.0f / 255.0f, 50.0f / 255.0f, 1.0f); } }
         #endregion
 
@@ -275,7 +275,7 @@ namespace RTEditor
         /// </summary>
         public void MaskObjectCollection(IEnumerable<GameObject> objectCollection)
         {
-            foreach(GameObject gameObject in objectCollection)
+            foreach (GameObject gameObject in objectCollection)
             {
                 MaskObject(gameObject);
             }
@@ -341,7 +341,7 @@ namespace RTEditor
         {
             if (ControlledObjects != null)
             {
-                foreach(GameObject gameObject in ControlledObjects)
+                foreach (GameObject gameObject in ControlledObjects)
                 {
                     if (!CanObjectBeManipulated(gameObject)) return false;
                 }
@@ -737,7 +737,7 @@ namespace RTEditor
                 return new float[]
                 {
                     dotProductRight > 0.0f ? -1.0f * gizmoScaleSign : 1.0f * gizmoScaleSign,
-                    dotProductUp > 0.0f ? -1.0f * gizmoScaleSign : 1.0f * gizmoScaleSign, 
+                    dotProductUp > 0.0f ? -1.0f * gizmoScaleSign : 1.0f * gizmoScaleSign,
                     dotProductForward > 0.0f ? -1.0f * gizmoScaleSign : 1.0f * gizmoScaleSign
                 };
             }
@@ -777,7 +777,7 @@ namespace RTEditor
             // When the controlled game object collection hasn't been setup properly, return an empty list
             if (ControlledObjects == null) return new List<GameObject>();
 
-            if(!filterOnlyCanBeManipulated) return GameObjectExtensions.GetParentsFromObjectCollection(ControlledObjects);
+            if (!filterOnlyCanBeManipulated) return GameObjectExtensions.GetParentsFromObjectCollection(ControlledObjects);
             else
             {
                 List<GameObject> objectsWhichCanBeManipulated = GetControlledObjectsWhichCanBeManipulated();
@@ -794,7 +794,7 @@ namespace RTEditor
 
             /*_isDragging = true;
             if (GizmoDragStart != null && IsReadyForObjectManipulation()) GizmoDragStart(this);*/
-            if(IsReadyForObjectManipulation())
+            if (IsReadyForObjectManipulation())
             {
                 _isDragging = true;
                 if (GizmoDragStart != null) GizmoDragStart(this);
@@ -821,10 +821,10 @@ namespace RTEditor
 
             /*_isDragging = false;
             if (GizmoDragEnd != null && IsReadyForObjectManipulation()) GizmoDragEnd(this);*/
-            if(_isDragging)
+            if (_isDragging)
             {
                 _isDragging = false;
-                if (GizmoDragEnd != null) GizmoDragEnd(this);         
+                if (GizmoDragEnd != null) GizmoDragEnd(this);
             }
         }
 
@@ -878,7 +878,7 @@ namespace RTEditor
             objectTransformSnapshots = new List<ObjectTransformSnapshot>(objectWhichCanBeTransformed.Count);
 
             // Loop through all game objects which can be transformed
-            foreach(GameObject gameObject in objectWhichCanBeTransformed)
+            foreach (GameObject gameObject in objectWhichCanBeTransformed)
             {
                 // Create a snapshot for the current object
                 var objectTransformSnapshot = new ObjectTransformSnapshot();
