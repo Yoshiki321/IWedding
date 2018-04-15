@@ -12,46 +12,46 @@ public class ItemManager
 {
     public ItemManager()
     {
-        //加载ItemXml配置文件
-        XmlDocument xml = new XmlDocument();
-        xml.LoadXml(Resources.Load("Config/Item/Item").ToString());
-        //解析到XML-第1标签-ItemCode
-        XmlNode xmlNode = xml.SelectSingleNode("ItemCode");
-        //实例化列表用来置放子物体
-        ItemDataList = new List<ItemData>();
+        ////加载ItemXml配置文件
+        //XmlDocument xml = new XmlDocument();
+        //xml.LoadXml(Resources.Load("Config/Item/Item").ToString());
+        ////解析到XML-第1标签-ItemCode
+        //XmlNode xmlNode = xml.SelectSingleNode("ItemCode");
+        ////实例化列表用来置放子物体
+        //ItemDataList = new List<ItemData>();
 
-        foreach (XmlNode node in xmlNode)
-        {
-            ItemData data = new ItemData();
-            data.id = node.Attributes["id"].Value;
-            data.classify = node.Attributes["classify"].Value;
-            data.type = node.Attributes["type"].Value;
-            data.thumbnail = node.Attributes["thumbnail"].Value;
-            data.topImg = node.Attributes["topimg"].Value;
-            data.model = node.Attributes["model"].Value;
+        //foreach (XmlNode node in xmlNode)
+        //{
+        //    ItemData data = new ItemData();
+        //    data.id = node.Attributes["id"].Value;
+        //    data.classify = node.Attributes["classify"].Value;
+        //    data.type = node.Attributes["type"].Value;
+        //    data.thumbnail = node.Attributes["thumbnail"].Value;
+        //    data.topImg = node.Attributes["topimg"].Value;
+        //    data.model = node.Attributes["model"].Value;
 
-            XmlNodeList nodeList = node.ChildNodes;
-            foreach (XmlNode xmlnode in nodeList)
-            {
-                switch (xmlnode.Name)
-                {
-                    case "Material":
-                        ItemMaterialData itemMaterialData = new ItemMaterialData();
-                        itemMaterialData.id = xmlnode.Attributes["id"].Value;
-                        itemMaterialData.order = xmlnode.Attributes["order"].Value;
-                        itemMaterialData.replace = (xmlnode.Attributes["replace"].Value as string).Split(',');
-                        data.itemMaterials.Add(itemMaterialData);
-                        break;
-                    case "PointLight":
-                        PointLightVO vo = new PointLightVO();
-                        vo.Code = xmlnode;
-                        data.componentVOs.Add(vo);
-                        break;
-                }
-            }
+        //    XmlNodeList nodeList = node.ChildNodes;
+        //    foreach (XmlNode xmlnode in nodeList)
+        //    {
+        //        switch (xmlnode.Name)
+        //        {
+        //            case "Material":
+        //                ItemMaterialData itemMaterialData = new ItemMaterialData();
+        //                itemMaterialData.id = xmlnode.Attributes["id"].Value;
+        //                itemMaterialData.order = xmlnode.Attributes["order"].Value;
+        //                itemMaterialData.replace = (xmlnode.Attributes["replace"].Value as string).Split(',');
+        //                data.itemMaterials.Add(itemMaterialData);
+        //                break;
+        //            case "PointLight":
+        //                PointLightVO vo = new PointLightVO();
+        //                vo.Code = xmlnode;
+        //                data.componentVOs.Add(vo);
+        //                break;
+        //        }
+        //    }
 
-            ItemDataList.Add(data);
-        }
+        //    ItemDataList.Add(data);
+        //}
 
         ItemDataList = new List<ItemData>();
 
