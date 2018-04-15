@@ -12,13 +12,16 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile></TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -1234,6 +1237,7 @@
     <Compile Include="Assets\Script\View\Mediators\LoadModelPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\MainPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\Mediators.cs" />
+    <Compile Include="Assets\Script\View\Mediators\InventoryPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\ProgressPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\ProjectPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\StorePanelMediators.cs" />
@@ -1295,6 +1299,9 @@
     <Compile Include="Assets\Script\View\Panel\GizmoPanel\GizmoPanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\HotelPanel\HotelPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\HotelPanel\HotelPanelEvent.cs" />
+    <Compile Include="Assets\Script\View\Panel\InventoryPanel\InventoryPanel.cs" />
+    <Compile Include="Assets\Script\View\Panel\InventoryPanel\InventoryPanelEvent.cs" />
+    <Compile Include="Assets\Script\View\Panel\InventoryPanel\InventoryColumn.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemPanel\ItemPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemSelectPanel\ItemSelectPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemSelectPanel\ItemSelectPanelEvent.cs" />

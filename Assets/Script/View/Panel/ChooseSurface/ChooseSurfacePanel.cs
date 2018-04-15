@@ -20,7 +20,7 @@ public class ChooseSurfacePanel : BasePanel
     private int mainNum = 0;
     private int secNum = 0;
 
-    private void Awake()
+    private void Start()
     {
         _houseBtn = GetUI("HouseBtn");
         _hardBtn = GetUI("HardBtn");

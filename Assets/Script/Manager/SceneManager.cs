@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityStandardAssets.Characters.FirstPerson;
 using NAudio.Wave;
 using Build2D;
+using System.IO;
 
 namespace BuildManager
 {
@@ -85,7 +86,7 @@ namespace BuildManager
 
         private void InitUI()
         {
-            UIManager.OpenUI(UI.MainPanel);
+            //UIManager.OpenUI(UI.MainPanel);
         }
 
         private void InitConfig()
@@ -248,6 +249,10 @@ namespace BuildManager
                 audioSourceManager.Volume += .1f;
             }
 
+            if (Input.GetKeyDown(KeyCode.F3))
+            {
+                UIManager.OpenUI(UI.InventoryPanel);
+            }
 
         }
 
@@ -440,6 +445,107 @@ namespace BuildManager
                 return true;
             }
             return false;
+        }
+
+        public static void UpdateQuoteFileURL()
+        {
+            List<string> imgs = new List<string>();
+            List<string> models = new List<string>();
+
+            foreach (ItemStruct data in AssetsModel.Instance.itemDatas)
+            {
+                FrameVO framevo = data.vo.GetComponentVO<FrameVO>();
+                if (framevo != null)
+                {
+                    imgs.Add(framevo.url);
+                }
+
+                CollageVO collagevo = data.vo.GetComponentVO<CollageVO>();
+                if (collagevo != null)
+                {
+                    foreach (CollageStruct cs in collagevo.collages)
+                    {
+                        if (cs.url != "")
+                        {
+                            imgs.Add(cs.url);
+                        }
+                    }
+                }
+
+                ThickIrregularVO thickIrregularvo = data.vo.GetComponentVO<ThickIrregularVO>();
+                if (thickIrregularvo != null)
+                {
+                    models.Add(thickIrregularvo.url);
+                }
+            }
+
+            foreach (SurfaceStruct data in BuilderModel.Instance.surfaceDatas)
+            {
+                CollageVO collagevo = data.vo.GetComponentVO<CollageVO>();
+                if (collagevo != null)
+                {
+                    foreach (CollageStruct cs in collagevo.collages)
+                    {
+                        if (cs.url != "")
+                        {
+                            imgs.Add(cs.url);
+                        }
+                    }
+                }
+            }
+
+            foreach (LineStruct data in BuilderModel.Instance.lineDatas)
+            {
+                CollageVO collagevo = data.vo.GetComponentVO<CollageVO>();
+                if (collagevo != null)
+                {
+                    foreach (CollageStruct cs in collagevo.collages)
+                    {
+                        if (cs.url != "")
+                        {
+                            imgs.Add(cs.url);
+                        }
+                    }
+                }
+            }
+
+            bool has = false;
+            List<string> list = new List<string>();
+            string[] files = Directory.GetFiles(SceneManager.ProjectPictureURL, "*", SearchOption.AllDirectories);
+            foreach (string f in files)
+            {
+                has = false;
+                foreach (string imgurl in imgs)
+                {
+                    if (f.Contains(imgurl))
+                    {
+                        has = true;
+                        break;
+                    }
+                }
+                if (!has)
+                {
+                    File.Delete(f);
+                }
+            }
+
+            files = Directory.GetFiles(SceneManager.ProjectModelURL, "*", SearchOption.AllDirectories);
+            foreach (string f in files)
+            {
+                has = false;
+                foreach (string modelurl in models)
+                {
+                    if (f.Contains(modelurl))
+                    {
+                        has = true;
+                        break;
+                    }
+                }
+                if (!has)
+                {
+                    File.Delete(f);
+                }
+            }
         }
     }
 }

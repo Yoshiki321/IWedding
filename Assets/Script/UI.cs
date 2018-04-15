@@ -18,6 +18,7 @@
     public static string CreateStagePanel = "CreateStagePanel"; 
     public static string LoadModelPanel = "LoadModelPanel";
     public static string ProgressPanel = "ProgressPanel";
+    public static string InventoryPanel = "InventoryPanel"; 
 
     public static string ComponentPanel = "ComponentPanel";
 

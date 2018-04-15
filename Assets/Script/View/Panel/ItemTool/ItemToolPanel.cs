@@ -37,7 +37,7 @@ public class ItemToolPanel : BasePanel
     private List<GameObject> showImgList = new List<GameObject>();
     private List<GameObject> styleBtnList = new List<GameObject>();
 
-    private void Awake()
+    private void Start()
     {
         //初始化两个大分类按钮
         _itemObjectBtn = GetUI("ItemObjectBtn");

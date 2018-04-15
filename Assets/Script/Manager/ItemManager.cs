@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Data;
 using Excel;
+using UnityEngine.UI;
 
 public class ItemManager
 {
@@ -52,24 +53,26 @@ public class ItemManager
             ItemDataList.Add(data);
         }
 
-        //ItemDataList = new List<ItemData>();
+        ItemDataList = new List<ItemData>();
 
-        //FileStream stream = File.Open(Application.dataPath + "\\Data\\" + "test.xlsx", 
-        //    FileMode.Open, FileAccess.Read, FileShare.Read);
-        //IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-        //DataSet resultds = excelReader.AsDataSet();
-        //excelReader.Close();
-        
-        //int column = resultds.Tables[0].Columns.Count;
-        //int row = resultds.Tables[0].Rows.Count;
-        //Debug.LogWarning(column + "  " + row);
-        //for (int i = 1; i < row; i++)
-        //{
-        //    ItemData data = new ItemData();
-        //    data.id = resultds.Tables[0].Rows[i][0].ToString();
-        //    data.thumbnail = resultds.Tables[0].Rows[i][1].ToString();
-        //    ItemDataList.Add(data);
-        //}
+        FileStream stream = File.Open(Application.dataPath + "\\Data\\" + "test.xlsx",
+            FileMode.Open, FileAccess.Read, FileShare.Read);
+        IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+        DataSet resultds = excelReader.AsDataSet();
+        excelReader.Close();
+
+        int column = resultds.Tables[0].Columns.Count;
+        int row = resultds.Tables[0].Rows.Count;
+        Debug.LogWarning(column + "  " + row);
+        for (int i = 1; i < row; i++)
+        {
+            ItemData data = new ItemData();
+            data.id = resultds.Tables[0].Rows[i][0].ToString();
+            data.thumbnail = resultds.Tables[0].Rows[i][1].ToString();
+            ItemDataList.Add(data);
+            GameObject.Find("Canvas").transform.Find("InputField").GetComponent<InputField>().text += data.thumbnail;
+        }
+
     }
 
     public static List<ItemData> ItemDataList { get; private set; }

@@ -4,6 +4,7 @@ using System.IO;
 using Common;
 using System.Security.AccessControl;
 using Build3D;
+using BuildManager;
 
 public class SaveCodeCommand : Command
 {
@@ -48,5 +49,6 @@ public class SaveCodeCommand : Command
         //CodeManager.SaveCode(url, CodeManager.GetCode());
 
         CodeManager.SaveCode();
+        SceneManager.UpdateQuoteFileURL();
     }
 }

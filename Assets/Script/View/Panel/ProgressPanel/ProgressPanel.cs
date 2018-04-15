@@ -27,9 +27,7 @@ public class ProgressPanel : BasePanel
         if (AssetsModel.Instance.progressItemCurrent == AssetsModel.Instance.progressItemTotal)
         {
             dispatchEvent(new ProgressPanelEvent(ProgressPanelEvent.LOAD_COMPLETE));
-            AssetsModel.Instance.GetQuoteFileURL();
             CloseSelf();
-
         }
     }
 }

@@ -18,7 +18,8 @@
 		UIManager.CreateUI("UI/DrawLinePanel/DrawLinePanel", UI.DrawLinePanel, typeof(DrawLineMediators));
 		UIManager.CreateUI("UI/LoadModelPanel/LoadModelPanel", UI.LoadModelPanel, typeof(LoadModelPanelMediators));
 		UIManager.CreateUI("UI/ProgressPanel/ProgressPanel", UI.ProgressPanel, typeof(ProgressPanelMediators));
-
+		UIManager.CreateUI("UI/InventoryPanel/InventoryPanel", UI.InventoryPanel, typeof(InventoryPanelMediators));
+        
         //UIManager.CreateComponent("UI/Component/TransformComponent", UI.TransformComponentUI);
         //UIManager.CreateComponent("UI/Component/SpotlightComponent", UI.SpotlightComponentUI);
         UIManager.CreateComponent("UI/Component/MultipleSpotlighComponent", UI.MultipleSpotlighComponentUI);
