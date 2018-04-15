@@ -67,10 +67,16 @@ public class ItemManager
         for (int i = 1; i < row; i++)
         {
             ItemData data = new ItemData();
-            data.id = resultds.Tables[0].Rows[i][0].ToString();
-            data.thumbnail = resultds.Tables[0].Rows[i][1].ToString();
+            data.id = resultds.Tables[0].Rows[i][1].ToString();
+            data.name = resultds.Tables[0].Rows[i][2].ToString();
+            data.describe = resultds.Tables[0].Rows[i][3].ToString();
+            data.thumbnail = resultds.Tables[0].Rows[i][4].ToString();
+            data.topImg = resultds.Tables[0].Rows[i][5].ToString();
+            data.model = resultds.Tables[0].Rows[i][6].ToString();
+            data.classify = resultds.Tables[0].Rows[i][7].ToString();
+            data.type = resultds.Tables[0].Rows[i][8].ToString();
+            data.price = resultds.Tables[0].Rows[i][9].ToString();
             ItemDataList.Add(data);
-            GameObject.Find("Canvas").transform.Find("InputField").GetComponent<InputField>().text += data.thumbnail;
         }
 
     }
