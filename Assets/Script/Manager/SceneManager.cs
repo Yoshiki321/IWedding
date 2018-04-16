@@ -86,7 +86,7 @@ namespace BuildManager
 
         private void InitUI()
         {
-            //UIManager.OpenUI(UI.MainPanel);
+            UIManager.OpenUI(UI.MainPanel);
         }
 
         private void InitConfig()
