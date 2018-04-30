@@ -82,7 +82,7 @@ public class ChooseSurfacePanel : BasePanel
         }
 
 
-
+        ShowHomePanelHandle();
         Open();
     }
 
@@ -167,7 +167,6 @@ public class ChooseSurfacePanel : BasePanel
     public override void Open()
     {
         base.Open();
-        ShowHomePanelHandle();
     }
 
     protected override void OnEnter(GameObject obj)

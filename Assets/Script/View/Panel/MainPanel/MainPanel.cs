@@ -47,7 +47,7 @@ public class MainPanel : BasePanel
         }
         if (obj.name == "createBtn")
 		{
-            selectPanel.SetActive(true);
+            dispatchEvent(new MainPanelEvent(MainPanelEvent.BtnOne_Click));
         }
         if (obj.name == "realBtn")
 		{

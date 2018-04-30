@@ -22,7 +22,7 @@ public class MainPanelMediators : Mediators
 
     private void HotelPlanHandle(EventObject e)
     {
-        UIManager.OpenUI(UI.HotelPanel);
+        //UIManager.OpenUI(UI.HotelPanel);
     }
 
     private void CreatePlanHandle(EventObject e)
@@ -32,6 +32,6 @@ public class MainPanelMediators : Mediators
 
     private void StorePlanHandle(EventObject e)
     {
-        UIManager.OpenUI(UI.StorePanel);
+        //UIManager.OpenUI(UI.StorePanel);
     }
 }

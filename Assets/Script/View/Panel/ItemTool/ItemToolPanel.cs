@@ -125,6 +125,10 @@ public class ItemToolPanel : BasePanel
             }
 
         }
+        ShowItemObjectHandle();
+        TpyeBtnShowHandle(1);
+        IntButtonColor(_itemEffectBtn);
+        SetButtonColor(_itemObjectBtn);
         Open();
     }
 
@@ -286,10 +290,7 @@ public class ItemToolPanel : BasePanel
     }
     private void init()
     {
-        ShowItemObjectHandle();
-        TpyeBtnShowHandle(1);
-        IntButtonColor(_itemEffectBtn);
-        SetButtonColor(_itemObjectBtn);
+      
     }
 
     private void ShowItemObjectHandle()
