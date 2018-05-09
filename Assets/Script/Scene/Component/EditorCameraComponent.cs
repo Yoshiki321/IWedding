@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Build3D;
-using UnityEngine.PostProcessing;
+using UnityEngine.Rendering.PostProcessing;
 
 public class EditorCameraComponent : SceneComponent
 {
@@ -17,16 +17,16 @@ public class EditorCameraComponent : SceneComponent
             _item.VO.AddComponentVO<EditorCameraVO>();
         }
 
-        _postProcessingBehaviour = gameObject.GetComponentInChildren<PostProcessingBehaviour>();
+        _postProcessingBehaviour = GameObject.Find("Post-process Volume").GetComponent<PostProcessVolume>();
         _postProcessingProfile = _postProcessingBehaviour.profile;
 
-        colorGrading = ColorGradingModel.Settings.defaultSettings;
-        colorGrading.tonemapping.tonemapper = ColorGradingModel.Tonemapper.ACES;
+        colorGrading = _postProcessingProfile.settings[0] as ColorGrading;
+        colorGrading.tonemapper.value = Tonemapper.ACES;
     }
 
     #region colorGrading
 
-    ColorGradingModel.Settings colorGrading;
+    ColorGrading colorGrading;
 
     private float _postExposure;
     private float _temperature;
@@ -67,19 +67,19 @@ public class EditorCameraComponent : SceneComponent
 
     private void UpdateColorGrading()
     {
-        colorGrading.basic.postExposure = _postExposure;
-        colorGrading.basic.temperature = _temperature;
-        colorGrading.basic.tint = _tint;
-        colorGrading.basic.hueShift = _hueShift;
-        colorGrading.basic.saturation = _saturation;
-        colorGrading.basic.contrast = _contrast;
-        _postProcessingProfile.colorGrading.settings = colorGrading;
+        colorGrading.postExposure.value = _postExposure;
+        colorGrading.temperature.value = _temperature;
+        colorGrading.tint.value = _tint;
+        colorGrading.hueShift.value = _hueShift;
+        colorGrading.saturation.value = _saturation;
+        colorGrading.contrast.value = _contrast;
+        _postProcessingProfile.settings[0] = colorGrading;
     }
 
     #endregion
 
-    PostProcessingBehaviour _postProcessingBehaviour;
-    PostProcessingProfile _postProcessingProfile;
+    PostProcessVolume _postProcessingBehaviour;
+    PostProcessProfile _postProcessingProfile;
 
     private EditorCameraVO _vo;
 

@@ -3,13 +3,7 @@ using System.Collections.Generic;
 
 public class ObjectVO : AssetVO
 {
-    private string _assetId;
-
-    public string assetId
-    {
-        set { _assetId = value; }
-        get { return _assetId; }
-    }
+    public string assetId { set; get; }
 
     public void UpdateSize(GameObject value)
     {
@@ -29,8 +23,6 @@ public class ObjectVO : AssetVO
     }
 
     private GameObject _model;
-    private Texture2D _topImgTexture;
-
     private string _modelId;
 
     public string modelId
@@ -71,11 +63,7 @@ public class ObjectVO : AssetVO
         get { return _topImgId; }
     }
 
-    public Texture2D topImgTexture
-    {
-        set { _topImgTexture = value; }
-        get { return _topImgTexture; }
-    }
+    public Texture2D topImgTexture { set; get; }
 
     public float sizeX = 0;
     public float sizeY = 0;

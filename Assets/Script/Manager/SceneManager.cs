@@ -330,6 +330,11 @@ namespace BuildManager
             UILayer.SetActive(true);
         }
 
+        /// <summary>
+        /// 环境光关闭
+        /// 当环境光关闭时道具灯才会打开
+        /// </summary>
+        /// <param name="value"></param>
         public static void SetSceneLightActive(bool value)
         {
             activeSceneLight = value;
@@ -337,9 +342,9 @@ namespace BuildManager
             if (activeSceneLight)
             {
                 RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
-                RenderSettings.ambientSkyColor = ColorUtils.HexToColor("E1E1E1");
-                RenderSettings.ambientEquatorColor = ColorUtils.HexToColor("E1E1E1");
-                RenderSettings.ambientGroundColor = ColorUtils.HexToColor("E1E1E1");
+                RenderSettings.ambientSkyColor = ColorUtils.HexToColor("CACACA");
+                RenderSettings.ambientEquatorColor = ColorUtils.HexToColor("CACACA");
+                RenderSettings.ambientGroundColor = ColorUtils.HexToColor("CACACA");
             }
             else
             {
@@ -347,6 +352,19 @@ namespace BuildManager
                 RenderSettings.ambientSkyColor = ColorUtils.HexToColor("5D5C65");
                 RenderSettings.ambientEquatorColor = ColorUtils.HexToColor("19191A");
                 RenderSettings.ambientGroundColor = ColorUtils.HexToColor("464E54");
+            }
+
+            for (int i = 0; i < AssetsModel.Instance.itemDatas.Count; i++)
+            {
+                SpotlightComponent[] ss = AssetsModel.Instance.itemDatas[i].item3.GetComponentsInChildren<SpotlightComponent>();
+                foreach (SpotlightComponent sc in ss)
+                {
+                    Light[] ls = sc.GetComponentsInChildren<Light>();
+                    foreach (Light l in ls)
+                    {
+                        l.enabled = !activeSceneLight;
+                    }
+                }
             }
         }
 

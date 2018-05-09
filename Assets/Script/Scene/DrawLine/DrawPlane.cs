@@ -103,7 +103,7 @@ public class DrawPlane : DispatcherEventPanel
         if (_fillMaterial == null) return;
         if (up == "")
         {
-            _fillMaterial.SetTexture("_MainTex", new Texture());
+            _fillMaterial.SetTexture("_MainTex", null);
         }
         else
         {

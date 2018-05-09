@@ -58,7 +58,7 @@ public class DrawLineMediators : Mediators
                 string urlName = SceneManager.ProjectModelURL + "\\" + name;
                 DispatcherEvent(new FileEvent(FileEvent.SAVE_THICKIRREGULAR, urlName, name, dpe.code));
 
-                t3.Code = dpe.code;
+                t3.Code = dpe.code.SelectSingleNode("ThickIrregularPlane3D");
                 Object.Destroy(dpe.itemVO.model.gameObject);
 
                 (item.VO as ItemVO).GetComponentVO<ThickIrregularVO>().xml = dpe.code;

@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: 165d3dd60fa9311479cf2e2932d0bbe8
-timeCreated: 1513680359
-licenseType: Free
 ModelImporter:
-  serializedVersion: 21
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: daoju:Group-586373-133
     100002: daoju:Group-586373-133 1
@@ -550,10 +548,58 @@ ModelImporter:
     4300168: daoju:Obj3d66-586373-1079-961
     4300170: daoju:Obj3d66-586373-1080-549
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: daoju_lambert2
+    second: {fileID: 2100000, guid: 0de24ec94a1254f4bb4eddb84d6caf46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: daoju_lambert4
+    second: {fileID: 2100000, guid: 98593d0c081c2504495b8fece6ce037f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: daoju_lambert6
+    second: {fileID: 2100000, guid: a8fb06f5f638dea46893fa1f2c1c442a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: daoju_lambert7
+    second: {fileID: 2100000, guid: 98593d0c081c2504495b8fece6ce037f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: daoju_phong10
+    second: {fileID: 2100000, guid: 9b09734cc51964e4eb5f3df02d35aca1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: daoju_phong12
+    second: {fileID: 2100000, guid: 3185ab1cf3e022e439dcc95b6be449df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: daoju_phong13
+    second: {fileID: 2100000, guid: 2d4a2656faec51f4eaf4f000b0de338e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: daoju_phong14
+    second: {fileID: 2100000, guid: 9c0ab7d2681254d4686a1dc35c4381d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: daoju_phong15
+    second: {fileID: 2100000, guid: 4d018ae1d0913a04db24fc8dc4ec330f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -566,6 +612,8 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -590,6 +638,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

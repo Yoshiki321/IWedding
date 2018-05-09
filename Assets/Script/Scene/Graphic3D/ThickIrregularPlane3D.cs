@@ -304,7 +304,7 @@ public class ThickIrregularPlane3D : MonoBehaviour
         set
         {
             XmlNode code = value as XmlNode;
-            XmlNode thickIrregularNode = code.SelectSingleNode("ThickIrregularPlane3D").SelectSingleNode("ThickIrregular");
+            XmlNode thickIrregularNode = code.SelectSingleNode("ThickIrregular");
 
             string points = thickIrregularNode.Attributes["points"].Value;
             List<Vector2> list = new List<Vector2>();

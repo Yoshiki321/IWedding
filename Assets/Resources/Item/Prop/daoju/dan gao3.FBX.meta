@@ -1,9 +1,7 @@
 fileFormatVersion: 2
 guid: f1c1f1f80755fab4499ede8d09cb4d29
-timeCreated: 1513857181
-licenseType: Free
 ModelImporter:
-  serializedVersion: 21
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     100002: Obj3d66-517088-1-973
@@ -45,10 +43,38 @@ ModelImporter:
     4300010: Obj3d66-517088-4-987
     4300012: Obj3d66-517088-5-276
     9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat3d66-517088-1-453
+    second: {fileID: 2100000, guid: 7240dd4d0dc951e42befac0544acd894, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat3d66-517088-2-97
+    second: {fileID: 2100000, guid: 0cf40ce77523990439f8d6e0626743c5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat3d66-517088-3-843
+    second: {fileID: 2100000, guid: 0c37a276dd409014dbec5751221e189d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat3d66-517088-4-906
+    second: {fileID: 2100000, guid: 51424717025e5de4e9065a1a2b0f67e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mat3d66-517088-5-794
+    second: {fileID: 2100000, guid: 9cc1708cd23569647ab145e4a87790ac, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -61,6 +87,8 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -85,6 +113,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88

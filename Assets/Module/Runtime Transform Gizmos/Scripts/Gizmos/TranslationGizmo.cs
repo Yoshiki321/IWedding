@@ -33,18 +33,6 @@ namespace RTEditor
             Box
         }
 
-        public bool BecameVisible;
-
-        void OnBecameVisible()
-        {
-            BecameVisible = true;
-        }
-
-        void OnBecameInvisible()
-        {
-            BecameVisible = false;
-        }
-
         #region Private Variables
         /// <summary>
         /// Shortcut keys.
@@ -458,7 +446,11 @@ namespace RTEditor
                 _selectedAxis = GizmoAxis.None;
                 _selectedMultiAxisSquare = MultiAxisSquare.None;
             }
+
+            BecameVisible = GetComponent<MeshRenderer>().IsVisibleFrom(Camera.main);
         }
+
+        public bool BecameVisible;
 
         private Vector3 GetWorldBoxCornerClosestToCursor(List<GameObject> gameObjects)
         {

@@ -3,13 +3,7 @@ using UnityEngine;
 
 public class ObjectSprite3D : AssetSprite
 {
-    private Vector3 _mousePoint;
-
-    public Vector3 mousePoint
-    {
-        set { _mousePoint = value; }
-        get { return _mousePoint; }
-    }
+    public Vector3 mousePoint { set; get; }
 
     override public void Instantiate(ObjectVO vo)
     {
@@ -60,14 +54,20 @@ public class ObjectSprite3D : AssetSprite
                 }
                 else
                 {
-                    if (_vo.model.transform.parent != null)
-                    {
-                        _model = GameObject.Instantiate(_vo.model, new Vector3(), new Quaternion());
-                    }
-                    else
-                    {
-                        _model = _vo.model;
-                    }
+                    //if (_vo.model.transform.parent != null)
+                    //{
+                    //    _model = Instantiate(_vo.model, new Vector3(), new Quaternion());
+                    //}
+                    //else
+                    //{
+                    //    _model = _vo.model;
+                    //}
+
+                    GameObject drawPanelObject = new GameObject("DrawPanel");
+                    ThickIrregularPlane3D thickIrregularPlane3D = drawPanelObject.AddComponent<ThickIrregularPlane3D>();
+                    drawPanelObject.AddComponent<ThickIrregularComponent>();
+                    thickIrregularPlane3D.Code = _vo.model.GetComponent<ThickIrregularPlane3D>().Code;
+                    _model = drawPanelObject;
                 }
             }
             else
@@ -79,7 +79,7 @@ public class ObjectSprite3D : AssetSprite
                 }
                 else
                 {
-                    _model = GameObject.Instantiate(_vo.model, new Vector3(), new Quaternion());
+                    _model = Instantiate(_vo.model, new Vector3(), new Quaternion());
                 }
             }
 

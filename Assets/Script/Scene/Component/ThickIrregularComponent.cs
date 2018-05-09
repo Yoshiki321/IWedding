@@ -67,7 +67,7 @@ public class ThickIrregularComponent : SceneComponent
                     if (t3 == null)
                     {
                         GameObject drawPanel = new GameObject("DrawPanel");
-                        drawPanel.AddComponent<ThickIrregularPlane3D>().Code = xml;
+                        drawPanel.AddComponent<ThickIrregularPlane3D>().Code = xml.SelectSingleNode("ThickIrregularPlane3D");
 
                         _itemVO.model = drawPanel;
                         _itemVO.topImgTexture = (Texture2D)Resources.Load("TopImg/Stage");
@@ -76,7 +76,7 @@ public class ThickIrregularComponent : SceneComponent
                     }
                     else
                     {
-                        t3.Code = xml;
+                        t3.Code = xml.SelectSingleNode("ThickIrregularPlane3D");
                     }
                 }
             }

@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IWedding", "IWedding.csproj", "{54115EFF-0F5F-7F41-3ABE-95CA6B97F800}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IWedding", "Assembly-CSharp.csproj", "{5A2CFEC4-E0C5-94AD-72F8-4233240A2783}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IWedding.Plugins", "IWedding.Plugins.csproj", "{4F7CCF80-58D8-46CB-E1DC-39AF498DA6E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IWedding", "Assembly-CSharp-firstpass.csproj", "{CEFA8002-E3F7-1753-83E7-77C307145CEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IWedding.Editor", "IWedding.Editor.csproj", "{7B69B6FC-1D30-CB49-A764-641BC337E060}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IWedding", "Assembly-CSharp-Editor.csproj", "{88CBFD84-C275-913B-63C2-B4300644F046}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IWedding.Editor.Plugins", "IWedding.Editor.Plugins.csproj", "{5B6FFBAF-1DFA-2916-C38C-959CD40F1C09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IWedding", "Assembly-CSharp-Editor-firstpass.csproj", "{0D5C7870-5A18-75F5-4E01-679EA25BD38D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,22 +15,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{54115EFF-0F5F-7F41-3ABE-95CA6B97F800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54115EFF-0F5F-7F41-3ABE-95CA6B97F800}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54115EFF-0F5F-7F41-3ABE-95CA6B97F800}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54115EFF-0F5F-7F41-3ABE-95CA6B97F800}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4F7CCF80-58D8-46CB-E1DC-39AF498DA6E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4F7CCF80-58D8-46CB-E1DC-39AF498DA6E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4F7CCF80-58D8-46CB-E1DC-39AF498DA6E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4F7CCF80-58D8-46CB-E1DC-39AF498DA6E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B69B6FC-1D30-CB49-A764-641BC337E060}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B69B6FC-1D30-CB49-A764-641BC337E060}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B69B6FC-1D30-CB49-A764-641BC337E060}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B69B6FC-1D30-CB49-A764-641BC337E060}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5B6FFBAF-1DFA-2916-C38C-959CD40F1C09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5B6FFBAF-1DFA-2916-C38C-959CD40F1C09}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5B6FFBAF-1DFA-2916-C38C-959CD40F1C09}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5B6FFBAF-1DFA-2916-C38C-959CD40F1C09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A2CFEC4-E0C5-94AD-72F8-4233240A2783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A2CFEC4-E0C5-94AD-72F8-4233240A2783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A2CFEC4-E0C5-94AD-72F8-4233240A2783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A2CFEC4-E0C5-94AD-72F8-4233240A2783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEFA8002-E3F7-1753-83E7-77C307145CEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEFA8002-E3F7-1753-83E7-77C307145CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEFA8002-E3F7-1753-83E7-77C307145CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEFA8002-E3F7-1753-83E7-77C307145CEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88CBFD84-C275-913B-63C2-B4300644F046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88CBFD84-C275-913B-63C2-B4300644F046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88CBFD84-C275-913B-63C2-B4300644F046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88CBFD84-C275-913B-63C2-B4300644F046}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D5C7870-5A18-75F5-4E01-679EA25BD38D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D5C7870-5A18-75F5-4E01-679EA25BD38D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D5C7870-5A18-75F5-4E01-679EA25BD38D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D5C7870-5A18-75F5-4E01-679EA25BD38D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

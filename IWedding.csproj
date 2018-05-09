@@ -12,16 +12,13 @@
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
-    <CompilerResponseFile>
-    </CompilerResponseFile>
+    <TargetFrameworkProfile></TargetFrameworkProfile>
+    <CompilerResponseFile></CompilerResponseFile>
     <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.3.0f3</UnityVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
@@ -275,23 +272,8 @@
     <Reference Include="UnityEditor.Graphs">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.Android.Extensions">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.WSA.Extensions">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.WSA.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.WebGL.Extensions">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.OSXStandalone.Extensions">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
@@ -352,12 +334,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/43903/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -941,22 +917,22 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
-    <Compile Include="Assets\Resources\Item\KTPanel\KTLightingShaderGUI.cs" />
-    <Compile Include="Assets\Resources\Item\Light\AreaLight\AreaLight\Scripts\AreaLight.cs" />
-    <Compile Include="Assets\Resources\Item\Light\AreaLight\AreaLight\Scripts\AreaLight.Direct.cs" />
-    <Compile Include="Assets\Resources\Item\Light\AreaLight\AreaLight\Scripts\AreaLight.Shadow.cs" />
-    <Compile Include="Assets\Resources\Item\Light\AreaLight\AreaLight\Scripts\AreaLightLUT.DisneyDiffuse.cs" />
-    <Compile Include="Assets\Resources\Item\Light\AreaLight\AreaLight\Scripts\AreaLightLUT.GGX.cs" />
-    <Compile Include="Assets\Resources\Item\Light\AreaLight\AreaLight\Scripts\AreaLightLUT.Load.cs" />
-    <Compile Include="Assets\Resources\Item\Light\Script\FogLight.cs" />
-    <Compile Include="Assets\Resources\Item\Light\Script\FogLight.DirectionalShadow.cs" />
-    <Compile Include="Assets\Resources\Item\Light\Script\LightManager.cs" />
-    <Compile Include="Assets\Resources\Item\Light\Script\LightManagerFogLights.cs" />
-    <Compile Include="Assets\Resources\Item\Light\Script\LightOverride.cs" />
-    <Compile Include="Assets\Resources\Item\Light\Script\MinValueAttribute.cs" />
-    <Compile Include="Assets\Resources\Item\Light\TubeLight\TubeLight\Scripts\TubeLight.cs" />
-    <Compile Include="Assets\Resources\Item\Light\TubeLight\TubeLight\Scripts\TubeLightShadowPlane.cs" />
-    <Compile Include="Assets\Resources\Item\Particle\Sprinkle\SprinkleLine.cs" />
+    <Compile Include="Assets\Resources\Item\new\Panel\KTPanel\KTLightingShaderGUI.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\AreaLight\AreaLight\Scripts\AreaLight.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\AreaLight\AreaLight\Scripts\AreaLight.Direct.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\AreaLight\AreaLight\Scripts\AreaLight.Shadow.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\AreaLight\AreaLight\Scripts\AreaLightLUT.DisneyDiffuse.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\AreaLight\AreaLight\Scripts\AreaLightLUT.GGX.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\AreaLight\AreaLight\Scripts\AreaLightLUT.Load.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\Script\FogLight.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\Script\FogLight.DirectionalShadow.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\Script\LightManager.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\Script\LightManagerFogLights.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\Script\LightOverride.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\Script\MinValueAttribute.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\TubeLight\TubeLight\Scripts\TubeLight.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Light\TubeLight\TubeLight\Scripts\TubeLightShadowPlane.cs" />
+    <Compile Include="Assets\Resources\Item\new\tx\Particle\Sprinkle\SprinkleLine.cs" />
     <Compile Include="Assets\Resources\UI\CorePanel\ToolLine\DragableCard.cs" />
     <Compile Include="Assets\Resources\UI\Currency\ColorPicker\ColoredTape.cs" />
     <Compile Include="Assets\Resources\UI\Currency\ColorPicker\ColorPalette.cs" />
@@ -1198,6 +1174,7 @@
     <Compile Include="Assets\Script\Utils\Extend\ImageExtension.cs" />
     <Compile Include="Assets\Script\Utils\Extend\ListAssetsExtension.cs" />
     <Compile Include="Assets\Script\Utils\Extend\MaterialExtension.cs" />
+    <Compile Include="Assets\Script\Utils\Extend\RendererExtensions.cs" />
     <Compile Include="Assets\Script\Utils\Extend\TextureExtension.cs" />
     <Compile Include="Assets\Script\Utils\Extend\VectorExtend.cs" />
     <Compile Include="Assets\Script\Utils\Extend\XmlNodeExtension.cs" />
@@ -1212,7 +1189,6 @@
     <Compile Include="Assets\Script\Utils\MeshData.cs" />
     <Compile Include="Assets\Script\Utils\MeshUtils3D.cs" />
     <Compile Include="Assets\Script\Utils\MovementController.cs" />
-    <Compile Include="Assets\Script\Utils\NewMonoBehaviour1.cs" />
     <Compile Include="Assets\Script\Utils\NumberUtils.cs" />
     <Compile Include="Assets\Script\Utils\PlaneUtils.cs" />
     <Compile Include="Assets\Script\Utils\RenderingModeUnits.cs" />
@@ -1232,12 +1208,12 @@
     <Compile Include="Assets\Script\View\Mediators\Event\ProgressEvent.cs" />
     <Compile Include="Assets\Script\View\Mediators\GizmoPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\HotelPanelMediators.cs" />
+    <Compile Include="Assets\Script\View\Mediators\InventoryPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\ItemSelectPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\ItemToolMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\LoadModelPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\MainPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\Mediators.cs" />
-    <Compile Include="Assets\Script\View\Mediators\InventoryPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\ProgressPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\ProjectPanelMediators.cs" />
     <Compile Include="Assets\Script\View\Mediators\StorePanelMediators.cs" />
@@ -1299,9 +1275,9 @@
     <Compile Include="Assets\Script\View\Panel\GizmoPanel\GizmoPanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\HotelPanel\HotelPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\HotelPanel\HotelPanelEvent.cs" />
+    <Compile Include="Assets\Script\View\Panel\InventoryPanel\InventoryColumn.cs" />
     <Compile Include="Assets\Script\View\Panel\InventoryPanel\InventoryPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\InventoryPanel\InventoryPanelEvent.cs" />
-    <Compile Include="Assets\Script\View\Panel\InventoryPanel\InventoryColumn.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemPanel\ItemPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemSelectPanel\ItemSelectPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemSelectPanel\ItemSelectPanelEvent.cs" />
@@ -1480,16 +1456,16 @@
     <None Include="Assets\Resources\Item\Combination\1001.xml" />
     <None Include="Assets\Resources\Item\Combination\1002.xml" />
     <None Include="Assets\Resources\Item\Combination\1003.xml" />
-    <None Include="Assets\Resources\Item\KTPanel\KT Lighting Shader.shader" />
-    <None Include="Assets\Resources\Item\KTPanel\KT Lighting.cginc" />
-    <None Include="Assets\Resources\Item\KTPanel\KT Shadows.cginc" />
-    <None Include="Assets\Resources\Item\Light\AreaLight\AreaLight\Shaders\AreaLight.cginc" />
-    <None Include="Assets\Resources\Item\Light\AreaLight\AreaLight\Shaders\AreaLight.shader" />
-    <None Include="Assets\Resources\Item\Light\AreaLight\AreaLight\Shaders\AreaLightShadows.cginc" />
-    <None Include="Assets\Resources\Item\Light\TubeLight\TubeLight\Shaders\TubeLight.cginc" />
-    <None Include="Assets\Resources\Item\Light\TubeLight\TubeLight\Shaders\TubeLight.shader" />
-    <None Include="Assets\Resources\Item\Light\TubeLight\TubeLight\Shaders\TubeLightAttenuation.cginc" />
-    <None Include="Assets\Resources\Item\Light\TubeLight\TubeLight\Shaders\TubeLightShadowPlanes.cginc" />
+    <None Include="Assets\Resources\Item\new\Panel\KTPanel\KT Lighting Shader.shader" />
+    <None Include="Assets\Resources\Item\new\Panel\KTPanel\KT Lighting.cginc" />
+    <None Include="Assets\Resources\Item\new\Panel\KTPanel\KT Shadows.cginc" />
+    <None Include="Assets\Resources\Item\new\tx\Light\AreaLight\AreaLight\Shaders\AreaLight.cginc" />
+    <None Include="Assets\Resources\Item\new\tx\Light\AreaLight\AreaLight\Shaders\AreaLight.shader" />
+    <None Include="Assets\Resources\Item\new\tx\Light\AreaLight\AreaLight\Shaders\AreaLightShadows.cginc" />
+    <None Include="Assets\Resources\Item\new\tx\Light\TubeLight\TubeLight\Shaders\TubeLight.cginc" />
+    <None Include="Assets\Resources\Item\new\tx\Light\TubeLight\TubeLight\Shaders\TubeLight.shader" />
+    <None Include="Assets\Resources\Item\new\tx\Light\TubeLight\TubeLight\Shaders\TubeLightAttenuation.cginc" />
+    <None Include="Assets\Resources\Item\new\tx\Light\TubeLight\TubeLight\Shaders\TubeLightShadowPlanes.cginc" />
     <None Include="Assets\Shader\Custom\RotateUV.shader" />
     <None Include="Assets\Shader\Double Sided Shaders\Double Sided Emissive Diffuse.shader" />
     <None Include="Assets\Shader\Double Sided Shaders\Double Sided Standard Diffuse Bump.shader" />
