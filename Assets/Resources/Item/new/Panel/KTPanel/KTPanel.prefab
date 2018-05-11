@@ -84,13 +84,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1226801201545776}
-  m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: -0.5}
+  m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 1.47, z: 0}
   m_LocalScale: {x: 0.26, y: 1.0000005, z: 0.2900001}
   m_Children: []
   m_Father: {fileID: 4150452192237996}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 90}
+  m_LocalEulerAnglesHint: {x: 90, y: 180, z: 90}
 --- !u!4 &4919564341121312
 Transform:
   m_ObjectHideFlags: 1
@@ -117,6 +117,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 4368d4bcf2b48ea4896e0b5a5006e1c3, type: 2}
   m_StaticBatchInfo:
@@ -151,6 +152,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 016f373c5c49a26439c3fba2a4d1a39a, type: 2}
   m_StaticBatchInfo:
@@ -221,4 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a65d36165c6789459829be97729b0bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  picture: {fileID: 1269197931302798}
+  pictures:
+  - {fileID: 1269197931302798}
+  - {fileID: 1226801201545776}

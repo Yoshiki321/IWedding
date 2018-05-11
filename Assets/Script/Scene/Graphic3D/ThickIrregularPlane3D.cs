@@ -357,6 +357,7 @@ public class ThickIrregularPlane3D : MonoBehaviour
 
     protected string GetPropertyString(object value)
     {
+        if (value == null) value = "";
         return '"' + value.ToString() + '"';
     }
 }

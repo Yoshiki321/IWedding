@@ -72,7 +72,7 @@ public class ThickIrregularComponent : SceneComponent
                         _itemVO.model = drawPanel;
                         _itemVO.topImgTexture = (Texture2D)Resources.Load("TopImg/Stage");
 
-                        item.model = _itemVO.model;
+                        item.model = drawPanel;
                     }
                     else
                     {

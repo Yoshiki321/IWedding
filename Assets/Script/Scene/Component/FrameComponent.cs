@@ -3,6 +3,7 @@ using System.Collections;
 using Build3D;
 using System.IO;
 using BuildManager;
+using System.Collections.Generic;
 
 public class FrameComponent : SceneComponent
 {
@@ -19,7 +20,7 @@ public class FrameComponent : SceneComponent
         }
     }
 
-    public GameObject picture;
+    public List<GameObject> pictures;
 
     private string _url = "";
 
@@ -66,7 +67,11 @@ public class FrameComponent : SceneComponent
 
                 texture2 = tex;
                 _vo.texture2 = tex;
-                picture.GetComponent<MeshRenderer>().material.SetTexture("_MainTex", tex);
+
+                foreach (GameObject p in pictures)
+                {
+                    p.GetComponent<MeshRenderer>().material.SetTexture("_MainTex", tex);
+                }
 
                 //LoadTexture("file:///" + _url, delegate (Texture2D tex)
                 //{

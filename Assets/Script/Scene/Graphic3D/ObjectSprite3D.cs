@@ -54,20 +54,27 @@ public class ObjectSprite3D : AssetSprite
                 }
                 else
                 {
-                    //if (_vo.model.transform.parent != null)
+                    //if (_vo.model.GetComponent<ThickIrregularPlane3D>())
                     //{
-                    //    _model = Instantiate(_vo.model, new Vector3(), new Quaternion());
+                    //    GameObject drawPanelObject = new GameObject("DrawPanel");
+                    //    ThickIrregularPlane3D thickIrregularPlane3D = drawPanelObject.AddComponent<ThickIrregularPlane3D>();
+                    //    drawPanelObject.AddComponent<ThickIrregularComponent>();
+                    //    thickIrregularPlane3D.Code = _vo.model.GetComponent<ThickIrregularPlane3D>().Code;
+                    //    Destroy(_vo.model);
+                    //    _model = drawPanelObject;
+                    //    _vo.model = drawPanelObject;
                     //}
                     //else
                     //{
-                    //    _model = _vo.model;
+                        if (_vo.model.transform.parent != null)
+                        {
+                            _model = Instantiate(_vo.model, new Vector3(), new Quaternion());
+                        }
+                        else
+                        {
+                            _model = _vo.model;
+                        }
                     //}
-
-                    GameObject drawPanelObject = new GameObject("DrawPanel");
-                    ThickIrregularPlane3D thickIrregularPlane3D = drawPanelObject.AddComponent<ThickIrregularPlane3D>();
-                    drawPanelObject.AddComponent<ThickIrregularComponent>();
-                    thickIrregularPlane3D.Code = _vo.model.GetComponent<ThickIrregularPlane3D>().Code;
-                    _model = drawPanelObject;
                 }
             }
             else
@@ -101,7 +108,7 @@ public class ObjectSprite3D : AssetSprite
                 if (_model.GetComponent<ThickIrregularComponent>() == null)
                 {
                     _model.AddComponent<ThickIrregularComponent>();
-                    _model.AddComponent<CurvyColumnComponent>();
+                    //_model.AddComponent<CurvyColumnComponent>();
                 }
             }
             else
