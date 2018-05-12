@@ -43,7 +43,7 @@ public class ObjectVO : AssetVO
 
             if (_model != null && sizeX == 0 && sizeY == 0 && sizeZ == 0)
             {
-                _model.AddBoxCollider(false);
+                _model.AddMeshCollider(false);
 
                 UpdateSize(_model);
             }

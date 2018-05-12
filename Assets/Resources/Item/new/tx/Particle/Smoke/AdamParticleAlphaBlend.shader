@@ -25,7 +25,7 @@ Category {
 			
 			#include "UnityCG.cginc"
 			#if VOLUMETRIC_FOG
-				#include "../VolumetricFog/Shaders/VolumetricFog.cginc"
+				#include "VolumetricFog.cginc"
 			#endif
 
 			sampler2D _MainTex;

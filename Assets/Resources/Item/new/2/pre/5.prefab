@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4106031750855644}
   - component: {fileID: 33509561157353122}
   - component: {fileID: 23740432949677774}
+  - component: {fileID: 64034034699783992}
   m_Layer: 0
   m_Name: Curve14
   m_TagString: Untagged
@@ -54,6 +55,7 @@ GameObject:
   - component: {fileID: 4711055118706524}
   - component: {fileID: 33115826657416144}
   - component: {fileID: 23599289826252556}
+  - component: {fileID: 64663191440076728}
   m_Layer: 0
   m_Name: Curve10
   m_TagString: Untagged
@@ -69,9 +71,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4071123597857916}
-  - component: {fileID: 65337479618230572}
-  - component: {fileID: 65808498510284254}
-  - component: {fileID: 65195393814362596}
   m_Layer: 0
   m_Name: 5
   m_TagString: Untagged
@@ -89,6 +88,7 @@ GameObject:
   - component: {fileID: 4155524360689056}
   - component: {fileID: 33573678802739998}
   - component: {fileID: 23291523337279312}
+  - component: {fileID: 64269035941397160}
   m_Layer: 0
   m_Name: Curve15
   m_TagString: Untagged
@@ -178,6 +178,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 4dd9f11959d9dab4b9c5d11a44edcadb, type: 2}
   m_StaticBatchInfo:
@@ -212,6 +213,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 4dd9f11959d9dab4b9c5d11a44edcadb, type: 2}
   m_StaticBatchInfo:
@@ -246,6 +248,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 4dd9f11959d9dab4b9c5d11a44edcadb, type: 2}
   m_StaticBatchInfo:
@@ -288,42 +291,48 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1646042814935272}
   m_Mesh: {fileID: 4300004, guid: c07c1e4274dc59a4791bd1cdc74fe84c, type: 3}
---- !u!65 &65195393814362596
-BoxCollider:
+--- !u!64 &64034034699783992
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1624948704762434}
+  m_GameObject: {fileID: 1039536616368822}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.75611436, y: 0.8810748, z: 0.48716435}
-  m_Center: {x: -0.24732035, y: 0.44061556, z: 0.04531292}
---- !u!65 &65337479618230572
-BoxCollider:
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300002, guid: c07c1e4274dc59a4791bd1cdc74fe84c, type: 3}
+--- !u!64 &64269035941397160
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1624948704762434}
+  m_GameObject: {fileID: 1646042814935272}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5943246, y: 0.8580847, z: 0.08110034}
-  m_Center: {x: 0.07966754, y: 0.5010101, z: 0.04990703}
---- !u!65 &65808498510284254
-BoxCollider:
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300004, guid: c07c1e4274dc59a4791bd1cdc74fe84c, type: 3}
+--- !u!64 &64663191440076728
+MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1624948704762434}
+  m_GameObject: {fileID: 1214765509156328}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.656762, y: 0.9231179, z: 0.574947}
-  m_Center: {x: -0.26215035, y: 0.4555064, z: -0.005921633}
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: c07c1e4274dc59a4791bd1cdc74fe84c, type: 3}
 --- !u!95 &95016997767145754
 Animator:
   serializedVersion: 3
@@ -341,3 +350,4 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
