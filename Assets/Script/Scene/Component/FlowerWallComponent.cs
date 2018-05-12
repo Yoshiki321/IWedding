@@ -145,8 +145,8 @@ public class FlowerWallComponent : SceneComponent
         float minz = 0;
         for (int i = 0; i < zz.Count; i++) minz = Mathf.Min(minz, zz[i]);
 
-        float countX = Mathf.Round((maxx - minx) / 10);
-        float countY = Mathf.Round((maxy - miny) / 10);
+        float countX = Mathf.Round((maxx - minx) / 8);
+        float countY = Mathf.Round((maxy - miny) / 8);
 
         float mx = ((maxx - 1) - (minx + 1)) / (countX - 1);
         float my = ((maxy - 1) - (miny + 1)) / (countY - 1);
