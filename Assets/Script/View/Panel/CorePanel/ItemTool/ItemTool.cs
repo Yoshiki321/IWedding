@@ -30,6 +30,32 @@ public class ItemTool : BasePanel
         removeBtn.onClick.AddListener(() => { transform.parent.GetComponent<BasePanel>().dispatchEvent(new ItemToolEvent(ItemToolEvent.ITEMTOOL_REMOVE)); SceneManager.Instance.mouse3Manager.canClick = false; });
         combinationBtn.onClick.AddListener(() => { transform.parent.GetComponent<BasePanel>().dispatchEvent(new ItemToolEvent(ItemToolEvent.ITEMTOOL_COMBINATION)); UpdateCombination(); SceneManager.Instance.mouse3Manager.canClick = false; });
         resolveBtn.onClick.AddListener(() => { transform.parent.GetComponent<BasePanel>().dispatchEvent(new ItemToolEvent(ItemToolEvent.ITEMTOOL_RESOLVE)); UpdateCombination(); SceneManager.Instance.mouse3Manager.canClick = false; });
+
+        AddEventOver(leftBtn.gameObject);
+        AddEventOver(rightBtn.gameObject);
+        AddEventOver(resetBtn.gameObject);
+        AddEventOver(removeBtn.gameObject);
+        AddEventOver(combinationBtn.gameObject);
+        AddEventOver(resolveBtn.gameObject);
+
+        AddEventExit(leftBtn.gameObject);
+        AddEventExit(rightBtn.gameObject);
+        AddEventExit(resetBtn.gameObject);
+        AddEventExit(removeBtn.gameObject);
+        AddEventExit(combinationBtn.gameObject);
+        AddEventExit(resolveBtn.gameObject);
+    }
+
+    protected override void OnEnter(GameObject obj)
+    {
+        base.OnEnter(obj);
+
+        SceneManager.Instance.control3Manager.loop = false;
+    }
+
+    protected override void OnExit(GameObject obj)
+    {
+        SceneManager.Instance.control3Manager.loop = true;
     }
 
     private List<Item3D> _items;

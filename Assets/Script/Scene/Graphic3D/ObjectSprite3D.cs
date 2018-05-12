@@ -99,7 +99,7 @@ public class ObjectSprite3D : AssetSprite
                 _model.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
                 _model.name = "OBJ";
 
-                gameObject.AddBoxCollider(false);
+                gameObject.AddMeshCollider(false);
             }
             else if (_vo.assetId == "ThickIrregularPlane3D")
             {
