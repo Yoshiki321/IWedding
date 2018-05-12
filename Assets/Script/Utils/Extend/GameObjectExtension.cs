@@ -26,24 +26,6 @@ public static class GameObjectExtension
         }
     }
 
-    public static void AddMeshCollider(this GameObject gameObject, bool remove = false, bool enabled = true)
-    {
-        BoxCollider[] bList = gameObject.GetComponentsInChildren<BoxCollider>();
-        MeshCollider[] mList = gameObject.GetComponentsInChildren<MeshCollider>();
-
-        if (!remove)
-        {
-            if (bList.Length > 0 || mList.Length > 0)
-                return;
-        }
-
-        MeshFilter[] mfList = gameObject.GetComponentsInChildren<MeshFilter>();
-        foreach(MeshFilter m in mfList)
-        {
-            m.gameObject.AddComponent<MeshCollider>().sharedMesh = m.sharedMesh;
-        }
-    }
-
     public static void AddBoxCollider(this GameObject gameObject, bool remove = false, bool enabled = true)
     {
         BoxCollider[] bList = gameObject.GetComponentsInChildren<BoxCollider>();

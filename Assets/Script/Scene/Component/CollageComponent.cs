@@ -9,7 +9,7 @@ public class CollageComponent : SceneComponent
 {
     private Renderer[] list;
 
-    private string[] identifying = new string[10] { "Collage0", "Collage1", "Collage2", "Collage3", "Collage4",
+    private string[] identifying = new string[10] { "Collage", "Collage1", "Collage2", "Collage3", "Collage4",
                                                     "Collage5", "Collage6", "Collage7", "Collage8", "Collage9"};
 
     private bool _isInit = false;
@@ -104,7 +104,7 @@ public class CollageComponent : SceneComponent
                                 }
                                 else
                                 {
-                                    r.material = new Material(m);
+                                    r.material = m;
                                 }
                             }
                         }

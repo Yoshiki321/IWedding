@@ -101,9 +101,6 @@ public class Mouse3Manager : EventDispatcher
 
         List<ItemVO> vos = GetGroupItem(selectionItemVO);
 
-        foreach (ItemStruct data in AssetsModel.Instance.itemDatas)
-            data.item3.Selected = false;
-
         selectionItemVO = new List<ItemVO>();
         foreach (ItemVO itemvo in vos)
         {
@@ -113,7 +110,6 @@ public class Mouse3Manager : EventDispatcher
                 Item3D item3 = data.item3 as Item3D;
                 if (item3.SelectEnabled)
                 {
-                    item3.Selected = true;
                     objSelectionItem.Add(item3.gameObject);
                     selectionItem.Add(item3);
                     selectionItemVO.Add(itemvo);
@@ -222,11 +218,6 @@ public class Mouse3Manager : EventDispatcher
     {
         SceneManager.Instance.editorObjectSelection.ClearSelection(false);
         SceneManager.Instance.EditorCamera.GetComponent<RulerManager>().item = null;
-
-        foreach (ItemStruct data in AssetsModel.Instance.itemDatas)
-        {
-            data.item3.Selected = false;
-        }
     }
 
     public void ClearBuildSelect()
