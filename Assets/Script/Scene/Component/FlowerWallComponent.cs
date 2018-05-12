@@ -145,8 +145,8 @@ public class FlowerWallComponent : SceneComponent
         float minz = 0;
         for (int i = 0; i < zz.Count; i++) minz = Mathf.Min(minz, zz[i]);
 
-        float countX = Mathf.Round((maxx - minx) / 18);
-        float countY = Mathf.Round((maxy - miny) / 18);
+        float countX = Mathf.Round((maxx - minx) / 10);
+        float countY = Mathf.Round((maxy - miny) / 10);
 
         float mx = ((maxx - 1) - (minx + 1)) / (countX - 1);
         float my = ((maxy - 1) - (miny + 1)) / (countY - 1);
@@ -197,18 +197,20 @@ public class FlowerWallComponent : SceneComponent
 
             if (isIn)
             {
-                GameObject obj = Instantiate(Resources.Load("Item/新欧式/huaqiang") as GameObject);
+                //ItemData itemData = ItemManager.GetItemData(_assetId);
+                //GameObject obj = Instantiate(Resources.Load(itemData.model)) as GameObject;
+                GameObject obj = Instantiate(Resources.Load("Item/new/6/塑料花/塑料花") as GameObject);
                 obj.transform.parent = transform;
                 obj.transform.localPosition = new Vector3(tdx, tdy, 0);
                 obj.transform.localScale = new Vector3(60f, 60f, 60f);
                 obj.transform.localRotation = Quaternion.Euler(Random.value * 360, -90f, -90f);
 
-                float r = Random.Range(0f, 1f);
-                float g = Random.Range(0f, 1f);
-                float b = Random.Range(0f, 1f);
-                Color color = new Color(r, g, b);
+                //float r = Random.Range(0f, 1f);
+                //float g = Random.Range(0f, 1f);
+                //float b = Random.Range(0f, 1f);
+                //Color color = new Color(r, g, b);
 
-                obj.GetComponentInChildren<MeshRenderer>().material.color = color;
+                //obj.GetComponentInChildren<MeshRenderer>().material.color = color;
                 obj.layer = gameObject.layer;
                 Transform[] ts = obj.GetComponentsInChildren<Transform>();
                 foreach (Transform t in ts)

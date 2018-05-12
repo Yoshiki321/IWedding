@@ -28,7 +28,7 @@ public class FlowerWallComponentUI : BaseComponentUI
         CreateTitleName("花墙设置");
 
         CreateTitleButtonUI("编辑", "快捷键 R", value => { Editor(); });
-        CreateTitleButtonUI("填充", "快捷键 E", value => { Fill(); });
+        CreateTitleButtonUI("填充", "快捷键 E", RelationClickHandle);
         CreateTitleButtonUI("清空", "清空花墙", value => { Clear(); });
         hideButton = CreateTitleButtonUI("隐藏", "隐藏背板", value => { Hide(); });
         colorUI = CreateButtonImageUI("背板颜色", ColorClickHandle);
@@ -146,6 +146,30 @@ public class FlowerWallComponentUI : BaseComponentUI
             vo.color = _color;
             vo.visible = _flowerWall[0].visible;
             vo.panelCode = _drawPanel.Code;
+        }
+    }
+
+    private string itemId;
+
+    private void RelationClickHandle(TitleButtonUI ui)
+    {
+        Hashtable h = new Hashtable();
+        h.Add("10030003", "UI/ItemTool/itemImg/道具/img2");
+        h.Add("10030004", "UI/ItemTool/itemImg/道具/img3");
+
+        SelectTexturePanel sp = UIManager.OpenPanel(Panel.SelectTexturePanel, h,
+           ui.button.transform.position - new Vector3(30, 0)) as SelectTexturePanel;
+        sp.getTextue += UpdateTexture;
+        sp.selectItem = itemId;
+    }
+
+    private void UpdateTexture(string id)
+    {
+        foreach (AssetVO avo in _assets)
+        {
+            itemId = id;
+            foreach (FlowerWallComponent flowerWall in _flowerWall) flowerWall.assetId = id;
+            UpdateComponent();
         }
     }
 
