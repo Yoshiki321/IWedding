@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using BuildManager;
+using RTEditor;
+using UnityEngine;
 
 namespace UnityTemplateProjects
 {
@@ -113,21 +115,28 @@ namespace UnityTemplateProjects
             }
             return direction;
         }
-        
+
+        bool isControl;
+        bool lastControl;
+
         void Update()
         {
-            // Hide and lock cursor when right mouse button pressed
-            if (Input.GetMouseButtonDown(1))
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+            isControl = false;
 
-            // Unlock and show cursor when right mouse button released
-            if (Input.GetMouseButtonUp(1))
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            }
+            //// Hide and lock cursor when right mouse button pressed
+            //if (Input.GetMouseButtonDown(1))
+            //{
+            //    Cursor.lockState = CursorLockMode.Locked;
+            //    isControl = true;
+            //}
+
+            //// Unlock and show cursor when right mouse button released
+            //if (Input.GetMouseButtonUp(1))
+            //{
+            //    Cursor.visible = true;
+            //    Cursor.lockState = CursorLockMode.None;
+            //    isControl = true;
+            //}
 
             // Rotation
             if (Input.GetMouseButton(1))
@@ -138,10 +147,36 @@ namespace UnityTemplateProjects
 
                 m_TargetCameraState.yaw += mouseMovement.x * mouseSensitivityFactor;
                 m_TargetCameraState.pitch += mouseMovement.y * mouseSensitivityFactor;
+
+                isControl = true;
             }
-            
+
+            Vector3 direction = GetInputTranslationDirection();
+
+            if (direction != Vector3.zero)
+            {
+                isControl = true;
+            }
+
+            if (isControl == false)
+            {
+                if(lastControl == false) lastControl = true;
+                return;
+            }
+            else
+            {
+                if (lastControl)
+                {
+                    m_TargetCameraState.SetFromTransform(transform);
+                    m_InterpolatingCameraState.SetFromTransform(transform);
+                    lastControl = false;
+                }
+            }
+
+            SceneManager.Instance.EditorCamera.GetComponent<EditorCamera>().StopFocusOnSelection();
+
             // Translation
-            var translation = GetInputTranslationDirection() * Time.deltaTime;
+            var translation = direction * Time.deltaTime;
 
             // Speed up movement when shift key held
             if (Input.GetKey(KeyCode.LeftShift))
@@ -166,5 +201,4 @@ namespace UnityTemplateProjects
             m_InterpolatingCameraState.UpdateTransform(transform);
         }
     }
-
 }

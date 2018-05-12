@@ -320,6 +320,11 @@ namespace RTEditor
                 StartCoroutine("StartSmoothFocusOnSelection");
             }
         }
+
+        public void StopFocusOnSelection()
+        {
+            StopAllCoroutines();
+        }
         #endregion
 
         #region Private Methods
