@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4792496303517354}
   - component: {fileID: 33409720739180330}
   - component: {fileID: 23422005684202382}
+  - component: {fileID: 64866582662226056}
   m_Layer: 0
   m_Name: cgaxis_tree_12_02
   m_TagString: Untagged
@@ -68,6 +69,7 @@ GameObject:
   - component: {fileID: 4600347567018332}
   - component: {fileID: 33103565115527602}
   - component: {fileID: 23194820985461870}
+  - component: {fileID: 64057446882739010}
   m_Layer: 0
   m_Name: cgaxis_tree_12_01
   m_TagString: Untagged
@@ -213,4 +215,32 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1419836190545056}
+  m_Mesh: {fileID: 4300002, guid: 7e57a3abfa1403d4b8f41e0ee872f85a, type: 3}
+--- !u!64 &64057446882739010
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1982265331217108}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 7e57a3abfa1403d4b8f41e0ee872f85a, type: 3}
+--- !u!64 &64866582662226056
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1419836190545056}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 7e57a3abfa1403d4b8f41e0ee872f85a, type: 3}
