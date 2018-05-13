@@ -23,8 +23,8 @@ public class EditorCameraComponentUI : BaseComponentUI
         temperature = CreateSliderUI("温度", -100, 100, value => _editorCamera.temperature = value);
         tint = CreateSliderUI("色彩", -100, 100, value => _editorCamera.tint = value);
         hueShift = CreateSliderUI("色相偏移", -180, 180, value => _editorCamera.hueShift = value);
-        saturation = CreateSliderUI("饱和度", 0, 2, value => _editorCamera.saturation = value);
-        contrast = CreateSliderUI("对比度", 0, 2, value => _editorCamera.contrast = value);
+        saturation = CreateSliderUI("饱和度", -100, 100, value => _editorCamera.saturation = value);
+        contrast = CreateSliderUI("对比度", -100, 100, value => _editorCamera.contrast = value);
     }
 
     public override void UpdateComponent()
