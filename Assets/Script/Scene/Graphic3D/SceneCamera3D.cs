@@ -14,12 +14,17 @@ public class SceneCamera3D : ObjectSprite3D
     {
         set
         {
-            gameObject.AddComponent<EditorCameraComponent>();
-
             SceneComponent[] clist = gameObject.GetComponentsInChildren<SceneComponent>();
+
+            if (clist.Length == 0)
+            {
+                gameObject.AddComponent<EditorCameraComponent>();
+                clist = gameObject.GetComponentsInChildren<SceneComponent>();
+            }
+
             foreach (SceneComponent sc in clist)
             {
-                sc.Init(this);  
+                sc.Init(this);
             }
         }
     }
