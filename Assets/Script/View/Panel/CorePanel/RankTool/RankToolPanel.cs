@@ -13,6 +13,8 @@ public class RankToolPanel : BasePanel
     public GameObject rotationX;
     public GameObject rotationY;
     public GameObject rotationZ;
+    public GameObject rayDown;
+    public GameObject randomRotate;
 
     void Awake()
     {
@@ -25,6 +27,8 @@ public class RankToolPanel : BasePanel
         rotationX = GetUI("RotationX");
         rotationY = GetUI("RotationY");
         rotationZ = GetUI("RotationZ");
+        rayDown = GetUI("RayDown");
+        randomRotate = GetUI("RandomRotate");
 
         AddEventClick(positionX);
         AddEventClick(positionY);
@@ -35,6 +39,8 @@ public class RankToolPanel : BasePanel
         AddEventClick(rotationX);
         AddEventClick(rotationY);
         AddEventClick(rotationZ);
+        AddEventClick(rayDown);
+        AddEventClick(randomRotate);
     }
 
     public override void Open()
@@ -54,5 +60,7 @@ public class RankToolPanel : BasePanel
         if (obj == rotationX) transform.parent.GetComponent<BasePanel>().dispatchEvent(new RankToolPanelEvent(RankToolPanelEvent.ROTATION_X));
         if (obj == rotationY) transform.parent.GetComponent<BasePanel>().dispatchEvent(new RankToolPanelEvent(RankToolPanelEvent.ROTATION_Y));
         if (obj == rotationZ) transform.parent.GetComponent<BasePanel>().dispatchEvent(new RankToolPanelEvent(RankToolPanelEvent.ROTATION_Z));
+        if (obj == rayDown) transform.parent.GetComponent<BasePanel>().dispatchEvent(new RankToolPanelEvent(RankToolPanelEvent.RAYDOWN));
+        if (obj == randomRotate) transform.parent.GetComponent<BasePanel>().dispatchEvent(new RankToolPanelEvent(RankToolPanelEvent.RANDOMROTATE));
     }
 }

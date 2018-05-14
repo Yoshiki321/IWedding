@@ -196,9 +196,7 @@ namespace BuildManager
 
             if (Input.GetKeyDown(KeyCode.F9))
             {
-                UILayer.SetActive(false);
-                ScreenCapture.CaptureScreenshot("Screenshot.png");
-                Invoke("CaptureScreenshot", .1f);
+                TakePhotoHandle();
             }
 
             if (Input.GetKeyDown(KeyCode.F8))
@@ -213,7 +211,7 @@ namespace BuildManager
 
             if (Input.GetKeyDown(KeyCode.F6))
             {
-                VisibleEditor = !VisibleEditor;
+                VisibleEditorItem = !VisibleEditorItem;
             }
 
             if (Input.GetKeyDown(KeyCode.F5))
@@ -256,23 +254,25 @@ namespace BuildManager
 
         }
 
+        /// <summary>
+        /// 打开笔刷
+        /// </summary>
         public void OpenBrushHandle()
         {
             brushManager.brushMode = BrushManager.BrushMode.Direct;
         }
 
+        /// <summary>
+        /// 关闭笔刷
+        /// </summary>
         public void CloseBrushHandle()
         {
             brushManager.brushMode = BrushManager.BrushMode.Place;
         }
 
-        public void TakephotoHandle()
-        {
-            UILayer.SetActive(false);
-            ScreenCapture.CaptureScreenshot("Screenshot.png");
-            Invoke("CaptureScreenshot", .1f);
-        }
-
+        /// <summary>
+        /// 切换笔刷
+        /// </summary>
         public void ToggleBrushMode()
         {
             if (brushManager.brushMode == BrushManager.BrushMode.Place)
@@ -287,6 +287,9 @@ namespace BuildManager
             }
         }
 
+        /// <summary>
+        /// 切换3D视角模式
+        /// </summary>
         public void ToggleVRMode()
         {
             if (CameraManager.visual == CameraFlags.Roam)
@@ -303,21 +306,33 @@ namespace BuildManager
             }
         }
 
+        /// <summary>
+        /// 切换灯光
+        /// </summary>
         public void ToggleLightHandle()
         {
             SetSceneLightActive(!activeSceneLight);
         }
 
+        /// <summary>
+        /// 打开灯光
+        /// </summary>
         public void OpenLightHandle()
         {
             SetSceneLightActive(true);
         }
 
+        /// <summary>
+        /// 关闭灯光
+        /// </summary>
         public void CloseLightHandle()
         {
             SetSceneLightActive(false);
         }
 
+        /// <summary>
+        /// 截图
+        /// </summary>
         public void TakePhotoHandle()
         {
             UILayer.SetActive(false);
@@ -400,6 +415,11 @@ namespace BuildManager
             return item;
         }
 
+        /// <summary>
+        /// 获取所有相同资源ID的道具
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public static List<ItemStruct> GetSameAssetItemData(string id)
         {
             List<ItemStruct> list = new List<ItemStruct>();
@@ -415,19 +435,26 @@ namespace BuildManager
             return list;
         }
 
+        /// <summary>
+        /// 取消选中
+        /// </summary>
+        /// <param name="value"></param>
         public static void EnabledEditorObjectSelection(bool value)
         {
             if (!value) Instance.editorObjectSelection.ClearSelection(false);
             Instance.editorObjectSelection.gameObject.SetActive(value);
         }
 
-        private static bool _visibleEditor = true;
+        private static bool _visibleEditorItem = true;
 
-        public static bool VisibleEditor
+        /// <summary>
+        /// 隐藏所有编辑道具
+        /// </summary>
+        public static bool VisibleEditorItem
         {
             set
             {
-                _visibleEditor = value;
+                _visibleEditorItem = value;
 
                 foreach (ItemStruct data in AssetsModel.Instance.itemDatas)
                 {
@@ -451,10 +478,14 @@ namespace BuildManager
                     }
                 }
             }
-            get { return _visibleEditor; }
+            get { return _visibleEditorItem; }
         }
 
-
+        /// <summary>
+        /// 鼠标是否在操作区
+        /// </summary>
+        /// <param name="v"></param>
+        /// <returns></returns>
         public static bool InEditorArea(Vector2 v)
         {
             if ((Input.mousePosition.x > 350 && Input.mousePosition.x < 1520) &&
@@ -465,6 +496,9 @@ namespace BuildManager
             return false;
         }
 
+        /// <summary>
+        /// 删除保存文件里无用的连接资源
+        /// </summary>
         public static void UpdateQuoteFileURL()
         {
             List<string> imgs = new List<string>();

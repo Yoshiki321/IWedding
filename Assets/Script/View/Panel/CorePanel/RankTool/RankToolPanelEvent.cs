@@ -15,6 +15,9 @@ public class RankToolPanelEvent : EventObject
     public static string ROTATION_Y = "RankToolPanelEvent_ROTATION_Y";
     public static string ROTATION_Z = "RankToolPanelEvent_ROTATION_Z";
 
+    public static string RAYDOWN = "RankToolPanelEvent_RAYDOWN";
+    public static string RANDOMROTATE = "RankToolPanelEvent_RANDOMROTATE";
+
     public static string CLOSE = "RankToolPanelEvent_CLOSE";
 
     public RankToolPanelEvent(string types)

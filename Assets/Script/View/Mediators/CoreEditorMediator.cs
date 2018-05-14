@@ -139,6 +139,8 @@ public class CoreEditorMediator : Mediators
         AddViewListener(RankToolPanelEvent.ROTATION_X, RankTool_RotationXHandle);
         AddViewListener(RankToolPanelEvent.ROTATION_Y, RankTool_RotationYHandle);
         AddViewListener(RankToolPanelEvent.ROTATION_Z, RankTool_RotationZHandle);
+        AddViewListener(RankToolPanelEvent.RAYDOWN, RankTool_RayDownHandle);
+        AddViewListener(RankToolPanelEvent.RANDOMROTATE, RankTool_RandomRotateHandle);
 
         AddViewListener(SceneToolPanelEvent.Space, OpenCreateSurfaceHandle);
         AddViewListener(SceneToolPanelEvent.Nested, OpenCreateNestedHandle);
@@ -303,7 +305,42 @@ public class CoreEditorMediator : Mediators
         DispatcherEvent(new SceneEvent(SceneEvent.ADD_ITEM, new List<AssetVO>() { null }, CodeManager.LoadCombination(fe.obj as XmlNode)));
     }
 
+    /// <summary>
+    /// 道具向下移动，在触碰到的第一个物体的位置停留
+    /// </summary>
+    /// <param name="e"></param>
+    private void RankTool_RayDownHandle(EventObject e)
+    {
+        List<AssetVO> newTranslationAssetVOs = new List<AssetVO>();
+        List<AssetVO> oldTranslationAssetVOs = new List<AssetVO>();
+
+        foreach (Item3D item in Mouse3Manager.selectionItem)
+        {
+            oldTranslationAssetVOs.Add(AssetsModel.Instance.GetTransformVO(item));
+        }
+
+        RaycastHit hitInfo;
+        LayerMask layer = 1 << LayerMask.NameToLayer("Graphic3D");
+        foreach (Item3D item in Mouse3Manager.selectionItem)
+        {
+            if (Physics.Raycast(item.transform.position, Vector3.down, out hitInfo, 99999))
+            {
+                item.transform.position = hitInfo.point;
+            }
+        }
+
+        SceneManager.Instance.editorGizmoSystem.EstablishActiveGizmoPosition();
+
+        foreach (Item3D item in Mouse3Manager.selectionItem)
+        {
+            newTranslationAssetVOs.Add(AssetsModel.Instance.GetTransformVO(item));
+        }
+
+        DispatcherEvent(new SceneEvent(SceneEvent.TRANSFORM, oldTranslationAssetVOs, newTranslationAssetVOs));
+    }
+
     #region Rank
+
     private void RankTool_Close_Handle(EventObject e)
     {
         (panel as CorePanel).SetActiveRankTool(false);
@@ -373,6 +410,33 @@ public class CoreEditorMediator : Mediators
         if (value == "rx") RankManager.RankRotationX(list);
         if (value == "ry") RankManager.RankRotationY(list);
         if (value == "rz") RankManager.RankRotationZ(list);
+
+        foreach (Item3D item in Mouse3Manager.selectionItem)
+        {
+            newTranslationAssetVOs.Add(AssetsModel.Instance.GetTransformVO(item));
+        }
+
+        DispatcherEvent(new SceneEvent(SceneEvent.TRANSFORM, oldTranslationAssetVOs, newTranslationAssetVOs));
+    }
+
+    /// <summary>
+    /// 随机设置道具的Y轴
+    /// </summary>
+    /// <param name="e"></param>
+    private void RankTool_RandomRotateHandle(EventObject e)
+    {
+        List<AssetVO> newTranslationAssetVOs = new List<AssetVO>();
+        List<AssetVO> oldTranslationAssetVOs = new List<AssetVO>();
+
+        foreach (Item3D item in Mouse3Manager.selectionItem)
+        {
+            oldTranslationAssetVOs.Add(AssetsModel.Instance.GetTransformVO(item));
+        }
+
+        foreach (Item3D item in Mouse3Manager.selectionItem)
+        {
+            item.rotationY = 360 * Random.value;
+        }
 
         foreach (Item3D item in Mouse3Manager.selectionItem)
         {
@@ -906,7 +970,8 @@ public class CoreEditorMediator : Mediators
         UIManager.CloseUI(UI.ChooseSurfacePanel);
     }
 
-    private void SceneToolbarTakePhotoHandle(EventObject e) {
+    private void SceneToolbarTakePhotoHandle(EventObject e)
+    {
         SceneManager.Instance.TakePhotoHandle();
     }
 

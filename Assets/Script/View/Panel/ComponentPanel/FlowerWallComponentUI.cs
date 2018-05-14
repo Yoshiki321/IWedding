@@ -12,14 +12,14 @@ public class FlowerWallComponentUI : BaseComponentUI
     private DrawPlane _drawPanel;
     private DrawLine _rline;
 
-    private Button addBtn;
-    private Button removeBtn;
-    private Button resetCBtn;
+    private Button _addBtn;
+    private Button _removeBtn;
+    private Button _resetCBtn;
 
-    private ButtonImageUI colorUI;
+    private ButtonImageUI _colorUI;
     private Color _color;
 
-    TitleButtonUI hideButton;
+    TitleButtonUI _hideButton;
 
     override public void Init()
     {
@@ -30,19 +30,19 @@ public class FlowerWallComponentUI : BaseComponentUI
         CreateTitleButtonUI("编辑", "快捷键 R", value => { Editor(); });
         CreateTitleButtonUI("填充", "快捷键 E", RelationClickHandle);
         CreateTitleButtonUI("清空", "清空花墙", value => { Clear(); });
-        hideButton = CreateTitleButtonUI("隐藏", "隐藏背板", value => { Hide(); });
-        colorUI = CreateButtonImageUI("背板颜色", ColorClickHandle);
+        _hideButton = CreateTitleButtonUI("隐藏", "隐藏背板", value => { Hide(); });
+        _colorUI = CreateButtonImageUI("背板颜色", ColorClickHandle);
 
-        _menu = GameObject.Instantiate(Resources.Load("UI/DrawLinePanel/menu") as GameObject);
+        _menu = Instantiate(Resources.Load("UI/DrawLinePanel/menu") as GameObject);
         _menu.transform.parent = UIManager.GetUI(UI.ComponentPanel).transform;
         _menu.SetActive(false);
 
-        addBtn = _menu.transform.Find("AddBtn").gameObject.GetComponent<Button>();
-        removeBtn = _menu.transform.Find("RemoveBtn").gameObject.GetComponent<Button>();
-        resetCBtn = _menu.transform.Find("ResetBtn").gameObject.GetComponent<Button>();
-        addBtn.onClick.AddListener(AddBtnClickHandle);
-        removeBtn.onClick.AddListener(RemoveBtnClickHandle);
-        resetCBtn.onClick.AddListener(ResetCBtnClickHandle);
+        _addBtn = _menu.transform.Find("AddBtn").gameObject.GetComponent<Button>();
+        _removeBtn = _menu.transform.Find("RemoveBtn").gameObject.GetComponent<Button>();
+        _resetCBtn = _menu.transform.Find("ResetBtn").gameObject.GetComponent<Button>();
+        _addBtn.onClick.AddListener(AddBtnClickHandle);
+        _removeBtn.onClick.AddListener(RemoveBtnClickHandle);
+        _resetCBtn.onClick.AddListener(ResetCBtnClickHandle);
 
         UpdateHeight();
     }
@@ -55,7 +55,7 @@ public class FlowerWallComponentUI : BaseComponentUI
     private void ColorClickHandle(ButtonImageUI ui)
     {
         SelectColorPanel sp = UIManager.OpenPanel(Panel.SelectColorPanel, _color,
-         colorUI.button.transform.position) as SelectColorPanel;
+         _colorUI.button.transform.position) as SelectColorPanel;
         sp.onPicker.AddListener(UpdateColor);
     }
 
@@ -64,7 +64,7 @@ public class FlowerWallComponentUI : BaseComponentUI
         _color = color;
         foreach (FlowerWallComponent flowerWall in _flowerWall) flowerWall.color = _color;
         UpdateComponent();
-        colorUI.image.color = _color;
+        _colorUI.image.color = _color;
     }
 
     private void AddBtnClickHandle()
@@ -114,13 +114,13 @@ public class FlowerWallComponentUI : BaseComponentUI
     {
         if (!value)
         {
-            hideButton.buttonText.text = "显示";
-            hideButton.titleText.text = "显示背板";
+            _hideButton.buttonText.text = "显示";
+            _hideButton.titleText.text = "显示背板";
         }
         else
         {
-            hideButton.buttonText.text = "隐藏";
-            hideButton.titleText.text = "隐藏背板";
+            _hideButton.buttonText.text = "隐藏";
+            _hideButton.titleText.text = "隐藏背板";
         }
         foreach (FlowerWallComponent flowerWall in _flowerWall) flowerWall.visible = value;
     }
@@ -218,7 +218,7 @@ public class FlowerWallComponentUI : BaseComponentUI
             VisiblePanel(vo.visible);
 
             _color = vo.color;
-            colorUI.image.color = _color;
+            _colorUI.image.color = _color;
         }
 
         _fillComponent = false;

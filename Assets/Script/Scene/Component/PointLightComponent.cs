@@ -16,10 +16,10 @@ public class PointLightComponent : SceneComponent
             item.VO.AddComponentVO<PointLightVO>();
         }
 
-        _light = item.GetComponentInChildren<Light>();
+        _lights = item.GetComponentsInChildren<Light>();
     }
 
-    private Light _light;
+    private Light[] _lights;
     private AssetVO _vo;
 
     override public AssetVO VO
@@ -36,19 +36,59 @@ public class PointLightComponent : SceneComponent
         get { return _vo; }
     }
 
+    private void UpdateLightItem()
+    {
+        foreach (Light light in _lights)
+        {
+            Material material = light.gameObject.GetComponent<MeshRenderer>().material;
+            material.color = _color;
+            material.SetColor("_EmissionColor", _color);
+        }
+    }
+
+    private float _range;
+
     public float range
     {
-        set { _light.range = value; }
+        set
+        {
+            _range = value;
+            foreach (Light light in _lights)
+            {
+                light.range = value;
+            }
+            UpdateLightItem();
+        }
     }
+
+    private float _intensity;
 
     public float intensity
     {
-        set { _light.intensity = value; }
+        set
+        {
+            _intensity = value;
+            foreach (Light light in _lights)
+            {
+                light.intensity = value;
+            }
+            UpdateLightItem();
+        }
     }
+
+    private Color _color;
 
     public Color color
     {
-        set { _light.color = value; }
+        set
+        {
+            _color = value;
+            foreach (Light light in _lights)
+            {
+                light.color = value;
+            }
+            UpdateLightItem();
+        }
     }
 
     private void Update()

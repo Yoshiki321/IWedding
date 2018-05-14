@@ -153,13 +153,7 @@ public class SpotlightComponent : SceneComponent
         get { return _color; }
     }
 
-    private int _rotateType;
-
-    public int rotateType
-    {
-        set { _rotateType = value; }
-        get { return _rotateType; }
-    }
+    public int rotateType { set; get; }
 
     public string Cookie
     {

@@ -21,9 +21,10 @@ GameObject:
   - component: {fileID: 4002173669829924}
   - component: {fileID: 33980570478114918}
   - component: {fileID: 23078607370464620}
+  - component: {fileID: 64184976818852436}
   m_Layer: 0
   m_Name: sengxi:Obj3d66-558284-37-454
-  m_TagString: Untagged
+  m_TagString: Collage0
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,6 +113,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 8317ac051cda2d349bc37cd5f83d4721, type: 2}
   m_StaticBatchInfo:
@@ -139,4 +141,18 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1391318019682020}
+  m_Mesh: {fileID: 4300000, guid: f072df5a0e1a4fe45b787b07a2aadc94, type: 3}
+--- !u!64 &64184976818852436
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1391318019682020}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: f072df5a0e1a4fe45b787b07a2aadc94, type: 3}
