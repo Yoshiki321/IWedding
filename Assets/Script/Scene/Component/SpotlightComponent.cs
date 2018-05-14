@@ -138,7 +138,7 @@ public class SpotlightComponent : SceneComponent
         {
             _color = value;
             _light.color = value;
-            spot.GetComponent<Light>().color = value;
+            spot.GetComponentInChildren<Light>().color = value;
 
             _lightBeam.GenerateGeometry();
 
