@@ -40,9 +40,12 @@ public class PointLightComponent : SceneComponent
     {
         foreach (Light light in _lights)
         {
-            Material material = light.gameObject.GetComponent<MeshRenderer>().material;
-            material.color = _color;
-            material.SetColor("_EmissionColor", _color);
+            if (light.gameObject.GetComponent<MeshRenderer>())
+            {
+                Material material = light.gameObject.GetComponent<MeshRenderer>().material;
+                material.color = _color;
+                material.SetColor("_EmissionColor", _color);
+            }
         }
     }
 

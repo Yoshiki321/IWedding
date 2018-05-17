@@ -122,10 +122,6 @@ public class ThickIrregularPlane3D : MonoBehaviour
         downObj.transform.localScale = new Vector3(.01f, .01f, .01f);
         obj.transform.localScale = new Vector3(.01f, .01f, .01f);
 
-        upObj.AddComponent<MeshCollider>();
-        downObj.AddComponent<MeshCollider>();
-        obj.AddComponent<MeshCollider>();
-
         List<Vector2> uvList = new List<Vector2>();
         foreach (Vector3 v in meshPoints)
         {
@@ -196,6 +192,10 @@ public class ThickIrregularPlane3D : MonoBehaviour
         mesh.tangents = tangents;
         mesh.normals = normals;
         mf.mesh = mesh;
+
+        upObj.AddComponent<MeshCollider>();
+        downObj.AddComponent<MeshCollider>();
+        obj.AddComponent<MeshCollider>();
 
         if (gameObject.transform.parent)
         {

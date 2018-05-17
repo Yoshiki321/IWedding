@@ -8,12 +8,7 @@ public class CurvyColumn : MonoBehaviour
 
     private Transform _parentLayer;
 
-    private GameObject _layer;
-
-    public GameObject layer
-    {
-        get { return _layer; }
-    }
+    public GameObject layer { get; private set; }
 
     public void SetPoints(List<Vector3> value, Transform parentLayer, bool isLink = false)
     {
@@ -21,13 +16,13 @@ public class CurvyColumn : MonoBehaviour
 
         _parentLayer = parentLayer;
 
-        if (_layer == null)
+        if (layer == null)
         {
-            _layer = new GameObject();
-            _layer.name = "CurvyColumn";
-            _layer.transform.parent = parentLayer;
-            _layer.transform.rotation = parentLayer.rotation;
-            _layer.transform.position = new Vector3();
+            layer = new GameObject();
+            layer.name = "CurvyColumn";
+            layer.transform.parent = parentLayer;
+            layer.transform.rotation = parentLayer.rotation;
+            layer.transform.position = new Vector3();
         }
 
         _meshPoints = value;
@@ -38,8 +33,8 @@ public class CurvyColumn : MonoBehaviour
 
             if (i == _meshPoints.Count - 1 && isLink)
             {
-                List<Vector3> list = GetNodePoints(_meshPoints[i], _meshPoints[0]);
-                List<Vector3> list1 = GetNodePoints(_meshPoints[0], _meshPoints[i]);
+                List<Vector3> list = PlaneUtils.GetNodePoints(_meshPoints[i], _meshPoints[0], _radius, 10);
+                List<Vector3> list1 = PlaneUtils.GetNodePoints(_meshPoints[0], _meshPoints[i], _radius, 10);
 
                 CreateColumn(list, list1);
 
@@ -51,8 +46,8 @@ public class CurvyColumn : MonoBehaviour
             }
             else
             {
-                List<Vector3> list = GetNodePoints(_meshPoints[i], _meshPoints[i + 1]);
-                List<Vector3> list1 = GetNodePoints(_meshPoints[i + 1], _meshPoints[i]);
+                List<Vector3> list = PlaneUtils.GetNodePoints(_meshPoints[i], _meshPoints[i + 1], _radius, 10);
+                List<Vector3> list1 = PlaneUtils.GetNodePoints(_meshPoints[i + 1], _meshPoints[i], _radius, 10);
 
                 CreateColumn(list, list1);
 
@@ -68,9 +63,9 @@ public class CurvyColumn : MonoBehaviour
             sphere.GetComponent<MeshRenderer>().material.color = _color;
             sphere.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
-            if (_layer != null)
+            if (layer != null)
             {
-                sphere.transform.parent = _layer.transform;
+                sphere.transform.parent = layer.transform;
             }
             else
             {
@@ -94,26 +89,6 @@ public class CurvyColumn : MonoBehaviour
     }
 
     private List<GameObject> objectList;
-
-    /// <summary>
-    /// 获取点与连接点垂直平面上圆的所有点
-    /// </summary>
-    /// <returns></returns>
-    private List<Vector3> GetNodePoints(Vector3 v, Vector3 v1)
-    {
-        Vector3 v2 = new Vector3(999f, 999f, 999f);
-        Vector3 m = v - v1;
-        Vector3 m1 = v - v2;
-        Vector3 m2 = Vector3.Cross(m, m1);
-        Vector3 m3 = Vector3.MoveTowards(v, v1 + m2, _radius);
-
-        List<Vector3> list = new List<Vector3>();
-        for (int j = 0; j < 360; j += 10)
-        {
-            list.Add(MathUtils3D.RotateRound(m3, v1, v1 - v, j));
-        }
-        return list;
-    }
 
     private void CreateColumn(List<Vector3> points, List<Vector3> points1, bool isDouble = false)
     {
@@ -213,7 +188,7 @@ public class CurvyColumn : MonoBehaviour
 
         if (_parentLayer != null)
         {
-            obj.transform.parent = _layer.transform;
+            obj.transform.parent = layer.transform;
         }
         else
         {

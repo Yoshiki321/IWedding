@@ -1,8 +1,29 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class PlaneUtils
 {
+    /// <summary>
+    /// 获取点与连接点垂直平面上圆的所有点
+    /// </summary>
+    /// <returns></returns>
+    public static List<Vector3> GetNodePoints(Vector3 v, Vector3 v1, float radius, int count)
+    {
+        Vector3 v2 = new Vector3(999f, 999f, 999f);
+        Vector3 m = v - v1;
+        Vector3 m1 = v - v2;
+        Vector3 m2 = Vector3.Cross(m, m1);
+        Vector3 m3 = Vector3.MoveTowards(v, v1 + m2, radius);
+
+        List<Vector3> list = new List<Vector3>();
+        for (int j = 0; j < 360; j += 360 / count)
+        {
+            list.Add(MathUtils3D.RotateRound(m3, v1, v1 - v, j));
+        }
+        return list;
+    }
+
     /// <summary>
     /// 计算两点之间的角度 
     /// </summary>

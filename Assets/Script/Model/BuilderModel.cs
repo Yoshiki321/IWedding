@@ -98,8 +98,15 @@ public class BuilderModel : Actor<BuilderModel>
             data.surface3.Dispose();
         }
 
+        foreach (NestedStruct data in nestedDatas)
+        {
+            data.nested2.Dispose();
+            data.nested3.Dispose();
+        }
+
         lineDatas = new List<LineStruct>();
         surfaceDatas = new List<SurfaceStruct>();
+        nestedDatas = new List<NestedStruct>();
     }
 
     public SurfaceVO CreateSurfaceVO(List<LineVO> lines, string name)

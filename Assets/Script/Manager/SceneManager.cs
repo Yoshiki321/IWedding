@@ -157,25 +157,25 @@ namespace BuildManager
 
             //CameraUI.clearFlags = CameraClearFlags.Depth;
 
-            //if (Input.GetKeyDown(KeyCode.C))
-            //{
-            //    //if (visual == CameraFlags.Look)
-            //    //{
-            //    //    ChangeCamera(CameraFlags.Roam);
-            //    //}
-            //    if (CameraManager.visual == CameraFlags.Roam)
-            //    {
-            //        CameraManager.ChangeCamera(CameraFlags.Fly);
-            //    }
-            //    else if (CameraManager.visual == CameraFlags.Fly)
-            //    {
-            //        CameraManager.ChangeCamera(CameraFlags.VR);
-            //    }
-            //    else if (CameraManager.visual == CameraFlags.VR)
-            //    {
-            //        CameraManager.ChangeCamera(CameraFlags.Roam);
-            //    }
-            //}
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                //if (visual == CameraFlags.Look)
+                //{
+                //    ChangeCamera(CameraFlags.Roam);
+                //}
+                if (CameraManager.visual == CameraFlags.VR)
+                {
+                    CameraManager.ChangeCamera(CameraFlags.Fly);
+                }
+                else if (CameraManager.visual == CameraFlags.Fly)
+                {
+                    CameraManager.ChangeCamera(CameraFlags.VR);
+                }
+                //else if (CameraManager.visual == CameraFlags.VR)
+                //{
+                //    CameraManager.ChangeCamera(CameraFlags.Roam);
+                //}
+            }
 
             //if (Input.GetKeyDown(KeyCode.V))
             //{

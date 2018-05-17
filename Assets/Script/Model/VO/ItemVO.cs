@@ -107,6 +107,9 @@ public class ItemVO : ObjectVO
 
             xml = code.SelectSingleNode("Sprinkle");
             if (xml != null) AddComponentVO<SprinkleVO>().Code = xml;
+
+            xml = code.SelectSingleNode("WindBellLine");
+            if (xml != null) AddComponentVO<WindBellLineVO>().Code = xml;
         }
     }
 

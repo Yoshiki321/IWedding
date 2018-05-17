@@ -97,6 +97,10 @@ public class ChangeComponentCommand : HistoryCommand
             {
                 item.VO.GetComponentVO<FlowerWallVO>().FillFromObject(se.newAssets[i] as FlowerWallVO);
             }
+            if (se.newAssets[i] is WindBellLineVO)
+            {
+                item.VO.GetComponentVO<WindBellLineVO>().FillFromObject(se.newAssets[i] as WindBellLineVO);
+            }
         }
     }
 }

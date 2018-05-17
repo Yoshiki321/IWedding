@@ -67,6 +67,15 @@ public class AssetsModel : Actor<AssetsModel>
             ItemVO vo = new ItemVO();
             vo.Code = node;
             list.Add(vo);
+
+            if (vo.name == "undefined")
+            {
+                ItemData itemData = ItemManager.GetItemData(vo.assetId);
+                if (itemData != null)
+                {
+                    vo.name = itemData.name;
+                }
+            }
         }
 
         ProgressLoadItem(list);
@@ -133,6 +142,7 @@ public class AssetsModel : Actor<AssetsModel>
         {
             vo.modelId = itemData.model;
             vo.topImgId = itemData.topImg;
+            vo.name = itemData.name;
 
             foreach (ComponentVO cvo in itemData.componentVOs)
             {
@@ -161,8 +171,6 @@ public class AssetsModel : Actor<AssetsModel>
         _item3.transform.parent = SceneManager.Instance.Graphics3D.ItemLayer.transform;
         Item3D item3d = _item3.AddComponent<Item3D>();
         item3d.Instantiate(itemvo);
-
-        itemvo.name = itemvo.assetId.ToString();
 
         ItemStruct data = new ItemStruct();
         data.item2 = item2d;
