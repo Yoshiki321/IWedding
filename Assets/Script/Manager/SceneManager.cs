@@ -17,6 +17,7 @@ namespace BuildManager
         public static string ProjectURL;
         public static string ProjectModelURL;
         public static string ProjectPictureURL;
+        public static string ProjectCombinationURL;
 
         public Graphics2D Graphics2D;
         public Graphics3D Graphics3D;
@@ -199,15 +200,15 @@ namespace BuildManager
                 TakePhotoHandle();
             }
 
-            if (Input.GetKeyDown(KeyCode.F8))
-            {
-                UIManager.OpenUI(UI.LoadModelPanel);
-            }
+            //if (Input.GetKeyDown(KeyCode.F8))
+            //{
+            //    UIManager.OpenUI(UI.LoadModelPanel);
+            //}
 
-            if (Input.GetKeyDown(KeyCode.F7))
-            {
-                CodeManager.GetCombinationCode(Mouse3Manager.selectionItem);
-            }
+            //if (Input.GetKeyDown(KeyCode.F7))
+            //{
+            //    CodeManager.GetCombinationCode(Mouse3Manager.selectionItem);
+            //}
 
             if (Input.GetKeyDown(KeyCode.F6))
             {

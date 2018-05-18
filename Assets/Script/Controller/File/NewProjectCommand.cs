@@ -44,11 +44,13 @@ public class NewProjectCommand : Command
         SceneManager.ProjectURL = url;
         SceneManager.ProjectModelURL = url + "/" + "Resources" + "/" + "Model";
         SceneManager.ProjectPictureURL = url + "/" + "Resources" + "/" + "Picture";
+        SceneManager.ProjectCombinationURL = url + "/" + "Resources" + "/" + "Combination";
 
         Directory.CreateDirectory(url);
         Directory.CreateDirectory(url + "/" + "Resources");
         Directory.CreateDirectory(SceneManager.ProjectModelURL);
         Directory.CreateDirectory(SceneManager.ProjectPictureURL);
+        Directory.CreateDirectory(SceneManager.ProjectCombinationURL);
 
         string name = "project.zwkjProject";
         string urlName = url + "\\" + name;

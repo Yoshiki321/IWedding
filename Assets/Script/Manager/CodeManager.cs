@@ -131,7 +131,7 @@ public class CodeManager
         UIManager.OpenUI(UI.ProgressPanel);
     }
 
-    public static List<AssetVO> LoadCombination(string url)
+    public static List<AssetVO> LoadCombinationCode(string url)
     {
         XmlDocument xml = new XmlDocument();
         xml.LoadXml(Resources.Load(url).ToString());
@@ -141,7 +141,7 @@ public class CodeManager
         return AssetsModel.Instance.CreateItemVO(itemList, NumberUtils.GetGuid());
     }
 
-    public static List<AssetVO> LoadCombination(XmlNode xml)
+    public static List<AssetVO> LoadCombinationCode(XmlNode xml)
     {
         XmlNode xmlNode = xml.SelectSingleNode("Combination");
         XmlNodeList itemList = xmlNode.SelectNodes("Item");

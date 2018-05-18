@@ -1,5 +1,6 @@
 ﻿using BuildManager;
 using Common;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -42,6 +43,7 @@ public class OpenProjectCommand : Command
                 SceneManager.ProjectURL = fileEvent.url;
                 SceneManager.ProjectModelURL = fileEvent.url + "/" + "Resources" + "/" + "Model";
                 SceneManager.ProjectPictureURL = fileEvent.url + "/" + "Resources" + "/" + "Picture";
+                SceneManager.ProjectCombinationURL = fileEvent.url + "/" + "Resources" + "/" + "Combination";
 
                 CodeManager.LoadBuildCode(fileEvent.url + "\\" + str + "_Build");
                 CodeManager.LoadAssetsCode(fileEvent.url + "\\" + str + "_Assets");

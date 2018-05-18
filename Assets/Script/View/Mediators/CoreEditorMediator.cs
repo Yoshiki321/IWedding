@@ -47,6 +47,7 @@ public class CoreEditorMediator : Mediators
         SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.FOCUSON_SELECTION, Keyboard_FocusOnSelectionHandle);
         SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.OPEN_DRAWLINEPANEL, Keyboard_OpenDrawLinePanelHandle);
         SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.LOAD_COMBINATION, Keyboard_LoadCombinationHandle);
+        SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.SAVE_COMBINATION, Keyboard_SaveCombinationHandle);
         SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.OPEN_FILTERPANEL, Keyboard_OpenFilterPanelHandle);
         SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.CHANGEVIEW_ONE, Keyboard_ChangeViewOneHandle);
         SceneManager.Instance.keyboardManager.addEventListener(KeyboardManagerEvent.CHANGEVIEW_TWO, Keyboard_ChangeViewTwoHandle);
@@ -164,6 +165,7 @@ public class CoreEditorMediator : Mediators
 
         AddContextListener(UndoRedoEvent.UNDO_LIST_CHANGE, UndoListChangeHandle);
         AddContextListener(FileEvent.LOAD_COMBINATION_COMPLETE, LoadCombinationCompleteHandle);
+        AddContextListener(FileEvent.SAVE_COMBINATION_COMPLETE, SaveCombinationCompleteHandle);
     }
 
     public override void OnRemove()
@@ -299,10 +301,15 @@ public class CoreEditorMediator : Mediators
 
     }
 
+    private void SaveCombinationCompleteHandle(EventObject e)
+    {
+        ZipUtility.Zip(new string[1] { SceneManager.ProjectCombinationURL + "\\" + "Combination" }, SceneManager.ProjectCombinationURL);
+    }
+
     private void LoadCombinationCompleteHandle(EventObject e)
     {
         FileEvent fe = e as FileEvent;
-        DispatcherEvent(new SceneEvent(SceneEvent.ADD_ITEM, new List<AssetVO>() { null }, CodeManager.LoadCombination(fe.obj as XmlNode)));
+        DispatcherEvent(new SceneEvent(SceneEvent.ADD_ITEM, new List<AssetVO>() { null }, CodeManager.LoadCombinationCode(fe.obj as XmlNode)));
     }
 
     /// <summary>
@@ -602,6 +609,11 @@ public class CoreEditorMediator : Mediators
     private void Keyboard_LoadCombinationHandle(EventObject e)
     {
         DispatcherEvent(new FileEvent(FileEvent.LOAD_COMBINATION));
+    }
+
+    private void Keyboard_SaveCombinationHandle(EventObject e)
+    {
+        DispatcherEvent(new FileEvent(FileEvent.SAVE_COMBINATION));
     }
 
     private void Keyboard_ChangeViewOneHandle(EventObject e)

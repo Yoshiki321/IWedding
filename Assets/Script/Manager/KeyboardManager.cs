@@ -139,9 +139,13 @@ public class KeyboardManager : EventDispatcher
         {
             dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.OPEN_FILTERPANEL));
         }
-        //if (Input.GetKeyDown(KeyCode.F6))
-        //{
-        //    dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.LOAD_COMBINATION));
-        //}
+        if (Input.GetKeyDown(KeyCode.F8))
+        {
+            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.LOAD_COMBINATION));
+        }
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+            dispatchEvent(new KeyboardManagerEvent(KeyboardManagerEvent.SAVE_COMBINATION));
+        }
     }
 }

@@ -17,6 +17,7 @@
     public static string OPEN_DRAWLINEPANEL = "OPEN_DRAWLINEPANEL";
 
     public static string LOAD_COMBINATION = "LOAD_COMBINATION";
+    public static string SAVE_COMBINATION = "SAVE_COMBINATION";
     public static string OPEN_FILTERPANEL = "OPEN_FILTERPANEL";
     public static string CHANGEVIEW_ONE = "CHANGEVIEW_ONE";
     public static string CHANGEVIEW_TWO = "CHANGEVIEW_TWO";
