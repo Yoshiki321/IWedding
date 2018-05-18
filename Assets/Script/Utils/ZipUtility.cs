@@ -2,63 +2,11 @@
 using System.Collections;
 using UnityEngine;
 using ICSharpCode.SharpZipLib.Zip;
+using System.Collections.Generic;
+using System;
 
 public static class ZipUtility
 {
-    #region ZipCallback
-    public abstract class ZipCallback
-    {
-        /// <summary>
-        /// 压缩单个文件或文件夹前执行的回调
-        /// </summary>
-        /// <param name="_entry"></param>
-        /// <returns>如果返回true，则压缩文件或文件夹，反之则不压缩文件或文件夹</returns>
-        public virtual bool OnPreZip(ZipEntry _entry)
-        {
-            return true;
-        }
-
-        /// <summary>
-        /// 压缩单个文件或文件夹后执行的回调
-        /// </summary>
-        /// <param name="_entry"></param>
-        public virtual void OnPostZip(ZipEntry _entry) { }
-
-        /// <summary>
-        /// 压缩执行完毕后的回调
-        /// </summary>
-        /// <param name="_result">true表示压缩成功，false表示压缩失败</param>
-        public virtual void OnFinished(bool _result) { }
-    }
-    #endregion
-
-    #region UnzipCallback
-    public abstract class UnzipCallback
-    {
-        /// <summary>
-        /// 解压单个文件或文件夹前执行的回调
-        /// </summary>
-        /// <param name="_entry"></param>
-        /// <returns>如果返回true，则压缩文件或文件夹，反之则不压缩文件或文件夹</returns>
-        public virtual bool OnPreUnzip(ZipEntry _entry)
-        {
-            return true;
-        }
-
-        /// <summary>
-        /// 解压单个文件或文件夹后执行的回调
-        /// </summary>
-        /// <param name="_entry"></param>
-        public virtual void OnPostUnzip(ZipEntry _entry) { }
-
-        /// <summary>
-        /// 解压执行完毕后的回调
-        /// </summary>
-        /// <param name="_result">true表示解压成功，false表示解压失败</param>
-        public virtual void OnFinished(bool _result) { }
-    }
-    #endregion
-
     /// <summary>
     /// 压缩文件和文件夹
     /// </summary>
@@ -67,12 +15,11 @@ public static class ZipUtility
     /// <param name="_password">压缩密码</param>
     /// <param name="_zipCallback">ZipCallback对象，负责回调</param>
     /// <returns></returns>
-    public static bool Zip(string[] _fileOrDirectoryArray, string _outputPathName, string _password = null, ZipCallback _zipCallback = null)
+    public static bool Zip(List<string> _fileOrDirectoryArray, string _outputPathName, string _password = null, Action<ZipEntry> onPostzip = null, Action<bool> onFinished = null)
     {
         if ((null == _fileOrDirectoryArray) || string.IsNullOrEmpty(_outputPathName))
         {
-            if (null != _zipCallback)
-                _zipCallback.OnFinished(false);
+            onFinished?.Invoke(false);
 
             return false;
         }
@@ -82,19 +29,18 @@ public static class ZipUtility
         if (!string.IsNullOrEmpty(_password))
             zipOutputStream.Password = _password;
 
-        for (int index = 0; index < _fileOrDirectoryArray.Length; ++index)
+        for (int index = 0; index < _fileOrDirectoryArray.Count; ++index)
         {
             bool result = false;
             string fileOrDirectory = _fileOrDirectoryArray[index];
             if (Directory.Exists(fileOrDirectory))
-                result = ZipDirectory(fileOrDirectory, string.Empty, zipOutputStream, _zipCallback);
+                result = ZipDirectory(fileOrDirectory, string.Empty, zipOutputStream, onPostzip);
             else if (File.Exists(fileOrDirectory))
-                result = ZipFile(fileOrDirectory, string.Empty, zipOutputStream, _zipCallback);
+                result = ZipFile(fileOrDirectory, string.Empty, zipOutputStream, onPostzip);
 
             if (!result)
             {
-                if (null != _zipCallback)
-                    _zipCallback.OnFinished(false);
+                onFinished?.Invoke(false);
 
                 return false;
             }
@@ -103,8 +49,7 @@ public static class ZipUtility
         zipOutputStream.Finish();
         zipOutputStream.Close();
 
-        if (null != _zipCallback)
-            _zipCallback.OnFinished(true);
+        onFinished?.Invoke(true);
 
         return true;
     }
@@ -117,26 +62,24 @@ public static class ZipUtility
     /// <param name="_password">解压密码</param>
     /// <param name="_unzipCallback">UnzipCallback对象，负责回调</param>
     /// <returns></returns>
-    public static bool UnzipFile(string _filePathName, string _outputPath, string _password = null, UnzipCallback _unzipCallback = null)
+    public static bool UnzipFile(string _filePathName, string _outputPath, string _password = null, Action<ZipEntry> onPostUnzip = null, Action<bool> onFinished = null)
     {
         if (string.IsNullOrEmpty(_filePathName) || string.IsNullOrEmpty(_outputPath))
         {
-            if (null != _unzipCallback)
-                _unzipCallback.OnFinished(false);
+            onFinished?.Invoke(false);
 
             return false;
         }
 
         try
         {
-            return UnzipFile(File.OpenRead(_filePathName), _outputPath, _password, _unzipCallback);
+            return UnzipFile(File.OpenRead(_filePathName), _outputPath, _password, onPostUnzip, onFinished);
         }
         catch (System.Exception _e)
         {
             Debug.LogError("[ZipUtility.UnzipFile]: " + _e.ToString());
 
-            if (null != _unzipCallback)
-                _unzipCallback.OnFinished(false);
+            onFinished?.Invoke(false);
 
             return false;
         }
@@ -150,21 +93,19 @@ public static class ZipUtility
     /// <param name="_password">解压密码</param>
     /// <param name="_unzipCallback">UnzipCallback对象，负责回调</param>
     /// <returns></returns>
-    public static bool UnzipFile(byte[] _fileBytes, string _outputPath, string _password = null, UnzipCallback _unzipCallback = null)
+    public static bool UnzipFile(byte[] _fileBytes, string _outputPath, string _password = null, Action<ZipEntry> onPostUnzip = null, Action<bool> onFinished = null)
     {
         if ((null == _fileBytes) || string.IsNullOrEmpty(_outputPath))
         {
-            if (null != _unzipCallback)
-                _unzipCallback.OnFinished(false);
+            onFinished?.Invoke(false);
 
             return false;
         }
 
-        bool result = UnzipFile(new MemoryStream(_fileBytes), _outputPath, _password, _unzipCallback);
+        bool result = UnzipFile(new MemoryStream(_fileBytes), _outputPath, _password, onPostUnzip, onFinished);
         if (!result)
         {
-            if (null != _unzipCallback)
-                _unzipCallback.OnFinished(false);
+            onFinished?.Invoke(false);
         }
 
         return result;
@@ -178,12 +119,11 @@ public static class ZipUtility
     /// <param name="_password">解压密码</param>
     /// <param name="_unzipCallback">UnzipCallback对象，负责回调</param>
     /// <returns></returns>
-    public static bool UnzipFile(Stream _inputStream, string _outputPath, string _password = null, UnzipCallback _unzipCallback = null)
+    public static bool UnzipFile(Stream _inputStream, string _outputPath, string _password = null, Action<ZipEntry> onPostUnzip = null, Action<bool> onFinished = null)
     {
         if ((null == _inputStream) || string.IsNullOrEmpty(_outputPath))
         {
-            if (null != _unzipCallback)
-                _unzipCallback.OnFinished(false);
+            onFinished?.Invoke(false);
 
             return false;
         }
@@ -203,9 +143,6 @@ public static class ZipUtility
             {
                 if (string.IsNullOrEmpty(entry.Name))
                     continue;
-
-                if ((null != _unzipCallback) && !_unzipCallback.OnPreUnzip(entry))
-                    continue;   // 过滤
 
                 string filePathName = Path.Combine(_outputPath, entry.Name);
 
@@ -229,8 +166,7 @@ public static class ZipUtility
                                 fileStream.Write(bytes, 0, count);
                             else
                             {
-                                if (null != _unzipCallback)
-                                    _unzipCallback.OnPostUnzip(entry);
+                                onPostUnzip?.Invoke(entry);
 
                                 break;
                             }
@@ -241,16 +177,14 @@ public static class ZipUtility
                 {
                     Debug.LogError("[ZipUtility.UnzipFile]: " + _e.ToString());
 
-                    if (null != _unzipCallback)
-                        _unzipCallback.OnFinished(false);
+                    onFinished?.Invoke(false);
 
                     return false;
                 }
             }
         }
 
-        if (null != _unzipCallback)
-            _unzipCallback.OnFinished(true);
+        onFinished?.Invoke(true);
 
         return true;
     }
@@ -263,7 +197,7 @@ public static class ZipUtility
     /// <param name="_zipOutputStream">压缩输出流</param>
     /// <param name="_zipCallback">ZipCallback对象，负责回调</param>
     /// <returns></returns>
-    private static bool ZipFile(string _filePathName, string _parentRelPath, ZipOutputStream _zipOutputStream, ZipCallback _zipCallback = null)
+    private static bool ZipFile(string _filePathName, string _parentRelPath, ZipOutputStream _zipOutputStream, Action<ZipEntry> onPostzip = null)
     {
         //Crc32 crc32 = new Crc32();
         ZipEntry entry = null;
@@ -273,9 +207,6 @@ public static class ZipUtility
             string entryName = _parentRelPath + '/' + Path.GetFileName(_filePathName);
             entry = new ZipEntry(entryName);
             entry.DateTime = System.DateTime.Now;
-
-            if ((null != _zipCallback) && !_zipCallback.OnPreZip(entry))
-                return true;    // 过滤
 
             fileStream = File.OpenRead(_filePathName);
             byte[] buffer = new byte[fileStream.Length];
@@ -305,8 +236,7 @@ public static class ZipUtility
             }
         }
 
-        if (null != _zipCallback)
-            _zipCallback.OnPostZip(entry);
+        onPostzip?.Invoke(entry);
 
         return true;
     }
@@ -319,7 +249,7 @@ public static class ZipUtility
     /// <param name="_zipOutputStream">压缩输出流</param>
     /// <param name="_zipCallback">ZipCallback对象，负责回调</param>
     /// <returns></returns>
-    private static bool ZipDirectory(string _path, string _parentRelPath, ZipOutputStream _zipOutputStream, ZipCallback _zipCallback = null)
+    private static bool ZipDirectory(string _path, string _parentRelPath, ZipOutputStream _zipOutputStream, Action<ZipEntry> onPostzip = null)
     {
         ZipEntry entry = null;
         try
@@ -329,15 +259,12 @@ public static class ZipUtility
             entry.DateTime = System.DateTime.Now;
             entry.Size = 0;
 
-            if ((null != _zipCallback) && !_zipCallback.OnPreZip(entry))
-                return true;    // 过滤
-
             _zipOutputStream.PutNextEntry(entry);
             _zipOutputStream.Flush();
 
             string[] files = Directory.GetFiles(_path);
             for (int index = 0; index < files.Length; ++index)
-                ZipFile(files[index], Path.Combine(_parentRelPath, Path.GetFileName(_path)), _zipOutputStream, _zipCallback);
+                ZipFile(files[index], Path.Combine(_parentRelPath, Path.GetFileName(_path)), _zipOutputStream, onPostzip);
         }
         catch (System.Exception _e)
         {
@@ -348,12 +275,11 @@ public static class ZipUtility
         string[] directories = Directory.GetDirectories(_path);
         for (int index = 0; index < directories.Length; ++index)
         {
-            if (!ZipDirectory(directories[index], Path.Combine(_parentRelPath, Path.GetFileName(_path)), _zipOutputStream, _zipCallback))
+            if (!ZipDirectory(directories[index], Path.Combine(_parentRelPath, Path.GetFileName(_path)), _zipOutputStream, onPostzip))
                 return false;
         }
 
-        if (null != _zipCallback)
-            _zipCallback.OnPostZip(entry);
+        onPostzip?.Invoke(entry);
 
         return true;
     }

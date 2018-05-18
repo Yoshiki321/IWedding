@@ -42,6 +42,7 @@ public class NewProjectCommand : Command
         }
         
         SceneManager.ProjectURL = url;
+        SceneManager.ProjectResourcesURL = url + "/" + "Resources";
         SceneManager.ProjectModelURL = url + "/" + "Resources" + "/" + "Model";
         SceneManager.ProjectPictureURL = url + "/" + "Resources" + "/" + "Picture";
         SceneManager.ProjectCombinationURL = url + "/" + "Resources" + "/" + "Combination";

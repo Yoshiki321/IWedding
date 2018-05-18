@@ -130,6 +130,16 @@ public class AssetsModel : Actor<AssetsModel>
             vo.Code = node;
             vo.groupId = combination;
             vo.id = NumberUtils.GetGuid();
+
+            if (vo.name == "undefined")
+            {
+                ItemData itemData = ItemManager.GetItemData(vo.assetId);
+                if (itemData != null)
+                {
+                    vo.name = itemData.name;
+                }
+            }
+
             lists.Add(vo);
         }
         return lists;

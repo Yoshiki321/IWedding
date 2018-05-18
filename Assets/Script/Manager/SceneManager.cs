@@ -6,6 +6,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 using NAudio.Wave;
 using Build2D;
 using System.IO;
+using System.Threading;
 
 namespace BuildManager
 {
@@ -15,6 +16,7 @@ namespace BuildManager
 
         public static string ProjectName;
         public static string ProjectURL;
+        public static string ProjectResourcesURL; 
         public static string ProjectModelURL;
         public static string ProjectPictureURL;
         public static string ProjectCombinationURL;
@@ -197,7 +199,7 @@ namespace BuildManager
 
             if (Input.GetKeyDown(KeyCode.F9))
             {
-                TakePhotoHandle();
+                CaptureScreenshot();
             }
 
             //if (Input.GetKeyDown(KeyCode.F8))
@@ -334,15 +336,11 @@ namespace BuildManager
         /// <summary>
         /// 截图
         /// </summary>
-        public void TakePhotoHandle()
+        public void CaptureScreenshot()
         {
             UILayer.SetActive(false);
             ScreenCapture.CaptureScreenshot("Screenshot.png");
-            Invoke("CaptureScreenshot", .1f);
-        }
-
-        private void CaptureScreenshot()
-        {
+            Thread.Sleep(100);
             UILayer.SetActive(true);
         }
 

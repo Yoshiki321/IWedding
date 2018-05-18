@@ -303,7 +303,6 @@ public class CoreEditorMediator : Mediators
 
     private void SaveCombinationCompleteHandle(EventObject e)
     {
-        ZipUtility.Zip(new string[1] { SceneManager.ProjectCombinationURL + "\\" + "Combination" }, SceneManager.ProjectCombinationURL);
     }
 
     private void LoadCombinationCompleteHandle(EventObject e)
@@ -984,7 +983,7 @@ public class CoreEditorMediator : Mediators
 
     private void SceneToolbarTakePhotoHandle(EventObject e)
     {
-        SceneManager.Instance.TakePhotoHandle();
+        SceneManager.Instance.CaptureScreenshot();
     }
 
     private void SceneToolbarLoadHandle(EventObject e)

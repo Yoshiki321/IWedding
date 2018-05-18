@@ -41,6 +41,7 @@ public class OpenProjectCommand : Command
 
                 SceneManager.ProjectName = str;
                 SceneManager.ProjectURL = fileEvent.url;
+                SceneManager.ProjectResourcesURL = fileEvent.url + "/" + "Resources";
                 SceneManager.ProjectModelURL = fileEvent.url + "/" + "Resources" + "/" + "Model";
                 SceneManager.ProjectPictureURL = fileEvent.url + "/" + "Resources" + "/" + "Picture";
                 SceneManager.ProjectCombinationURL = fileEvent.url + "/" + "Resources" + "/" + "Combination";
