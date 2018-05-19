@@ -12,7 +12,7 @@ public class SceneToolbarEvent : EventObject
     public static string DELETE = "SceneToolbarEvent_Delete";
     public static string BRUSH = "SceneToolbarEvent_Brush";
     public static string VR = "SceneToolbarEvent_VR";
-
+    public static string SwitchView = "SceneToolbarEvent_SwitchView";
     public static string GROUP = "SceneToolbarEvent_Group";
     public static string REGROUP = "SceneToolbarEvent_ReGroup";
     public static string PHOTO = "SceneToolbarEvent_PHOTO";

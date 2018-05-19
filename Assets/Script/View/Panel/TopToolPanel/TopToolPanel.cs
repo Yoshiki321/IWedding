@@ -14,6 +14,8 @@ public class TopToolPanel : BasePanel
     private List<GameObject> TopToolFilterBtnList = new List<GameObject>();
     private List<GameObject> TopToolWindowBtnList = new List<GameObject>();
     private List<GameObject> TopToolHelpBtnList = new List<GameObject>();
+
+    private GameObject _hideBtn;
     public bool TopToolFlag = false;
     private void Awake()
     {
@@ -30,12 +32,15 @@ public class TopToolPanel : BasePanel
     private void Start()
     {
         _Instance = this;
-
+        _hideBtn = GetUI("HideBtn");
         TopToolBtnList.Add(GetUI("FilePanel"));
         TopToolBtnList.Add(GetUI("EditPanel"));
         TopToolBtnList.Add(GetUI("FilterPanel"));
         TopToolBtnList.Add(GetUI("WindowPanel"));
         TopToolBtnList.Add(GetUI("HelpPanel"));
+        AddEventClick(_hideBtn);
+        AddEventDown(_hideBtn);
+        AddEventUp(_hideBtn);
         for (int i = 0; i < TopToolBtnList.Count; i++)
         {
             TopToolBtnList[i].SetActive(false);
@@ -110,12 +115,19 @@ public class TopToolPanel : BasePanel
             AddEventExit(TopToolHelpBtnList[i]);
         }
 
-        TopToolBtnList[4].GetComponentInChildren<Text>().text = "版本号： "+SceneManager.Version;
+        TopToolBtnList[4].GetComponentInChildren<Text>().text = "版本号： " + SceneManager.Version;
     }
 
     protected override void OnClick(GameObject obj)
     {
-        IntButtonBgColor(obj);
+
+        if (obj == _hideBtn)
+        {
+            dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.HIDE));
+        }
+        else {
+            IntButtonBgColor(obj);
+        }
 
         for (int i = 0; i < TopToolBtnList.Count; i++)
         {
@@ -206,6 +218,7 @@ public class TopToolPanel : BasePanel
         }
         if (obj == TopToolFilterBtnList[4])
         {
+            print("点击了切换");
             dispatchEvent(new TopToolPanelEvent(TopToolPanelEvent.VIEWFOUR));
         }
         if (obj == TopToolFilterBtnList[5])
@@ -221,8 +234,8 @@ public class TopToolPanel : BasePanel
                 SceneManager.Instance.CloseLightHandle();
                 SceneToolbarPanel.Instance.IFLightIsClosedHandle();
                 OpenLight();
-                
-                
+
+
             }
         }
         //窗口
@@ -267,13 +280,11 @@ public class TopToolPanel : BasePanel
     public void ChangeTo3d()
     {
         TopToolFilterBtnList[4].transform.Find("Text").GetComponent<Text>().text = "2D模式";
-        TopToolFilterBtnList[4].transform.Find("Tip").GetComponent<Text>().text = "Ctrl+Shift+5";
     }
 
     public void ChangeTo2d()
     {
         TopToolFilterBtnList[4].transform.Find("Text").GetComponent<Text>().text = "3D模式";
-        TopToolFilterBtnList[4].transform.Find("Tip").GetComponent<Text>().text = "Ctrl+Shift+4";
     }
 
     public void OpenBrush() {
@@ -308,15 +319,13 @@ public class TopToolPanel : BasePanel
     protected override void OnEnter(GameObject obj)
     {
         SetButtonBgColor(obj);
-        print(obj);
     }
     protected override void OnExit(GameObject obj)
     {
         IntButtonBgColor(obj);
-        print(obj);
     }
 
-    public  void OpenFilePanel() {
+    public void OpenFilePanel() {
         for (int i = 0; i < TopToolBtnList.Count; i++)
         {
             if (i == 0)
@@ -410,6 +419,19 @@ public class TopToolPanel : BasePanel
         e.transform.Find("Text").GetComponent<Text>().color = Color.white;
     }
 
+    public void HideAllMenu()
+    {
+        for (int i = 0; i < TopToolBtnList.Count; i++)
+        {
+            TopToolBtnList[i].SetActive(false);
+        }
+        _hideBtn.transform.Find("Text").GetComponent<Text>().text = "显 示 界 面";
+    }
+
+    public void ShowAllMenu()
+    {
+        _hideBtn.transform.Find("Text").GetComponent<Text>().text = "隐 藏 界 面";
+    }
     void Update()
     {
     }

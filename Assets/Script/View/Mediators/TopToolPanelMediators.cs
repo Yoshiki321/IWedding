@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using BuildManager;
+using System;
 
 public class TopToolPanelMediators : Mediators
 {
@@ -25,7 +26,7 @@ public class TopToolPanelMediators : Mediators
         AddViewListener(TopToolPanelEvent.ADDHOME, TopToolAddHomeHandle);
 
         AddViewListener(TopToolPanelEvent.HELP, TopToolHelpHandle);
-
+        AddViewListener(TopToolPanelEvent.HIDE, HideHandler);
         AddViewListener(TopToolPanelEvent.OPENBRUSH, TopToolOpenBrushHandle);
         AddViewListener(TopToolPanelEvent.CLOSEBRUSH, TopToolCloseBrushHandle);
         AddViewListener(TopToolPanelEvent.ALIGN, TopToolAlignStageHandle);
@@ -60,7 +61,7 @@ public class TopToolPanelMediators : Mediators
 
         RemoveViewListener(TopToolPanelEvent.ADDITEM, TopToolAddItemHandle);
         RemoveViewListener(TopToolPanelEvent.ADDHOME, TopToolAddHomeHandle);
-
+        RemoveViewListener(TopToolPanelEvent.HIDE, HideHandler);
         RemoveViewListener(TopToolPanelEvent.HELP, TopToolHelpHandle);
         RemoveViewListener(TopToolPanelEvent.OPENBRUSH, TopToolOpenBrushHandle);
         RemoveViewListener(TopToolPanelEvent.CLOSEBRUSH, TopToolCloseBrushHandle);
@@ -76,6 +77,32 @@ public class TopToolPanelMediators : Mediators
         RemoveViewListener(TopToolPanelEvent.OPENDRAWPANEL, TopToolOpenDrawStageHandle);
         RemoveViewListener(TopToolPanelEvent.OPENMODELPANEL, TopToolOpenModelStageHandle);
         RemoveContextListener(FileEvent.OPEN_PROJECT_SUCCESS, ProjectOpenSuccessHandle);
+    }
+
+    private bool isUIOpen = true;
+    private void HideHandler(EventObject e)
+    {
+        if (isUIOpen)
+        {
+            isUIOpen = false;
+            GameObject.Find("UI/ItemSelectPanel").SetActive(false);
+            GameObject.Find("UI/SwitchToolPanel").SetActive(false);
+            GameObject.Find("UI/ComponentPanel").SetActive(false);
+            GameObject.Find("UI/CorePanel").SetActive(false);
+            GameObject.Find("UI/ItemToolPanel").SetActive(false);
+            TopToolPanel.Instance.HideAllMenu();
+        }
+        else
+        {
+            isUIOpen = true;
+            GameObject.Find("UI").transform.Find("ItemSelectPanel").gameObject.SetActive(true);
+            GameObject.Find("UI").transform.Find("SwitchToolPanel").gameObject.SetActive(true);
+            GameObject.Find("UI").transform.Find("ComponentPanel").gameObject.SetActive(true);
+            GameObject.Find("UI").transform.Find("CorePanel").gameObject.SetActive(true);
+            GameObject.Find("UI").transform.Find("ItemToolPanel").gameObject.SetActive(true);
+            TopToolPanel.Instance.ShowAllMenu();
+        }
+
     }
 
     private void ProjectOpenSuccessHandle(EventObject e)
