@@ -31,7 +31,7 @@ public class TopToolPanelEvent : EventObject
     public static string CLOSELIGHT = "TopToolPanelEvent_CLOSELIGHT";
     public static string OPENDRAWPANEL = "TopToolPanelEvent_OPENDRAWPANEL";
     public static string OPENMODELPANEL = "TopToolPanelEvent_OPENMODELPANEL";
-
+    public static string HIDE = "TopToolPanelEvent_HIDE";
     public string name;
 
     public TopToolPanelEvent(string types, bool bubbles = false, bool cancelable = false)

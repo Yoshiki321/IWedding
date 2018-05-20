@@ -93,7 +93,7 @@ public class CoreEditorMediator : Mediators
         AddContextListener(TopToolPanelEvent.VIEWONE, Keyboard_ChangeViewOneHandle);
         AddContextListener(TopToolPanelEvent.VIEWTWO, Keyboard_ChangeViewTwoHandle);
         AddContextListener(TopToolPanelEvent.VIEWTHREE, Keyboard_ChangeViewThreeHandle);
-        AddContextListener(TopToolPanelEvent.VIEWFOUR, Keyboard_ChangeView3DHandle);
+        AddContextListener(TopToolPanelEvent.VIEWFOUR, Switch3dViewHandler);
         AddContextListener(TopToolPanelEvent.VIEWFIVE, Keyboard_ChangeView2DHandle);
         AddContextListener(TopToolPanelEvent.OPENLIGHT, Keyboard_OpenLightHandle);
         AddContextListener(TopToolPanelEvent.CLOSELIGHT, Keyboard_CloseLightHandle);
@@ -111,10 +111,7 @@ public class CoreEditorMediator : Mediators
         AddViewListener(SceneToolbarEvent.GROUP, Keyboard_CombinationHandle);
         AddViewListener(SceneToolbarEvent.REGROUP, Keyboard_CancelCombinationHandle);
         AddViewListener(SceneToolbarEvent.PHOTO, SceneToolbarFilterHandle);
-
-        AddViewListener(SceneToolbarEvent.TO3D, SceneToolbarTo3DHandle);
-        AddViewListener(SceneToolbarEvent.TO2D, SceneToolbarTo2DHandle);
-
+        AddViewListener(SceneToolbarEvent.SwitchView, Switch3dViewHandler);
         AddViewListener(SceneToolbarEvent.POSTION, SceneToolbarPostionHandle);
         AddViewListener(SceneToolbarEvent.ROTATION, SceneToolbarRotationHandle);
         AddViewListener(SceneToolbarEvent.SCALE, SceneToolbarScaleHandle);
@@ -241,14 +238,14 @@ public class CoreEditorMediator : Mediators
         RemoveContextListener(TopToolPanelEvent.VIEWONE, Keyboard_ChangeViewOneHandle);
         RemoveContextListener(TopToolPanelEvent.VIEWTWO, Keyboard_ChangeViewTwoHandle);
         RemoveContextListener(TopToolPanelEvent.VIEWTHREE, Keyboard_ChangeViewThreeHandle);
-        RemoveContextListener(TopToolPanelEvent.VIEWFOUR, SceneToolbarTo3DHandle);
+        RemoveContextListener(TopToolPanelEvent.VIEWFOUR, Switch3dViewHandler);
         RemoveContextListener(TopToolPanelEvent.VIEWFIVE, SceneToolbarTo2DHandle);
         RemoveContextListener(TopToolPanelEvent.OPENLIGHT, Keyboard_OpenLightHandle);
         RemoveContextListener(TopToolPanelEvent.CLOSELIGHT, Keyboard_CloseLightHandle);
         RemoveContextListener(TopToolPanelEvent.OPENDRAWPANEL, openDrawLinePanelHandle);
         RemoveContextListener(TopToolPanelEvent.OPENMODELPANEL, SceneLoadModelHandle);
 
-        //顶部工具条
+        //中间
         RemoveViewListener(SceneToolbarEvent.UNDO, SceneToolbarUndoHandle);
         RemoveViewListener(SceneToolbarEvent.REDO, SceneToolbarRedoHandle);
         RemoveViewListener(SceneToolbarEvent.COPY, Keyboard_CopyHandle);
@@ -258,10 +255,7 @@ public class CoreEditorMediator : Mediators
         RemoveViewListener(SceneToolbarEvent.GROUP, Keyboard_CombinationHandle);
         RemoveViewListener(SceneToolbarEvent.REGROUP, Keyboard_CancelCombinationHandle);
         RemoveViewListener(SceneToolbarEvent.PHOTO, SceneToolbarFilterHandle);
-
-        RemoveViewListener(SceneToolbarEvent.TO3D, SceneToolbarTo3DHandle);
-        RemoveViewListener(SceneToolbarEvent.TO2D, SceneToolbarTo2DHandle);
-
+        RemoveViewListener(SceneToolbarEvent.SwitchView, Switch3dViewHandler);
         RemoveViewListener(SceneToolbarEvent.POSTION, SceneToolbarPostionHandle);
         RemoveViewListener(SceneToolbarEvent.ROTATION, SceneToolbarRotationHandle);
         RemoveViewListener(SceneToolbarEvent.SCALE, SceneToolbarScaleHandle);
@@ -644,6 +638,7 @@ public class CoreEditorMediator : Mediators
 
     private void Keyboard_ChangeView3DHandle(EventObject e)
     {
+        Debug.Log("点击切换了哦");
         SceneToolbarPanel.Instance.IFViewIs3DHandle();
         DispatcherEvent(new CameraCommandEvent(CameraCommandEvent.CHANGE, CameraFlags.Fly));
 
@@ -1035,6 +1030,21 @@ public class CoreEditorMediator : Mediators
     #endregion
 
     #region SceneEvent
+    private void Switch3dViewHandler(EventObject e)
+    {
+        if (CameraManager.visual == CameraFlags.Two)
+        {
+            CameraManager.ChangeCamera(CameraFlags.Fly);
+            TopToolPanel.Instance.ChangeTo3d();
+            SceneToolbarPanel.Instance.Sto3D();
+        }
+        else if (CameraManager.visual == CameraFlags.Fly) 
+        {
+            CameraManager.ChangeCamera(CameraFlags.Two);
+            TopToolPanel.Instance.ChangeTo2d();
+            SceneToolbarPanel.Instance.Sto2D();
+        }
+    }
 
     private void EventDispatcher_ChangeBuildHandler(EventObject e)
     {

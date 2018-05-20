@@ -297,19 +297,7 @@ public class SceneToolbarPanel : BasePanel
 
         if (obj == toolLineChangeViewBtn)
         {
-            if (viewFlag)
-            {
-                toolLineChangeViewBtn.transform.Find("Text").GetComponent<Text>().text = "切 换 2 D";
-                toolLineChangeViewBtn.transform.Find("Image").GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/2d", typeof(Sprite)) as Sprite;
-                transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.TO3D));
-                viewFlag = false;
-            }
-            else {
-                toolLineChangeViewBtn.transform.Find("Text").GetComponent<Text>().text = "切 换 3 D";
-                toolLineChangeViewBtn.transform.Find("Image").GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/3d", typeof(Sprite)) as Sprite;
-                transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.TO2D));
-                viewFlag = true;
-            }
+            transform.parent.GetComponent<BasePanel>().dispatchEvent(new SceneToolbarEvent(SceneToolbarEvent.SwitchView));
         }
 
         if (obj == toolLineFilterBtn)
@@ -395,6 +383,18 @@ public class SceneToolbarPanel : BasePanel
     public void IFViewIs2DHandle()
     {
         toolLineChangeViewBtn.transform.Find("Text").GetComponent<Text>().text = "切 换 3 D";
+    }
+
+    public void Sto2D()
+    {
+        toolLineChangeViewBtn.transform.Find("Text").GetComponent<Text>().text = "切 换 3 D";
+        toolLineChangeViewBtn.transform.Find("Image").GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/3d", typeof(Sprite)) as Sprite;
+    }
+
+    public void Sto3D()
+    {
+        toolLineChangeViewBtn.transform.Find("Text").GetComponent<Text>().text = "切 换 2 D";
+        toolLineChangeViewBtn.transform.Find("Image").GetComponent<Image>().overrideSprite = Resources.Load("UI/CorePanel/ToolLine/2d", typeof(Sprite)) as Sprite;
     }
 
     private void ToggleLight()
