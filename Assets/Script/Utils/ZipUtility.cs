@@ -204,7 +204,7 @@ public static class ZipUtility
         FileStream fileStream = null;
         try
         {
-            string entryName = _parentRelPath + '/' + Path.GetFileName(_filePathName);
+            string entryName = Path.GetFileName(_filePathName);
             entry = new ZipEntry(entryName);
             entry.DateTime = System.DateTime.Now;
 

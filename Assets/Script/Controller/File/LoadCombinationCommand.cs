@@ -43,15 +43,24 @@ public class LoadCombinationCommand : Command
             {
                 if (s.Contains(".jpg") || s.Contains(".png"))
                 {
-                    File.Move(SceneManager.ProjectResourcesURL + "/" + s, SceneManager.ProjectPictureURL + "/" + s);
+                    if (!File.Exists(SceneManager.ProjectPictureURL + "/" + s))
+                    {
+                        File.Move(SceneManager.ProjectResourcesURL + "/" + s, SceneManager.ProjectPictureURL + "/" + s);
+                    }
                 }
                 else if (s.Contains(".zwkjtiobj"))
                 {
-                    File.Move(SceneManager.ProjectResourcesURL + "/" + s, SceneManager.ProjectModelURL + "/" + s);
+                    if (!File.Exists(SceneManager.ProjectModelURL + "/" + s))
+                    {
+                        File.Move(SceneManager.ProjectResourcesURL + "/" + s, SceneManager.ProjectModelURL + "/" + s);
+                    }
                 }
                 else
                 {
-                    File.Move(SceneManager.ProjectResourcesURL + "/" + s, SceneManager.ProjectCombinationURL + "/" + s);
+                    if (!File.Exists(SceneManager.ProjectCombinationURL + "/" + s))
+                    {
+                        File.Move(SceneManager.ProjectResourcesURL + "/" + s, SceneManager.ProjectCombinationURL + "/" + s);
+                    }
                     url = SceneManager.ProjectCombinationURL + "/" + s;
                 }
             }

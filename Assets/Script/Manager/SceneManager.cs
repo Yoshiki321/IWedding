@@ -160,7 +160,7 @@ namespace BuildManager
 
             //CameraUI.clearFlags = CameraClearFlags.Depth;
 
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.F2))
             {
                 //if (visual == CameraFlags.Look)
                 //{

@@ -511,7 +511,10 @@ namespace RTEditor
             {
                 foreach (GameObject gameObject in ControlledObjects)
                 {
-                    _gameObjectLocalScaleSnapshot.Add(gameObject, gameObject.transform.localScale);
+                    if (!_gameObjectLocalScaleSnapshot.ContainsKey(gameObject))
+                    {
+                        _gameObjectLocalScaleSnapshot.Add(gameObject, gameObject.transform.localScale);
+                    }
                 }
             }
 
