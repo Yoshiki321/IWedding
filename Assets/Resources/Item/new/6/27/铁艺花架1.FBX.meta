@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 99ecfe31a4fb35b4c876a70a10844943
+guid: ab6ae2803f0272645ace22749542e0cc
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -29,7 +29,37 @@ ModelImporter:
     4300002: iFlowers-05-06P
     4300004: iFlowers-05-06C
     4300006: iFlowers-05-06
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #0'
+    second: {fileID: 2100000, guid: 1e4439bc6f921604b8670f7beeb2fd88, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #1'
+    second: {fileID: 2100000, guid: e70de9ef374875a4a949f5b67afaddb2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #2'
+    second: {fileID: 2100000, guid: c934cc03266bfab4f92b93498922f485, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #3'
+    second: {fileID: 2100000, guid: 0d965d8c912acc94c940a04747a03a44, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #4'
+    second: {fileID: 2100000, guid: c28a91ea6d76094418df20cffc7c7124, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #7'
+    second: {fileID: 2100000, guid: a161c1661232b4e488819961eccffaf8, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
