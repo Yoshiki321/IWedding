@@ -55,8 +55,10 @@ public class ItemManager
 
         ItemDataList = new List<ItemData>();
 
+        string[] SheetNames = { "sheet1", "sheet2", "sheet3", "sheet4" };
+
         FileStream stream = File.Open(Application.dataPath + "\\Data\\" + "test.xlsx",
-            FileMode.Open, FileAccess.Read, FileShare.Read);
+                FileMode.Open, FileAccess.Read, FileShare.Read);
         IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
         DataSet resultds = excelReader.AsDataSet();
         excelReader.Close();
