@@ -55,32 +55,34 @@ public class ItemManager
 
         ItemDataList = new List<ItemData>();
 
-        string[] SheetNames = { "sheet1", "sheet2", "sheet3", "sheet4" };
-
         FileStream stream = File.Open(Application.dataPath + "\\Data\\" + "test.xlsx",
                 FileMode.Open, FileAccess.Read, FileShare.Read);
         IExcelDataReader excelReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
         DataSet resultds = excelReader.AsDataSet();
         excelReader.Close();
 
-        int column = resultds.Tables[0].Columns.Count;
-        int row = resultds.Tables[0].Rows.Count;
-        Debug.LogWarning(column + "  " + row);
-        for (int i = 1; i < row; i++)
+        for (int j = 0; j < 1; j++)
         {
-            ItemData data = new ItemData();
-            data.id = resultds.Tables[0].Rows[i][1].ToString();
-            data.name = resultds.Tables[0].Rows[i][2].ToString();
-            data.describe = resultds.Tables[0].Rows[i][3].ToString();
-            data.thumbnail = resultds.Tables[0].Rows[i][4].ToString();
-            data.topImg = resultds.Tables[0].Rows[i][5].ToString();
-            data.model = resultds.Tables[0].Rows[i][6].ToString();
-            data.classify = resultds.Tables[0].Rows[i][7].ToString();
-            data.type = resultds.Tables[0].Rows[i][8].ToString();
-            data.price = resultds.Tables[0].Rows[i][9].ToString();
-            ItemDataList.Add(data);
-        }
+            int column = resultds.Tables[j].Columns.Count;
+            int row = resultds.Tables[j].Rows.Count;
 
+            for (int i = 1; i < row; i++)
+            {
+                if (resultds.Tables[j].Rows[i][1].ToString() == "") continue;
+
+                ItemData data = new ItemData();
+                data.id = resultds.Tables[j].Rows[i][1].ToString();
+                data.name = resultds.Tables[j].Rows[i][2].ToString();
+                data.describe = resultds.Tables[j].Rows[i][3].ToString();
+                data.thumbnail = resultds.Tables[j].Rows[i][4].ToString();
+                data.topImg = resultds.Tables[j].Rows[i][5].ToString();
+                data.model = resultds.Tables[j].Rows[i][6].ToString();
+                data.classify = resultds.Tables[j].Rows[i][7].ToString();
+                data.type = resultds.Tables[j].Rows[i][8].ToString();
+                data.price = resultds.Tables[j].Rows[i][9].ToString();
+                ItemDataList.Add(data);
+            }
+        }
     }
 
     public static List<ItemData> ItemDataList { get; private set; }
