@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4591886961721994}
   - component: {fileID: 33569132836387848}
   - component: {fileID: 23511379605839040}
-  - component: {fileID: 64317200146735732}
   m_Layer: 0
   m_Name: bush_tall004
   m_TagString: Untagged
@@ -37,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4169570319695056}
+  - component: {fileID: 65088545305489578}
   m_Layer: 0
   m_Name: "\u7EFF\u5899"
   m_TagString: Untagged
@@ -66,8 +66,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1927586737759140}
   m_LocalRotation: {x: -0.7071068, y: 0.000000106770166, z: 0.000000106770166, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.39786863, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.138, y: 1.13, z: 0.049}
+  m_LocalScale: {x: 2.8209543, y: 2.8209543, z: 2.8209543}
   m_Children:
   - {fileID: 4591886961721994}
   m_Father: {fileID: 4169570319695056}
@@ -143,17 +143,15 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1076191140022790}
   m_Mesh: {fileID: 4300000, guid: 41d8c2b4af3aaa241aad80345304f7b8, type: 3}
---- !u!64 &64317200146735732
-MeshCollider:
+--- !u!65 &65088545305489578
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1076191140022790}
+  m_GameObject: {fileID: 1117987816212018}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 41d8c2b4af3aaa241aad80345304f7b8, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.27432498, y: 2.2310078, z: 1.7967298}
+  m_Center: {x: -0.023663301, y: 1.1203395, z: -0.035502076}
