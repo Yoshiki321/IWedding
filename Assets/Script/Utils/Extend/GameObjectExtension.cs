@@ -40,7 +40,7 @@ public static class GameObjectExtension
         MeshFilter[] mfList = gameObject.GetComponentsInChildren<MeshFilter>();
         foreach(MeshFilter m in mfList)
         {
-            m.gameObject.AddComponent<MeshCollider>().sharedMesh = m.sharedMesh;
+            m.gameObject.AddComponent<MeshCollider>();
         }
     }
 
