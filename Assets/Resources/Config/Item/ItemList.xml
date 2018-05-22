@@ -1,20 +1,63 @@
-<ItemCode>
-  <ItemList id = "1">
-    <Item id = "1001" thumbnail="" tip="吊 灯"/>
-    <Item id = "1002" thumbnail="" tip="舞 台"/>
-    <Item id = "1003" thumbnail="" tip="花 瓶"/>
-    <Item id = "1004" thumbnail="" tip="T 台"/>
-    <Item id = "1005" thumbnail="" tip="酒 桌"/>
-    <Item id = "1006" thumbnail="" tip="龙门架"/>
-    <Item id = "1007" thumbnail="" tip="台 版"/>
-    <Item id = "1008" thumbnail="" tip="装 饰"/>
-    <Item id = "1009" thumbnail="" tip="组 合"/>
+<ItemCode> 
+   <ItemList id = "1">
+    <Item tip="灯">
+      <Item tip="吊灯">
+        <Item tip="不限">
+         <Item tip="不限" id="1001"></Item>
+        </Item>
+      </Item>
+      <Item  tip="台灯">
+        <Item  tip="不限">
+          <Item  tip="不限" ID="1002"></Item>
+        </Item>
+      </Item>
+      <Item tip="立灯">
+        <Item tip="不限">
+          <Item tip="不限"></Item>
+        </Item>
+      </Item>
+    </Item>
+    <Item tip="花">
+        <Item tip="花簇" id="2001">
+        </Item>
+        <Item tip="花瓶" id="2002">
+        </Item>
+        <Item tip="花艺" id="2003">
+        </Item>
+    </Item>
+    <Item tip="花 瓶"/>
+    <Item tip="T 台"/>
+    <Item tip="酒 桌"/>
+    <Item tip="龙门架"/>
+    <Item tip="台 版"/>
+    <Item tip="装 饰"/>
+    <Item tip="组 合"/>
+    <Item tip="组1 合"/>
 
   </ItemList>
 
   <ItemList id = "2">
-    <Item id = "2001" thumbnail="" tip="灯 光"/>
-    <Item id = "2002" thumbnail="" tip="氛 围"/>
-    <Item id = "2003" thumbnail="" tip="人 物"/>
+      <Item tip="灯光">
+        <Item tip="聚光灯" id="1001">
+        </Item>
+        <Item tip="散光灯" id="1002">
+        </Item>
+        <Item tip="点光灯" id="412421">
+        </Item>
+    </Item>
+    <Item tip="氛围">
+        <Item tip="烟雾" id="214124">
+        </Item>
+        <Item tip="花瓣" id="124">
+        </Item>
+        <Item tip="泡泡" id="12412412">
+        </Item>
+        <Item tip="花墙" id="12412412">
+        </Item>
+    </Item>
+  <Item tip="人物">
+        <Item tip="学生" id="4211">
+        </Item>
+    </Item>
   </ItemList>
-</ItemCode>
+</ItemCode> 

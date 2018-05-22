@@ -63,7 +63,7 @@ public class ItemManager
 
         for (int j = 0; j < 3; j++)
         {
-            int column = resultds.Tables[j].Columns.Count;
+           int column = resultds.Tables[j].Columns.Count;
             int row = resultds.Tables[j].Rows.Count;
 
             for (int i = 1; i < row; i++)

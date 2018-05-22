@@ -958,6 +958,7 @@
     <Compile Include="Assets\Script\View\Panel\ItemPanel\ItemPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemSelectPanel\ItemSelectPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemSelectPanel\ItemSelectPanelEvent.cs" />
+    <Compile Include="Assets\Script\View\Panel\ItemTool\ItemObject.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemTool\ItemToolPanel.cs" />
     <Compile Include="Assets\Script\View\Panel\ItemTool\ItemToolPanelEvent.cs" />
     <Compile Include="Assets\Script\View\Panel\LoadModelPanel\LoadModelPanel.cs" />
@@ -1010,6 +1011,7 @@
     <None Include="Assets\Module\ImperialFur\Shaders\Blinn40.shader" />
     <None Include="Assets\Module\ImperialFur\SimpleShaders\NoSkin2S.shader" />
     <None Include="Assets\Module\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
+    <None Include="Assets\Resources\Config\Item\itemId.xml" />
     <None Include="Assets\Resources\Config\Surface\Surface.xml" />
     <None Include="Assets\Module\ImperialFur\Shaders\Specular40.shader" />
     <None Include="Assets\Resources\Item\Combination\1003.xml" />
